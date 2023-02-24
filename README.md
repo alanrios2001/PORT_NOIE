@@ -94,11 +94,11 @@ I made available some tools I wrote to convert and create a conll format dataset
 but you can run the main.py to prepare a conll with the labels ready to train with:
 - The following command only works with the PTOIE dataset, if you want to use your own dataset, see explanation of example4.
 ```cmd
-python3 datasets/main.py (output_name) (test_size) (dev_size) (json_dir) (input_dir)
+python3 datasets/main.py (output_name) (json_dir) (input_dir) (test_size) (dev_size)
 ```
 example3:
 ```cmd
-PTOIE 0.1 0.1 saida_match/json_dump.json PTOIE/PTOIE.txt
+PTOIE saida_match/json_dump.json PTOIE/PTOIE.txt 0.1 0.1
 ```
 
 If you want to create a conll of your own dataset, you need a json on the following format example:
