@@ -72,20 +72,20 @@ python3 eval.py train_output/PTOIE PTOIE_eval datasets/saida_match PTOIE_train.t
 output:
 ```cmd
 Results:
-- F-score (micro) 0.8872
-- F-score (macro) 0.8874
-- Accuracy 0.7988
+- F-score (micro) 0.6129
+- F-score (macro) 0.6132
+- Accuracy 0.4425
 
 By class:
               precision    recall  f1-score   support
 
-        ARG0     0.8933    0.8758    0.8845       153
-        ARG1     0.8533    0.8366    0.8449       153
-           V     0.9392    0.9267    0.9329       150
+        ARG1     0.4731    0.5163    0.4938       153
+           V     0.7453    0.7895    0.7668       152
+        ARG0     0.5972    0.5621    0.5791       153
 
-   micro avg     0.8951    0.8794    0.8872       456
-   macro avg     0.8953    0.8797    0.8874       456
-weighted avg     0.8950    0.8794    0.8871       456
+   micro avg     0.6038    0.6223    0.6129       458
+   macro avg     0.6052    0.6226    0.6132       458
+weighted avg     0.6049    0.6223    0.6129       458
 ```
 
 ## Dataset tools
