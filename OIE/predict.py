@@ -33,7 +33,7 @@ class Predictor:
         print("| ", "-" * len(maior), " |")
 
 
-    def predict(self, text:str, show_output: bool):
+    def pred(self, text:str, show_output: bool):
         sentence = Sentence(text)
         self.oie.predict(sentence)
 
@@ -74,7 +74,7 @@ class Predictor:
 @app.command()
 def run(model:str, text:str, show_output: bool = True):
     predictor = Predictor(model)
-    predictor.predict(text, show_output)
+    predictor.pred(text, show_output)
 
 if __name__ == "__main__":
     app()

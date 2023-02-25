@@ -1,7 +1,7 @@
 from predict import Predictor
 from flair.models import SequenceTagger
 
-model = "PTOIE_pos"
+model = "PTOIE"
 oie = Predictor(model)
 
 with open("texto.txt", "r", encoding="utf-8") as f:
@@ -10,7 +10,7 @@ with open("texto.txt", "r", encoding="utf-8") as f:
 
 exts = []
 for line in lines:
-    ext = oie.predict(line, False)
+    ext = oie.pred(line, False)
     for e in ext:
         ex = []
         for i in e:
@@ -31,4 +31,3 @@ for ex in exts:
                 pass
     if n == 0:
         print(f"extração: {ex[0][0]} {ex[1][0]} {ex[2][0]}")
-
