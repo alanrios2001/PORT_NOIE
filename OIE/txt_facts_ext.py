@@ -1,9 +1,8 @@
-from predict import precict2
+from predict import Predictor
 from flair.models import SequenceTagger
 
 model = "PTOIE_pos"
-oie = SequenceTagger.load("train_output/"+model+"/best-model.pt")
-
+oie = Predictor(model)
 
 with open("texto.txt", "r", encoding="utf-8") as f:
     lines = f.read()
@@ -11,7 +10,7 @@ with open("texto.txt", "r", encoding="utf-8") as f:
 
 exts = []
 for line in lines:
-    ext = precict2(oie, line, False)
+    ext = oie.predict(line, False)
     for e in ext:
         exts.append(e)
 for ex in exts:
