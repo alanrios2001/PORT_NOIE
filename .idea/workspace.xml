@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14e074a8-21a2-4371-919b-d6a5e57781c8" name="Changes" comment="created a full text predictor.">
+    <list default="true" id="14e074a8-21a2-4371-919b-d6a5e57781c8" name="Changes" comment="Improved predict script">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/predict.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/OIE/txt_facts_ext.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/txt_facts_ext.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +55,7 @@
     "WebServerToolWindowFactoryState": "false",
     "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
     "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "last_opened_file_path": "E:/Dev/3-facul/PIBIC/PLN/Flair-oie/OIE/predict2.py",
+    "last_opened_file_path": "E:/Dev/3-facul/PIBIC/PLN/Flair-oie/OIE/predict_teste.py",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -67,11 +66,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\tools\models" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\PTOIE" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\trainers" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\saida_match" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE" />
@@ -149,21 +148,22 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="predict.py.old" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="predict_teste" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Flair-oie" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="E:\poetry\venvs\flair-oie-_ETNQf08-py3.9\Scripts\python.exe" />
+      <option name="SDK_NAME" value="Poetry (Flair-oie)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OIE" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\predict.py.old" />
-      <option name="PARAMETERS" value="PTOIE_pos &quot;Dom Pedro Primeiro proclamou a independencia do Brasil.&quot; True" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OIE/predict_teste.py" />
+      <option name="PARAMETERS" value="PTOIE_pos &quot;Os cachorros, que são mamíferos, são os melhores amigos do homem.&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -194,11 +194,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.predict.py.old" />
       <item itemvalue="Python.eval" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.train" />
       <item itemvalue="Python.predict2" />
+      <item itemvalue="Python.predict_teste" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -287,7 +287,7 @@
       <workItem from="1677279185450" duration="146000" />
       <workItem from="1677293455714" duration="250000" />
       <workItem from="1677295016247" duration="1000" />
-      <workItem from="1677355565189" duration="998000" />
+      <workItem from="1677355565189" duration="3427000" />
     </task>
     <task id="LOCAL-00001" summary="fixed custom embedding missing">
       <created>1675452641235</created>
@@ -422,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677279258265</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Improved predict script">
+      <created>1677356590109</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1677356590109</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -457,7 +464,8 @@
     <MESSAGE value="bug fixes, implemented torch.cuda.amp on trainer, changed flair embedding to bert-WordTransformer" />
     <MESSAGE value="improved embedding using one hot embedding, added pos, dep, ner tagging to dataset labeling script" />
     <MESSAGE value="created a full text predictor." />
-    <option name="LAST_COMMIT_MESSAGE" value="created a full text predictor." />
+    <MESSAGE value="Improved predict script" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved predict script" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Flair_oie$t5.coverage" NAME="t5 Coverage Results" MODIFIED="1676061889786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/teste" />
@@ -474,8 +482,9 @@
     <SUITE FILE_PATH="coverage/Flair_oie$criar_corpus.coverage" NAME="criar_corpus Coverage Results" MODIFIED="1675642973787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$eval.coverage" NAME="eval Coverage Results" MODIFIED="1677275669491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$main.coverage" NAME="main Coverage Results" MODIFIED="1677207828207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
+    <SUITE FILE_PATH="coverage/Flair_oie$predict_teste.coverage" NAME="predict_teste Coverage Results" MODIFIED="1677358529719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$gpt_2.coverage" NAME="gpt-2 Coverage Results" MODIFIED="1676055390470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/tools" />
-    <SUITE FILE_PATH="coverage/Flair_oie$txt_facts_ext.coverage" NAME="txt_facts_ext Coverage Results" MODIFIED="1677356550401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
+    <SUITE FILE_PATH="coverage/Flair_oie$txt_facts_ext.coverage" NAME="txt_facts_ext Coverage Results" MODIFIED="1677358997356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$pos_tag.coverage" NAME="pos_tag Coverage Results" MODIFIED="1677205586965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$t5_transformer.coverage" NAME="t5_transformer Coverage Results" MODIFIED="1676054971942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/tools" />
   </component>

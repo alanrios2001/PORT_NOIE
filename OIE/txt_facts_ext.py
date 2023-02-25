@@ -1,4 +1,4 @@
-from predict import Predictor
+from predict_teste import Predictor
 from flair.models import SequenceTagger
 
 model = "PTOIE_pos"
@@ -12,7 +12,14 @@ exts = []
 for line in lines:
     ext = oie.predict(line, False)
     for e in ext:
-        exts.append(e)
+        ex = []
+        for i in e:
+            if type(i) == list:
+                ex.append(i[0])
+            else:
+                ex.append(i)
+        exts.append(ex)
+
 for ex in exts:
     n = 0
     for e in ex:
