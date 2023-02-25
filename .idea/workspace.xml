@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14e074a8-21a2-4371-919b-d6a5e57781c8" name="Changes" comment="Improved predict script">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="14e074a8-21a2-4371-919b-d6a5e57781c8" name="Changes" comment="Improved predict triple constructor">
       <change beforePath="$PROJECT_DIR$/OIE/txt_facts_ext.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/txt_facts_ext.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +79,7 @@
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\PTOIE" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.eval">
     <configuration name="eval" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Flair-oie" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -140,29 +139,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\predict.py" />
-      <option name="PARAMETERS" value="PTOIE_pos &quot;Dom Pedro Primeiro proclamou a independencia do Brasil.&quot;" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="predict_teste" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="Flair-oie" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="E:\poetry\venvs\flair-oie-_ETNQf08-py3.9\Scripts\python.exe" />
-      <option name="SDK_NAME" value="Poetry (Flair-oie)" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OIE" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OIE/predict_teste.py" />
       <option name="PARAMETERS" value="PTOIE_pos &quot;Os cachorros, que são mamíferos, são os melhores amigos do homem.&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -197,7 +173,6 @@
       <item itemvalue="Python.eval" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.train" />
-      <item itemvalue="Python.predict2" />
       <item itemvalue="Python.predict_teste" />
     </list>
   </component>
@@ -287,7 +262,7 @@
       <workItem from="1677279185450" duration="146000" />
       <workItem from="1677293455714" duration="250000" />
       <workItem from="1677295016247" duration="1000" />
-      <workItem from="1677355565189" duration="3427000" />
+      <workItem from="1677355565189" duration="3540000" />
     </task>
     <task id="LOCAL-00001" summary="fixed custom embedding missing">
       <created>1675452641235</created>
@@ -429,7 +404,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677356590109</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Improved predict triple constructor">
+      <created>1677359088533</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1677359088533</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,7 +447,8 @@
     <MESSAGE value="improved embedding using one hot embedding, added pos, dep, ner tagging to dataset labeling script" />
     <MESSAGE value="created a full text predictor." />
     <MESSAGE value="Improved predict script" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved predict script" />
+    <MESSAGE value="Improved predict triple constructor" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved predict triple constructor" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Flair_oie$t5.coverage" NAME="t5 Coverage Results" MODIFIED="1676061889786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/teste" />

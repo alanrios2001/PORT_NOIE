@@ -1,4 +1,4 @@
-from predict_teste import Predictor
+from predict import Predictor
 from flair.models import SequenceTagger
 
 model = "PTOIE_pos"
