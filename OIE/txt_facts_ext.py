@@ -6,6 +6,7 @@ oie = Predictor(model)
 
 with open("texto.txt", "r", encoding="utf-8") as f:
     lines = f.read()
+    lines = lines.replace("\n", "")
     lines = lines.split(".")[:-1]
 
 exts = []
