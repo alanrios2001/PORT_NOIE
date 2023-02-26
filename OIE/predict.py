@@ -13,9 +13,14 @@ class Predictor:
 
     def display(self, maior, exts, sentenca, tripla, sentence: Sentence):
         print("\n" * 1)
+        print(maior)
         print("| ", "-" * len(maior), " |")
+        extraction = "extração: "
         for ext in exts:
-            print("Extração: ", ext[0][0] + " " + ext[1][0] + " " + ext[2][0])
+            for e in ext:
+                extraction += e[0] + " "
+            print("| ", extraction, " " * (len(maior) - (len(extraction) + 1)), " |")
+            extraction = "extração: "
         print("| ", "-" * len(maior), " |")
         print("\n" * 1)
         print("| ", "-" * len(maior), " |")
@@ -112,6 +117,18 @@ class Predictor:
             n += e[2] + " "
         if "ARG0" in n and "V" in n and "ARG1" in n:
             exts.append(ext)
+
+
+        if show_output:
+            maior = ""
+            if len(maior) < len(sentence):
+                maior = sentence
+            if len(maior) < len(str(sentence.get_spans('label'))):
+                maior = str(sentence.get_spans('label'))
+            if len(maior) < len(text):
+                maior = text
+            self.display(maior, exts, text, str(sentence).split("→")[1], sentence)
+
         return exts
 
 
