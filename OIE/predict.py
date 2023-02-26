@@ -38,36 +38,80 @@ class Predictor:
         self.oie.predict(sentence)
 
         # separa elementos da tripla
-        arg0 = [(span.text, span.score, span.end_position) for span in sentence.get_spans('label') if span.tag == "ARG0"]
-        rel = [(span.text, span.score, [span.start_position, span.end_position]) for span in sentence.get_spans('label') if span.tag == "V"]
-        arg1 = [(span.text, span.score, span.start_position) for span in sentence.get_spans('label') if span.tag == "ARG1"]
+        arg0 = [(span.text, span.score, span.tag,[span.start_position, span.end_position]) for span in sentence.get_spans('label') if span.tag == "ARG0"]
+        rel = [(span.text, span.score, span.tag,[span.start_position, span.end_position]) for span in sentence.get_spans('label') if span.tag == "V"]
+        arg1 = [(span.text, span.score, span.tag,[span.start_position, span.end_position]) for span in sentence.get_spans('label') if span.tag == "ARG1"]
 
-        # cria extrações baseadas na proximidade da rel com arg0 e arg1
+
+        elems = arg0
+        for r in rel:
+            insert = False
+            for i, e in enumerate(elems):
+                if r[3][0] < e[3][0] and not insert:
+                    elems.insert(elems.index(e), r)
+                    insert = True
+            if not insert:
+                elems.append(r)
+
+        for a in arg1:
+            insert = False
+            for i, e in enumerate(elems):
+                if a[3][0] < e[3][0] and not insert:
+                    elems.insert(elems.index(e), a)
+                    insert = True
+            if not insert:
+                elems.append(a)
+
+        # monta triplas
         exts = []
-        if len(rel) > 0 and len(arg0) == 1 and len(arg1) == 1:
-            for r in rel:
-                if arg0[0][2] < r[2][0] and arg1[0][2] > r[2][1]:
-                    exts.append([arg0, r, arg1])
-        elif len(rel) > 0 and len(arg0) == 1 and len(arg1) > 1:
-            for r in rel:
-                if arg0[0][2] < r[2][0]:
-                    for a in arg1:
-                        if a[2] > r[2][1]:
-                            exts.append([arg0, r, a])
-        elif len(rel) > 0 and len(arg0) > 1 and len(arg1) == 1:
-            for r in rel:
-                if arg1[0][2] > r[2][1]:
-                    for a in arg0:
-                        if a[2] < r[2][0]:
-                            exts.append([a, r, arg1])
-        elif len(rel) > 0 and len(arg0) > 1 and len(arg1) > 1:
-            for r in rel:
-                for a in arg0:
-                    if a[2] < r[2][0]:
-                        for b in arg1:
-                            if b[2] > r[2][1]:
-                                exts.append([a, r, b])
+        ext = []
+        last_arg0 = ()
+        last_rel = ()
+        last_arg1 = ()
+        for i, el in enumerate(elems):
+            if el[2] == "ARG0":
+                if len(ext) == 0:
+                    ext.append(el)
+                    last_arg0 = el
+                else:
+                    if ext[-1][2] == "ARG0":
+                        ext.append(el)
+                        last_arg0 = el
 
+            elif el[2] == "V":
+                if len(ext) > 0:
+                    if ext[-1][2] == "ARG0":
+                        ext.append(el)
+                        last_rel = el
+                    else:
+                        if ext[-1][2] == "V":
+                            ext.append(el)
+                            last_rel = el
+
+                        if ext[-1][2] == "ARG1":
+                            if last_arg0[3][1] < el[3][0]:
+                                exts.append(ext)
+                                ext = [last_arg0, el]
+                                last_rel = el
+                            else:
+                                ext.append(el)
+                                last_rel = el
+
+            elif el[2] == "ARG1":
+                if len(ext) > 0:
+                    if ext[-1][2] == "V":
+                        ext.append(el)
+                        last_arg1 = el
+                    else:
+                        if ext[-1][2] == "ARG1":
+                            ext.append(el)
+                            last_arg1 = el
+
+        n = ""
+        for e in ext:
+            n += e[2] + " "
+        if "ARG0" in n and "V" in n and "ARG1" in n:
+            exts.append(ext)
         return exts
 
 

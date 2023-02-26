@@ -1,5 +1,4 @@
 from predict import Predictor
-from flair.models import SequenceTagger
 
 model = "PTOIE"
 oie = Predictor(model)
@@ -15,20 +14,13 @@ for line in lines:
     for e in ext:
         ex = []
         for i in e:
-            if type(i) == list:
-                ex.append(i[0])
-            else:
-                ex.append(i)
+            ex.append(i)
         exts.append(ex)
 
 for ex in exts:
-    n = 0
-    for e in ex:
-        if e[0] == "":
-            try:
-                exts.remove(ex)
-                n =+ 1
-            except:
-                pass
-    if n == 0:
-        print(f"extração: {ex[0][0]} {ex[1][0]} {ex[2][0]}")
+    lenght = len(ex)
+    extraction = "extração:"
+    if lenght > 2:
+        for i in range(lenght):
+            extraction += f" {ex[i][0]}"
+        print(extraction)
