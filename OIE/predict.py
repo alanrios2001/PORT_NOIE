@@ -87,30 +87,30 @@ class Predictor:
                 if len(ext) > 0:
                     if ext[-1][2] == "ARG0":
                         ext.append(el)
-                        last_rel = el
+                        #last_rel = el
                     else:
                         if ext[-1][2] == "V":
                             ext.append(el)
-                            last_rel = el
+                            #last_rel = el
 
                         if ext[-1][2] == "ARG1":
                             if last_arg0[3][1] < el[3][0]:
                                 exts.append(ext)
                                 ext = [last_arg0, el]
-                                last_rel = el
+                                #last_rel = el
                             else:
                                 ext.append(el)
-                                last_rel = el
+                                #last_rel = el
 
             elif el[2] == "ARG1":
                 if len(ext) > 0:
                     if ext[-1][2] == "V":
                         ext.append(el)
-                        last_arg1 = el
+                        #last_arg1 = el
                     else:
                         if ext[-1][2] == "ARG1":
                             ext.append(el)
-                            last_arg1 = el
+                            #last_arg1 = el
 
         n = ""
         for e in ext:

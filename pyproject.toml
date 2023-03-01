@@ -16,6 +16,8 @@ madgrad = "^1.2"
 transformers = "^4.26.0"
 torchtext = "^0.14.1"
 jupyter = "^1.0.0"
+protobuf = "^3.20"
+sacremoses = "^0.0.53"
 
 
 [build-system]

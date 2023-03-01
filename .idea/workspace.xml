@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14e074a8-21a2-4371-919b-d6a5e57781c8" name="Changes" comment="Improved txt_facts_ext">
+    <list default="true" id="14e074a8-21a2-4371-919b-d6a5e57781c8" name="Changes" comment="Improved predictor triple builder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/datasets/conll2bioes.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/conll2bioes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/datasets/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/datasets/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/match.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/datasets/merge_datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/merge_datasets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/eval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/evaluations/PTOIE_pos_dev.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/evaluations/PTOIE_pos_result.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/OIE/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/predict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/texto.txt" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/texto.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/testes/teste_BERT.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/testes/teste_BERT.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OIE/txt_facts_ext.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/txt_facts_ext.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +67,7 @@
     "WebServerToolWindowFactoryState": "false",
     "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
     "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "last_opened_file_path": "E:/Dev/3-facul/PIBIC/PLN/Flair-oie/OIE/predict_teste.py",
+    "last_opened_file_path": "E:/Dev/3-facul/PIBIC/PLN/Flair-oie/OIE/datasets/translated/saida_pos_tag",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -68,18 +78,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\translated\saida_pos_tag" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\tools\models" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\PTOIE" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\trainers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\testes" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\saida_match" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\PTOIE" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\saida_pos_tag" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\translated" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\lsoie" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\evaluations\ptoie_testeDev" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\evaluations" />
     </key>
   </component>
   <component name="RunManager">
@@ -97,7 +107,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OIE/eval.py" />
-      <option name="PARAMETERS" value="train_output/PTOIE_pos datasets/saida_pos_tag pud_100.txt pud_100.txt PTOIE_dev.txt" />
+      <option name="PARAMETERS" value="train_output/PtLsOIE datasets/saida_pos_tag PTOIE_plus_train.txt PTOIE_test.txt pud_100.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -164,7 +174,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OIE/train.py" />
-      <option name="PARAMETERS" value="150 teste_dep datasets/saida_pos_tag PTOIE_train.txt PTOIE_test.txt PTOIE_dev.txt" />
+      <option name="PARAMETERS" value="150 PtLsOIE datasets/saida_pos_tag PtOIE_LsOIE_train.txt PTOIE_test.txt pud_100.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -173,10 +183,10 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.predict" />
       <item itemvalue="Python.eval" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.train" />
-      <item itemvalue="Python.predict_teste" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -265,7 +275,10 @@
       <workItem from="1677279185450" duration="146000" />
       <workItem from="1677293455714" duration="250000" />
       <workItem from="1677295016247" duration="1000" />
-      <workItem from="1677355565189" duration="12132000" />
+      <workItem from="1677355565189" duration="13428000" />
+      <workItem from="1677591241607" duration="11923000" />
+      <workItem from="1677619067820" duration="22628000" />
+      <workItem from="1677647339681" duration="7565000" />
     </task>
     <task id="LOCAL-00001" summary="fixed custom embedding missing">
       <created>1675452641235</created>
@@ -449,7 +462,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677360345907</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Improved predictor triple builder">
+      <created>1677446804296</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1677446804296</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Improved predictor triple builder">
+      <created>1677447804798</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1677447804798</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,26 +514,27 @@
     <MESSAGE value="Improved predict script" />
     <MESSAGE value="Improved predict triple constructor" />
     <MESSAGE value="Improved txt_facts_ext" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved txt_facts_ext" />
+    <MESSAGE value="Improved predictor triple builder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved predictor triple builder" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Flair_oie$t5.coverage" NAME="t5 Coverage Results" MODIFIED="1676061889786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/teste" />
-    <SUITE FILE_PATH="coverage/Flair_oie$train.coverage" NAME="train Coverage Results" MODIFIED="1677261144089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
-    <SUITE FILE_PATH="coverage/Flair_oie$conll2bioes.coverage" NAME="conll2bioes Coverage Results" MODIFIED="1677267361537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
+    <SUITE FILE_PATH="coverage/Flair_oie$conll2bioes.coverage" NAME="conll2bioes Coverage Results" MODIFIED="1677620766233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
+    <SUITE FILE_PATH="coverage/Flair_oie$train.coverage" NAME="train Coverage Results" MODIFIED="1677704119915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$predict2.coverage" NAME="predict Coverage Results" MODIFIED="1677356393194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$lower_dataset.coverage" NAME="lower_dataset Coverage Results" MODIFIED="1675533939862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$predict.coverage" NAME="predict Coverage Results" MODIFIED="1677365729060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
-    <SUITE FILE_PATH="coverage/Flair_oie$match.coverage" NAME="match Coverage Results" MODIFIED="1677014207881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
+    <SUITE FILE_PATH="coverage/Flair_oie$match.coverage" NAME="match Coverage Results" MODIFIED="1677641070920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$train_test_dev.coverage" NAME="train_test_dev Coverage Results" MODIFIED="1677119699574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
-    <SUITE FILE_PATH="coverage/Flair_oie$merge_datasets.coverage" NAME="merge_datasets Coverage Results" MODIFIED="1676405082156" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
+    <SUITE FILE_PATH="coverage/Flair_oie$merge_datasets.coverage" NAME="merge_datasets Coverage Results" MODIFIED="1677706228081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$test.coverage" NAME="test Coverage Results" MODIFIED="1675900394354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$setup.coverage" NAME="setup Coverage Results" MODIFIED="1675810591929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apex" />
     <SUITE FILE_PATH="coverage/Flair_oie$criar_corpus.coverage" NAME="criar_corpus Coverage Results" MODIFIED="1675642973787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
-    <SUITE FILE_PATH="coverage/Flair_oie$eval.coverage" NAME="eval Coverage Results" MODIFIED="1677275669491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
+    <SUITE FILE_PATH="coverage/Flair_oie$eval.coverage" NAME="eval Coverage Results" MODIFIED="1677705806310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$main.coverage" NAME="main Coverage Results" MODIFIED="1677207828207" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
-    <SUITE FILE_PATH="coverage/Flair_oie$predict_teste.coverage" NAME="predict_teste Coverage Results" MODIFIED="1677358529719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
+    <SUITE FILE_PATH="coverage/Flair_oie$predict_teste.coverage" NAME="predict Coverage Results" MODIFIED="1677447786139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$gpt_2.coverage" NAME="gpt-2 Coverage Results" MODIFIED="1676055390470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/tools" />
-    <SUITE FILE_PATH="coverage/Flair_oie$txt_facts_ext.coverage" NAME="txt_facts_ext Coverage Results" MODIFIED="1677446453760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
+    <SUITE FILE_PATH="coverage/Flair_oie$txt_facts_ext.coverage" NAME="txt_facts_ext Coverage Results" MODIFIED="1677703889871" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$pos_tag.coverage" NAME="pos_tag Coverage Results" MODIFIED="1677205586965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$t5_transformer.coverage" NAME="t5_transformer Coverage Results" MODIFIED="1676054971942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/tools" />
   </component>

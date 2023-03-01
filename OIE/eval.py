@@ -10,13 +10,12 @@ app = typer.Typer()
 
 class Eval:
     def __init__(self,
-                 model_path: str,
+                 model: SequenceTagger,
                  out_txt: str,
                  corpus: flair.data.Corpus
                  ):
-        self.model_path = model_path
         self.corpus = corpus
-        self.oie = SequenceTagger.load(model_path)
+        self.oie = model
 
         path = pathlib.Path("evaluations")
         path.mkdir(parents=True, exist_ok=True)
@@ -46,18 +45,16 @@ def run(model_path: str, corpus_dir: str, train: str, test: str, dev: str):
 
     try:
         #carregando melhor modelo
-        SequenceTagger.load(model_path + "/best-model.pt")
-        model_path = model_path + "/best-model.pt"
+        model = SequenceTagger.load(model_path + "/best-model.pt")
+        Eval(model=model, out_txt=out_txt, corpus=corpus)
     except:
         print("best-model.pt not found, trying to use final-model.pt")
         try:
             #carregando modelo final
-            SequenceTagger.load(model_path + "/final-model.pt")
-            model_path = model_path + "/final-model.pt"
+            model = SequenceTagger.load(model_path + "/final-model.pt")
+            Eval(model=model, out_txt=out_txt, corpus=corpus)
         except:
             print("final-model.pt not found, are you sure you have a model in this folder?")
-
-    Eval(model_path=model_path, out_txt=out_txt, corpus=corpus)
 
 
 if __name__ == "__main__":

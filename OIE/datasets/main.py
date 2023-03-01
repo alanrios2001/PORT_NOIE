@@ -1,9 +1,9 @@
-from create_txt_csv import Convert
+from OIE.datasets.create_txt_csv import Convert
 from OIE.datasets.match import OIE_Match
 import typer
 import pathlib
-from pos_tag import PosTag
-from train_test_dev import train_dev_test
+from OIE.datasets.pos_tag import PosTag
+from OIE.datasets.train_test_dev import train_dev_test
 
 app = typer.Typer()
 
@@ -14,11 +14,13 @@ def criar_conll(out_name: str,
                 input_path: str,
                 test_size: float,
                 dev_size: float,
+                converted: bool = False
                 ):
 
     path = pathlib.Path("saida_match")
     path.mkdir(parents=True, exist_ok=True)
-    Convert(input_path, out_name)
+    if not converted:
+        Convert(input_path, out_name)
 
     # selecionar e anotar sentenças validas
     oie_match = OIE_Match(out_name, json_dir)

@@ -1,5 +1,4 @@
 import os
-
 import json
 import spacy
 from spacy.matcher import Matcher
