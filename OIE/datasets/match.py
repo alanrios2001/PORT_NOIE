@@ -6,9 +6,9 @@ from tqdm import tqdm
 
 
 class OIE_Match:
-    def __init__(self, output_name: str, json_name:str):
+    def __init__(self, output_name: str, path_dir):
+        self.path_dir = path_dir
         self.output_name = output_name
-        self.json_name = json_name
         self.valid = {}
         self.invalid = {}
         try:
@@ -20,7 +20,7 @@ class OIE_Match:
 
     def validate_ext(self):
 
-        json_dir = self.json_name
+        json_dir = self.path_dir + "/json_dump.json"
         with open(json_dir, "r", encoding="utf-8") as f:
             data = json.load(f)
 
@@ -106,7 +106,7 @@ class OIE_Match:
                     "arg2": (arg2_tuple[0], arg2_tuple[1], tk[arg2_tuple[0]:arg2_tuple[1]]),
                 }
 
-        with open("saida_match/invalid.json", "a", encoding="utf-8") as f:
+        with open(self.path_dir+"/invalid.json", "a", encoding="utf-8") as f:
             json.dump(self.invalid, f, ensure_ascii=False, indent=4)
 
         print("initial samples: ", len(data), "|| valid samples: ", len(self.valid))
@@ -176,7 +176,7 @@ class OIE_Match:
                 if i == len(sent_tokens) - 1:
                     label_lines += "\n"
             try:
-                with open(f"saida_match/{self.output_name}_corpus.txt", "a", encoding="utf-8") as file:
+                with open(f"{self.path_dir}/{self.output_name}_corpus.txt", "a", encoding="utf-8") as file:
                     file.writelines(label_lines)
 
             except:

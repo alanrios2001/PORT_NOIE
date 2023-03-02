@@ -3,7 +3,7 @@ import pathlib
 
 
 class Convert:
-    def __init__(self, txt_path, name="_"):
+    def __init__(self, txt_path, path_dir, name="_"):
         self.name = name
         self.txt_path = txt_path
         self.dictio = {}
@@ -52,28 +52,10 @@ class Convert:
                 dic = {}
 
             json_str = json.dumps(self.dictio)
-            with open("saida_match/json_dump.json", "a", encoding ="utf-8") as file:
+            with open(path_dir+"/saida_match/json_dump.json", "a", encoding ="utf-8") as file:
                 file.write(json_str)
 
-            with open("saida_match/valid.json", "a", encoding ="utf-8") as file:
+            with open(path_dir+"/saida_match/valid.json", "a", encoding ="utf-8") as file:
                 file.write(json.dumps(self.dictio, indent=4, ensure_ascii=False))
 
         transform_in_dict()
-
-    def create_sentences_file(self):
-        for dic in self.dictio:
-            sent = self.dictio[dic]['sent']
-            text = f"{dic}\t{sent}\n"
-            with open(f"saida_match/{self.name}_sentences.txt", "a", encoding='utf-8') as fl:
-                fl.writelines(text)
-
-    def create_gold_csv_file(self):
-        for dic in self.dictio:
-            id_sent = dic
-            for ext in self.dictio[dic]["ext"]:
-                arg1 = ext['arg1']
-                rel = ext['rel']
-                arg2 = ext['arg2']
-                text = f"{id_sent}\t{arg1}\t{rel}\t{arg2}\t{1}\n"
-                with open(f"saida_match/{self.name}_gold.csv", "a", encoding='utf-8') as fl:
-                    fl.writelines(text)

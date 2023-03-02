@@ -10,27 +10,32 @@ app = typer.Typer()
 
 @app.command()
 def criar_conll(out_name: str,
-                json_dir: str,
                 input_path: str,
                 test_size: float,
                 dev_size: float,
                 converted: bool = False
                 ):
+    path = f"outputs/{out_name}"
+    pathlib.Path(path).mkdir(parents=True, exist_ok=True)
 
-    path = pathlib.Path("saida_match")
-    path.mkdir(parents=True, exist_ok=True)
+    path_saida_match = f"outputs/{out_name}"+"/saida_match"
+    pathlib.Path(path_saida_match).mkdir(parents=True, exist_ok=True)
+
     if not converted:
-        Convert(input_path, out_name)
+        Convert(input_path, path, out_name)
 
     # selecionar e anotar sentenças validas
-    oie_match = OIE_Match(out_name, json_dir)
+    oie_match = OIE_Match(out_name, path_saida_match)
     oie_match.run()
 
     # POS tagging
-    PosTag(f"saida_match\{out_name}_corpus.txt").run(f"{out_name}_corpus.txt")
+    try:
+        PosTag(f"{path_saida_match}\{out_name}_corpus.txt", path).run(f"{out_name}_corpus.txt")
+    except:
+        PosTag(f"{path}\conll2bioes_output\{out_name}.txt", path).run(f"{out_name}_corpus.txt")
 
     # train, dev, test
-    train_dev_test(test_size, dev_size, out_name, in_path="saida_pos_tag", out_path="saida_pos_tag")
+    train_dev_test(test_size, dev_size, out_name, in_path=path+"/saida_pos_tag", out_path=path+"/saida_pos_tag")
 
 if __name__ == "__main__":
     app()

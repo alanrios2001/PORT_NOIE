@@ -2,7 +2,7 @@ import pathlib
 import random
 
 class Conversor:
-    def __init__(self, path:str, conll_name: str):
+    def __init__(self, path:str, conll_name: str, out_dir: str):
         self.conll_name = conll_name
         self.path = path
         self.conll = self.path + self.conll_name
@@ -65,10 +65,10 @@ class Conversor:
                 line = line[:-1]
                 self.lines[idx] = line
 
-        path = pathlib.Path("conll2bioes_output")
+        path = pathlib.Path(f"{out_dir}/conll2bioes_output")
         path.mkdir(parents=True, exist_ok=True)
 
-        with open(f"conll2bioes_output/{conll_name.replace('.conll', '')}.txt", "a", encoding="utf-8") as file:
+        with open(f"{out_dir}/conll2bioes_output/{conll_name.replace('.conll', '')}.txt", "a", encoding="utf-8") as file:
             for line in self.lines:
                 file.writelines(line+'\n')
 

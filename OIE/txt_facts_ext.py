@@ -1,6 +1,6 @@
 from predict import Predictor
 
-model = "PtLsOIE_plus"
+model = "LSOIE"
 oie = Predictor(model)
 
 with open("texto.txt", "r", encoding="utf-8") as f:

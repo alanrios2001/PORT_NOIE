@@ -4,8 +4,9 @@ import os
 from tqdm import tqdm
 
 class PosTag:
-    def __init__(self, corpus_dir: str):
-        self.output_dir = pathlib.Path("saida_pos_tag").mkdir(parents=True, exist_ok=True)
+    def __init__(self, corpus_dir: str, path: str):
+        self.path = path
+        self.output_dir = pathlib.Path(self.path+"/saida_pos_tag").mkdir(parents=True, exist_ok=True)
         self.corpus_dir = corpus_dir
         try:
             self.nlp = spacy.load("pt_core_news_lg")
@@ -56,7 +57,7 @@ class PosTag:
 
     def save(self, name):
         raw_file = ""
-        with open(f"saida_pos_tag\{name}", "a", encoding="utf-8") as f:
+        with open(f"{self.path}\saida_pos_tag\{name}", "a", encoding="utf-8") as f:
             for key in tqdm(range(len(self.dict)), desc="Salvando"):
                 sentence = self.dict[key]["sent"]
                 sentence = [x for x in sentence if x != ""]
