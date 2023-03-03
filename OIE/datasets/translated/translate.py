@@ -13,7 +13,11 @@ app = typer.Typer()
 
 
 class LoadDataset:
-    def __init__(self, dataset_path: str, dataset_name: str, out_path: str):
+    def __init__(self,
+                 dataset_path: str,
+                 dataset_name: str,
+                 out_path: str
+                 ):
         self.dataset_name = dataset_name
         self.dataset_path = dataset_path
 
@@ -101,10 +105,12 @@ class ArgsRel:
 
 
 class Translators:
-    def __init__(self):
+    def __init__(self, google: bool):
         model_name = "Helsinki-NLP/opus-mt-tc-big-en-pt"
-        self.pipe = pipeline("translation", model=model_name, device=0)
-        self.google_translator = GoogleTranslator(source="en", target="pt")
+        if not google:
+            self.pipe = pipeline("translation", model=model_name, device=0)
+        else:
+            self.google_translator = GoogleTranslator(source="en", target="pt")
 
     def google(self, sent):
         result = self.google_translator.translate(sent)
@@ -126,12 +132,20 @@ class Translators:
 
 
 class TranslateDataset:
-    def __init__(self, dataset_dir: str, dataset_name: str, out_path: str, debug: bool = False):
+    def __init__(self, dataset_dir: str,
+                 dataset_name: str,
+                 out_path: str,
+                 batch_size: int,
+                 google: bool = False,
+                 debug: bool = False
+                 ):
+        self.batch_size = batch_size
+        self.google = google
         self.debug = debug
         self.dataset_dir = dataset_dir
         self.dataset_name = dataset_name
         self.out_path = out_path
-        self.translators = Translators()
+        self.translators = Translators(google)
 
     def debugging(self, sentence, ext):
         arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(ext)
@@ -185,13 +199,15 @@ class TranslateDataset:
         self.save_dict(data_dict)
 
 
-    def translate2(self, batch_size, google: bool):
+    def translate2(self):
+        batch_size = self.batch_size
         # estrutura o dataset em um dicionario
         with open(f"{self.out_path}/conll2bioes_output/{self.dataset_name.replace('.conll', '.txt')}",
                   "r", encoding="utf-8") as f:
             data = f.read()
         data = data.split("\n\t")
         data = [ext.split("\n") for ext in data]
+        #data = data[:32]
         for ext in data:
             for i in range(len(ext)):
                 ext[i] = ext[i].split("\t")
@@ -229,13 +245,13 @@ class TranslateDataset:
         all_sent = []
         all_ext = []
         for batch in tqdm(dataloader, desc=f"Traduzindo dataset com batching de {batch_size}"):
-            if not google:
+            if not self.google:
                 sent, ext = self.translators.batch_mt(batch)
-            if google:
+            if self.google:
                 sent, ext = self.translators.batch_google(batch)
 
             if self.debug:
-                if not google:
+                if not self.google:
                     self.debugging(sent[0]["translation_text"], ext[0]["translation_text"])
                 else:
                     self.debugging(sent[0], ext[0])
@@ -244,13 +260,13 @@ class TranslateDataset:
 
         #identifica elementos da tripla traduzida e armazena em um dicionario
         counter = 0
-        if not google:
+        if not self.google:
             for sample in tqdm(zip(all_sent, all_ext), desc="Armazenando tradução", total=len(all_sent)):
                 arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(sample[1]["translation_text"])
                 data_dict[str(counter)] = {"ID": counter, "sent": sample[0]["translation_text"],
                                            "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
                 counter += 1
-        if google:
+        if self.google:
             for sample in tqdm(zip(all_sent, all_ext), desc="Armazenando tradução", total=len(all_sent)):
                 arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(sample[1])
                 data_dict[str(counter)] = {"ID": counter, "sent": sample[0],
@@ -262,7 +278,13 @@ class TranslateDataset:
 
 
 @app.command()
-def run(batch_size:int ,dataset_dir: str, dataset_name: str, test_size: float, dev_size: float, debug: bool = False):
+def run(batch_size: int,
+        dataset_dir: str,
+        dataset_name: str,
+        test_size: float,
+        dev_size: float,
+        debug: bool = False
+        ):
     use_google = True
     converted = True
     OUT_NAME = dataset_name.replace(".conll", "")
@@ -275,12 +297,13 @@ def run(batch_size:int ,dataset_dir: str, dataset_name: str, test_size: float, d
 
     if debug:
         LoadDataset(dataset_dir, dataset_name, path)
-        TranslateDataset(dataset_dir, dataset_name, path, debug=True).translate2(batch_size=1, google=use_google)
+        TranslateDataset(dataset_dir, dataset_name, path, debug=True, batch_size=1).translate2()
         criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
     else:
         LoadDataset(dataset_dir, dataset_name, path)
-        TranslateDataset(dataset_dir, dataset_name, path).translate2(batch_size, google=use_google)
+        TranslateDataset(dataset_dir, dataset_name, path, batch_size, google=use_google).translate2()
         criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
+
 
 if __name__ == "__main__":
     app()

@@ -112,75 +112,72 @@ class OIE_Match:
         print("initial samples: ", len(data), "|| valid samples: ", len(self.valid))
 
     def create_corpus(self):
-        for sent in tqdm(self.valid, desc="Criando conll"):
-            sentence = self.nlp(sent)
-            sent_tokens = [token.text for token in sentence]
-            arg1_spans = []
-            arg2_spans = []
-            rel_spans = []
-            for match in self.valid[sent]["arg1"]:
-                arg1_spans.append((match[1], match[2]))
-            for match in self.valid[sent]["arg2"]:
-                arg2_spans.append((match[1], match[2]))
-            for match in self.valid[sent]["rel"]:
-                rel_spans.append((match[1], match[2]))
+        with open(f"{self.path_dir}/{self.output_name}_corpus.txt", "a", encoding="utf-8") as file:
+            for sent in tqdm(self.valid, desc="Criando conll"):
+                sentence = self.nlp(sent)
+                sent_tokens = [token.text for token in sentence]
+                arg1_spans = []
+                arg2_spans = []
+                rel_spans = []
+                for match in self.valid[sent]["arg1"]:
+                    arg1_spans.append((match[1], match[2]))
+                for match in self.valid[sent]["arg2"]:
+                    arg2_spans.append((match[1], match[2]))
+                for match in self.valid[sent]["rel"]:
+                    rel_spans.append((match[1], match[2]))
 
-            label_lines = ""
-            for i in range(len(sent_tokens)):
-                if i >= arg1_spans[0][0] and i < arg1_spans[0][1]:
-                    if i == arg1_spans[0][0] and arg1_spans[0][1] - arg1_spans[0][0] == 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tS-ARG0\t-"
-                        label_lines += line + "\n"
-                    elif i == arg1_spans[0][0] and arg1_spans[0][1] - arg1_spans[0][0] > 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tB-ARG0\t-"
-                        label_lines += line + "\n"
-                    elif i > arg1_spans[0][0] and i < arg1_spans[0][1] - 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tI-ARG0\t-"
-                        label_lines += line + "\n"
-                    elif i == arg1_spans[0][1] - 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tE-ARG0\t-"
+                label_lines = ""
+                for i in range(len(sent_tokens)):
+                    if i >= arg1_spans[0][0] and i < arg1_spans[0][1]:
+                        if i == arg1_spans[0][0] and arg1_spans[0][1] - arg1_spans[0][0] == 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tS-ARG0\t-"
+                            label_lines += line + "\n"
+                        elif i == arg1_spans[0][0] and arg1_spans[0][1] - arg1_spans[0][0] > 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tB-ARG0\t-"
+                            label_lines += line + "\n"
+                        elif i > arg1_spans[0][0] and i < arg1_spans[0][1] - 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tI-ARG0\t-"
+                            label_lines += line + "\n"
+                        elif i == arg1_spans[0][1] - 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tE-ARG0\t-"
+                            label_lines += line + "\n"
+
+                    elif i >= arg2_spans[0][0] and i < arg2_spans[0][1]:
+                        if i == arg2_spans[0][0] and arg2_spans[0][1] - arg2_spans[0][0] == 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tS-ARG1\t-"
+                            label_lines += line + "\n"
+                        elif i == arg2_spans[0][0] and arg2_spans[0][1] - arg2_spans[0][0] > 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tB-ARG1\t-"
+                            label_lines += line + "\n"
+                        elif i > arg2_spans[0][0] and i < arg2_spans[0][1] - 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tI-ARG1\t-"
+                            label_lines += line + "\n"
+                        elif i == arg2_spans[0][1] - 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tE-ARG1\t-"
+                            label_lines += line + "\n"
+
+                    elif i >= rel_spans[0][0] and i < rel_spans[0][1]:
+                        if i == rel_spans[0][0] and rel_spans[0][1] - rel_spans[0][0] == 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tS-V\t-"
+                            label_lines += line + "\n"
+                        elif i == rel_spans[0][0] and rel_spans[0][1] - rel_spans[0][0] > 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tB-V\t-"
+                            label_lines += line + "\n"
+                        elif i > rel_spans[0][0] and i < rel_spans[0][1] - 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tI-V\t-"
+                            label_lines += line + "\n"
+                        elif i == rel_spans[0][1] - 1:
+                            line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tE-V\t-"
+                            label_lines += line + "\n"
+
+                    elif sent_tokens[i] != " ":
+                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tO\t-"
                         label_lines += line + "\n"
 
-                elif i >= arg2_spans[0][0] and i < arg2_spans[0][1]:
-                    if i == arg2_spans[0][0] and arg2_spans[0][1] - arg2_spans[0][0] == 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tS-ARG1\t-"
-                        label_lines += line + "\n"
-                    elif i == arg2_spans[0][0] and arg2_spans[0][1] - arg2_spans[0][0] > 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tB-ARG1\t-"
-                        label_lines += line + "\n"
-                    elif i > arg2_spans[0][0] and i < arg2_spans[0][1] - 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tI-ARG1\t-"
-                        label_lines += line + "\n"
-                    elif i == arg2_spans[0][1] - 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tE-ARG1\t-"
-                        label_lines += line + "\n"
+                    if i == len(sent_tokens) - 1:
+                        label_lines += "\n"
 
-                elif i >= rel_spans[0][0] and i < rel_spans[0][1]:
-                    if i == rel_spans[0][0] and rel_spans[0][1] - rel_spans[0][0] == 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tS-V\t-"
-                        label_lines += line + "\n"
-                    elif i == rel_spans[0][0] and rel_spans[0][1] - rel_spans[0][0] > 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tB-V\t-"
-                        label_lines += line + "\n"
-                    elif i > rel_spans[0][0] and i < rel_spans[0][1] - 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tI-V\t-"
-                        label_lines += line + "\n"
-                    elif i == rel_spans[0][1] - 1:
-                        line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tE-V\t-"
-                        label_lines += line + "\n"
-
-                elif sent_tokens[i] != " ":
-                    line = f"{sent_tokens[i]}\tXX\t-\t-\t-\t-\t-\t*\tO\t-"
-                    label_lines += line + "\n"
-
-                if i == len(sent_tokens) - 1:
-                    label_lines += "\n"
-            try:
-                with open(f"{self.path_dir}/{self.output_name}_corpus.txt", "a", encoding="utf-8") as file:
-                    file.writelines(label_lines)
-
-            except:
-                continue
+                file.writelines(label_lines)
 
     def run(self):
         self.validate_ext()

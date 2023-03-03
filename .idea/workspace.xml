@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14e074a8-21a2-4371-919b-d6a5e57781c8" name="Changes" comment="improved translate script, now it runs 2x faster">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="14e074a8-21a2-4371-919b-d6a5e57781c8" name="Changes" comment="changed main translator from MariaMTModel, to deep_translator's GoogleTranslator, the MariaMT stays on the code.">
       <change beforePath="$PROJECT_DIR$/OIE/datasets/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/merge_datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/merge_datasets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/train_test_dev.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/train_test_dev.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/datasets/match.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/match.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OIE/datasets/translated/translate.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/translated/translate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/testes/teste_BERT.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/testes/teste_BERT.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/trainers/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/trainers/trainer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +186,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OIE/datasets/translated/translate.py" />
-      <option name="PARAMETERS" value="32 lsoie/dev dev.conll 0.0 0.0" />
+      <option name="PARAMETERS" value="32 lsoie/train ls_train.conll 0.0 0.0" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -300,7 +293,7 @@
       <workItem from="1677619067820" duration="22628000" />
       <workItem from="1677647339681" duration="12736000" />
       <workItem from="1677714967690" duration="11853000" />
-      <workItem from="1677728045319" duration="26290000" />
+      <workItem from="1677728045319" duration="28271000" />
     </task>
     <task id="LOCAL-00001" summary="fixed custom embedding missing">
       <created>1675452641235</created>
@@ -526,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677734319491</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="changed main translator from MariaMTModel, to deep_translator's GoogleTranslator, the MariaMT stays on the code.">
+      <created>1677823113340</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1677823113340</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -569,7 +569,8 @@
     <MESSAGE value="changed file save system" />
     <MESSAGE value="created translate conversion from english to portuguese on english datasets." />
     <MESSAGE value="improved translate script, now it runs 2x faster" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved translate script, now it runs 2x faster" />
+    <MESSAGE value="changed main translator from MariaMTModel, to deep_translator's GoogleTranslator, the MariaMT stays on the code." />
+    <option name="LAST_COMMIT_MESSAGE" value="changed main translator from MariaMTModel, to deep_translator's GoogleTranslator, the MariaMT stays on the code." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Flair_oie$t5.coverage" NAME="t5 Coverage Results" MODIFIED="1676061889786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/teste" />
@@ -579,7 +580,7 @@
     <SUITE FILE_PATH="coverage/Flair_oie$lower_dataset.coverage" NAME="lower_dataset Coverage Results" MODIFIED="1675533939862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$predict.coverage" NAME="predict Coverage Results" MODIFIED="1677365729060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$match.coverage" NAME="match Coverage Results" MODIFIED="1677641070920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
-    <SUITE FILE_PATH="coverage/Flair_oie$translate.coverage" NAME="translate Coverage Results" MODIFIED="1677822547102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets/translated" />
+    <SUITE FILE_PATH="coverage/Flair_oie$translate.coverage" NAME="translate Coverage Results" MODIFIED="1677824750508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets/translated" />
     <SUITE FILE_PATH="coverage/Flair_oie$train_test_dev.coverage" NAME="train_test_dev Coverage Results" MODIFIED="1677119699574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$merge_datasets.coverage" NAME="merge_datasets Coverage Results" MODIFIED="1677706228081" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$test.coverage" NAME="test Coverage Results" MODIFIED="1675900394354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />

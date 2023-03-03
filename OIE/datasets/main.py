@@ -28,11 +28,11 @@ def criar_conll(out_name: str,
     oie_match = OIE_Match(out_name, path_saida_match)
     oie_match.run()
 
+    print(path_saida_match)
     # POS tagging
-    try:
-        PosTag(f"{path_saida_match}\{out_name}_corpus.txt", path).run(f"{out_name}_corpus.txt")
-    except:
-        PosTag(f"{path}\conll2bioes_output\{out_name}.txt", path).run(f"{out_name}_corpus.txt")
+
+    PosTag(f"{path_saida_match}\{out_name}_corpus.txt", path).run(f"{out_name}_corpus.txt")
+
 
     # train, dev, test
     if test_size > 0 and dev_size > 0:
