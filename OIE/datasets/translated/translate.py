@@ -5,10 +5,8 @@ import spacy
 from tqdm import tqdm
 from OIE.datasets.main import criar_conll
 import typer
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 from transformers import MarianMTModel, MarianTokenizer, pipeline
-from transformers.pipelines.pt_utils import KeyDataset
-from torch.utils.data import Dataset
 import json
 
 app = typer.Typer()
@@ -24,6 +22,7 @@ class LoadDataset:
 
         # selecionando apenas exts com arg0 rel e arg1
         data = data.split("\n\t")
+        """
         data_norm = []
         for ext in data:
             if "ARG5" not in ext:
@@ -34,14 +33,17 @@ class LoadDataset:
                                 if "V" in ext:
                                     if "ARG0" in ext:
                                         data_norm.append(ext)
-        path = out_path+"/mod"
+                                """
+
+        path = out_path + "/mod"
         pathlib.Path(path).mkdir(parents=True, exist_ok=True)
-        lenght = len(data_norm)
         with open(path + "/" + dataset_name, "a", encoding="utf-8") as f:
-            raw = data_norm[:10000]
+            raw = data
             raw = "\n\t".join(raw)
             f.write(raw)
+
         Conversor(path+"/", dataset_name, out_path)
+
 
 class ArgsRel:
     def __init__(self):
@@ -58,10 +60,38 @@ class ArgsRel:
         rel = ""
         arg2 = ""
         root_idx = (0,0)
+        #encontra o root da extração
         for token in doc:
             if (token.pos_ == "VERB" and token.dep_ == "ROOT"):
                 rel += token.text + " "
                 root_idx = (token.idx, token.idx + len(token.text))
+                break
+
+        #aqui encontramos tudo que está relacionado ao root caso ele seja um verbo
+        #(auxiliares, advmod, etc)
+        #estes, por serem modificadores ou auxiliares do verbo, são adicionados a rel
+        for token in doc:
+            if (token.dep_ == "aux"):
+                if token.idx + len(token.text) == root_idx[0] - 1:
+                    rel = token.text + " " + rel
+                    root_idx = (token.idx, root_idx[1])
+            if (token.dep_ == "advmod"):
+                if token.idx + len(token.text) == root_idx[0] - 1:
+                    rel = token.text + " " + rel
+                    root_idx = (token.idx, root_idx[1])
+                if root_idx[0] + 1 == token.idx:
+                    rel += token.text + " "
+                    root_idx = (root_idx[0], root_idx[1] + len(token.text))
+            if (token.dep_ == "aux:pass" or token.dep_ == "aux"):
+                if token.idx + len(token.text) == root_idx[0] - 1:
+                    rel = token.text + " " + rel
+                    root_idx = (token.idx, root_idx[1])
+
+        #aqui encontramos tudo que está relacionado ao root caso ele seja um substantivo
+
+
+
+        #aqui separamos arg1 e arg2 a partir do root
         for token in doc:
             if token.idx < root_idx[0]:
                 arg1 += token.text + " "
@@ -69,38 +99,48 @@ class ArgsRel:
                 arg2 += token.text + " "
         return arg1, rel, arg2
 
+
 class Translators:
     def __init__(self):
         model_name = "Helsinki-NLP/opus-mt-tc-big-en-pt"
         self.pipe = pipeline("translation", model=model_name, device=0)
-        self.google_translator = Translator()
+        self.google_translator = GoogleTranslator(source="en", target="pt")
 
     def google(self, sent):
         result = self.google_translator.translate(sent)
         return result
 
     def batch_google(self, dataset):
-        sents_trad = self.google_translator.translate(dataset[0], src="en", dest="pt")
-        exts_trad = self.google_translator.translate(dataset[1], src="en", dest="pt")
-        return sents_trad, exts_trad
+        sents = self.google_translator.translate_batch(dataset[0])
+        exts = self.google_translator.translate_batch(dataset[1])
+        return sents, exts
 
     def mt(self, text):
         trad_text = self.pipe(text, max_length=1000)[0]["translation_text"]
         return trad_text
 
     def batch_mt(self, dataset):
-
         trad = self.pipe(dataset[0])
         ext = self.pipe(dataset[1])
         return trad, ext
 
 
 class TranslateDataset:
-    def __init__(self, dataset_dir: str, dataset_name: str, out_path: str):
+    def __init__(self, dataset_dir: str, dataset_name: str, out_path: str, debug: bool = False):
+        self.debug = debug
         self.dataset_dir = dataset_dir
         self.dataset_name = dataset_name
         self.out_path = out_path
         self.translators = Translators()
+
+    def debugging(self, sentence, ext):
+        arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(ext)
+        print("Debugging")
+        print(f"sent: {sentence}")
+        print(f"ext: {ext}")
+        print(f"arg0: {arg0_trad}")
+        print(f"rel: {rel_trad}")
+        print(f"arg1: {arg1_trad}")
 
     def save_dict(self, data_dict):
         with open(self.out_path+"/saida_match/json_dump.json", "a", encoding="utf-8") as f:
@@ -145,7 +185,7 @@ class TranslateDataset:
         self.save_dict(data_dict)
 
 
-    def translate2(self, batch_size):
+    def translate2(self, batch_size, google: bool):
         # estrutura o dataset em um dicionario
         with open(f"{self.out_path}/conll2bioes_output/{self.dataset_name.replace('.conll', '.txt')}",
                   "r", encoding="utf-8") as f:
@@ -189,23 +229,41 @@ class TranslateDataset:
         all_sent = []
         all_ext = []
         for batch in tqdm(dataloader, desc=f"Traduzindo dataset com batching de {batch_size}"):
-            sent, ext = self.translators.batch_mt(batch)
+            if not google:
+                sent, ext = self.translators.batch_mt(batch)
+            if google:
+                sent, ext = self.translators.batch_google(batch)
+
+            if self.debug:
+                if not google:
+                    self.debugging(sent[0]["translation_text"], ext[0]["translation_text"])
+                else:
+                    self.debugging(sent[0], ext[0])
             all_sent += sent
             all_ext += ext
 
         #identifica elementos da tripla traduzida e armazena em um dicionario
         counter = 0
-        for sample in tqdm(zip(all_sent, all_ext), desc="Armazenando tradução", total=len(all_sent)):
-            arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(sample[1]["translation_text"])
-            data_dict[str(counter)] = {"ID": counter, "sent": sample[0]["translation_text"],
-                                       "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
-            counter += 1
+        if not google:
+            for sample in tqdm(zip(all_sent, all_ext), desc="Armazenando tradução", total=len(all_sent)):
+                arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(sample[1]["translation_text"])
+                data_dict[str(counter)] = {"ID": counter, "sent": sample[0]["translation_text"],
+                                           "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
+                counter += 1
+        if google:
+            for sample in tqdm(zip(all_sent, all_ext), desc="Armazenando tradução", total=len(all_sent)):
+                arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(sample[1])
+                data_dict[str(counter)] = {"ID": counter, "sent": sample[0],
+                                           "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
+                counter += 1
 
         #salva dicionario
         self.save_dict(data_dict)
 
+
 @app.command()
-def run(batch_size:int ,dataset_dir: str, dataset_name: str, test_size: float, dev_size: float):
+def run(batch_size:int ,dataset_dir: str, dataset_name: str, test_size: float, dev_size: float, debug: bool = False):
+    use_google = True
     converted = True
     OUT_NAME = dataset_name.replace(".conll", "")
     INPUT_PATH = ""
@@ -215,9 +273,14 @@ def run(batch_size:int ,dataset_dir: str, dataset_name: str, test_size: float, d
     json_dir = path+"/saida_match"
     pathlib.Path(json_dir).mkdir(parents=True, exist_ok=True)
 
-    LoadDataset(dataset_dir, dataset_name, path)
-    TranslateDataset(dataset_dir, dataset_name, path).translate2(batch_size)
-    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
+    if debug:
+        LoadDataset(dataset_dir, dataset_name, path)
+        TranslateDataset(dataset_dir, dataset_name, path, debug=True).translate2(batch_size=1, google=use_google)
+        criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
+    else:
+        LoadDataset(dataset_dir, dataset_name, path)
+        TranslateDataset(dataset_dir, dataset_name, path).translate2(batch_size, google=use_google)
+        criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
 
 if __name__ == "__main__":
     app()

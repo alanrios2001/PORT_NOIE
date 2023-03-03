@@ -25,7 +25,7 @@ class Merge:
 
         print(f"len {output_name}: ", len(self.merged.split("\n\n")))
 
-datasets = ["saida_pos_tag/pud_200.txt", "translated/saida_pos_tag/LSOIE_corpus.txt"]
+datasets = ["saida_pos_tag/pud_200.txt", "translated/saida_pos_tag/ls_dev0.txt"]
 
 
 TEST_SIZE = 0.1

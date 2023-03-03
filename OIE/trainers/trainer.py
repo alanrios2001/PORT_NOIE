@@ -247,7 +247,7 @@ class ModelTrainer:
 
         self.check_for_and_delete_previous_best_models(base_path)
 
-        # determine what splits (train, dev, test) to evaluate and log
+        # determine what saida_pos_tag (train, dev, test) to evaluate and log
         log_train = True if monitor_train else False
         log_test = True if (not param_selection_mode and self.corpus.test and monitor_test) else False
         log_dev = False if train_with_dev or not self.corpus.dev else True

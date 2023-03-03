@@ -35,7 +35,9 @@ def criar_conll(out_name: str,
         PosTag(f"{path}\conll2bioes_output\{out_name}.txt", path).run(f"{out_name}_corpus.txt")
 
     # train, dev, test
-    train_dev_test(test_size, dev_size, out_name, in_path=path+"/saida_pos_tag", out_path=path+"/saida_pos_tag")
+    if test_size > 0 and dev_size > 0:
+        train_dev_test(test_size, dev_size, out_name, in_path=path+"/saida_pos_tag", out_path=path+"/saida_pos_tag")
+
 
 if __name__ == "__main__":
     app()

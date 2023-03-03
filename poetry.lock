@@ -714,6 +714,26 @@ files = [
 ]
 
 [[package]]
+name = "deep-translator"
+version = "1.10.1"
+description = "A flexible free and unlimited python tool to translate between different languages in a simple way using multiple translators"
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
+files = [
+    {file = "deep_translator-1.10.1-py3-none-any.whl", hash = "sha256:8581e93c4d33746cd6e662607fefb26c457eae9b197de0648e3f25f324ef6534"},
+    {file = "deep_translator-1.10.1.tar.gz", hash = "sha256:e99438dab70e3bebcda932e3f5e86fd3d32b43f87d66ed9f8b6816db146f1d9f"},
+]
+
+[package.dependencies]
+beautifulsoup4 = ">=4.9.1,<5.0.0"
+requests = ">=2.23.0,<3.0.0"
+
+[package.extras]
+docx = ["docx2txt (>=0.8,<0.9)"]
+pdf = ["pypdf (>=3.3.0,<4.0.0)"]
+
+[[package]]
 name = "defusedxml"
 version = "0.7.1"
 description = "XML bomb protection for Python stdlib modules"
@@ -4080,6 +4100,7 @@ opt-einsum = ["opt-einsum (>=3.3)"]
 [package.source]
 type = "url"
 url = "https://download.pytorch.org/whl/cu117/torch-1.13.0%2Bcu117-cp39-cp39-win_amd64.whl"
+
 [[package]]
 name = "torch-optimizer"
 version = "0.3.0"
@@ -4520,4 +4541,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.10"
-content-hash = "fec5e6405771e3243c9d4f3853480adc8c5ed23e08c73187b2d073a49f80a402"
+content-hash = "d9fd4b7f54458f29d5fd203ce00880dfa0935e05af453a2cb8482eba6c62b043"
