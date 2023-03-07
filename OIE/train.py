@@ -1,6 +1,6 @@
 import pathlib
 from flair.datasets import ColumnCorpus
-from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, OneHotEmbeddings
+from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, OneHotEmbeddings, WordEmbeddings
 from flair.models import SequenceTagger
 from trainers.trainer import ModelTrainer
 from madgrad import MADGRAD
@@ -24,13 +24,18 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     label_dictionary = corpus.make_label_dictionary(label_type=label_type)
     print(label_dictionary)
 
-    emb = TransformerWordEmbeddings("neuralmind/bert-base-portuguese-cased")
+    emb = TransformerWordEmbeddings(
+        "neuralmind/bert-base-portuguese-cased",
+        layers="-2",
+        pooling_operation="first_last",
+        fine_tune=True,
+    )
     #emb = TransformerWordEmbeddings("neuralmind/bert-large-portuguese-cased")
     #emb = TransformerWordEmbeddings("xlm-roberta-base")
 
     embedding_types = [
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=3, embedding_length=768),
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=3, embedding_length=768),
+        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=2, embedding_length=768),
+        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=2, embedding_length=768),
         emb,
         FlairEmbeddings('pt-forward'),
         FlairEmbeddings('pt-backward')
@@ -43,7 +48,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                          embeddings=embeddings,
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
-                         rnn_layers=2
+                         rnn_layers=2,
                          )
 
     pathlib.Path(f"train_output").mkdir(parents=True, exist_ok=True)

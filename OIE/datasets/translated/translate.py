@@ -8,6 +8,7 @@ import typer
 from deep_translator import GoogleTranslator
 from transformers import MarianMTModel, MarianTokenizer, pipeline
 import json
+import pathlib
 
 app = typer.Typer()
 
@@ -52,10 +53,10 @@ class LoadDataset:
 class ArgsRel:
     def __init__(self):
         try:
-            self.nlp = spacy.load("pt_core_news_sm")
+            self.nlp = spacy.load("pt_core_news_lg")
         except:
             os.system("python -m spacy download pt_core_news_lg")
-            self.nlp = spacy.load("pt_core_news_sm")
+            self.nlp = spacy.load("pt_core_news_lg")
 
     #Separa arg1, rel e arg2 da extração a partir da analise sintatica de dependencia da extração
     def get_args_rel(self, ext):
@@ -136,7 +137,7 @@ class TranslateDataset:
                  dataset_name: str,
                  out_path: str,
                  batch_size: int,
-                 google: bool = False,
+                 google: bool,
                  debug: bool = False
                  ):
         self.batch_size = batch_size
@@ -147,7 +148,7 @@ class TranslateDataset:
         self.out_path = out_path
         self.translators = Translators(google)
 
-    def debugging(self, sentence, ext):
+    def debugging(self, sentence,  ext):
         arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(ext)
         print("Debugging")
         print(f"sent: {sentence}")
@@ -159,6 +160,12 @@ class TranslateDataset:
     def save_dict(self, data_dict):
         with open(self.out_path+"/saida_match/json_dump.json", "a", encoding="utf-8") as f:
             f.write(json.dumps(data_dict))
+
+    def save_translate(self, data):
+        path = self.out_path+"/translate"
+        pathlib.Path(path).mkdir(parents=True, exist_ok=True)
+        with open(self.out_path+"/translate/translate.json", "a", encoding="utf-8") as f:
+            f.write(json.dumps(data))
 
 
     def translate(self):
@@ -174,6 +181,7 @@ class TranslateDataset:
                 ext[i] = ext[i].split("\t")
         data_dict = {}
         counter = 0
+        argsrel = ArgsRel()
         for ext in tqdm(data, desc="Traduzindo dataset"):
             sentence = ""
             arg0 = ""
@@ -192,7 +200,7 @@ class TranslateDataset:
             # traduz sentença, arg0, rel e arg1
             sentence_trad = self.translators.mt(sentence)
             ext_trad = self.translators.mt(arg0 + rel + arg1)
-            arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(ext_trad)
+            arg0_trad, rel_trad, arg1_trad = argsrel.get_args_rel(ext_trad)
             data_dict[str(counter)] = {"ID": counter, "sent": sentence_trad,
                                        "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
             counter += 1
@@ -212,7 +220,6 @@ class TranslateDataset:
             for i in range(len(ext)):
                 ext[i] = ext[i].split("\t")
 
-        data_dict = {}
         dataset = []
         sents = []
         exts = []
@@ -250,14 +257,27 @@ class TranslateDataset:
             if self.google:
                 sent, ext = self.translators.batch_google(batch)
 
-            if self.debug:
-                if not self.google:
-                    self.debugging(sent[0]["translation_text"], ext[0]["translation_text"])
-                else:
-                    self.debugging(sent[0], ext[0])
             all_sent += sent
             all_ext += ext
 
+        trans_dict = {"sent": all_sent, "ext": all_ext}
+        self.save_translate(trans_dict)
+
+
+    def get_arg_rel(self):
+        with open(self.out_path + "/translate/translate.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+        all_sent = data["sent"]
+        all_ext = data["ext"]
+        print(all_sent)
+        print(all_ext)
+        if self.debug:
+            for sent, ext in zip(all_sent, all_ext):
+                if not self.google:
+                    self.debugging(sent[0]["translation_text"], ext[0]["translation_text"])
+                else:
+                    self.debugging(sent, ext)
+        data_dict = {}
         #identifica elementos da tripla traduzida e armazena em um dicionario
         counter = 0
         if not self.google:
@@ -283,7 +303,8 @@ def run(batch_size: int,
         dataset_name: str,
         test_size: float,
         dev_size: float,
-        debug: bool = False
+        translated: bool = True,
+        debug: bool = True
         ):
     use_google = True
     converted = True
@@ -296,13 +317,27 @@ def run(batch_size: int,
     pathlib.Path(json_dir).mkdir(parents=True, exist_ok=True)
 
     if debug:
-        LoadDataset(dataset_dir, dataset_name, path)
-        TranslateDataset(dataset_dir, dataset_name, path, debug=True, batch_size=1).translate2()
-        criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
+        if translated:
+            trans_eng = TranslateDataset(dataset_dir, dataset_name, path, debug=True, batch_size=1, google=use_google)
+            trans_eng.get_arg_rel()
+            criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
+        else:
+            LoadDataset(dataset_dir, dataset_name, path)
+            trans_eng = TranslateDataset(dataset_dir, dataset_name, path, debug=True, batch_size=1, google=use_google)
+            trans_eng.translate2()
+            trans_eng.get_arg_rel()
+            criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
     else:
-        LoadDataset(dataset_dir, dataset_name, path)
-        TranslateDataset(dataset_dir, dataset_name, path, batch_size, google=use_google).translate2()
-        criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
+        if translated:
+            trans_eng = TranslateDataset(dataset_dir, dataset_name, path, batch_size, google=use_google)
+            trans_eng.get_arg_rel()
+            criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
+        else:
+            LoadDataset(dataset_dir, dataset_name, path)
+            trans_eng = TranslateDataset(dataset_dir, dataset_name, path, batch_size, google=use_google)
+            trans_eng.translate2()
+            trans_eng.get_arg_rel()
+            criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
 
 
 if __name__ == "__main__":
