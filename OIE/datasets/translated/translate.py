@@ -116,6 +116,7 @@ class ArgsRel:
                 arg1 += token.text + " "
             if token.idx > root_idx[1]:
                 arg2 += token.text + " "
+
         return arg1, rel, arg2
 
 
@@ -128,7 +129,8 @@ class Translators:
             self.google_translator = GoogleTranslator(source="en", target="pt")
 
     def batch_google(self, txt):
-        txt = self.google_translator.translate(txt)
+        #txt = self.google_translator.translate(txt)
+        txt = self.micro_translator.translate(txt)
         return txt
 
     def mt(self, text):
@@ -166,16 +168,15 @@ class TranslateDataset:
         self.translators = Translators(google)
 
     def debugging(self, sentence,  ext, raw_sent, raw_ext):
-        print(ext)
         arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(ext)
-        print("Debugging")
+        print("\nDebugging")
         print(f"sent: {sentence}")
         print(f"raw_sent: {raw_sent}")
         print(f"ext: {ext}")
         print(f"raw_ext: {raw_ext}")
         print(f"arg0: {arg0_trad}")
         print(f"rel: {rel_trad}")
-        print(f"arg1: {arg1_trad}")
+        print(f"arg1: {arg1_trad}\n")
 
     def save_dict(self, data_dict):
         with open(self.out_path+"/saida_match/json_dump.json", "a", encoding="utf-8") as f:
@@ -216,15 +217,39 @@ class TranslateDataset:
                         arg1 += e[0] + " "
                     if "V" in e[8]:
                         rel += e[0] + " "
+            ext = arg0 + rel + arg1
+            while True:
+                if ext[-1] == " ":
+                    ext = ext[:-1]
+                else:
+                    if ext[-1].isalpha():
+                        ext += "."
+                    break
+            while True:
+                if ext[0] == " ":
+                    ext = ext[1:]
+                else:
+                    break
+            while True:
+                if sentence[-1] == " ":
+                    sentence = sentence[:-1]
+                else:
+                    if sentence[-1].isalpha():
+                        sentence += "."
+                    break
+            while True:
+                if sentence[0] == " ":
+                    sentence = sentence[1:]
+                else:
+                    break
             sents.append(sentence)
-            exts.append(arg0 + rel + arg1)
+            exts.append(ext)
         dataset.append(sents)
         dataset.append(exts)
         return dataset
 
     def translate_google(self):
         cache = Cache("cache")
-        cache.clear()
         dataset = self.load_dataset()
 
         #traduz dataset
@@ -251,7 +276,6 @@ class TranslateDataset:
 
         trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
         self.save_translate(trans_dict)
-        cache.close()
 
     def translate_mt(self):
         batch_size = self.batch_size
@@ -320,9 +344,9 @@ def run(batch_size: int,
         test_size: float,
         dev_size: float,
         translated: bool,
-        debug: bool = False
+        debug: bool = False,
+        use_google: bool = True
         ):
-    use_google = True
     converted = True
     OUT_NAME = dataset_name.replace(".conll", "")
     INPUT_PATH = ""
