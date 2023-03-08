@@ -232,7 +232,7 @@ class TranslateDataset:
         all_ext = []
         raw_sent = []
         raw_ext = []
-        for i in tqdm(range(len(dataset[0])), desc=f"Traduzindo dataset com batching de 1"):
+        for i in tqdm(range(len(dataset[0])), desc=f"Traduzindo dataset"):
             if dataset[0][i] in cache:
                 sent = cache[dataset[0][i]]
             else:
