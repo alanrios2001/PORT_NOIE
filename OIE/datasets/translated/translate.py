@@ -54,10 +54,10 @@ class LoadDataset:
 class ArgsRel:
     def __init__(self):
         try:
-            self.nlp = spacy.load("pt_core_news_sm")
+            self.nlp = spacy.load("pt_core_news_lg")
         except:
-            #os.system("python -m spacy download pt_core_news_lg")
-            self.nlp = spacy.load("pt_core_news_sm")
+            os.system("python -m spacy download pt_core_news_lg")
+            self.nlp = spacy.load("pt_core_news_lg")
 
     #Separa arg1, rel e arg2 da extração a partir da analise sintatica de dependencia da extração
     def get_args_rel(self, ext):
@@ -127,10 +127,8 @@ class Translators:
         else:
             self.google_translator = GoogleTranslator(source="en", target="pt")
 
-    def batch_google(self, dataset):
-        txt = []
-        txt.append(self.google_translator.translate(dataset[0]))
-
+    def batch_google(self, txt):
+        txt = self.google_translator.translate(txt)
         return txt
 
     def mt(self, text):
@@ -138,14 +136,16 @@ class Translators:
         return trad_text
 
     def batch_mt(self, dataset):
-        if len(dataset[0]) == 1 and len(dataset[1]):
+        if len(dataset[0]) == 1 and len(dataset[1]) == 1:
             trad = self.mt(dataset[0][0])
             ext = self.mt(dataset[1][0])
-            trad = [trad]
-            ext = [ext]
+            trad = trad
+            ext = ext
         else:
             trad = self.pipe(dataset[0])
             ext = self.pipe(dataset[1])
+            trad = [t["translation_text"] for t in trad]
+            ext = [t["translation_text"] for t in ext]
         return trad, ext
 
 
@@ -164,9 +164,9 @@ class TranslateDataset:
         self.dataset_name = dataset_name
         self.out_path = out_path
         self.translators = Translators(google)
-        self.cache = Cache("cache")
 
     def debugging(self, sentence,  ext, raw_sent, raw_ext):
+        print(ext)
         arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(ext)
         print("Debugging")
         print(f"sent: {sentence}")
@@ -187,15 +187,14 @@ class TranslateDataset:
         with open(self.out_path+"/translate/translate.json", "a", encoding="utf-8") as f:
             f.write(json.dumps(data))
 
-    def translate2(self):
-        batch_size = self.batch_size
+    def load_dataset(self):
         # estrutura o dataset em um dicionario
         with open(f"{self.out_path}/conll2bioes_output/{self.dataset_name.replace('.conll', '.txt')}",
                   "r", encoding="utf-8") as f:
             data = f.read()
         data = data.split("\n\t")
         data = [ext.split("\n") for ext in data]
-        # = data[:32]
+        #data = data[:32]
         for ext in data:
             for i in range(len(ext)):
                 ext[i] = ext[i].split("\t")
@@ -218,49 +217,69 @@ class TranslateDataset:
                     if "V" in e[8]:
                         rel += e[0] + " "
             sents.append(sentence)
-            exts.append(arg0+rel+arg1)
+            exts.append(arg0 + rel + arg1)
         dataset.append(sents)
         dataset.append(exts)
+        return dataset
 
-        #batching
-        dataloader = []
-        for i in tqdm(range(0, len(dataset[0]), batch_size), desc="dataloader"):
-            batch = [dataset[0][i:i+batch_size], dataset[1][i:i+batch_size]]
-            dataloader.append(batch)
+    def translate_google(self):
+        cache = Cache("cache")
+        cache.clear()
+        dataset = self.load_dataset()
 
         #traduz dataset
         all_sent = []
         all_ext = []
         raw_sent = []
         raw_ext = []
-        for batch in tqdm(dataloader, desc=f"Traduzindo dataset com batching de {batch_size}"):
-            if not self.google:
-                sent, ext = self.translators.batch_mt(batch)
-                sent = [s for s in sent]
-                ext = [e for e in ext]
-            if self.google:
-                if batch[0][0] in self.cache:
-                    sent = [self.cache[batch[0][0]]]
-                else:
-                    sent = self.translators.batch_google(batch[0])
-                if batch[1][0] in self.cache:
-                    ext = [self.cache[batch[1][0]]]
-                else:
-                    ext = self.translators.batch_google(batch[1])
-                self.cache[batch[0][0]] = sent[0]
-                self.cache[batch[1][0]] = ext[0]
+        for i in tqdm(range(len(dataset[0])), desc=f"Traduzindo dataset com batching de 1"):
+            if dataset[0][i] in cache:
+                sent = cache[dataset[0][i]]
+            else:
+                sent = self.translators.batch_google(dataset[0][i])
+                cache[dataset[0][i]] = sent
+            if dataset[1][i] in cache:
+                ext = cache[dataset[1][i]]
+            else:
+                ext = self.translators.batch_google(dataset[1][i])
+                cache[dataset[1][i]] = ext
 
-            all_sent += sent
-            all_ext += ext
+            all_sent.append(sent)
+            all_ext.append(ext)
+            raw_sent.append(dataset[0][i])
+            raw_ext.append(dataset[1][i])
+
+        trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
+        self.save_translate(trans_dict)
+        cache.close()
+
+    def translate_mt(self):
+        batch_size = self.batch_size
+        dataset = self.load_dataset()
+        # batching
+        dataloader = []
+        for i in tqdm(range(0, len(dataset[0]), batch_size), desc="dataloader"):
+            batch = [dataset[0][i:i + batch_size], dataset[1][i:i + batch_size]]
+            dataloader.append(batch)
+
+        # traduz dataset
+        all_sent = []
+        all_ext = []
+        raw_sent = []
+        raw_ext = []
+
+        for batch in tqdm(dataloader, desc=f"Traduzindo dataset com batching de {batch_size}"):
+            sent, ext = self.translators.batch_mt(batch)
+            all_sent += [sent]
+            all_ext += [ext]
             raw_sent += batch[0]
             raw_ext += batch[1]
 
         trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
         self.save_translate(trans_dict)
-        self.cache.clear()
 
-
-    def get_arg_rel(self):
+    def create_dict(self):
+        argsRel_eng = ArgsRel()
         with open(self.out_path + "/translate/translate.json", "r", encoding="utf-8") as f:
             data = json.load(f)
         all_sent = data["sent"]
@@ -270,7 +289,7 @@ class TranslateDataset:
         if self.debug:
             for sent, ext, rs, re in zip(all_sent, all_ext, raw_sent, raw_ext):
                 if not self.google:
-                    self.debugging(sent[0]["translation_text"], ext[0]["translation_text"])
+                    self.debugging(sent, ext, rs, re)
                 else:
                     self.debugging(sent, ext, rs, re)
         data_dict = {}
@@ -278,13 +297,14 @@ class TranslateDataset:
         counter = 0
         if not self.google:
             for sample in tqdm(zip(all_sent, all_ext), desc="Armazenando tradução", total=len(all_sent)):
-                arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(sample[1]["translation_text"])
-                data_dict[str(counter)] = {"ID": counter, "sent": sample[0]["translation_text"],
-                                           "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
-                counter += 1
+                for sent, ext in zip(sample[0], sample[1]):
+                    arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(ext)
+                    data_dict[str(counter)] = {"ID": counter, "sent": sent,
+                                               "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
+                    counter += 1
         if self.google:
             for sample in tqdm(zip(all_sent, all_ext), desc="Armazenando tradução", total=len(all_sent)):
-                arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(sample[1])
+                arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(sample[1])
                 data_dict[str(counter)] = {"ID": counter, "sent": sample[0],
                                            "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
                 counter += 1
@@ -312,25 +332,22 @@ def run(batch_size: int,
     json_dir = path+"/saida_match"
     pathlib.Path(json_dir).mkdir(parents=True, exist_ok=True)
 
-    if debug:
-        trans_eng = TranslateDataset(dataset_dir, dataset_name, path, debug=True, batch_size=1, google=use_google)
-        if translated:
-            pass
-        else:
-            LoadDataset(dataset_dir, dataset_name, path)
-            trans_eng.translate2()
-        trans_eng.get_arg_rel()
-        criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
-
+    if use_google or debug:
+        batch_size = 1
+    trans_eng = TranslateDataset(dataset_dir, dataset_name, path, debug=debug, batch_size=batch_size, google=use_google)
+    if translated:
+        pass
     else:
-        trans_eng = TranslateDataset(dataset_dir, dataset_name, path, batch_size, google=use_google)
-        if translated:
-            pass
+        if use_google:
+            LoadDataset(dataset_dir, dataset_name, path)
+            print("Traduzindo com Google")
+            trans_eng.translate_google()
         else:
             LoadDataset(dataset_dir, dataset_name, path)
-            trans_eng.translate2()
-        trans_eng.get_arg_rel()
-        criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
+            print("Traduzindo com MarianMTModel")
+            trans_eng.translate_mt()
+    trans_eng.create_dict()
+    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
 
 
 if __name__ == "__main__":
