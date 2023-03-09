@@ -18,7 +18,7 @@ class OIE_Match:
             os.system("python -m spacy download pt_core_news_lg")
             self.nlp = spacy.load("pt_core_news_lg")
 
-    def validate_ext(self):
+    def validate_ext(self, sequential: bool = True):
 
         json_dir = self.path_dir + "/json_dump.json"
         with open(json_dir, "r", encoding="utf-8") as f:
@@ -75,7 +75,14 @@ class OIE_Match:
 
             # select valid extractions
             if len(arg1_match) > 0 and len(rel_match) > 0 and len(arg2_match) > 0:
-                if arg1_match[0][2] < rel_match[0][2] < arg2_match[0][2]:
+                if sequential:
+                    if arg1_match[0][2] < rel_match[0][2] < arg2_match[0][2]:
+                        self.valid[data[key]["sent"]] = {
+                            "arg1": arg1_match,
+                            "arg2": arg2_match,
+                            "rel": rel_match,
+                        }
+                else:
                     self.valid[data[key]["sent"]] = {
                         "arg1": arg1_match,
                         "arg2": arg2_match,
@@ -179,6 +186,6 @@ class OIE_Match:
 
                 file.writelines(label_lines)
 
-    def run(self):
-        self.validate_ext()
+    def run(self, sequential: bool = True):
+        self.validate_ext(sequential=sequential)
         self.create_corpus()

@@ -62,15 +62,23 @@ class ArgsRel:
     #Separa arg1, rel e arg2 da extração a partir da analise sintatica de dependencia da extração
     def get_args_rel(self, ext):
         doc = self.nlp(ext)
+        doc_dict = {}
+        i = 0
+        for token in doc:
+            doc_dict[i] = {"text": token.text, "pos": token.pos_, "dep": token.dep_}
+            i += 1
         arg1 = ""
         rel = ""
         arg2 = ""
-        root_idx = (0,0)
+        root_idx = (0, 0)
         #encontra o root da extração
-        for token in doc:
-            if (token.pos_ == "VERB" and token.dep_ == "ROOT"):
-                rel += token.text + " "
-                root_idx = (token.idx, token.idx + len(token.text))
+        for idx in doc_dict:
+            token = doc_dict[idx]["text"]
+            pos = doc_dict[idx]["pos"]
+            dep = doc_dict[idx]["dep"]
+            if (pos == "VERB" and dep == "ROOT"):
+                rel += token + " "
+                root_idx = (idx, idx)
                 break
 
         #aqui encontramos tudo que está relacionado ao root caso ele seja um verbo
@@ -78,45 +86,54 @@ class ArgsRel:
         #estes, por serem modificadores ou auxiliares do verbo, são adicionados a rel
         i = 0
         while i < len(doc):
-            token = doc[i]
-            if (token.dep_ == "aux" or token.pos_ == "AUX"):
-                if token.idx + len(token.text) == root_idx[0] - 1:
-                    rel = token.text + " " + rel
-                    root_idx = (token.idx, root_idx[1])
+            token = doc_dict[i]["text"]
+            pos = doc_dict[i]["pos"]
+            dep = doc_dict[i]["dep"]
+
+            if (dep == "xcomp" or pos == "VERB"):
+                if i == root_idx[0] - 1:
+                    rel = token + " " + rel
+                    root_idx = (i, root_idx[1])
                     i = 0
-            if (token.dep_ == "advmod" or token.pos_ == "ADV"):
-                if token.idx + len(token.text) == root_idx[0] - 1:
-                    rel = token.text + " " + rel
-                    root_idx = (token.idx, root_idx[1])
-                    i = 0
-                if root_idx[0] + 1 == token.idx:
-                    rel += token.text + " "
-                    root_idx = (root_idx[0], root_idx[1] + len(token.text))
+                if root_idx[1] + 1 == i:
+                    rel += token + " "
+                    root_idx = (root_idx[0], i)
                     i = root_idx[1]
-            if (token.dep_ == "aux:pass"):
-                if token.idx + len(token.text) == root_idx[0] - 1:
-                    rel = token.text + " " + rel
-                    root_idx = (token.idx, root_idx[1])
+
+            if (dep == "aux" or pos == "AUX"):
+                if i == root_idx[0] - 1:
+                    rel = token + " " + rel
+                    root_idx = (i, root_idx[1])
                     i = 0
-            if (token.dep_ == "expl"):
-                if token.idx + len(token.text) == root_idx[0] - 1:
-                    rel = token.text + " " + rel
-                    root_idx = (token.idx, root_idx[1])
+            if (dep == "advmod" or pos == "ADV"):
+                if i == root_idx[0] - 1:
+                    rel = token + " " + rel
+                    root_idx = (i, root_idx[1])
+                    i = 0
+                if root_idx[1] + 1 == i:
+                    rel += token + " "
+                    root_idx = (root_idx[0], i)
+                    i = root_idx[1]
+            if (dep == "aux:pass"):
+                if i == root_idx[0] - 1:
+                    rel = token + " " + rel
+                    root_idx = (i, root_idx[1])
+                    i = 0
+            if (dep == "expl"):
+                if i == root_idx[0] - 1:
+                    rel = token + " " + rel
+                    root_idx = (i, root_idx[1])
                     i = 0
 
             i += 1
 
-        #aqui encontramos tudo que está relacionado ao root caso ele seja um substantivo
-
-
-
         #aqui separamos arg1 e arg2 a partir do root
-        for token in doc:
-            if token.idx < root_idx[0]:
-                arg1 += token.text + " "
-            if token.idx > root_idx[1]:
-                arg2 += token.text + " "
-
+        for idx in doc_dict:
+            token = doc_dict[idx]["text"]
+            if idx < root_idx[0]:
+                arg1 += token + " "
+            if idx > root_idx[1]:
+                arg2 += token + " "
         return arg1, rel, arg2
 
 
@@ -194,7 +211,8 @@ class TranslateDataset:
             data = f.read()
         data = data.split("\n\t")
         data = [ext.split("\n") for ext in data]
-        #data = data[:32]
+        if self.debug:
+            data = data[:32]
         for ext in data:
             for i in range(len(ext)):
                 ext[i] = ext[i].split("\t")
@@ -217,30 +235,6 @@ class TranslateDataset:
                     if "V" in e[8]:
                         rel += e[0] + " "
             ext = arg0 + rel + arg1
-            while True:
-                if ext[-1] == " ":
-                    ext = ext[:-1]
-                else:
-                    if ext[-1].isalpha():
-                        ext += "."
-                    break
-            while True:
-                if ext[0] == " ":
-                    ext = ext[1:]
-                else:
-                    break
-            while True:
-                if sentence[-1] == " ":
-                    sentence = sentence[:-1]
-                else:
-                    if sentence[-1].isalpha():
-                        sentence += "."
-                    break
-            while True:
-                if sentence[0] == " ":
-                    sentence = sentence[1:]
-                else:
-                    break
             sents.append(sentence)
             exts.append(ext)
         dataset.append(sents)
@@ -370,7 +364,7 @@ def run(batch_size: int,
             print("Traduzindo com MarianMTModel")
             trans_eng.translate_mt()
     trans_eng.create_dict()
-    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted)
+    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted, sequential=False)
 
 
 if __name__ == "__main__":

@@ -13,7 +13,8 @@ def criar_conll(out_name: str,
                 input_path: str,
                 test_size: float,
                 dev_size: float,
-                converted: bool = False
+                converted: bool = False,
+                sequential: bool = True
                 ):
     path = f"outputs/{out_name}"
     pathlib.Path(path).mkdir(parents=True, exist_ok=True)
@@ -26,7 +27,7 @@ def criar_conll(out_name: str,
 
     # selecionar e anotar sentenças validas
     oie_match = OIE_Match(out_name, path_saida_match)
-    oie_match.run()
+    oie_match.run(sequential=sequential)
 
     print(path_saida_match)
     # POS tagging
