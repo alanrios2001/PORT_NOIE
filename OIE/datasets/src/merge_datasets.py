@@ -1,6 +1,6 @@
 import pathlib
 import random
-import OIE.datasets.train_test_dev as split
+
 
 class Merge:
     def __init__(self, datasets: list, output_name: str):

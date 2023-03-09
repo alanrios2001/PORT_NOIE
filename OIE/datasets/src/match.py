@@ -18,7 +18,7 @@ class OIE_Match:
             os.system("python -m spacy download pt_core_news_lg")
             self.nlp = spacy.load("pt_core_news_lg")
 
-    def validate_ext(self, sequential: bool = True):
+    def validate_ext(self, sequential):
 
         json_dir = self.path_dir + "/json_dump.json"
         with open(json_dir, "r", encoding="utf-8") as f:

@@ -1,11 +1,6 @@
-from OIE.datasets.conll2bioes import Conversor
-from OIE.datasets.pos_tag import PosTag
 from OIE.datasets.main import criar_conll
-import typer
 import json
 import pathlib
-
-#app = typer.Typer()
 
 
 def remove_contractions(txt):
@@ -21,15 +16,16 @@ def remove_contractions(txt):
     return txt
 
 #@app.command()
-def main(dataset: str):
-    path = pathlib.Path(f"outputs/{dataset.replace('.txt', '')}/saida_match")
+def main(dir: str , dataset: str):
+
+    path = pathlib.Path(f"{dir}/outputs/{dataset.replace('.txt', '')}/saida_match")
     path.mkdir(parents=True, exist_ok=True)
 
     total = 0
     data_dict = {}
     final_dict = {}
-    with open(dataset, "r", encoding="utf-8") as file:
-        with open(f"outputs/{dataset.replace('.txt', '')}/saida_match/json_dump.json", "a", encoding="utf-8") as file2:
+    with open(f"{dir}/{dataset}", "r", encoding="utf-8") as file:
+        with open(f"{dir}/outputs/{dataset.replace('.txt', '')}/saida_match/json_dump.json", "a", encoding="utf-8") as file2:
             lines = file.read()
             lines = lines.split("\n")
             sent = ""
@@ -57,6 +53,11 @@ def main(dataset: str):
                         total += 1
             file2.write(json.dumps(final_dict))
 
-    criar_conll(dataset.replace(".txt", ""), " ", 0.0, 0.0, converted=True, sequential=False)
+    criar_conll(dataset.replace(".txt", ""), "other_corpus/", 0.0, 0.0, converted=True, sequential=False)
 
-main("200-silver.txt")
+
+if __name__ == "__main__":
+    dir = "other_corpus"
+    datasets = ["200-silver.txt", "100-gold.txt"]
+    for dataset in datasets:
+        main(dir ,dataset)

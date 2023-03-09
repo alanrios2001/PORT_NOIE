@@ -1,12 +1,11 @@
-import pathlib
-from OIE.datasets.conll2bioes import Conversor
+from src.conll2bioes import Conversor
 import os
 import spacy
 from tqdm import tqdm
-from OIE.datasets.main import criar_conll
+from main import criar_conll
 import typer
 from deep_translator import GoogleTranslator
-from transformers import MarianMTModel, MarianTokenizer, pipeline
+from transformers import pipeline
 import json
 import pathlib
 from diskcache import Cache
@@ -253,8 +252,8 @@ class TranslateDataset:
         dataset.append(exts)
         return dataset
 
-    def translate_google(self):
-        cache = Cache("cache")
+    def translate_google(self, cache_dir: str):
+        cache = Cache(cache_dir)
         dataset = self.load_dataset()
 
         #traduz dataset
@@ -350,7 +349,8 @@ def run(batch_size: int,
         dev_size: float,
         translated: bool,
         debug: bool = False,
-        use_google: bool = True
+        use_google: bool = True,
+        cache_dir: str = "cache"
         ):
     converted = True
     OUT_NAME = dataset_name.replace(".conll", "")
@@ -370,13 +370,13 @@ def run(batch_size: int,
         if use_google:
             LoadDataset(dataset_dir, dataset_name, path)
             print("Traduzindo com Google")
-            trans_eng.translate_google()
+            trans_eng.translate_google(cache_dir=cache_dir)
         else:
             LoadDataset(dataset_dir, dataset_name, path)
             print("Traduzindo com MarianMTModel")
             trans_eng.translate_mt()
     trans_eng.create_dict()
-    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted, sequential=False)
+    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted=converted, sequential=False, input_path="")
 
 
 if __name__ == "__main__":
