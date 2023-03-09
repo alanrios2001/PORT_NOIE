@@ -6,7 +6,6 @@ from tqdm import tqdm
 from OIE.datasets.main import criar_conll
 import typer
 from deep_translator import GoogleTranslator
-
 from transformers import MarianMTModel, MarianTokenizer, pipeline
 import json
 import pathlib
