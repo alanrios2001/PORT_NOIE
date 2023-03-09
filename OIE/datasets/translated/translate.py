@@ -129,8 +129,7 @@ class Translators:
             self.google_translator = GoogleTranslator(source="en", target="pt")
 
     def batch_google(self, txt):
-        #txt = self.google_translator.translate(txt)
-        txt = self.micro_translator.translate(txt)
+        txt = self.google_translator.translate(txt)
         return txt
 
     def mt(self, text):
