@@ -1,7 +1,7 @@
 from src.conll2bioes import Conversor
 import os
 import spacy
-from tqdm import tqdm
+from tqdm.auto import tqdm
 from main import criar_conll
 import typer
 from deep_translator import GoogleTranslator
@@ -278,6 +278,8 @@ class TranslateDataset:
             raw_sent.append(dataset[0][i])
             raw_ext.append(dataset[1][i])
 
+        cache.clear()
+        cache.close()
         trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
         self.save_translate(trans_dict)
 
@@ -376,7 +378,7 @@ def run(batch_size: int,
             print("Traduzindo com MarianMTModel")
             trans_eng.translate_mt()
     trans_eng.create_dict()
-    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted=converted, sequential=False, input_path="")
+    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted=converted, sequential=False)
 
 
 if __name__ == "__main__":

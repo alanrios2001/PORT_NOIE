@@ -18,11 +18,13 @@ def criar_conll(out_name: str,
                 sequential: bool = True
                 ):
     if input_path is None:
-        input_path = "datasets/"
-    path = f"{input_path}/outputs/{out_name}"
+        input_path = ""
+        path = f"outputs/{out_name}"
+        path_saida_match = f"outputs/{out_name}" + "/saida_match"
+    else:
+        path = f"{input_path}/outputs/{out_name}"
+        path_saida_match = f"{input_path}/outputs/{out_name}" + "/saida_match"
     pathlib.Path(path).mkdir(parents=True, exist_ok=True)
-
-    path_saida_match = f"{input_path}outputs/{out_name}"+"/saida_match"
     pathlib.Path(path_saida_match).mkdir(parents=True, exist_ok=True)
 
     if not converted:
