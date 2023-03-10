@@ -26,14 +26,14 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     emb = TransformerWordEmbeddings(
         "neuralmind/bert-base-portuguese-cased",
-        layers="-2",
-        pooling_operation="first_last",
+        layers="-3",
+        pooling_operation="mean",
         fine_tune=True,
     )
 
     embedding_types = [
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=2, embedding_length=768),
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=2, embedding_length=768),
+        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=5, embedding_length=768),
+        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=5, embedding_length=768),
         emb,
         FlairEmbeddings('pt-forward'),
         FlairEmbeddings('pt-backward')
@@ -59,7 +59,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   min_learning_rate=0.0001,
                   mini_batch_size=8,
                   max_epochs=epochs,
-                  patience=3,
+                  patience=2,
                   embeddings_storage_mode='cpu',
                   optimizer=MADGRAD,
                   use_amp=True,

@@ -84,6 +84,9 @@ class Eval:
         with open("evaluations/"+out_txt+"_result"+".json", "a") as f:
             json.dump(js, f, indent=4)
 
+        print("------------------------")
+        print("-- Evaluation results --")
+        print(result.detailed_results)
 
 @app.command()
 def run(model_path: str, corpus_dir: str, train: str, test: str, dev: str):
@@ -107,15 +110,15 @@ def run(model_path: str, corpus_dir: str, train: str, test: str, dev: str):
             Eval(model=model, out_txt=out_txt, corpus=corpus)
         except:
             print("final-model.pt not found, are you sure you have a model in this folder?")
-    print("------------------------")
-    print("-- Evaluation results --")
+
     model_name = model_path.split("/")[-1]
     y_true, y_pred = get_dev_result(model_name)
     df = get_confusion_matrix(y_true, y_pred)
     get_measures(y_true, df)
-    # df = df.style.background_gradient(cmap="Purples")
-    display(df)
-    print(classification_report(y_true, y_pred, digits=4))
+    print("\nBy label:")
+    print(classification_report(y_true, y_pred), digits=4)
+
+
 
 
 
