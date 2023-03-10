@@ -47,9 +47,10 @@ def criar_conll(out_name: str,
 
 @app.command()
 def merge():
-    datasets = ["splits/ls_train_plus.txt",
-                "splits/PTOIE_train.txt"]
-    OUTPUT_NAME = "LsPt_plus_train"
+    datasets = ["splits/ls_train.txt",
+                "splits/pud_200.txt",
+                "splits/ls_dev.txt"]
+    OUTPUT_NAME = "ls_train_plus"
     Merge(datasets, OUTPUT_NAME)
 
 @app.command()
