@@ -26,10 +26,10 @@ class Merge:
         print(f"len {output_name}: ", len(self.merged.split("\n\n")))
 
 if __name__ == "__main__":
-    datasets = ["translated/splits/ls_train.txt", "translated/splits/ls_dev.txt", "translated/splits/pud_200.txt"]
+    datasets = ["../outputs/ls_test/ls_test_corpus.txt", "../outputs/ls_dev/ls_dev_corpus.txt", "../splits/pud_200.txt"]
     TEST_SIZE = 0.0
     DEV_SIZE = 0.0
-    OUTPUT_NAME = "ls_train++"
+    OUTPUT_NAME = "ls_train_plus"
     IN_PATH = "merges"
     OUT_PATH = "saida_pos_tag"
     Merge(datasets, OUTPUT_NAME)

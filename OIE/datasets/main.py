@@ -4,6 +4,7 @@ import typer
 import pathlib
 from src.pos_tag import PosTag
 from src.train_test_dev import train_dev_test
+from src.merge_datasets import Merge
 
 app = typer.Typer()
 
@@ -43,6 +44,24 @@ def criar_conll(out_name: str,
     # train, dev, test
     if test_size > 0 and dev_size > 0:
         train_dev_test(test_size, dev_size, out_name, in_path=path+"/saida_pos_tag", out_path=path+"/saida_pos_tag")
+
+@app.command()
+def merge():
+    datasets = ["outputs/ls_test/saida_pos_tag/ls_test_corpus.txt",
+                "outputs/ls_dev/saida_pos_tag/ls_dev_corpus.txt",
+                "splits/pud_200.txt"]
+    OUTPUT_NAME = "ls_train_plus"
+    Merge(datasets, OUTPUT_NAME)
+
+@app.command()
+def train_dev_test():
+    TEST_SIZE = 0.0
+    DEV_SIZE = 0.0
+    OUTPUT_NAME = "ls_train_plus"
+    IN_PATH = "merges"
+    OUT_PATH = "saida_pos_tag"
+    train_dev_test.train_dev_test(TEST_SIZE, DEV_SIZE, OUTPUT_NAME, IN_PATH, OUT_PATH)
+
 
 
 if __name__ == "__main__":

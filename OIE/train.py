@@ -30,8 +30,6 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
         pooling_operation="first_last",
         fine_tune=True,
     )
-    #emb = TransformerWordEmbeddings("neuralmind/bert-large-portuguese-cased")
-    #emb = TransformerWordEmbeddings("xlm-roberta-base")
 
     embedding_types = [
         OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=2, embedding_length=768),
@@ -57,11 +55,11 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     trainer = ModelTrainer(oie, corpus)
     # iniciando treino
     trainer.train(f"train_output/{name}",
-                  learning_rate=0.002,
+                  learning_rate=0.001,
                   min_learning_rate=0.0001,
-                  mini_batch_size=16,
+                  mini_batch_size=8,
                   max_epochs=epochs,
-                  patience=2,
+                  patience=3,
                   embeddings_storage_mode='cpu',
                   optimizer=MADGRAD,
                   use_amp=True,
