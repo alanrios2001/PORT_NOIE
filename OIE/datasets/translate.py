@@ -326,14 +326,14 @@ class TranslateDataset:
         #identifica elementos da tripla traduzida e armazena em um dicionario
         counter = 0
         if not self.google:
-            for sample in tqdm(zip(all_sent, all_ext), desc="Armazenando tradução", total=len(all_sent)):
+            for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
                 for sent, ext in zip(sample[0], sample[1]):
                     arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(ext)
                     data_dict[str(counter)] = {"ID": counter, "sent": sent,
                                                "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
                     counter += 1
         if self.google:
-            for sample in tqdm(zip(all_sent, all_ext), desc="Armazenando tradução", total=len(all_sent)):
+            for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
                 arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(sample[1])
                 data_dict[str(counter)] = {"ID": counter, "sent": sample[0],
                                            "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
@@ -378,7 +378,7 @@ def run(batch_size: int,
             print("Traduzindo com MarianMTModel")
             trans_eng.translate_mt()
     trans_eng.create_dict()
-    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted=converted, sequential=False)
+    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted=converted, sequential=True)
 
 
 if __name__ == "__main__":
