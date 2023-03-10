@@ -32,8 +32,8 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     )
 
     embedding_types = [
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=5, embedding_length=768),
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=5, embedding_length=768),
+        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=8, embedding_length=768),
+        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=8, embedding_length=768),
         emb,
         FlairEmbeddings('pt-forward'),
         FlairEmbeddings('pt-backward')

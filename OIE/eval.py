@@ -116,7 +116,7 @@ def run(model_path: str, corpus_dir: str, train: str, test: str, dev: str):
     df = get_confusion_matrix(y_true, y_pred)
     get_measures(y_true, df)
     print("\nBy label:")
-    print(classification_report(y_true, y_pred), digits=4)
+    print(classification_report(y_true, y_pred, digits=4) )
 
 
 
