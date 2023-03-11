@@ -58,6 +58,6 @@ def main(dir: str , dataset: str):
 
 if __name__ == "__main__":
     dir = "other_corpus"
-    datasets = ["200-silver.txt", "100-gold.txt"]
+    datasets = ["200-silver.txt", "100-dev.txt"]
     for dataset in datasets:
         main(dir ,dataset)

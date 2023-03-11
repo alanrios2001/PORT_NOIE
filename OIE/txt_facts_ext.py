@@ -1,7 +1,8 @@
 from predict import Predictor
 
-model = "LSOIE++"
+model = "LSOIE_OHE"
 oie = Predictor(model)
+show_triple = True
 
 with open("texto.txt", "r", encoding="utf-8") as f:
     lines = f.read()
@@ -23,4 +24,7 @@ for ex in exts:
     if lenght > 2:
         for i in range(lenght):
             extraction += f" {ex[i][0]}"
-        print(extraction)
+        if show_triple:
+            print(extraction + " → " + f"(ARG0: {ex[0][0]})" + f"(REL: {ex[1][0]})" + f"(ARG1: {ex[2][0]})")
+        else:
+            print(extraction)
