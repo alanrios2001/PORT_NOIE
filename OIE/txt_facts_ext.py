@@ -1,6 +1,6 @@
 from predict import Predictor
 
-model = "LSOIE_OHE"
+model = "L_OIE"
 oie = Predictor(model)
 show_triple = True
 
