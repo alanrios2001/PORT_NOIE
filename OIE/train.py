@@ -4,6 +4,9 @@ from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWord
 from flair.models import SequenceTagger
 from trainers.trainer import ModelTrainer
 from madgrad import MADGRAD
+from torch.optim.adagrad import Adagrad
+from torch.optim.adam import Adam
+from torch.optim.adamw import AdamW
 import typer
 
 app = typer.Typer()
@@ -12,7 +15,6 @@ app = typer.Typer()
 @app.command()
 def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     # define the structure of the .datasets file
-    folders = ['conll2bioes_output/', 'saida_match/', "merges/", "lowered_datasets/"]
     corpus = ColumnCorpus(data_folder=folder,
                           column_format={0: 'text', 8: 'label', 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
@@ -26,14 +28,11 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     emb = TransformerWordEmbeddings(
         "neuralmind/bert-base-portuguese-cased",
-        layers="-1",
-        pooling_operation="first-last",
-        fine_tune=True,
     )
 
     embedding_types = [
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=2, embedding_length=1000),
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=2, embedding_length=1000),
+        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=2, embedding_length=600),
+        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=2, embedding_length=600),
         emb,
         FlairEmbeddings('pt-forward'),
         FlairEmbeddings('pt-backward')
@@ -53,19 +52,20 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     # inicializando trainer
     trainer = ModelTrainer(oie, corpus)
+
     # iniciando treino
     trainer.train(f"train_output/{name}",
-                  learning_rate=0.0002,
-                  min_learning_rate=0.00005,
+                  learning_rate=0.005,
+                  min_learning_rate=0.0001,
                   mini_batch_size=8,
                   max_epochs=epochs,
-                  patience=2,
+                  patience=3,
                   embeddings_storage_mode='cpu',
                   optimizer=MADGRAD,
                   use_amp=True,
                   save_final_model=False,
+                  anneal_factor=0.5,
                   )
-
 
 if __name__ == "__main__":
     app()

@@ -1,6 +1,8 @@
 import random
+import pathlib
 
 def train_dev_test(test_slice: float, dev_slice: float, output_name: str, in_path: str, out_path: str):
+    pathlib.Path(out_path).mkdir(parents=True, exist_ok=True)
     with open(f"{in_path}/{output_name}_corpus.txt", "r", encoding="utf-8") as file:
         lines = file.read().split("\n\n")
         random.shuffle(lines)

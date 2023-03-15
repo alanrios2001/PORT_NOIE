@@ -74,7 +74,7 @@ class Conversor:
 
 
     def train_dev_test(self, test_slice: float, dev_slice: float):
-        with open(f"conll2bioes_output/{self.conll_name.replace('.conll', '')}.txt", "r", encoding="utf-8") as file:
+        with open(f"other_corpus/outputs/conll2bioes_output/{self.conll_name.replace('.conll', '')}.txt", "r", encoding="utf-8") as file:
             lines = file.read()
             lines = lines.split("\n\n")
             random.shuffle(lines)
@@ -105,10 +105,7 @@ class Conversor:
 
 if __name__ == "__main__":
     from pos_tag import PosTag
-    datasets = ["pud_200.conll"]
-
-    #path = pathlib.Path("other_corpus")
-    #path.mkdir(parents=True, exist_ok=True)
+    datasets = ["gamalho.conll", "pragmatic_ceten.conll", "pragmatic_wiki.conll"]
 
     path = pathlib.Path("other_corpus/mod")
     path.mkdir(parents=True, exist_ok=True)
