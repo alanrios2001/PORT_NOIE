@@ -47,17 +47,20 @@ def criar_conll(out_name: str,
 
 @app.command()
 def merge():
-    train = ["splits_sets/ptoie/PTOIE_test.txt", "outputs/splits/PTOIE_dev_test.txt"]
+    train = ["other_corpus/outputs/saida_pos_tag/gamalho.txt",
+             "other_corpus/outputs/saida_pos_tag/pragmatic_ceten.txt",
+             "other_corpus/outputs/saida_pos_tag/pragmatic_wiki.txt",
+             "other_corpus/outputs/saida_pos_tag/pud_200.txt"]
 
-    OUTPUT_NAME = "PTOIE_test"
+    OUTPUT_NAME = "fine_tune"
     Merge(train, OUTPUT_NAME)
 
 @app.command()
 def split():
-    TEST_SIZE = 0.5
-    DEV_SIZE = 0.5
-    OUTPUT_NAME = "PTOIE_dev"
-    IN_PATH = "outputs/PTOIE/saida_pos_tag"
+    TEST_SIZE = 0.1
+    DEV_SIZE = 0.0
+    OUTPUT_NAME = "fine_tune"
+    IN_PATH = "outputs/merges"
     OUT_PATH = "outputs/splits"
     train_dev_test(TEST_SIZE, DEV_SIZE, OUTPUT_NAME, IN_PATH, OUT_PATH)
 
