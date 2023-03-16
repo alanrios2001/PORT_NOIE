@@ -47,23 +47,29 @@ def criar_conll(out_name: str,
 
 @app.command()
 def merge():
-    train = ["other_corpus/outputs/saida_pos_tag/gamalho.txt",
-             "other_corpus/outputs/saida_pos_tag/pragmatic_ceten.txt",
-             "other_corpus/outputs/saida_pos_tag/pragmatic_wiki.txt",
+    fine_tune = ["other_corpus/outputs/saida_pos_tag/gamalho.txt",
+             #"other_corpus/outputs/saida_pos_tag/pragmatic_ceten.txt",
+             #"other_corpus/outputs/saida_pos_tag/pragmatic_wiki.txt",
              "other_corpus/outputs/saida_pos_tag/pud_200.txt"]
 
-    OUTPUT_NAME = "fine_tune"
-    Merge(train, OUTPUT_NAME)
+    ls_train = ["outputs/splits/ls_dev_test.txt",
+          "outputs/splits/ls_dev_train.txt",
+          "outputs/ls_train/saida_pos_tag/ls_train_corpus.txt"]
+
+    ls_test = ["outputs/splits/ls_dev_dev.txt",
+          "outputs/ls_test/saida_pos_tag/ls_test_corpus.txt"]
+
+    OUTPUT_NAME = "ls2_train"
+    Merge(ls_train, OUTPUT_NAME)
 
 @app.command()
 def split():
-    TEST_SIZE = 0.1
-    DEV_SIZE = 0.0
-    OUTPUT_NAME = "fine_tune"
-    IN_PATH = "outputs/merges"
+    TEST_SIZE = 0.6
+    DEV_SIZE = 0.4
+    OUTPUT_NAME = "ls_dev"
+    IN_PATH = "outputs/ls_dev/saida_pos_tag"
     OUT_PATH = "outputs/splits"
     train_dev_test(TEST_SIZE, DEV_SIZE, OUTPUT_NAME, IN_PATH, OUT_PATH)
-
 
 
 if __name__ == "__main__":

@@ -2,11 +2,9 @@ import pathlib
 from flair.datasets import ColumnCorpus
 from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, OneHotEmbeddings, WordEmbeddings
 from flair.models import SequenceTagger
-from trainers.trainer import ModelTrainer
+from flair.trainers import ModelTrainer
+#from trainers.trainer import ModelTrainer
 from madgrad import MADGRAD
-from torch.optim.adagrad import Adagrad
-from torch.optim.adam import Adam
-from torch.optim.adamw import AdamW
 import typer
 
 app = typer.Typer()
@@ -29,10 +27,11 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     emb = TransformerWordEmbeddings(
         "neuralmind/bert-base-portuguese-cased",
     )
+    emb = TransformerWordEmbeddings("facebook/xlm-v-base")
 
     embedding_types = [
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=2, embedding_length=600),
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=2, embedding_length=600),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=2, embedding_length=50),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=2, embedding_length=50),
         emb,
         FlairEmbeddings('pt-forward'),
         FlairEmbeddings('pt-backward')
@@ -55,16 +54,16 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     # iniciando treino
     trainer.train(f"train_output/{name}",
-                  learning_rate=0.005,
+                  learning_rate=0.002,
                   min_learning_rate=0.0001,
                   mini_batch_size=8,
                   max_epochs=epochs,
-                  patience=3,
+                  patience=2,
                   embeddings_storage_mode='cpu',
                   optimizer=MADGRAD,
-                  use_amp=True,
                   save_final_model=False,
-                  anneal_factor=0.5,
+                  reduce_transformer_vocab=True,
+                  use_amp=True,
                   )
 
 if __name__ == "__main__":

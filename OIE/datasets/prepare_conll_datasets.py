@@ -2,7 +2,7 @@ from src.conll2bioes import Conversor
 from src.pos_tag import PosTag
 import pathlib
 
-datasets = ["gamalho.conll", "pragmatic_ceten.conll", "pragmatic_wiki.conll"]
+datasets = ["pud_100.conll","pud_200.conll","gamalho.conll", "pragmatic_ceten.conll", "pragmatic_wiki.conll"]
 
 path = pathlib.Path("other_corpus/outputs/mod")
 path.mkdir(parents=True, exist_ok=True)
