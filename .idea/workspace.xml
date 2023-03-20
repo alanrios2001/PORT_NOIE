@@ -5,34 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14e074a8-21a2-4371-919b-d6a5e57781c8" name="Changes" comment="added some datasets">
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/other_corpus/pud_100.conll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/other_corpus/pud_200.conll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/eval/gamalho.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/eval/pragmatic_ceten.conll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/eval/pragmatic_wiki.conll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/ls_no_dev/ls_train.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/ls_no_dev/ls_gold.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/ptoie_no_dev/ptoie_test.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/ptoie_no_dev/ptoie_train.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OIE/datasets/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/prepare_conll_datasets.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/prepare_conll_datasets.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/LSOIE+/ls_test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/LSOIE+/ls_train++.txt" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/ls_no_dev/ls_test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/LSOIE+/pud_100.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/fine_tune/fine_tune_corpus.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/fine_tune/fine_tune_test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/fine_tune/fine_tune_train.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/gold_silver/100-gold.txt" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/eval/100-gold.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/gold_silver/200-silver.txt" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/eval/200-silver.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/gold_silver/ls_gold.txt" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/eval/ls_gold.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/gold_silver/pud_100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/eval/pud_100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/gold_silver/pud_200.txt" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/eval/pud_200.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/ls_no_dev/LSOIE_test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/ls_no_dev/LSOIE_train.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/datasets/translate.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/translate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/eval/100-gold.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/eval/200-silver.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/ptoie_no_dev/PTOIE_test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/ptoie_no_dev/PTOIE_train.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/OIE/fine_tune.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/fine_tune.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OIE/texto.txt" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/texto.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OIE/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OIE/trainers/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/trainers/trainer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OIE/txt_facts_ext.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/txt_facts_ext.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +68,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Dev/3-facul/PIBIC/PLN/Flair-oie/OIE/datasets/validated_splits/eval&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Dev/3-facul/PIBIC/PLN/Flair-oie/OIE/datasets/validated_splits/ptoie_no_dev&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -92,21 +79,21 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\validated_splits\eval" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\trainers" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\validated_splits\ptoie_no_dev" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\validated_splits\ls_no_dev" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\validated_splits\fine_tune" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\splits_sets\s2" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\other_corpus\outputs\s2\s2train\saida_match" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\train_output\LSOIE" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\evaluations\LSOIE2" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\evaluations\LSOIE" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\evaluations\s2" />
+      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\train_output\LSOIE\fine_tune_part1" />
       <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\evaluations\LSOIE_OHE" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\evaluations\bert_fine_tuned" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\splits_sets\fine_tune" />
-      <recent name="E:\Dev\3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\splits_sets\fine_tuning" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.eval">
+  <component name="RunManager" selected="Python.train">
     <configuration name="eval" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Flair-oie" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -121,7 +108,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OIE/eval.py" />
-      <option name="PARAMETERS" value="train_output/LSOIE/fine_tune/fine_tune datasets/splits_sets/eval gold.txt gold.txt pud_100.txt" />
+      <option name="PARAMETERS" value="train_output/LSOIE2/fine_tune_part1/fine_tune_part2 datasets/validated_splits/eval ls_gold.txt ls_gold.txt pud_100.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -144,7 +131,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OIE/fine_tune.py" />
-      <option name="PARAMETERS" value="45 LSOIE/fine_tune datasets/validated_splits eval/pud_200.txt eval/ls_gold.txt eval/pud_100.txt" />
+      <option name="PARAMETERS" value="60 LSOIE2/fine_tune_part1 datasets/validated_splits eval/pud_200.txt eval/pud_200.txt eval/pud_100.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -234,7 +221,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OIE/train.py" />
-      <option name="PARAMETERS" value="150 LSOIE_v datasets/validated_splits ls_no_dev/ls_train.txt ls_no_dev/ls_test.txt eval/ls_gold.txt" />
+      <option name="PARAMETERS" value="150 LSOIE2 datasets/validated_splits ls_no_dev/ls_train.txt ls_no_dev/ls_test.txt eval/ls_gold.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -389,14 +376,13 @@
       <workItem from="1678676035986" duration="65000" />
       <workItem from="1678676215414" duration="29806000" />
       <workItem from="1678882438580" duration="22818000" />
-      <workItem from="1678992805165" duration="3101000" />
-    </task>
-    <task id="LOCAL-00015" summary="bug fixes, implemented torch.cuda.amp on trainer, changed flair embedding to bert-WordTransformer">
-      <created>1675834584994</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1675834584994</updated>
+      <workItem from="1678992805165" duration="5799000" />
+      <workItem from="1678999102608" duration="14697000" />
+      <workItem from="1679030163189" duration="1771000" />
+      <workItem from="1679075522470" duration="21474000" />
+      <workItem from="1679276490228" duration="3454000" />
+      <workItem from="1679281085905" duration="1978000" />
+      <workItem from="1679283546909" duration="2889000" />
     </task>
     <task id="LOCAL-00016" summary="bug fixes, implemented torch.cuda.amp on trainer, changed flair embedding to bert-WordTransformer">
       <created>1675834904266</created>
@@ -734,7 +720,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678905685273</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="added some datasets">
+      <created>1678996337411</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1678996337411</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -784,17 +777,17 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Flair_oie$t5.coverage" NAME="t5 Coverage Results" MODIFIED="1676061889786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/teste" />
-    <SUITE FILE_PATH="coverage/Flair_oie$tools.coverage" NAME="tools Coverage Results" MODIFIED="1678914800434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
+    <SUITE FILE_PATH="coverage/Flair_oie$tools.coverage" NAME="tools Coverage Results" MODIFIED="1679183712870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$conll2bioes.coverage" NAME="conll2bioes Coverage Results" MODIFIED="1678904270038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets/src" />
-    <SUITE FILE_PATH="coverage/Flair_oie$train.coverage" NAME="train Coverage Results" MODIFIED="1678940386620" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
+    <SUITE FILE_PATH="coverage/Flair_oie$train.coverage" NAME="train Coverage Results" MODIFIED="1679284435681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$predict2.coverage" NAME="predict Coverage Results" MODIFIED="1677356393194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
-    <SUITE FILE_PATH="coverage/Flair_oie$fine_tune.coverage" NAME="fine_tune Coverage Results" MODIFIED="1678995194860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
+    <SUITE FILE_PATH="coverage/Flair_oie$fine_tune.coverage" NAME="fine_tune Coverage Results" MODIFIED="1679288004370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$predict.coverage" NAME="predict Coverage Results" MODIFIED="1678395474685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$match.coverage" NAME="match Coverage Results" MODIFIED="1677641070920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$translate.coverage" NAME="translate Coverage Results" MODIFIED="1678393043913" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$run_trans.coverage" NAME="run_trans Coverage Results" MODIFIED="1678470151509" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$predict_teste.coverage" NAME="predict Coverage Results" MODIFIED="1677447786139" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
-    <SUITE FILE_PATH="coverage/Flair_oie$txt_facts_ext.coverage" NAME="txt_facts_ext Coverage Results" MODIFIED="1678903859354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
+    <SUITE FILE_PATH="coverage/Flair_oie$txt_facts_ext.coverage" NAME="txt_facts_ext Coverage Results" MODIFIED="1679183349348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$prepare_silver_gold.coverage" NAME="prepare_silver_gold Coverage Results" MODIFIED="1678391953014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$lower_dataset.coverage" NAME="lower_dataset Coverage Results" MODIFIED="1675533939862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$train_test_dev.coverage" NAME="train_test_dev Coverage Results" MODIFIED="1677119699574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
@@ -803,7 +796,7 @@
     <SUITE FILE_PATH="coverage/Flair_oie$test.coverage" NAME="test Coverage Results" MODIFIED="1675900394354" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$setup.coverage" NAME="setup Coverage Results" MODIFIED="1675810591929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/apex" />
     <SUITE FILE_PATH="coverage/Flair_oie$criar_corpus.coverage" NAME="criar_corpus Coverage Results" MODIFIED="1675642973787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
-    <SUITE FILE_PATH="coverage/Flair_oie$eval.coverage" NAME="eval Coverage Results" MODIFIED="1678995578491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
+    <SUITE FILE_PATH="coverage/Flair_oie$eval.coverage" NAME="eval Coverage Results" MODIFIED="1679288581950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$main.coverage" NAME="main Coverage Results" MODIFIED="1678394039123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$gpt_2.coverage" NAME="gpt-2 Coverage Results" MODIFIED="1676055390470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/tools" />
     <SUITE FILE_PATH="coverage/Flair_oie$pos_tag.coverage" NAME="pos_tag Coverage Results" MODIFIED="1677205586965" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />

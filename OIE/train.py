@@ -27,11 +27,11 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     emb = TransformerWordEmbeddings(
         "neuralmind/bert-base-portuguese-cased",
     )
-    emb = TransformerWordEmbeddings("facebook/xlm-v-base")
+    emb = TransformerWordEmbeddings("xlm-roberta-base")
 
     embedding_types = [
-        #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=2, embedding_length=50),
-        #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=2, embedding_length=50),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=5, embedding_length=100),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=5, embedding_length=200),
         emb,
         FlairEmbeddings('pt-forward'),
         FlairEmbeddings('pt-backward')
@@ -55,7 +55,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     # iniciando treino
     trainer.train(f"train_output/{name}",
                   learning_rate=0.002,
-                  min_learning_rate=0.0001,
+                  min_learning_rate=0.0005,
                   mini_batch_size=8,
                   max_epochs=epochs,
                   patience=2,
@@ -63,7 +63,6 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   optimizer=MADGRAD,
                   save_final_model=False,
                   reduce_transformer_vocab=True,
-                  use_amp=True,
                   )
 
 if __name__ == "__main__":

@@ -21,11 +21,6 @@ from flair.models import FewshotClassifier
 from flair.nn import Model
 from flair.nn.model import ReduceTransformerVocabMixin
 
-try:
-    from apex import amp
-except ImportError:
-    amp = None
-
 import random
 
 from torch.optim.lr_scheduler import OneCycleLR  # type: ignore
@@ -234,14 +229,7 @@ class ModelTrainer:
                 pass
 
         if use_amp:
-            if sys.version_info < (3, 0):
-                raise RuntimeError("Apex currently only supports Python 3. Aborting.")
-            if amp is None:
-                raise RuntimeError(
-                    "Failed to import apex. Please install apex from "
-                    "https://www.github.com/nvidia/apex "
-                    "to enable mixed-precision training."
-                )
+            pass
 
         if not eval_batch_size:
             eval_batch_size = mini_batch_size

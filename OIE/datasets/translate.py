@@ -329,14 +329,20 @@ class TranslateDataset:
             for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
                 for sent, ext in zip(sample[0], sample[1]):
                     arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(ext)
-                    data_dict[str(counter)] = {"ID": counter, "sent": sent,
-                                               "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
+                    data_dict[str(counter)] = {"ID": counter,
+                                               "sent": sent,
+                                               "ext": [{"arg1": arg0_trad,
+                                                        "rel": rel_trad,
+                                                        "arg2": arg1_trad}]}
                     counter += 1
         if self.google:
             for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
                 arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(sample[1])
-                data_dict[str(counter)] = {"ID": counter, "sent": sample[0],
-                                           "ext": [{"arg1": arg0_trad, "rel": rel_trad, "arg2": arg1_trad}]}
+                data_dict[str(counter)] = {"ID": counter,
+                                           "sent": sample[0],
+                                           "ext": [{"arg1": arg0_trad,
+                                                    "rel": rel_trad,
+                                                    "arg2": arg1_trad}]}
                 counter += 1
 
         #salva dicionario
