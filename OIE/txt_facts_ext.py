@@ -1,6 +1,6 @@
 from predict import Predictor
 
-model = "LSOIE3"
+model = "LSOIE/fine_tune"
 oie = Predictor(model)
 show_triple = True
 

@@ -11,6 +11,7 @@ class OIE_Match:
         self.output_name = output_name
         self.valid = {}
         self.invalid = {}
+        self.valid_data = {}
         try:
             self.nlp = spacy.load("pt_core_news_lg")
         except:
@@ -82,7 +83,14 @@ class OIE_Match:
                             "arg2": arg2_match,
                             "rel": rel_match,
                         }
-                else:
+                        sent = self.nlp(data[key]["sent"])
+                        tk = [token.text for token in sent]
+                        self.valid_data[data[key]["sent"]] = {
+                            "arg1": (tk[arg1_match[0][1]:arg1_match[0][2]]),
+                            "rel": (tk[rel_match[0][1]:rel_match[0][2]]),
+                            "arg2": (tk[arg2_match[0][1]:arg2_match[0][2]]),
+                        }
+                elif (arg1_match[0][2] < rel_match[0][2] < arg2_match[0][2]) == False:
                     self.valid[data[key]["sent"]] = {
                         "arg1": arg1_match,
                         "arg2": arg2_match,
@@ -115,6 +123,8 @@ class OIE_Match:
 
         with open(self.path_dir+"/invalid.json", "a", encoding="utf-8") as f:
             json.dump(self.invalid, f, ensure_ascii=False, indent=4)
+        with open(self.path_dir+"/gold_valid.json", "a", encoding="utf-8") as f:
+            json.dump(self.valid_data, f)
 
         print("initial samples: ", len(data), "|| valid samples: ", len(self.valid))
 

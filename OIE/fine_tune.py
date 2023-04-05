@@ -2,7 +2,8 @@ import pathlib
 from flair.datasets import ColumnCorpus
 from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings
 from flair.models import SequenceTagger
-from trainers.trainer import ModelTrainer
+#from trainers.trainer import ModelTrainer
+from flair.trainers import ModelTrainer
 from madgrad import MADGRAD
 import typer
 
@@ -28,6 +29,9 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
     if "fine_tune_part" in name:
         part = int(name[-1])+1
         oie = SequenceTagger.load("train_output/" + name + "/final-model.pt")
+    elif "transformer" in name:
+        part = 1
+        oie = SequenceTagger.load("train_output/" + name + "/final-model.pt")
     else:
         part = 1
         oie = SequenceTagger.load("train_output/" + name + "/best-model.pt")
@@ -39,7 +43,7 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
     # fine tune
     trainer.fine_tune(f"train_output/{name}/fine_tune_part{str(part)}",
-                      learning_rate=5.0e-6,
+                      learning_rate=5e-6,
                       mini_batch_size=8,
                       max_epochs=epochs,
                       optimizer=MADGRAD,

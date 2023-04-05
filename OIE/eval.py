@@ -6,7 +6,6 @@ import typer
 import json
 import pandas as pd
 from sklearn.metrics import classification_report, confusion_matrix
-from IPython.display import display
 
 app = typer.Typer()
 

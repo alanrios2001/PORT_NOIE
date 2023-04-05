@@ -60,25 +60,24 @@ def merge():
              #"other_corpus/outputs/saida_pos_tag/pragmatic_wiki.txt",
              "other_corpus/outputs/saida_pos_tag/pud_200.txt"]
 
-    ls_train = ["outputs/splits/ls_dev_test.txt",
-          "outputs/splits/ls_dev_train.txt",
-          "outputs/ls_train/saida_pos_tag/ls_train_corpus.txt"]
+    ls_train = ["splits_sets/lsoie/ls_train_corpus.txt",
+          "outputs/splits/ls_dev_train.txt"]
 
-    ls_test = ["outputs/splits/ls_dev_dev.txt",
-          "outputs/ls_test/saida_pos_tag/ls_test_corpus.txt"]
+    ls_test = ["splits_sets/lsoie/ls_test.txt",
+          "outputs/splits/ls_dev_test.txt"]
 
     ptoie = ["outputs/PTOIE/saida_pos_tag/PTOIE_dev_test.txt", "outputs/PTOIE/saida_pos_tag/PTOIE_test.txt"]
 
-    OUTPUT_NAME = "ptoie_test"
-    Merge(ptoie, OUTPUT_NAME)
+    OUTPUT_NAME = "ls_test"
+    Merge(ls_test, OUTPUT_NAME)
 
 @app.command()
 def split():
-    TEST_SIZE = 0.5
+    TEST_SIZE = 0.2
     DEV_SIZE = 0.0
-    OUTPUT_NAME = "PTOIE_dev"
-    IN_PATH = "outputs/PTOIE/saida_pos_tag"
-    OUT_PATH = "outputs/PTOIE/saida_pos_tag"
+    OUTPUT_NAME = "ls_dev"
+    IN_PATH = "outputs/ls_dev/saida_pos_tag"
+    OUT_PATH = "outputs/splits"
     train_dev_test(TEST_SIZE, DEV_SIZE, OUTPUT_NAME, IN_PATH, OUT_PATH)
 
 
@@ -150,9 +149,9 @@ def load_s2(dataset_path: str):
 
 @app.command()
 def build(dataset: str):
-    if dataset == "s2_DS":
-        datasets = [#"other_corpus/s2_DS/train.tsv",
-                    "other_corpus/s2_DS/valid.tsv"]
+    if dataset == "s2":
+        datasets = [#"other_corpus/s2/train.tsv",
+                    "other_corpus/s2/valid.tsv"]
         for dataset in datasets:
             load_s2(dataset)
 

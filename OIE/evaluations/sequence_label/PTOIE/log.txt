@@ -1,0 +1,54 @@
+------------------------
+-- Evaluation results --
+
+Results:
+- F-score (micro) 0.365
+- F-score (macro) 0.3644
+- Accuracy 0.2233
+
+By class:
+              precision    recall  f1-score   support
+
+        ARG0     0.7297    0.5294    0.6136        51
+           V     0.3243    0.2353    0.2727        51
+        ARG1     0.2500    0.1765    0.2069        51
+
+   micro avg     0.4364    0.3137    0.3650       153
+   macro avg     0.4347    0.3137    0.3644       153
+weighted avg     0.4347    0.3137    0.3644       153
+
+Y-Pred  I-V    O  B-ARG0  B-V  I-ARG1  I-ARG0  B-ARG1
+Y-True                                               
+I-V       0   53       0    5       4       0       7
+O         2  593       6    7      31      13      15
+B-ARG0    0   21      30    0       0       0       0
+B-V       0   27       0   24       0       0       0
+I-ARG1    0   38       0    0      16       0       2
+I-ARG0    0   23       0    1       1      58       1
+B-ARG1    1   33       1    0       5       0      11
+
+#-- Local measures --#
+True Positives: {'I-V': 0, 'O': 593, 'B-ARG0': 30, 'B-V': 24, 'I-ARG1': 16, 'I-ARG0': 58, 'B-ARG1': 11}
+False Positives: {'I-V': 3, 'O': 195, 'B-ARG0': 7, 'B-V': 13, 'I-ARG1': 41, 'I-ARG0': 13, 'B-ARG1': 25}
+False Negatives: {'I-V': 69, 'O': 74, 'B-ARG0': 21, 'B-V': 27, 'I-ARG1': 40, 'I-ARG0': 26, 'B-ARG1': 40}
+
+#-- Global measures --#
+Correct predictions: 732
+Total predictions: 1029
+Accuracy: 0.7114
+
+By label:
+              precision    recall  f1-score   support
+
+      B-ARG0     0.8108    0.5882    0.6818        51
+      B-ARG1     0.3056    0.2157    0.2529        51
+         B-V     0.6486    0.4706    0.5455        51
+      I-ARG0     0.8169    0.6905    0.7484        84
+      I-ARG1     0.2807    0.2857    0.2832        56
+         I-V     0.0000    0.0000    0.0000        69
+           O     0.7525    0.8891    0.8151       667
+
+    accuracy                         0.7114      1029
+   macro avg     0.5165    0.4485    0.4753      1029
+weighted avg     0.6572    0.7114    0.6782      1029
+

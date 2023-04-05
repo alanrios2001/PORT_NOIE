@@ -1,19 +1,8 @@
 from OIE.datasets.main import criar_conll
 import json
 import pathlib
-
-
-def remove_contractions(txt):
-    txt = txt.replace("de o", "do")
-    txt = txt.replace("de a", "da")
-    txt = txt.replace("de os", "dos")
-    txt = txt.replace("de as", "das")
-    txt = txt.replace("em o", "no")
-    txt = txt.replace("em a", "na")
-    txt = txt.replace("em os", "nos")
-    txt = txt.replace("em as", "nas")
-
-    return txt
+from src.match import OIE_Match
+from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions, clean_extraction
 
 #@app.command()
 def main(dir: str , dataset: str):
@@ -33,7 +22,7 @@ def main(dir: str , dataset: str):
             for line in lines:
                 if line.count("\t") == 1:
                     if sent == "":
-                        sent = remove_contractions(line.split("\t")[1])
+                        sent = line.split("\t")[1]
                         id = line.split("\t")[0]
                     else:
                         if exts != []:
@@ -46,6 +35,11 @@ def main(dir: str , dataset: str):
                         exts.append(ext[0:3])
                         exts.append(id)
 
+            sent = clean_extraction(transform_portuguese_contractions(sent))
+            ext[0] = clean_extraction(transform_portuguese_contractions(ext[0]))
+            ext[1] = clean_extraction(transform_portuguese_contractions(ext[1]))
+            ext[2] = clean_extraction(transform_portuguese_contractions(ext[2]))
+
             for key in data_dict:
                 for ext in data_dict[key]:
                     if type(ext) == list:
@@ -53,7 +47,7 @@ def main(dir: str , dataset: str):
                         total += 1
             file2.write(json.dumps(final_dict))
 
-    criar_conll(dataset.replace(".txt", ""), "other_corpus/", 0.0, 0.0, converted=True, sequential=False)
+    criar_conll(dataset.replace(".txt", ""), f"other_corpus/", 0.0, 0.0, converted=True, sequential=True, input_path=f"{dir}")
 
 
 if __name__ == "__main__":

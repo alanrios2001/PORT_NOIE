@@ -1,1079 +1,571 @@
-Teoricamente,	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-um	XX	-	-	-	-	-	*	B-ARG0	PUNCT	punct	O	-
-casal	XX	-	-	-	-	-	*	E-ARG0	DET	det	O	-
-poderia	XX	-	-	-	-	-	*	B-V	NOUN	nsubj	O	-
-abrir	XX	-	-	-	-	-	*	E-V	VERB	ROOT	O	-
-quatro	XX	-	-	-	-	-	*	B-ARG1	VERB	xcomp	O	-
-contas	XX	-	-	-	-	-	*	I-ARG1	NUM	nummod	O	-
-Tesco	XX	-	-	-	-	-	*	E-ARG1	NOUN	obj	O	-
-e	XX	-	-	-	-	-	*	O	PROPN	appos	ORG	-
-ganhar	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-3%	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-em	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-£12,000	XX	-	-	-	-	-	*	O	SYM	obj	O	-
-–	XX	-	-	-	-	-	*	O	ADP	case	O	-
-£360.	XX	-	-	-	-	-	*	O	SYM	obl	O	-
+Teoricamente	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+um	XX	-	-	-	-	-	*	B-ARG0	-
+casal	XX	-	-	-	-	-	*	E-ARG0	-
+poderia	XX	-	-	-	-	-	*	B-V	-
+abrir	XX	-	-	-	-	-	*	E-V	-
+quatro	XX	-	-	-	-	-	*	B-ARG1	-
+contas	XX	-	-	-	-	-	*	I-ARG1	-
+Tesco	XX	-	-	-	-	-	*	E-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+ganhar	XX	-	-	-	-	-	*	O	-
+3	XX	-	-	-	-	-	*	O	-
+%	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+£	XX	-	-	-	-	-	*	O	-
+12	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+000	XX	-	-	-	-	-	*	O	-
+–	XX	-	-	-	-	-	*	O	-
+£	XX	-	-	-	-	-	*	O	-
+360	XX	-	-	-	-	-	*	O	-
 
-O	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-enxofre	XX	-	-	-	-	-	*	E-ARG0	NOUN	nsubj	O	-
-é	XX	-	-	-	-	-	*	S-V	AUX	cop	O	-
-um	XX	-	-	-	-	-	*	B-ARG1	DET	det	O	-
-nutriente	XX	-	-	-	-	-	*	I-ARG1	NOUN	ROOT	O	-
-vital	XX	-	-	-	-	-	*	E-ARG1	ADJ	amod	O	-
-para	XX	-	-	-	-	-	*	O	ADP	case	O	-
-o	XX	-	-	-	-	-	*	O	DET	det	O	-
-crescimento	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-saudável	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-das	XX	-	-	-	-	-	*	O	ADP	case	O	-
-plantas,	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-mas	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-os	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-solos	XX	-	-	-	-	-	*	O	DET	det	O	-
-no	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-Reino	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Unido	XX	-	-	-	-	-	*	O	PROPN	nmod	LOC	-
-são	XX	-	-	-	-	-	*	O	PROPN	flat:name	LOC	-
-naturalmente	XX	-	-	-	-	-	*	O	AUX	cop	O	-
-deficientes	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-deste	XX	-	-	-	-	-	*	O	NOUN	conj	O	-
-mineral.	XX	-	-	-	-	-	*	O	ADP	case	O	-
+O	XX	-	-	-	-	-	*	B-ARG0	-
+enxofre	XX	-	-	-	-	-	*	E-ARG0	-
+é	XX	-	-	-	-	-	*	S-V	-
+um	XX	-	-	-	-	-	*	B-ARG1	-
+nutriente	XX	-	-	-	-	-	*	I-ARG1	-
+vital	XX	-	-	-	-	-	*	E-ARG1	-
+para	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+crescimento	XX	-	-	-	-	-	*	O	-
+saudável	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+as	XX	-	-	-	-	-	*	O	-
+plantas	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+mas	XX	-	-	-	-	-	*	O	-
+os	XX	-	-	-	-	-	*	O	-
+solos	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+Reino	XX	-	-	-	-	-	*	O	-
+Unido	XX	-	-	-	-	-	*	O	-
+são	XX	-	-	-	-	-	*	O	-
+naturalmente	XX	-	-	-	-	-	*	O	-
+deficientes	XX	-	-	-	-	-	*	O	-
+deste	XX	-	-	-	-	-	*	O	-
+mineral	XX	-	-	-	-	-	*	O	-
 
-O	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-mundo	XX	-	-	-	-	-	*	E-ARG0	NOUN	nsubj	O	-
-pode	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-estar	XX	-	-	-	-	-	*	E-V	AUX	cop	O	-
-enfurecido	XX	-	-	-	-	-	*	O	ADJ	xcomp	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-absurdo	XX	-	-	-	-	-	*	S-ARG1	ADJ	conj	O	-
--	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-no	XX	-	-	-	-	-	*	O	ADP	cc	O	-
-entanto	XX	-	-	-	-	-	*	O	NOUN	fixed	O	-
-pelo	XX	-	-	-	-	-	*	O	ADP	case	O	-
-menos	XX	-	-	-	-	-	*	O	DET	nmod	O	-
-alguém	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-tem	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-dignidade	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-para	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-continuar	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-a	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-protestar	XX	-	-	-	-	-	*	O	VERB	xcomp	O	-
-contra	XX	-	-	-	-	-	*	O	ADP	case	O	-
-esse	XX	-	-	-	-	-	*	O	DET	det	O	-
-fato.	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
+O	XX	-	-	-	-	-	*	B-ARG0	-
+mundo	XX	-	-	-	-	-	*	E-ARG0	-
+pode	XX	-	-	-	-	-	*	B-V	-
+estar	XX	-	-	-	-	-	*	E-V	-
+enfurecido	XX	-	-	-	-	-	*	S-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+absurdo	XX	-	-	-	-	-	*	O	-
+-	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+entanto	XX	-	-	-	-	-	*	O	-
+por	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+menos	XX	-	-	-	-	-	*	O	-
+alguém	XX	-	-	-	-	-	*	O	-
+tem	XX	-	-	-	-	-	*	O	-
+dignidade	XX	-	-	-	-	-	*	O	-
+para	XX	-	-	-	-	-	*	O	-
+continuar	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+protestar	XX	-	-	-	-	-	*	O	-
+contra	XX	-	-	-	-	-	*	O	-
+esse	XX	-	-	-	-	-	*	O	-
+fato	XX	-	-	-	-	-	*	O	-
 
-O	XX	-	-	-	-	-	*	O	DET	det	O	-
-mundo	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-pode	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-estar	XX	-	-	-	-	-	*	O	AUX	cop	O	-
-enfurecido	XX	-	-	-	-	-	*	O	ADJ	xcomp	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-absurdo	XX	-	-	-	-	-	*	O	ADJ	conj	O	-
--	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-no	XX	-	-	-	-	-	*	O	ADP	cc	O	-
-entanto	XX	-	-	-	-	-	*	O	NOUN	fixed	O	-
-pelo	XX	-	-	-	-	-	*	O	ADP	case	O	-
-menos	XX	-	-	-	-	-	*	O	DET	nmod	O	-
-alguém	XX	-	-	-	-	-	*	S-ARG0	PRON	nsubj	O	-
-tem	XX	-	-	-	-	-	*	S-V	VERB	conj	O	-
-dignidade	XX	-	-	-	-	-	*	S-ARG1	NOUN	obj	O	-
-para	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-continuar	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-a	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-protestar	XX	-	-	-	-	-	*	O	VERB	xcomp	O	-
-contra	XX	-	-	-	-	-	*	O	ADP	case	O	-
-esse	XX	-	-	-	-	-	*	O	DET	det	O	-
-fato.	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
+Catalano	XX	-	-	-	-	-	*	S-ARG0	-
+voltou	XX	-	-	-	-	-	*	B-V	-
+para	XX	-	-	-	-	-	*	I-V	-
+a	XX	-	-	-	-	-	*	I-V	-
+área	XX	-	-	-	-	-	*	I-V	-
+depois	XX	-	-	-	-	-	*	I-V	-
+de	XX	-	-	-	-	-	*	E-V	-
+viver	XX	-	-	-	-	-	*	B-ARG1	-
+em	XX	-	-	-	-	-	*	I-ARG1	-
+Londres	XX	-	-	-	-	-	*	E-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+Glasgow	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+onde	XX	-	-	-	-	-	*	O	-
+estudou	XX	-	-	-	-	-	*	O	-
+design	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+jóias	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+Glasgow	XX	-	-	-	-	-	*	O	-
+School	XX	-	-	-	-	-	*	O	-
+of	XX	-	-	-	-	-	*	O	-
+Art	XX	-	-	-	-	-	*	O	-
 
-O	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-mundo	XX	-	-	-	-	-	*	E-ARG0	NOUN	nsubj	O	-
-pode	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-estar	XX	-	-	-	-	-	*	E-V	AUX	cop	O	-
-enfurecido	XX	-	-	-	-	-	*	S-ARG1	ADJ	xcomp	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-absurdo	XX	-	-	-	-	-	*	O	ADJ	conj	O	-
--	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-no	XX	-	-	-	-	-	*	O	ADP	cc	O	-
-entanto	XX	-	-	-	-	-	*	O	NOUN	fixed	O	-
-pelo	XX	-	-	-	-	-	*	O	ADP	case	O	-
-menos	XX	-	-	-	-	-	*	O	DET	nmod	O	-
-alguém	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-tem	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-dignidade	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-para	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-continuar	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-a	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-protestar	XX	-	-	-	-	-	*	O	VERB	xcomp	O	-
-contra	XX	-	-	-	-	-	*	O	ADP	case	O	-
-esse	XX	-	-	-	-	-	*	O	DET	det	O	-
-fato.	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
+Eu	XX	-	-	-	-	-	*	S-ARG0	-
+visitei	XX	-	-	-	-	-	*	S-V	-
+os	XX	-	-	-	-	-	*	B-ARG1	-
+espetáculos	XX	-	-	-	-	-	*	I-ARG1	-
+universitários	XX	-	-	-	-	-	*	I-ARG1	-
+em	XX	-	-	-	-	-	*	I-ARG1	-
+a	XX	-	-	-	-	-	*	I-ARG1	-
+Universidade	XX	-	-	-	-	-	*	I-ARG1	-
+de	XX	-	-	-	-	-	*	I-ARG1	-
+Northampton	XX	-	-	-	-	-	*	E-ARG1	-
+para	XX	-	-	-	-	-	*	O	-
+encontrar	XX	-	-	-	-	-	*	O	-
+novos	XX	-	-	-	-	-	*	O	-
+talentos	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+diz	XX	-	-	-	-	-	*	O	-
+ele	XX	-	-	-	-	-	*	O	-
 
-É	XX	-	-	-	-	-	*	S-ARG1	AUX	cop	O	-
-justo	XX	-	-	-	-	-	*	O	ADJ	ROOT	O	-
-dizer	XX	-	-	-	-	-	*	O	VERB	csubj	O	-
-que	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-Rocco	XX	-	-	-	-	-	*	B-ARG0	PROPN	nsubj	PER	-
-Catalano	XX	-	-	-	-	-	*	E-ARG0	PROPN	flat:name	PER	-
-trabalha,	XX	-	-	-	-	-	*	O	VERB	ccomp	O	-
-vive	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-e	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-respira	XX	-	-	-	-	-	*	S-V	CCONJ	cc	O	-
-retro.	XX	-	-	-	-	-	*	O	VERB	conj	O	-
+Naturalmente	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	B-ARG0	-
+paisagem	XX	-	-	-	-	-	*	I-ARG0	-
+de	XX	-	-	-	-	-	*	I-ARG0	-
+o	XX	-	-	-	-	-	*	I-ARG0	-
+escritório	XX	-	-	-	-	-	*	E-ARG0	-
+apresenta	XX	-	-	-	-	-	*	S-V	-
+muitas	XX	-	-	-	-	-	*	B-ARG1	-
+roupas	XX	-	-	-	-	-	*	E-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+sentido	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+comida	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+pouco	XX	-	-	-	-	-	*	O	-
 
-Catalano	XX	-	-	-	-	-	*	S-ARG0	PROPN	nsubj	PER	-
-voltou	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-para	XX	-	-	-	-	-	*	E-V	ADP	case	O	-
-a	XX	-	-	-	-	-	*	B-ARG1	DET	det	O	-
-área	XX	-	-	-	-	-	*	E-ARG1	NOUN	obl	O	-
-depois	XX	-	-	-	-	-	*	O	ADV	mark	O	-
-de	XX	-	-	-	-	-	*	O	ADP	fixed	O	-
-viver	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-em	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Londres	XX	-	-	-	-	-	*	O	PROPN	obl	LOC	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-em	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Glasgow,	XX	-	-	-	-	-	*	O	PROPN	conj	LOC	-
-onde	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-estudou	XX	-	-	-	-	-	*	O	PRON	obl	O	-
-design	XX	-	-	-	-	-	*	O	VERB	acl:relcl	O	-
-de	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-jóias	XX	-	-	-	-	-	*	O	ADP	case	O	-
-na	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-Glasgow	XX	-	-	-	-	-	*	O	ADP	case	O	-
-School	XX	-	-	-	-	-	*	O	PROPN	obl	ORG	-
-of	XX	-	-	-	-	-	*	O	PROPN	flat:name	ORG	-
-Art.	XX	-	-	-	-	-	*	O	PROPN	flat:name	ORG	-
+A	XX	-	-	-	-	-	*	B-ARG0	-
+própria	XX	-	-	-	-	-	*	I-ARG0	-
+Wintour	XX	-	-	-	-	-	*	E-ARG0	-
+aparece	XX	-	-	-	-	-	*	O	-
+rapidamente	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+e	XX	-	-	-	-	-	*	O	-
+é	XX	-	-	-	-	-	*	S-V	-
+filmada	XX	-	-	-	-	-	*	S-ARG1	-
+colocando	XX	-	-	-	-	-	*	O	-
+seus	XX	-	-	-	-	-	*	O	-
+óculos	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+sol	XX	-	-	-	-	-	*	O	-
+antes	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+ser	XX	-	-	-	-	-	*	O	-
+entrevistada	XX	-	-	-	-	-	*	O	-
 
-Catalano	XX	-	-	-	-	-	*	S-ARG0	PROPN	nsubj	PER	-
-voltou	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-para	XX	-	-	-	-	-	*	E-V	ADP	case	O	-
-a	XX	-	-	-	-	-	*	B-ARG1	DET	det	O	-
-área	XX	-	-	-	-	-	*	I-ARG1	NOUN	obl	O	-
-depois	XX	-	-	-	-	-	*	I-ARG1	ADV	mark	O	-
-de	XX	-	-	-	-	-	*	I-ARG1	ADP	fixed	O	-
-viver	XX	-	-	-	-	-	*	I-ARG1	VERB	advcl	O	-
-em	XX	-	-	-	-	-	*	I-ARG1	ADP	case	O	-
-Londres	XX	-	-	-	-	-	*	E-ARG1	PROPN	obl	LOC	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-em	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Glasgow,	XX	-	-	-	-	-	*	O	PROPN	conj	LOC	-
-onde	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-estudou	XX	-	-	-	-	-	*	O	PRON	obl	O	-
-design	XX	-	-	-	-	-	*	O	VERB	acl:relcl	O	-
-de	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-jóias	XX	-	-	-	-	-	*	O	ADP	case	O	-
-na	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-Glasgow	XX	-	-	-	-	-	*	O	ADP	case	O	-
-School	XX	-	-	-	-	-	*	O	PROPN	obl	ORG	-
-of	XX	-	-	-	-	-	*	O	PROPN	flat:name	ORG	-
-Art.	XX	-	-	-	-	-	*	O	PROPN	flat:name	ORG	-
+O	XX	-	-	-	-	-	*	B-ARG0	-
+bacalhau	XX	-	-	-	-	-	*	I-ARG0	-
+de	XX	-	-	-	-	-	*	I-ARG0	-
+o	XX	-	-	-	-	-	*	I-ARG0	-
+mar	XX	-	-	-	-	-	*	I-ARG0	-
+Céltico	XX	-	-	-	-	-	*	E-ARG0	-
+pode	XX	-	-	-	-	-	*	B-V	-
+colapsar	XX	-	-	-	-	-	*	I-V	-
+,	XX	-	-	-	-	-	*	I-V	-
+sem	XX	-	-	-	-	-	*	E-V	-
+os	XX	-	-	-	-	-	*	B-ARG1	-
+limites	XX	-	-	-	-	-	*	E-ARG1	-
+propostos	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+disse	XX	-	-	-	-	-	*	O	-
+um	XX	-	-	-	-	-	*	O	-
+oficial	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+UE	XX	-	-	-	-	-	*	O	-
 
-Catalano	XX	-	-	-	-	-	*	S-ARG0	PROPN	nsubj	PER	-
-voltou	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-para	XX	-	-	-	-	-	*	I-V	ADP	case	O	-
-a	XX	-	-	-	-	-	*	I-V	DET	det	O	-
-área	XX	-	-	-	-	-	*	I-V	NOUN	obl	O	-
-depois	XX	-	-	-	-	-	*	I-V	ADV	mark	O	-
-de	XX	-	-	-	-	-	*	E-V	ADP	fixed	O	-
-viver	XX	-	-	-	-	-	*	B-ARG1	VERB	advcl	O	-
-em	XX	-	-	-	-	-	*	I-ARG1	ADP	case	O	-
-Londres	XX	-	-	-	-	-	*	E-ARG1	PROPN	obl	LOC	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-em	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Glasgow,	XX	-	-	-	-	-	*	O	PROPN	conj	LOC	-
-onde	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-estudou	XX	-	-	-	-	-	*	O	PRON	obl	O	-
-design	XX	-	-	-	-	-	*	O	VERB	acl:relcl	O	-
-de	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-jóias	XX	-	-	-	-	-	*	O	ADP	case	O	-
-na	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-Glasgow	XX	-	-	-	-	-	*	O	ADP	case	O	-
-School	XX	-	-	-	-	-	*	O	PROPN	obl	ORG	-
-of	XX	-	-	-	-	-	*	O	PROPN	flat:name	ORG	-
-Art.	XX	-	-	-	-	-	*	O	PROPN	flat:name	ORG	-
+O	XX	-	-	-	-	-	*	O	-
+mundo	XX	-	-	-	-	-	*	O	-
+-	XX	-	-	-	-	-	*	O	-
+e	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+por	XX	-	-	-	-	-	*	O	-
+extensão	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	B-ARG0	-
+Reino	XX	-	-	-	-	-	*	I-ARG0	-
+Unido	XX	-	-	-	-	-	*	E-ARG0	-
+-	XX	-	-	-	-	-	*	O	-
+está	XX	-	-	-	-	-	*	B-V	-
+enfrentando	XX	-	-	-	-	-	*	E-V	-
+uma	XX	-	-	-	-	-	*	B-ARG1	-
+escassez	XX	-	-	-	-	-	*	I-ARG1	-
+de	XX	-	-	-	-	-	*	I-ARG1	-
+pessoas	XX	-	-	-	-	-	*	E-ARG1	-
+com	XX	-	-	-	-	-	*	O	-
+as	XX	-	-	-	-	-	*	O	-
+habilidades	XX	-	-	-	-	-	*	O	-
+necessárias	XX	-	-	-	-	-	*	O	-
+para	XX	-	-	-	-	-	*	O	-
+montar	XX	-	-	-	-	-	*	O	-
+uma	XX	-	-	-	-	-	*	O	-
+defesa	XX	-	-	-	-	-	*	O	-
+eficaz	XX	-	-	-	-	-	*	O	-
 
-Eu	XX	-	-	-	-	-	*	S-ARG0	PRON	nsubj	O	-
-visitei	XX	-	-	-	-	-	*	S-V	VERB	ccomp	O	-
-os	XX	-	-	-	-	-	*	B-ARG1	DET	det	O	-
-espetáculos	XX	-	-	-	-	-	*	I-ARG1	NOUN	obj	O	-
-universitários	XX	-	-	-	-	-	*	E-ARG1	ADJ	amod	O	-
-na	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Universidade	XX	-	-	-	-	-	*	O	PROPN	obl	LOC	-
-de	XX	-	-	-	-	-	*	O	ADP	case	LOC	-
-Northampton	XX	-	-	-	-	-	*	O	PROPN	nmod	LOC	-
-para	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-encontrar	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-novos	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-talentos,	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-diz	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-ele.	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
+As	XX	-	-	-	-	-	*	B-ARG0	-
+empresas	XX	-	-	-	-	-	*	E-ARG0	-
+podem	XX	-	-	-	-	-	*	B-V	-
+tentar	XX	-	-	-	-	-	*	I-V	-
+criar	XX	-	-	-	-	-	*	I-V	-
+um	XX	-	-	-	-	-	*	I-V	-
+firewall	XX	-	-	-	-	-	*	I-V	-
+entre	XX	-	-	-	-	-	*	E-V	-
+sistemas	XX	-	-	-	-	-	*	B-ARG1	-
+sensíveis	XX	-	-	-	-	-	*	E-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+potências	XX	-	-	-	-	-	*	O	-
+estrangeiras	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+mas	XX	-	-	-	-	-	*	O	-
+nem	XX	-	-	-	-	-	*	O	-
+sempre	XX	-	-	-	-	-	*	O	-
+funciona	XX	-	-	-	-	-	*	O	-
 
-Eu	XX	-	-	-	-	-	*	S-ARG0	PRON	nsubj	O	-
-visitei	XX	-	-	-	-	-	*	S-V	VERB	ccomp	O	-
-os	XX	-	-	-	-	-	*	B-ARG1	DET	det	O	-
-espetáculos	XX	-	-	-	-	-	*	I-ARG1	NOUN	obj	O	-
-universitários	XX	-	-	-	-	-	*	I-ARG1	ADJ	amod	O	-
-na	XX	-	-	-	-	-	*	I-ARG1	ADP	case	O	-
-Universidade	XX	-	-	-	-	-	*	I-ARG1	PROPN	obl	LOC	-
-de	XX	-	-	-	-	-	*	I-ARG1	ADP	case	LOC	-
-Northampton	XX	-	-	-	-	-	*	E-ARG1	PROPN	nmod	LOC	-
-para	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-encontrar	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-novos	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-talentos,	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-diz	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-ele.	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
+Mas	XX	-	-	-	-	-	*	O	-
+eles	XX	-	-	-	-	-	*	S-ARG0	-
+podem	XX	-	-	-	-	-	*	B-V	-
+por	XX	-	-	-	-	-	*	I-V	-
+o	XX	-	-	-	-	-	*	I-V	-
+menos	XX	-	-	-	-	-	*	I-V	-
+colocar	XX	-	-	-	-	-	*	E-V	-
+armadilhas	XX	-	-	-	-	-	*	S-ARG1	-
+para	XX	-	-	-	-	-	*	O	-
+confundir	XX	-	-	-	-	-	*	O	-
+e	XX	-	-	-	-	-	*	O	-
+impedir	XX	-	-	-	-	-	*	O	-
+-	XX	-	-	-	-	-	*	O	-
+um	XX	-	-	-	-	-	*	O	-
+conceito	XX	-	-	-	-	-	*	O	-
+conhecido	XX	-	-	-	-	-	*	O	-
+como	XX	-	-	-	-	-	*	O	-
+"	XX	-	-	-	-	-	*	O	-
+defesa	XX	-	-	-	-	-	*	O	-
+ativa	XX	-	-	-	-	-	*	O	-
+"	XX	-	-	-	-	-	*	O	-
 
-Naturalmente,	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-a	XX	-	-	-	-	-	*	B-ARG0	PUNCT	punct	O	-
-paisagem	XX	-	-	-	-	-	*	I-ARG0	DET	det	O	-
-do	XX	-	-	-	-	-	*	I-ARG0	NOUN	nsubj	O	-
-escritório	XX	-	-	-	-	-	*	E-ARG0	ADP	case	O	-
-apresenta	XX	-	-	-	-	-	*	S-V	NOUN	nmod	O	-
-muitas	XX	-	-	-	-	-	*	B-ARG1	VERB	ROOT	O	-
-roupas	XX	-	-	-	-	-	*	E-ARG1	DET	det	O	-
-e,	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-no	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-sentido	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-de	XX	-	-	-	-	-	*	O	ADP	case	O	-
-comida,	XX	-	-	-	-	-	*	O	NOUN	conj	O	-
-pouco.	XX	-	-	-	-	-	*	O	ADP	case	O	-
+Em	XX	-	-	-	-	-	*	O	-
+cada	XX	-	-	-	-	-	*	O	-
+estação	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+um	XX	-	-	-	-	-	*	B-ARG0	-
+guarda	XX	-	-	-	-	-	*	I-ARG0	-
+de	XX	-	-	-	-	-	*	I-ARG0	-
+chapéu	XX	-	-	-	-	-	*	I-ARG0	-
+vermelho	XX	-	-	-	-	-	*	E-ARG0	-
+comanda	XX	-	-	-	-	-	*	S-V	-
+a	XX	-	-	-	-	-	*	B-ARG1	-
+plataforma	XX	-	-	-	-	-	*	E-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+um	XX	-	-	-	-	-	*	O	-
+trabalhador	XX	-	-	-	-	-	*	O	-
+anda	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+longo	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+trem	XX	-	-	-	-	-	*	O	-
+com	XX	-	-	-	-	-	*	O	-
+um	XX	-	-	-	-	-	*	O	-
+martelo	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+batendo	XX	-	-	-	-	-	*	O	-
+gentilmente	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+parte	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+baixo	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+carruagem	XX	-	-	-	-	-	*	O	-
 
-Naturalmente,	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-a	XX	-	-	-	-	-	*	B-ARG0	PUNCT	punct	O	-
-paisagem	XX	-	-	-	-	-	*	I-ARG0	DET	det	O	-
-do	XX	-	-	-	-	-	*	I-ARG0	NOUN	nsubj	O	-
-escritório	XX	-	-	-	-	-	*	E-ARG0	ADP	case	O	-
-apresenta	XX	-	-	-	-	-	*	S-V	NOUN	nmod	O	-
-muitas	XX	-	-	-	-	-	*	B-ARG1	VERB	ROOT	O	-
-roupas	XX	-	-	-	-	-	*	E-ARG1	DET	det	O	-
-e,	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-no	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-sentido	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-de	XX	-	-	-	-	-	*	O	ADP	case	O	-
-comida,	XX	-	-	-	-	-	*	O	NOUN	conj	O	-
-pouco.	XX	-	-	-	-	-	*	O	ADP	case	O	-
+O	XX	-	-	-	-	-	*	B-ARG0	-
+juramento	XX	-	-	-	-	-	*	E-ARG0	-
+envolve	XX	-	-	-	-	-	*	S-V	-
+legisladores	XX	-	-	-	-	-	*	S-ARG1	-
+jurando	XX	-	-	-	-	-	*	O	-
+lealdade	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+Hong	XX	-	-	-	-	-	*	O	-
+Kong	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+como	XX	-	-	-	-	-	*	O	-
+parte	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+República	XX	-	-	-	-	-	*	O	-
+Popular	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+China	XX	-	-	-	-	-	*	O	-
 
-A	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-própria	XX	-	-	-	-	-	*	I-ARG0	DET	det	O	-
-Wintour	XX	-	-	-	-	-	*	E-ARG0	PROPN	nsubj	MISC	-
-aparece	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-rapidamente,	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-e	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-é	XX	-	-	-	-	-	*	S-V	CCONJ	cc	O	-
-filmada	XX	-	-	-	-	-	*	S-ARG1	AUX	aux:pass	O	-
-colocando	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-seus	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-óculos	XX	-	-	-	-	-	*	O	DET	det	O	-
-de	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-sol	XX	-	-	-	-	-	*	O	ADP	case	O	-
-antes	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-de	XX	-	-	-	-	-	*	O	ADV	mark	O	-
-ser	XX	-	-	-	-	-	*	O	ADP	fixed	O	-
-entrevistada.	XX	-	-	-	-	-	*	O	AUX	aux:pass	O	-
+Mas	XX	-	-	-	-	-	*	O	-
+agora	XX	-	-	-	-	-	*	O	-
+tudo	XX	-	-	-	-	-	*	S-ARG0	-
+está	XX	-	-	-	-	-	*	S-V	-
+fora	XX	-	-	-	-	-	*	B-ARG1	-
+de	XX	-	-	-	-	-	*	I-ARG1	-
+questão	XX	-	-	-	-	-	*	E-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+ele	XX	-	-	-	-	-	*	O	-
+parece	XX	-	-	-	-	-	*	O	-
+estar	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+procura	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+respostas	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+toda	XX	-	-	-	-	-	*	O	-
+hora	XX	-	-	-	-	-	*	O	-
 
-A	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-postura	XX	-	-	-	-	-	*	I-ARG0	NOUN	nsubj	O	-
-do	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-RSPB	XX	-	-	-	-	-	*	E-ARG0	PROPN	nmod	ORG	-
-também	XX	-	-	-	-	-	*	B-V	ADV	advmod	O	-
-o	XX	-	-	-	-	-	*	I-V	PRON	obj	O	-
-colocou	XX	-	-	-	-	-	*	I-V	VERB	ROOT	O	-
-em	XX	-	-	-	-	-	*	E-V	ADP	case	O	-
-conflito	XX	-	-	-	-	-	*	S-ARG1	NOUN	obl	O	-
-com	XX	-	-	-	-	-	*	O	ADP	case	O	-
-muitos	XX	-	-	-	-	-	*	O	DET	det	O	-
-líderes	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-conservadores,	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-desde	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-o	XX	-	-	-	-	-	*	O	ADP	case	O	-
-autor	XX	-	-	-	-	-	*	O	DET	det	O	-
-da	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-petição,	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Mark	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-Avery,	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-ao	XX	-	-	-	-	-	*	O	PROPN	appos	PER	-
-apresentador	XX	-	-	-	-	-	*	O	PROPN	flat:name	PER	-
-de	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-TV	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Chris	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-Packham.	XX	-	-	-	-	-	*	O	ADP	case	O	-
+Isso	XX	-	-	-	-	-	*	S-ARG0	-
+também	XX	-	-	-	-	-	*	O	-
+abriu	XX	-	-	-	-	-	*	B-V	-
+a	XX	-	-	-	-	-	*	I-V	-
+VW	XX	-	-	-	-	-	*	I-V	-
+para	XX	-	-	-	-	-	*	E-V	-
+reivindicações	XX	-	-	-	-	-	*	S-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+ações	XX	-	-	-	-	-	*	O	-
+legais	XX	-	-	-	-	-	*	O	-
+imensas	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+e	XX	-	-	-	-	-	*	O	-
+viu	XX	-	-	-	-	-	*	O	-
+elas	XX	-	-	-	-	-	*	O	-
+levarem	XX	-	-	-	-	-	*	O	-
+mais	XX	-	-	-	-	-	*	O	-
+que	XX	-	-	-	-	-	*	O	-
+€	XX	-	-	-	-	-	*	O	-
+16	XX	-	-	-	-	-	*	O	-
+bilhões	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+provisões	XX	-	-	-	-	-	*	O	-
 
-O	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-bacalhau	XX	-	-	-	-	-	*	I-ARG0	NOUN	nsubj	O	-
-do	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-mar	XX	-	-	-	-	-	*	I-ARG0	NOUN	nmod	LOC	-
-Céltico	XX	-	-	-	-	-	*	E-ARG0	PROPN	flat:name	LOC	-
-pode	XX	-	-	-	-	-	*	B-V	VERB	ccomp	O	-
-colapsar,	XX	-	-	-	-	-	*	I-V	VERB	xcomp	O	-
-sem	XX	-	-	-	-	-	*	E-V	PUNCT	punct	O	-
-os	XX	-	-	-	-	-	*	B-ARG1	ADP	case	O	-
-limites	XX	-	-	-	-	-	*	E-ARG1	DET	det	O	-
-propostos,	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-disse	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-um	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-oficial	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-da	XX	-	-	-	-	-	*	O	DET	det	O	-
-UE.	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
+A	XX	-	-	-	-	-	*	B-ARG0	-
+sondagem	XX	-	-	-	-	-	*	E-ARG0	-
+começou	XX	-	-	-	-	-	*	B-V	-
+em	XX	-	-	-	-	-	*	I-V	-
+junho	XX	-	-	-	-	-	*	I-V	-
+,	XX	-	-	-	-	-	*	I-V	-
+com	XX	-	-	-	-	-	*	E-V	-
+foco	XX	-	-	-	-	-	*	B-ARG1	-
+em	XX	-	-	-	-	-	*	I-ARG1	-
+o	XX	-	-	-	-	-	*	I-ARG1	-
+Sr.	XX	-	-	-	-	-	*	I-ARG1	-
+Winterkorn	XX	-	-	-	-	-	*	E-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+chefe	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+marca	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+Herbert	XX	-	-	-	-	-	*	O	-
+Diess	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+que	XX	-	-	-	-	-	*	O	-
+permanece	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+fabricante	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+automóveis	XX	-	-	-	-	-	*	O	-
 
-Dia	XX	-	-	-	-	-	*	S-ARG1	NOUN	ROOT	O	-
-três,	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-eu	XX	-	-	-	-	-	*	S-ARG0	PUNCT	punct	O	-
-estava	XX	-	-	-	-	-	*	S-V	PRON	nsubj	O	-
-de	XX	-	-	-	-	-	*	O	AUX	cop	O	-
-volta	XX	-	-	-	-	-	*	O	ADP	case	O	-
-no	XX	-	-	-	-	-	*	O	NOUN	parataxis	O	-
-EMicro.	XX	-	-	-	-	-	*	O	ADP	case	O	-
+Os	XX	-	-	-	-	-	*	O	-
+negócios	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+varejo	XX	-	-	-	-	-	*	O	-
+e	XX	-	-	-	-	-	*	O	-
+atacado	XX	-	-	-	-	-	*	O	-
+se	XX	-	-	-	-	-	*	O	-
+expandiram	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+uma	XX	-	-	-	-	-	*	O	-
+vez	XX	-	-	-	-	-	*	O	-
+que	XX	-	-	-	-	-	*	O	-
+os	XX	-	-	-	-	-	*	B-ARG0	-
+lojistas	XX	-	-	-	-	-	*	E-ARG0	-
+continuam	XX	-	-	-	-	-	*	S-V	-
+otimistas	XX	-	-	-	-	-	*	S-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+as	XX	-	-	-	-	-	*	O	-
+companhias	XX	-	-	-	-	-	*	O	-
+de	XX	-	-	-	-	-	*	O	-
+serviço	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+cliente	XX	-	-	-	-	-	*	O	-
+também	XX	-	-	-	-	-	*	O	-
+cresceram	XX	-	-	-	-	-	*	O	-
 
-O	XX	-	-	-	-	-	*	O	DET	det	O	-
-mundo	XX	-	-	-	-	-	*	O	NOUN	ROOT	O	-
--	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-e,	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-por	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-extensão,	XX	-	-	-	-	-	*	O	ADP	case	O	-
-o	XX	-	-	-	-	-	*	B-ARG0	NOUN	dep	O	-
-Reino	XX	-	-	-	-	-	*	I-ARG0	PUNCT	punct	O	-
-Unido	XX	-	-	-	-	-	*	E-ARG0	DET	det	O	-
--	XX	-	-	-	-	-	*	O	PROPN	nsubj	LOC	-
-está	XX	-	-	-	-	-	*	B-V	PROPN	flat:name	LOC	-
-enfrentando	XX	-	-	-	-	-	*	I-V	PUNCT	punct	O	-
-uma	XX	-	-	-	-	-	*	I-V	AUX	aux	O	-
-escassez	XX	-	-	-	-	-	*	I-V	VERB	conj	O	-
-de	XX	-	-	-	-	-	*	E-V	DET	det	O	-
-pessoas	XX	-	-	-	-	-	*	B-ARG1	NOUN	obj	O	-
-com	XX	-	-	-	-	-	*	I-ARG1	ADP	case	O	-
-as	XX	-	-	-	-	-	*	I-ARG1	NOUN	nmod	O	-
-habilidades	XX	-	-	-	-	-	*	I-ARG1	ADP	case	O	-
-necessárias	XX	-	-	-	-	-	*	E-ARG1	DET	det	O	-
-para	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-montar	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-uma	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-defesa	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-eficaz.	XX	-	-	-	-	-	*	O	DET	det	O	-
+Isso	XX	-	-	-	-	-	*	S-ARG0	-
+não	XX	-	-	-	-	-	*	B-V	-
+impediu	XX	-	-	-	-	-	*	E-V	-
+os	XX	-	-	-	-	-	*	B-ARG1	-
+investidores	XX	-	-	-	-	-	*	E-ARG1	-
+de	XX	-	-	-	-	-	*	O	-
+se	XX	-	-	-	-	-	*	O	-
+reunirem	XX	-	-	-	-	-	*	O	-
+para	XX	-	-	-	-	-	*	O	-
+colocar	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+seu	XX	-	-	-	-	-	*	O	-
+dinheiro	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+os	XX	-	-	-	-	-	*	O	-
+fundos	XX	-	-	-	-	-	*	O	-
 
-O	XX	-	-	-	-	-	*	O	DET	det	O	-
-mundo	XX	-	-	-	-	-	*	O	NOUN	ROOT	O	-
--	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-e,	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-por	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-extensão,	XX	-	-	-	-	-	*	O	ADP	case	O	-
-o	XX	-	-	-	-	-	*	B-ARG0	NOUN	dep	O	-
-Reino	XX	-	-	-	-	-	*	I-ARG0	PUNCT	punct	O	-
-Unido	XX	-	-	-	-	-	*	E-ARG0	DET	det	O	-
--	XX	-	-	-	-	-	*	O	PROPN	nsubj	LOC	-
-está	XX	-	-	-	-	-	*	B-V	PROPN	flat:name	LOC	-
-enfrentando	XX	-	-	-	-	-	*	E-V	PUNCT	punct	O	-
-uma	XX	-	-	-	-	-	*	B-ARG1	AUX	aux	O	-
-escassez	XX	-	-	-	-	-	*	I-ARG1	VERB	conj	O	-
-de	XX	-	-	-	-	-	*	I-ARG1	DET	det	O	-
-pessoas	XX	-	-	-	-	-	*	E-ARG1	NOUN	obj	O	-
-com	XX	-	-	-	-	-	*	O	ADP	case	O	-
-as	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-habilidades	XX	-	-	-	-	-	*	O	ADP	case	O	-
-necessárias	XX	-	-	-	-	-	*	O	DET	det	O	-
-para	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-montar	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-uma	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-defesa	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-eficaz.	XX	-	-	-	-	-	*	O	DET	det	O	-
+Ele	XX	-	-	-	-	-	*	O	-
+foi	XX	-	-	-	-	-	*	O	-
+seguido	XX	-	-	-	-	-	*	O	-
+pelos	XX	-	-	-	-	-	*	O	-
+fundos	XX	-	-	-	-	-	*	O	-
+Aviva	XX	-	-	-	-	-	*	O	-
+Investors	XX	-	-	-	-	-	*	O	-
+Multi	XX	-	-	-	-	-	*	O	-
+Strategy	XX	-	-	-	-	-	*	O	-
+Target	XX	-	-	-	-	-	*	O	-
+Return	XX	-	-	-	-	-	*	O	-
+and	XX	-	-	-	-	-	*	O	-
+Income	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+os	XX	-	-	-	-	-	*	O	-
+quais	XX	-	-	-	-	-	*	O	-
+os	XX	-	-	-	-	-	*	B-ARG0	-
+investidores	XX	-	-	-	-	-	*	E-ARG0	-
+colocaram	XX	-	-	-	-	-	*	S-V	-
+£	XX	-	-	-	-	-	*	B-ARG1	-
+2bn	XX	-	-	-	-	-	*	E-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+£	XX	-	-	-	-	-	*	O	-
+1	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+4bn	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+respectivamente	XX	-	-	-	-	-	*	O	-
 
-As	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-empresas	XX	-	-	-	-	-	*	E-ARG0	NOUN	nsubj	O	-
-podem	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-tentar	XX	-	-	-	-	-	*	I-V	VERB	xcomp	O	-
-criar	XX	-	-	-	-	-	*	I-V	VERB	xcomp	O	-
-um	XX	-	-	-	-	-	*	I-V	DET	det	O	-
-firewall	XX	-	-	-	-	-	*	I-V	NOUN	obj	O	-
-entre	XX	-	-	-	-	-	*	E-V	ADP	case	O	-
-sistemas	XX	-	-	-	-	-	*	B-ARG1	NOUN	obl	O	-
-sensíveis	XX	-	-	-	-	-	*	E-ARG1	ADJ	amod	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-potências	XX	-	-	-	-	-	*	O	NOUN	conj	O	-
-estrangeiras,	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-mas	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-nem	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-sempre	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-funciona.	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
+Em	XX	-	-	-	-	-	*	O	-
+janeiro	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+um	XX	-	-	-	-	-	*	O	-
+relatório	XX	-	-	-	-	-	*	O	-
+importante	XX	-	-	-	-	-	*	O	-
+disse	XX	-	-	-	-	-	*	O	-
+que	XX	-	-	-	-	-	*	O	-
+os	XX	-	-	-	-	-	*	B-ARG0	-
+oceanos	XX	-	-	-	-	-	*	E-ARG0	-
+conteriam	XX	-	-	-	-	-	*	S-V	-
+mais	XX	-	-	-	-	-	*	O	-
+plástico	XX	-	-	-	-	-	*	S-ARG1	-
+de	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+que	XX	-	-	-	-	-	*	O	-
+peixes	XX	-	-	-	-	-	*	O	-
+até	XX	-	-	-	-	-	*	O	-
+2050	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+menos	XX	-	-	-	-	-	*	O	-
+que	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+mundo	XX	-	-	-	-	-	*	O	-
+tomasse	XX	-	-	-	-	-	*	O	-
+uma	XX	-	-	-	-	-	*	O	-
+atitude	XX	-	-	-	-	-	*	O	-
+radical	XX	-	-	-	-	-	*	O	-
+para	XX	-	-	-	-	-	*	O	-
+impedir	XX	-	-	-	-	-	*	O	-
+que	XX	-	-	-	-	-	*	O	-
+os	XX	-	-	-	-	-	*	O	-
+lixos	XX	-	-	-	-	-	*	O	-
+vazassem	XX	-	-	-	-	-	*	O	-
+para	XX	-	-	-	-	-	*	O	-
+os	XX	-	-	-	-	-	*	O	-
+mares	XX	-	-	-	-	-	*	O	-
 
-Mas	XX	-	-	-	-	-	*	S-ARG1	CCONJ	cc	O	-
-eles	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-podem	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-pelo	XX	-	-	-	-	-	*	O	ADP	case	O	-
-menos	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-colocar	XX	-	-	-	-	-	*	O	VERB	xcomp	O	-
-armadilhas	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-para	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-confundir	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-impedir	XX	-	-	-	-	-	*	O	VERB	conj	O	-
--	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-um	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-conceito	XX	-	-	-	-	-	*	E-ARG0	NOUN	obj	O	-
-conhecido	XX	-	-	-	-	-	*	B-V	VERB	acl	O	-
-como	XX	-	-	-	-	-	*	E-V	ADP	case	O	-
-"defesa	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-ativa".	XX	-	-	-	-	-	*	O	NOUN	xcomp	O	-
+Quatro	XX	-	-	-	-	-	*	B-ARG0	-
+em	XX	-	-	-	-	-	*	I-ARG0	-
+cada	XX	-	-	-	-	-	*	I-ARG0	-
+10	XX	-	-	-	-	-	*	I-ARG0	-
+adultos	XX	-	-	-	-	-	*	E-ARG0	-
+ficaram	XX	-	-	-	-	-	*	S-V	-
+feridos	XX	-	-	-	-	-	*	S-ARG1	-
+devido	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+mau	XX	-	-	-	-	-	*	O	-
+tempo	XX	-	-	-	-	-	*	O	-
+,	XX	-	-	-	-	-	*	O	-
+enquanto	XX	-	-	-	-	-	*	O	-
+nove	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+cada	XX	-	-	-	-	-	*	O	-
+dez	XX	-	-	-	-	-	*	O	-
+subestimam	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+quão	XX	-	-	-	-	-	*	O	-
+fria	XX	-	-	-	-	-	*	O	-
+a	XX	-	-	-	-	-	*	O	-
+Grã-Bretanha	XX	-	-	-	-	-	*	O	-
+pode	XX	-	-	-	-	-	*	O	-
+ser	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+inverno	XX	-	-	-	-	-	*	O	-
 
-Mas	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-eles	XX	-	-	-	-	-	*	S-ARG0	PRON	nsubj	O	-
-podem	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-pelo	XX	-	-	-	-	-	*	I-V	ADP	case	O	-
-menos	XX	-	-	-	-	-	*	I-V	NOUN	obl	O	-
-colocar	XX	-	-	-	-	-	*	E-V	VERB	xcomp	O	-
-armadilhas	XX	-	-	-	-	-	*	S-ARG1	NOUN	obj	O	-
-para	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-confundir	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-impedir	XX	-	-	-	-	-	*	O	VERB	conj	O	-
--	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-um	XX	-	-	-	-	-	*	O	DET	det	O	-
-conceito	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-conhecido	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-como	XX	-	-	-	-	-	*	O	ADP	case	O	-
-"defesa	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-ativa".	XX	-	-	-	-	-	*	O	NOUN	xcomp	O	-
+O	XX	-	-	-	-	-	*	B-ARG0	-
+ano	XX	-	-	-	-	-	*	I-ARG0	-
+passado	XX	-	-	-	-	-	*	E-ARG0	-
+foi	XX	-	-	-	-	-	*	S-V	-
+um	XX	-	-	-	-	-	*	B-ARG1	-
+ano	XX	-	-	-	-	-	*	I-ARG1	-
+incrível	XX	-	-	-	-	-	*	E-ARG1	-
+e	XX	-	-	-	-	-	*	O	-
+estou	XX	-	-	-	-	-	*	O	-
+pronto	XX	-	-	-	-	-	*	O	-
+para	XX	-	-	-	-	-	*	O	-
+que	XX	-	-	-	-	-	*	O	-
+possamos	XX	-	-	-	-	-	*	O	-
+voltar	XX	-	-	-	-	-	*	O	-
+ainda	XX	-	-	-	-	-	*	O	-
+melhor	XX	-	-	-	-	-	*	O	-
+em	XX	-	-	-	-	-	*	O	-
+2017	XX	-	-	-	-	-	*	O	-
 
-Mas	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-eles	XX	-	-	-	-	-	*	S-ARG0	PRON	nsubj	O	-
-podem	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-pelo	XX	-	-	-	-	-	*	I-V	ADP	case	O	-
-menos	XX	-	-	-	-	-	*	I-V	NOUN	obl	O	-
-colocar	XX	-	-	-	-	-	*	E-V	VERB	xcomp	O	-
-armadilhas	XX	-	-	-	-	-	*	S-ARG1	NOUN	obj	O	-
-para	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-confundir	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-impedir	XX	-	-	-	-	-	*	O	VERB	conj	O	-
--	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-um	XX	-	-	-	-	-	*	O	DET	det	O	-
-conceito	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-conhecido	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-como	XX	-	-	-	-	-	*	O	ADP	case	O	-
-"defesa	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-ativa".	XX	-	-	-	-	-	*	O	NOUN	xcomp	O	-
+O	XX	-	-	-	-	-	*	B-ARG0	-
+cinema	XX	-	-	-	-	-	*	E-ARG0	-
+tinha	XX	-	-	-	-	-	*	B-V	-
+mudado	XX	-	-	-	-	-	*	E-V	-
+tão	XX	-	-	-	-	-	*	B-ARG1	-
+drasticamente	XX	-	-	-	-	-	*	E-ARG1	-
+que	XX	-	-	-	-	-	*	O	-
+Hollywood	XX	-	-	-	-	-	*	O	-
+tinha	XX	-	-	-	-	-	*	O	-
+alienado	XX	-	-	-	-	-	*	O	-
+o	XX	-	-	-	-	-	*	O	-
+público	XX	-	-	-	-	-	*	O	-
+familiar	XX	-	-	-	-	-	*	O	-
 
-Depois	XX	-	-	-	-	-	*	S-ARG1	ADV	mark	O	-
-de	XX	-	-	-	-	-	*	O	ADP	fixed	O	-
-ter	XX	-	-	-	-	-	*	O	AUX	aux	O	-
-descoberto	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-uma	XX	-	-	-	-	-	*	O	DET	det	O	-
-rica	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-discussão	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-na	XX	-	-	-	-	-	*	O	ADP	case	O	-
-internet	XX	-	-	-	-	-	*	O	PROPN	nmod	MISC	-
-sobre	XX	-	-	-	-	-	*	O	ADP	case	O	-
-o	XX	-	-	-	-	-	*	O	DET	det	O	-
-assunto,	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-a	XX	-	-	-	-	-	*	B-ARG0	PUNCT	punct	O	-
-minha	XX	-	-	-	-	-	*	I-ARG0	DET	det	O	-
-lista	XX	-	-	-	-	-	*	E-ARG0	DET	det	O	-
-cresceu	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-muito	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-e	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-cobriu	XX	-	-	-	-	-	*	S-V	CCONJ	cc	O	-
-quase	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-todos	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-os	XX	-	-	-	-	-	*	O	DET	det	O	-
-estados	XX	-	-	-	-	-	*	O	DET	fixed	O	-
-da	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-união.	XX	-	-	-	-	-	*	O	ADP	case	O	-
+A	XX	-	-	-	-	-	*	B-ARG0	-
+história	XX	-	-	-	-	-	*	I-ARG0	-
+de	XX	-	-	-	-	-	*	I-ARG0	-
+o	XX	-	-	-	-	-	*	I-ARG0	-
+Doss	XX	-	-	-	-	-	*	E-ARG0	-
+também	XX	-	-	-	-	-	*	B-V	-
+tem	XX	-	-	-	-	-	*	E-V	-
+uma	XX	-	-	-	-	-	*	B-ARG1	-
+qualidade	XX	-	-	-	-	-	*	I-ARG1	-
+improvável	XX	-	-	-	-	-	*	E-ARG1	-
+que	XX	-	-	-	-	-	*	O	-
+torna	XX	-	-	-	-	-	*	O	-
+tudo	XX	-	-	-	-	-	*	O	-
+ainda	XX	-	-	-	-	-	*	O	-
+mais	XX	-	-	-	-	-	*	O	-
+atraente	XX	-	-	-	-	-	*	O	-
 
-De	XX	-	-	-	-	-	*	S-ARG1	ADP	case	O	-
-volta	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-ao	XX	-	-	-	-	-	*	O	ADP	case	O	-
-trem,	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-nós	XX	-	-	-	-	-	*	S-ARG0	PUNCT	punct	O	-
-continuamos	XX	-	-	-	-	-	*	B-V	PRON	nsubj	O	-
-em	XX	-	-	-	-	-	*	E-V	VERB	ROOT	O	-
-direção	XX	-	-	-	-	-	*	O	ADP	case	O	-
-ao	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-o	XX	-	-	-	-	-	*	O	ADP	case	O	-
-sul.	XX	-	-	-	-	-	*	O	DET	det	O	-
-
-Em	XX	-	-	-	-	-	*	O	ADP	case	O	-
-cada	XX	-	-	-	-	-	*	O	DET	det	O	-
-estação,	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-um	XX	-	-	-	-	-	*	B-ARG0	PUNCT	punct	O	-
-guarda	XX	-	-	-	-	-	*	I-ARG0	DET	det	O	-
-de	XX	-	-	-	-	-	*	I-ARG0	NOUN	appos	O	-
-chapéu	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-vermelho	XX	-	-	-	-	-	*	E-ARG0	NOUN	nmod	O	-
-comanda	XX	-	-	-	-	-	*	S-V	ADJ	amod	O	-
-a	XX	-	-	-	-	-	*	B-ARG1	VERB	ROOT	O	-
-plataforma	XX	-	-	-	-	-	*	E-ARG1	DET	det	O	-
-e	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-um	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-trabalhador	XX	-	-	-	-	-	*	O	DET	det	O	-
-anda	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-ao	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-longo	XX	-	-	-	-	-	*	O	ADP	case	O	-
-do	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-trem	XX	-	-	-	-	-	*	O	ADP	case	O	-
-com	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-um	XX	-	-	-	-	-	*	O	ADP	case	O	-
-martelo,	XX	-	-	-	-	-	*	O	DET	det	O	-
-batendo	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-gentilmente	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-na	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-parte	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-de	XX	-	-	-	-	-	*	O	ADP	case	O	-
-baixo	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-da	XX	-	-	-	-	-	*	O	ADP	case	O	-
-carruagem.	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-
-Em	XX	-	-	-	-	-	*	S-ARG1	ADP	case	O	-
-cada	XX	-	-	-	-	-	*	O	DET	det	O	-
-estação,	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-um	XX	-	-	-	-	-	*	B-ARG0	PUNCT	punct	O	-
-guarda	XX	-	-	-	-	-	*	I-ARG0	DET	det	O	-
-de	XX	-	-	-	-	-	*	I-ARG0	NOUN	appos	O	-
-chapéu	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-vermelho	XX	-	-	-	-	-	*	I-ARG0	NOUN	nmod	O	-
-comanda	XX	-	-	-	-	-	*	I-ARG0	ADJ	amod	O	-
-a	XX	-	-	-	-	-	*	I-ARG0	VERB	ROOT	O	-
-plataforma	XX	-	-	-	-	-	*	I-ARG0	DET	det	O	-
-e	XX	-	-	-	-	-	*	I-ARG0	NOUN	obj	O	-
-um	XX	-	-	-	-	-	*	I-ARG0	CCONJ	cc	O	-
-trabalhador	XX	-	-	-	-	-	*	E-ARG0	DET	det	O	-
-anda	XX	-	-	-	-	-	*	B-V	NOUN	nsubj	O	-
-ao	XX	-	-	-	-	-	*	I-V	VERB	conj	O	-
-longo	XX	-	-	-	-	-	*	I-V	ADP	case	O	-
-do	XX	-	-	-	-	-	*	I-V	NOUN	obl	O	-
-trem	XX	-	-	-	-	-	*	I-V	ADP	case	O	-
-com	XX	-	-	-	-	-	*	I-V	NOUN	nmod	O	-
-um	XX	-	-	-	-	-	*	I-V	ADP	case	O	-
-martelo,	XX	-	-	-	-	-	*	I-V	DET	det	O	-
-batendo	XX	-	-	-	-	-	*	I-V	NOUN	nmod	O	-
-gentilmente	XX	-	-	-	-	-	*	I-V	PUNCT	punct	O	-
-na	XX	-	-	-	-	-	*	I-V	VERB	advcl	O	-
-parte	XX	-	-	-	-	-	*	I-V	ADV	advmod	O	-
-de	XX	-	-	-	-	-	*	E-V	ADP	case	O	-
-baixo	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-da	XX	-	-	-	-	-	*	O	ADP	case	O	-
-carruagem.	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-
-O	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-juramento	XX	-	-	-	-	-	*	E-ARG0	NOUN	nsubj	O	-
-envolve	XX	-	-	-	-	-	*	S-V	VERB	ROOT	O	-
-legisladores	XX	-	-	-	-	-	*	S-ARG1	NOUN	obj	O	-
-jurando	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-lealdade	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-a	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Hong	XX	-	-	-	-	-	*	O	PROPN	iobj	LOC	-
-Kong,	XX	-	-	-	-	-	*	O	PROPN	flat:name	LOC	-
-como	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-parte	XX	-	-	-	-	-	*	O	ADP	case	O	-
-da	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-República	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Popular	XX	-	-	-	-	-	*	O	PROPN	nmod	LOC	-
-da	XX	-	-	-	-	-	*	O	PROPN	flat:name	LOC	-
-China.	XX	-	-	-	-	-	*	O	ADP	case	LOC	-
-
-Mas	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-agora	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-tudo	XX	-	-	-	-	-	*	S-ARG0	PRON	nsubj	O	-
-está	XX	-	-	-	-	-	*	S-V	AUX	cop	O	-
-fora	XX	-	-	-	-	-	*	B-ARG1	ADV	ROOT	O	-
-de	XX	-	-	-	-	-	*	I-ARG1	ADP	case	O	-
-questão	XX	-	-	-	-	-	*	E-ARG1	NOUN	obl	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-ele	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-parece	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-estar	XX	-	-	-	-	-	*	O	VERB	cop	O	-
-à	XX	-	-	-	-	-	*	O	ADP	case	O	-
-procura	XX	-	-	-	-	-	*	O	NOUN	xcomp	O	-
-de	XX	-	-	-	-	-	*	O	ADP	case	O	-
-respostas	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-a	XX	-	-	-	-	-	*	O	ADP	case	O	-
-toda	XX	-	-	-	-	-	*	O	DET	det	O	-
-hora.	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-
-Mas	XX	-	-	-	-	-	*	S-ARG1	CCONJ	cc	O	-
-agora	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-tudo	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-está	XX	-	-	-	-	-	*	O	AUX	cop	O	-
-fora	XX	-	-	-	-	-	*	O	ADV	ROOT	O	-
-de	XX	-	-	-	-	-	*	O	ADP	case	O	-
-questão	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-ele	XX	-	-	-	-	-	*	S-ARG0	PRON	nsubj	O	-
-parece	XX	-	-	-	-	-	*	B-V	VERB	conj	O	-
-estar	XX	-	-	-	-	-	*	I-V	VERB	cop	O	-
-à	XX	-	-	-	-	-	*	I-V	ADP	case	O	-
-procura	XX	-	-	-	-	-	*	I-V	NOUN	xcomp	O	-
-de	XX	-	-	-	-	-	*	I-V	ADP	case	O	-
-respostas	XX	-	-	-	-	-	*	I-V	NOUN	nmod	O	-
-a	XX	-	-	-	-	-	*	E-V	ADP	case	O	-
-toda	XX	-	-	-	-	-	*	O	DET	det	O	-
-hora.	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-
-A	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-notícia	XX	-	-	-	-	-	*	I-ARG0	NOUN	nsubj	O	-
-da	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-fraude	XX	-	-	-	-	-	*	I-ARG0	NOUN	nmod	O	-
-da	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-companhia	XX	-	-	-	-	-	*	I-ARG0	NOUN	nmod	O	-
--	XX	-	-	-	-	-	*	I-ARG0	PUNCT	punct	O	-
-que	XX	-	-	-	-	-	*	I-ARG0	PRON	nsubj	O	-
-tinha	XX	-	-	-	-	-	*	I-ARG0	AUX	aux	O	-
-funcionado	XX	-	-	-	-	-	*	I-ARG0	VERB	acl:relcl	O	-
-durante	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-anos	XX	-	-	-	-	-	*	I-ARG0	NOUN	obl	O	-
--	XX	-	-	-	-	-	*	E-ARG0	PUNCT	punct	O	-
-limpou	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-dezenas	XX	-	-	-	-	-	*	I-V	DET	det	O	-
-de	XX	-	-	-	-	-	*	E-V	ADP	fixed	O	-
-bilhões	XX	-	-	-	-	-	*	B-ARG1	NUM	obj	O	-
-de	XX	-	-	-	-	-	*	I-ARG1	ADP	case	O	-
-euros	XX	-	-	-	-	-	*	E-ARG1	NOUN	nmod	O	-
-do	XX	-	-	-	-	-	*	O	ADP	case	O	-
-valor	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-da	XX	-	-	-	-	-	*	O	ADP	case	O	-
-VW	XX	-	-	-	-	-	*	O	PROPN	nmod	ORG	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-custou	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-ao	XX	-	-	-	-	-	*	O	ADP	case	O	-
-executivo	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-principal,	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-Martin	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-Winterkorn,	XX	-	-	-	-	-	*	O	PROPN	conj	PER	-
-o	XX	-	-	-	-	-	*	O	PROPN	flat:name	PER	-
-seu	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-trabalho.	XX	-	-	-	-	-	*	O	DET	det	O	-
-
-Isso	XX	-	-	-	-	-	*	S-ARG0	PRON	nsubj	O	-
-também	XX	-	-	-	-	-	*	B-V	ADV	advmod	O	-
-abriu	XX	-	-	-	-	-	*	E-V	VERB	ROOT	O	-
-a	XX	-	-	-	-	-	*	B-ARG1	DET	det	O	-
-VW	XX	-	-	-	-	-	*	I-ARG1	PROPN	obj	ORG	-
-para	XX	-	-	-	-	-	*	I-ARG1	ADP	case	O	-
-reivindicações	XX	-	-	-	-	-	*	E-ARG1	NOUN	obl	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-ações	XX	-	-	-	-	-	*	O	NOUN	conj	O	-
-legais	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-imensas,	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-e	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-viu	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-elas	XX	-	-	-	-	-	*	O	VERB	aux	O	-
-levarem	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-mais	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-que	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-€16	XX	-	-	-	-	-	*	O	ADP	advmod	O	-
-bilhões	XX	-	-	-	-	-	*	O	SYM	obj	O	-
-de	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-provisões.	XX	-	-	-	-	-	*	O	NUM	flat	O	-
-
-Isso	XX	-	-	-	-	-	*	S-ARG0	PRON	nsubj	O	-
-também	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-abriu	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-a	XX	-	-	-	-	-	*	I-V	DET	det	O	-
-VW	XX	-	-	-	-	-	*	I-V	PROPN	obj	ORG	-
-para	XX	-	-	-	-	-	*	E-V	ADP	case	O	-
-reivindicações	XX	-	-	-	-	-	*	S-ARG1	NOUN	obl	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-ações	XX	-	-	-	-	-	*	O	NOUN	conj	O	-
-legais	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-imensas,	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-e	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-viu	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-elas	XX	-	-	-	-	-	*	O	VERB	aux	O	-
-levarem	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-mais	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-que	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-€16	XX	-	-	-	-	-	*	O	ADP	advmod	O	-
-bilhões	XX	-	-	-	-	-	*	O	SYM	obj	O	-
-de	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-provisões.	XX	-	-	-	-	-	*	O	NUM	flat	O	-
-
-A	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-sondagem	XX	-	-	-	-	-	*	E-ARG0	NOUN	nsubj	O	-
-começou	XX	-	-	-	-	-	*	B-V	VERB	ROOT	O	-
-em	XX	-	-	-	-	-	*	I-V	ADP	case	O	-
-junho,	XX	-	-	-	-	-	*	I-V	NOUN	obl	O	-
-com	XX	-	-	-	-	-	*	E-V	PUNCT	punct	O	-
-foco	XX	-	-	-	-	-	*	B-ARG1	ADP	case	O	-
-no	XX	-	-	-	-	-	*	I-ARG1	NOUN	obl	O	-
-Sr.	XX	-	-	-	-	-	*	I-ARG1	ADP	case	O	-
-Winterkorn	XX	-	-	-	-	-	*	E-ARG1	NOUN	nmod	PER	-
-e	XX	-	-	-	-	-	*	O	PROPN	appos	PER	-
-no	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-chefe	XX	-	-	-	-	-	*	O	ADP	case	O	-
-de	XX	-	-	-	-	-	*	O	NOUN	conj	O	-
-marca,	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Herbert	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-Diess,	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-que	XX	-	-	-	-	-	*	O	PROPN	dep	PER	-
-permanece	XX	-	-	-	-	-	*	O	PROPN	flat:name	PER	-
-na	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-fabricante	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-de	XX	-	-	-	-	-	*	O	VERB	acl:relcl	O	-
-automóveis.	XX	-	-	-	-	-	*	O	ADP	case	O	-
-
-Os	XX	-	-	-	-	-	*	O	DET	det	O	-
-negócios	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-de	XX	-	-	-	-	-	*	O	ADP	case	O	-
-varejo	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-atacado	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-se	XX	-	-	-	-	-	*	O	PRON	expl	O	-
-expandiram,	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-uma	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-vez	XX	-	-	-	-	-	*	O	DET	mark	O	-
-que	XX	-	-	-	-	-	*	O	NOUN	fixed	O	-
-os	XX	-	-	-	-	-	*	B-ARG0	SCONJ	fixed	O	-
-lojistas	XX	-	-	-	-	-	*	E-ARG0	DET	det	O	-
-continuam	XX	-	-	-	-	-	*	S-V	NOUN	nsubj	O	-
-otimistas	XX	-	-	-	-	-	*	S-ARG1	VERB	advcl	O	-
-e	XX	-	-	-	-	-	*	O	ADJ	xcomp	O	-
-as	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-companhias	XX	-	-	-	-	-	*	O	DET	det	O	-
-de	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-serviço	XX	-	-	-	-	-	*	O	ADP	case	O	-
-ao	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-cliente	XX	-	-	-	-	-	*	O	ADP	case	O	-
-também	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-cresceram.	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-
-A	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-taxa	XX	-	-	-	-	-	*	I-ARG0	NOUN	nsubj	O	-
-fixa	XX	-	-	-	-	-	*	I-ARG0	ADJ	amod	O	-
-da	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-Eon	XX	-	-	-	-	-	*	E-ARG0	PROPN	nmod	LOC	-
-custa	XX	-	-	-	-	-	*	S-V	VERB	ROOT	O	-
-£760	XX	-	-	-	-	-	*	S-ARG1	SYM	obj	O	-
-e	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-os	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-clientes	XX	-	-	-	-	-	*	O	DET	det	O	-
-da	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-Avro	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Energy	XX	-	-	-	-	-	*	O	PROPN	nmod	ORG	-
-pagariam	XX	-	-	-	-	-	*	O	PROPN	flat:name	ORG	-
-cerca	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-de	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-£760	XX	-	-	-	-	-	*	O	ADP	fixed	O	-
-pela	XX	-	-	-	-	-	*	O	SYM	obj	O	-
-sua	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-tarifa	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Simple	XX	-	-	-	-	-	*	O	DET	det	O	-
-and	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-Select.	XX	-	-	-	-	-	*	O	PROPN	appos	MISC	-
-
-A	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-taxa	XX	-	-	-	-	-	*	E-ARG0	NOUN	nsubj	O	-
-fixa	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-da	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Eon	XX	-	-	-	-	-	*	O	PROPN	nmod	LOC	-
-custa	XX	-	-	-	-	-	*	S-V	VERB	ROOT	O	-
-£760	XX	-	-	-	-	-	*	S-ARG1	SYM	obj	O	-
-e	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-os	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-clientes	XX	-	-	-	-	-	*	O	DET	det	O	-
-da	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-Avro	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Energy	XX	-	-	-	-	-	*	O	PROPN	nmod	ORG	-
-pagariam	XX	-	-	-	-	-	*	O	PROPN	flat:name	ORG	-
-cerca	XX	-	-	-	-	-	*	O	VERB	conj	O	-
-de	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-£760	XX	-	-	-	-	-	*	O	ADP	fixed	O	-
-pela	XX	-	-	-	-	-	*	O	SYM	obj	O	-
-sua	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-tarifa	XX	-	-	-	-	-	*	O	ADP	case	O	-
-Simple	XX	-	-	-	-	-	*	O	DET	det	O	-
-and	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-Select.	XX	-	-	-	-	-	*	O	PROPN	appos	MISC	-
-
-Um	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-investidor	XX	-	-	-	-	-	*	I-ARG0	NOUN	nsubj	O	-
-com	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-alguma	XX	-	-	-	-	-	*	I-ARG0	DET	det	O	-
-sorte	XX	-	-	-	-	-	*	E-ARG0	NOUN	nmod	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-£10,000	XX	-	-	-	-	-	*	O	SYM	conj	O	-
-em	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-títulos	XX	-	-	-	-	-	*	O	ADP	case	O	-
-poderia	XX	-	-	-	-	-	*	B-V	NOUN	nmod	O	-
-esperar	XX	-	-	-	-	-	*	I-V	VERB	ROOT	O	-
-receber	XX	-	-	-	-	-	*	E-V	VERB	xcomp	O	-
-£125	XX	-	-	-	-	-	*	S-ARG1	VERB	xcomp	O	-
-em	XX	-	-	-	-	-	*	O	SYM	obj	O	-
-prêmios,	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-por	XX	-	-	-	-	-	*	O	ADP	case	O	-
-ano.	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-
-Isso	XX	-	-	-	-	-	*	S-ARG0	PRON	nsubj	O	-
-não	XX	-	-	-	-	-	*	B-V	ADV	advmod	O	-
-impediu	XX	-	-	-	-	-	*	E-V	VERB	ROOT	O	-
-os	XX	-	-	-	-	-	*	B-ARG1	DET	det	O	-
-investidores	XX	-	-	-	-	-	*	E-ARG1	NOUN	obj	O	-
-de	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-se	XX	-	-	-	-	-	*	O	PRON	expl	O	-
-reunirem	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-para	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-colocar	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-o	XX	-	-	-	-	-	*	O	DET	det	O	-
-seu	XX	-	-	-	-	-	*	O	DET	det	O	-
-dinheiro	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-nos	XX	-	-	-	-	-	*	O	ADP	case	O	-
-fundos.	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-
-Ele	XX	-	-	-	-	-	*	O	PRON	nsubj:pass	O	-
-foi	XX	-	-	-	-	-	*	O	AUX	aux:pass	O	-
-seguido	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-pelos	XX	-	-	-	-	-	*	O	ADP	case	O	-
-fundos	XX	-	-	-	-	-	*	O	NOUN	obl:agent	O	-
-Aviva	XX	-	-	-	-	-	*	O	PROPN	appos	MISC	-
-Investors	XX	-	-	-	-	-	*	O	PROPN	flat:name	MISC	-
-Multi	XX	-	-	-	-	-	*	O	PROPN	flat:name	MISC	-
-Strategy	XX	-	-	-	-	-	*	O	PROPN	flat:name	MISC	-
-Target	XX	-	-	-	-	-	*	O	PROPN	flat:name	MISC	-
-Return	XX	-	-	-	-	-	*	O	PROPN	flat:name	MISC	-
-and	XX	-	-	-	-	-	*	O	PROPN	flat:name	MISC	-
-Income,	XX	-	-	-	-	-	*	O	PROPN	flat:name	MISC	-
-nos	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-quais	XX	-	-	-	-	-	*	O	ADP	case	O	-
-os	XX	-	-	-	-	-	*	B-ARG0	PRON	obl	O	-
-investidores	XX	-	-	-	-	-	*	E-ARG0	DET	det	O	-
-colocaram	XX	-	-	-	-	-	*	S-V	NOUN	nsubj	O	-
-£	XX	-	-	-	-	-	*	B-ARG1	VERB	advcl	O	-
-2bn	XX	-	-	-	-	-	*	E-ARG1	SYM	obj	O	-
-e	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-£	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-1,4bn,	XX	-	-	-	-	-	*	O	SYM	conj	O	-
-respectivamente.	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-
-Em	XX	-	-	-	-	-	*	O	ADP	case	O	-
-janeiro,	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-um	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-relatório	XX	-	-	-	-	-	*	O	DET	det	O	-
-importante	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-disse	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-que	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-os	XX	-	-	-	-	-	*	B-ARG0	SCONJ	mark	O	-
-oceanos	XX	-	-	-	-	-	*	E-ARG0	DET	det	O	-
-conteriam	XX	-	-	-	-	-	*	S-V	NOUN	nsubj	O	-
-mais	XX	-	-	-	-	-	*	B-ARG1	VERB	ccomp	O	-
-plástico	XX	-	-	-	-	-	*	I-ARG1	ADV	advmod	O	-
-do	XX	-	-	-	-	-	*	I-ARG1	ADJ	obj	O	-
-que	XX	-	-	-	-	-	*	I-ARG1	ADP	case	O	-
-peixes	XX	-	-	-	-	-	*	E-ARG1	PRON	fixed	O	-
-até	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-2050,	XX	-	-	-	-	-	*	O	ADP	case	O	-
-a	XX	-	-	-	-	-	*	O	NUM	nmod	O	-
-menos	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-que	XX	-	-	-	-	-	*	O	ADP	case	O	-
-o	XX	-	-	-	-	-	*	O	ADV	obl	O	-
-mundo	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-tomasse	XX	-	-	-	-	-	*	O	DET	det	O	-
-uma	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-atitude	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-radical	XX	-	-	-	-	-	*	O	DET	det	O	-
-para	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-impedir	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-que	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-os	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-lixos	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-vazassem	XX	-	-	-	-	-	*	O	DET	det	O	-
-para	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-os	XX	-	-	-	-	-	*	O	VERB	ccomp	O	-
-mares.	XX	-	-	-	-	-	*	O	ADP	case	O	-
-
-Em	XX	-	-	-	-	-	*	O	ADP	case	O	-
-janeiro,	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-um	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-relatório	XX	-	-	-	-	-	*	O	DET	det	O	-
-importante	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-disse	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-que	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-os	XX	-	-	-	-	-	*	B-ARG0	SCONJ	mark	O	-
-oceanos	XX	-	-	-	-	-	*	E-ARG0	DET	det	O	-
-conteriam	XX	-	-	-	-	-	*	S-V	NOUN	nsubj	O	-
-mais	XX	-	-	-	-	-	*	O	VERB	ccomp	O	-
-plástico	XX	-	-	-	-	-	*	S-ARG1	ADV	advmod	O	-
-do	XX	-	-	-	-	-	*	O	ADJ	obj	O	-
-que	XX	-	-	-	-	-	*	O	ADP	case	O	-
-peixes	XX	-	-	-	-	-	*	O	PRON	fixed	O	-
-até	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-2050,	XX	-	-	-	-	-	*	O	ADP	case	O	-
-a	XX	-	-	-	-	-	*	O	NUM	nmod	O	-
-menos	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-que	XX	-	-	-	-	-	*	O	ADP	case	O	-
-o	XX	-	-	-	-	-	*	O	ADV	obl	O	-
-mundo	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-tomasse	XX	-	-	-	-	-	*	O	DET	det	O	-
-uma	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-atitude	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-radical	XX	-	-	-	-	-	*	O	DET	det	O	-
-para	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-impedir	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-que	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-os	XX	-	-	-	-	-	*	O	VERB	acl	O	-
-lixos	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-vazassem	XX	-	-	-	-	-	*	O	DET	det	O	-
-para	XX	-	-	-	-	-	*	O	NOUN	nsubj	O	-
-os	XX	-	-	-	-	-	*	O	VERB	ccomp	O	-
-mares.	XX	-	-	-	-	-	*	O	ADP	case	O	-
-
-Após	XX	-	-	-	-	-	*	S-ARG1	ADP	case	O	-
-algumas	XX	-	-	-	-	-	*	O	DET	det	O	-
-cirurgias	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-geniais	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-muito	XX	-	-	-	-	-	*	O	DET	det	O	-
-trabalho	XX	-	-	-	-	-	*	O	NOUN	conj	O	-
-duro	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-de	XX	-	-	-	-	-	*	O	ADP	case	O	-
-reabilitação,	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-eu	XX	-	-	-	-	-	*	S-ARG0	PUNCT	punct	O	-
-tive	XX	-	-	-	-	-	*	S-V	PRON	nsubj	O	-
-uma	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-recuperação	XX	-	-	-	-	-	*	O	DET	det	O	-
-completa.	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-
-Advertindo	XX	-	-	-	-	-	*	S-ARG1	VERB	advcl	PER	-
-que	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-o	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-SNS	XX	-	-	-	-	-	*	E-ARG0	PROPN	nsubj	ORG	-
-estava	XX	-	-	-	-	-	*	B-V	AUX	cop	O	-
-agora	XX	-	-	-	-	-	*	I-V	ADV	advmod	O	-
-sob	XX	-	-	-	-	-	*	E-V	ADP	case	O	-
-"enorme	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-pressão",	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-ele	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-pediu	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-ao	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-público	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-para	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-assumir	XX	-	-	-	-	-	*	O	ADP	case	O	-
-mais	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-responsabilidade	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-pela	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-sua	XX	-	-	-	-	-	*	O	DET	det	O	-
-própria	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-saúde.	XX	-	-	-	-	-	*	O	ADP	case	O	-
-
-Advertindo	XX	-	-	-	-	-	*	S-ARG1	VERB	advcl	PER	-
-que	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-o	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-SNS	XX	-	-	-	-	-	*	E-ARG0	PROPN	nsubj	ORG	-
-estava	XX	-	-	-	-	-	*	B-V	AUX	cop	O	-
-agora	XX	-	-	-	-	-	*	I-V	ADV	advmod	O	-
-sob	XX	-	-	-	-	-	*	E-V	ADP	case	O	-
-"enorme	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-pressão",	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-ele	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-pediu	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-ao	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-público	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-para	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-assumir	XX	-	-	-	-	-	*	O	ADP	case	O	-
-mais	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-responsabilidade	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-pela	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-sua	XX	-	-	-	-	-	*	O	DET	det	O	-
-própria	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-saúde.	XX	-	-	-	-	-	*	O	ADP	case	O	-
-
-Quatro	XX	-	-	-	-	-	*	B-ARG0	NUM	nsubj	O	-
-em	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-cada	XX	-	-	-	-	-	*	I-ARG0	DET	det	O	-
-10	XX	-	-	-	-	-	*	I-ARG0	NUM	nummod	O	-
-adultos	XX	-	-	-	-	-	*	E-ARG0	NOUN	nmod	O	-
-ficaram	XX	-	-	-	-	-	*	S-V	VERB	ROOT	O	-
-feridos	XX	-	-	-	-	-	*	S-ARG1	VERB	xcomp	O	-
-devido	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-ao	XX	-	-	-	-	-	*	O	ADP	case	O	-
-mau	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-tempo,	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-enquanto	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-nove	XX	-	-	-	-	-	*	O	ADV	mark	O	-
-em	XX	-	-	-	-	-	*	O	NUM	fixed	O	-
-cada	XX	-	-	-	-	-	*	O	ADP	case	O	-
-dez	XX	-	-	-	-	-	*	O	DET	obl	O	-
-subestimam	XX	-	-	-	-	-	*	O	NUM	nummod	O	-
-o	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-quão	XX	-	-	-	-	-	*	O	DET	det	O	-
-fria	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-a	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-Grã-Bretanha	XX	-	-	-	-	-	*	O	DET	det	O	-
-pode	XX	-	-	-	-	-	*	O	PROPN	nsubj	LOC	-
-ser	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-no	XX	-	-	-	-	-	*	O	VERB	xcomp	O	-
-inverno.	XX	-	-	-	-	-	*	O	ADP	case	O	-
-
-O	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-ano	XX	-	-	-	-	-	*	I-ARG0	NOUN	nsubj	O	-
-passado	XX	-	-	-	-	-	*	E-ARG0	ADJ	amod	O	-
-foi	XX	-	-	-	-	-	*	S-V	AUX	cop	O	-
-um	XX	-	-	-	-	-	*	B-ARG1	NUM	nummod	O	-
-ano	XX	-	-	-	-	-	*	I-ARG1	NOUN	ROOT	O	-
-incrível	XX	-	-	-	-	-	*	E-ARG1	ADJ	amod	O	-
-e	XX	-	-	-	-	-	*	O	CCONJ	cc	O	-
-estou	XX	-	-	-	-	-	*	O	AUX	cop	O	-
-pronto	XX	-	-	-	-	-	*	O	ADJ	conj	O	-
-para	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-que	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-possamos	XX	-	-	-	-	-	*	O	VERB	aux	O	-
-voltar	XX	-	-	-	-	-	*	O	VERB	advcl	O	-
-ainda	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-melhor	XX	-	-	-	-	-	*	O	ADJ	advmod	O	-
-em	XX	-	-	-	-	-	*	O	ADP	case	O	-
-2017.	XX	-	-	-	-	-	*	O	NUM	obl	O	-
-
-Segundo	XX	-	-	-	-	-	*	S-ARG1	ADP	case	O	-
-a	XX	-	-	-	-	-	*	O	DET	det	O	-
-própria	XX	-	-	-	-	-	*	O	ADJ	det	O	-
-contagem	XX	-	-	-	-	-	*	O	NOUN	obl	O	-
-do	XX	-	-	-	-	-	*	O	ADP	case	O	-
-diretor,	XX	-	-	-	-	-	*	O	NOUN	nmod	O	-
-até	XX	-	-	-	-	-	*	O	PUNCT	punct	O	-
-à	XX	-	-	-	-	-	*	O	ADP	case	O	-
-data,	XX	-	-	-	-	-	*	O	ADP	case	O	-
-ele	XX	-	-	-	-	-	*	S-ARG0	NOUN	nmod	O	-
-fez	XX	-	-	-	-	-	*	S-V	PUNCT	punct	O	-
-oito	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-longas-metragens.	XX	-	-	-	-	-	*	O	VERB	ROOT	O	-
-
-O	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-cinema	XX	-	-	-	-	-	*	E-ARG0	NOUN	nsubj	O	-
-tinha	XX	-	-	-	-	-	*	B-V	AUX	aux	O	-
-mudado	XX	-	-	-	-	-	*	E-V	VERB	ROOT	O	-
-tão	XX	-	-	-	-	-	*	B-ARG1	ADV	advmod	O	-
-drasticamente	XX	-	-	-	-	-	*	E-ARG1	ADV	advmod	O	-
-que	XX	-	-	-	-	-	*	O	SCONJ	mark	O	-
-Hollywood	XX	-	-	-	-	-	*	O	PROPN	nsubj	LOC	-
-tinha	XX	-	-	-	-	-	*	O	AUX	aux	O	-
-alienado	XX	-	-	-	-	-	*	O	VERB	ccomp	O	-
-o	XX	-	-	-	-	-	*	O	DET	det	O	-
-público	XX	-	-	-	-	-	*	O	NOUN	obj	O	-
-familiar.	XX	-	-	-	-	-	*	O	ADJ	amod	O	-
-
-A	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-história	XX	-	-	-	-	-	*	I-ARG0	NOUN	nsubj	O	-
-do	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-Doss	XX	-	-	-	-	-	*	E-ARG0	PROPN	nmod	PER	-
-também	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-tem	XX	-	-	-	-	-	*	S-V	VERB	ROOT	O	-
-uma	XX	-	-	-	-	-	*	B-ARG1	DET	det	O	-
-qualidade	XX	-	-	-	-	-	*	I-ARG1	NOUN	obj	O	-
-improvável	XX	-	-	-	-	-	*	E-ARG1	ADJ	amod	O	-
-que	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-torna	XX	-	-	-	-	-	*	O	VERB	acl:relcl	O	-
-tudo	XX	-	-	-	-	-	*	O	PRON	obj	O	-
-ainda	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-mais	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-atraente.	XX	-	-	-	-	-	*	O	ADJ	xcomp	O	-
-
-A	XX	-	-	-	-	-	*	B-ARG0	DET	det	O	-
-história	XX	-	-	-	-	-	*	I-ARG0	NOUN	nsubj	O	-
-do	XX	-	-	-	-	-	*	I-ARG0	ADP	case	O	-
-Doss	XX	-	-	-	-	-	*	E-ARG0	PROPN	nmod	PER	-
-também	XX	-	-	-	-	-	*	B-V	ADV	advmod	O	-
-tem	XX	-	-	-	-	-	*	E-V	VERB	ROOT	O	-
-uma	XX	-	-	-	-	-	*	B-ARG1	DET	det	O	-
-qualidade	XX	-	-	-	-	-	*	I-ARG1	NOUN	obj	O	-
-improvável	XX	-	-	-	-	-	*	E-ARG1	ADJ	amod	O	-
-que	XX	-	-	-	-	-	*	O	PRON	nsubj	O	-
-torna	XX	-	-	-	-	-	*	O	VERB	acl:relcl	O	-
-tudo	XX	-	-	-	-	-	*	O	PRON	obj	O	-
-ainda	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-mais	XX	-	-	-	-	-	*	O	ADV	advmod	O	-
-atraente.	XX	-	-	-	-	-	*	O	ADJ	xcomp	O	-

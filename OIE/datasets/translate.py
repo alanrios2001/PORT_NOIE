@@ -9,6 +9,7 @@ from transformers import pipeline
 import json
 import pathlib
 from diskcache import Cache
+from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions
 
 app = typer.Typer()
 
@@ -339,10 +340,10 @@ class TranslateDataset:
             for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
                 arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(sample[1])
                 data_dict[str(counter)] = {"ID": counter,
-                                           "sent": sample[0],
-                                           "ext": [{"arg1": arg0_trad,
-                                                    "rel": rel_trad,
-                                                    "arg2": arg1_trad}]}
+                                           "sent": transform_portuguese_contractions(sample[0]),
+                                           "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
+                                                    "rel": transform_portuguese_contractions(rel_trad),
+                                                    "arg2": transform_portuguese_contractions(arg1_trad)}]}
                 counter += 1
 
         #salva dicionario
@@ -358,6 +359,7 @@ def run(batch_size: int,
         translated: bool,
         debug: bool = False,
         use_google: bool = True,
+        sequential: bool = True,
         cache_dir: str = "cache"
         ):
     converted = True
@@ -384,7 +386,7 @@ def run(batch_size: int,
             print("Traduzindo com MarianMTModel")
             trans_eng.translate_mt()
     trans_eng.create_dict()
-    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted=converted, sequential=True)
+    criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted=converted, sequential=sequential)
 
 
 if __name__ == "__main__":

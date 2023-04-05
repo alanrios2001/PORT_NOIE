@@ -55,7 +55,7 @@ class Convert:
             with open(path_dir+"/saida_match/json_dump.json", "a", encoding ="utf-8") as file:
                 file.write(json_str)
 
-            with open(path_dir+"/saida_match/valid.json", "a", encoding ="utf-8") as file:
+            with open(path_dir+"/saida_match/gold_valid.json", "a", encoding ="utf-8") as file:
                 file.write(json.dumps(self.dictio, indent=4, ensure_ascii=False))
 
         transform_in_dict()
