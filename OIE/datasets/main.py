@@ -68,8 +68,12 @@ def merge():
 
     ptoie = ["outputs/PTOIE/saida_pos_tag/PTOIE_dev_test.txt", "outputs/PTOIE/saida_pos_tag/PTOIE_test.txt"]
 
-    OUTPUT_NAME = "ls_test"
-    Merge(ls_test, OUTPUT_NAME)
+    other_corpus = ["other_corpus/outputs/saida_pos_tag/gamalho",
+                    "other_corpus/outputs/saida_pos_tag/pud_200",
+                    "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
+                    "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
+    OUTPUT_NAME = "fine_tune"
+    Merge(other_corpus, OUTPUT_NAME)
 
 @app.command()
 def split():
