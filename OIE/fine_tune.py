@@ -5,6 +5,7 @@ from flair.models import SequenceTagger
 #from trainers.trainer import ModelTrainer
 from flair.trainers import ModelTrainer
 from madgrad import MADGRAD
+from torch.optim.adam import Adam
 import typer
 
 app = typer.Typer()

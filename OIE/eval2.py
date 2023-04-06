@@ -2,7 +2,7 @@ import pickle
 from evaluations.src.benchmark import Benchmark
 from evaluations.src.matcher import Matcher
 from OIE.datasets.validated_splits.generative_dataset import TripleExtraction, get_dataset
-from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions
+from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions, clean_extraction
 from typing import List
 import tqdm
 from predict import Predictor
@@ -10,7 +10,7 @@ import torch
 import re
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-engine = Predictor("LSOIE/fine_tune")
+engine = Predictor("LSOIE2/fine_tune")
 
 
 def extract_anwsers(anwsers) -> List[TripleExtraction]:
@@ -63,9 +63,9 @@ def generate_extractions(sentence: str):
                 rel = element[0]
             elif element[2] == "ARG1":
                 arg1 = element[0]
-        arg0 = transform_portuguese_contractions(arg0)
-        rel = transform_portuguese_contractions(rel)
-        arg1 = transform_portuguese_contractions(arg1)
+        arg0 = transform_portuguese_contractions(clean_extraction(arg0))
+        rel = transform_portuguese_contractions(clean_extraction(rel))
+        arg1 = transform_portuguese_contractions(clean_extraction(arg1))
         extraction_str += f"ARG0= {arg0} V= {rel} ARG1= {arg1} "
         count += 1
     return extract_anwsers(extraction_str)
@@ -77,12 +77,12 @@ def generate_results():
         sentence.predicted_extractions = result
         # print(result)
     # Save test as pickle
-    with open("evaluations/benchmark/lsoie_results.pkl", "wb") as f:
+    with open("evaluations/benchmark/s_results.pkl", "wb") as f:
         pickle.dump(test, f)
 
 
 def evaluate():
-    with open("evaluations/benchmark/lsoie_results.pkl", "rb") as f:
+    with open("evaluations/benchmark/s_results.pkl", "rb") as f:
         test = pickle.load(f)
 
     b = Benchmark()
@@ -104,7 +104,7 @@ def evaluate():
         gold=gold_dict,
         predicted=predict_dict,
         matchingFunc=Matcher.identicalMatch,
-        output_fn="evaluations/benchmark/curve_lsoie.txt",
+        output_fn="evaluations/benchmark/curve_s.txt",
     )
 
 generate_results()
