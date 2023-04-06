@@ -9,7 +9,7 @@ from transformers import pipeline
 import json
 import pathlib
 from diskcache import Cache
-from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions
+from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions, clean_extraction
 
 app = typer.Typer()
 
@@ -340,10 +340,10 @@ class TranslateDataset:
             for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
                 arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(sample[1])
                 data_dict[str(counter)] = {"ID": counter,
-                                           "sent": sample[0],
-                                           "ext": [{"arg1": arg0_trad,
-                                                    "rel": rel_trad,
-                                                    "arg2": arg1_trad}]}
+                                           "sent": clean_extraction(sample[0]),
+                                           "ext": [{"arg1": clean_extraction(arg0_trad),
+                                                    "rel": clean_extraction(rel_trad),
+                                                    "arg2": clean_extraction(arg1_trad)}]}
                 counter += 1
 
         #salva dicionario

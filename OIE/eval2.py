@@ -103,7 +103,7 @@ def evaluate():
     b.compare(
         gold=gold_dict,
         predicted=predict_dict,
-        matchingFunc=Matcher.lexicalMatch,
+        matchingFunc=Matcher.identicalMatch,
         output_fn="evaluations/benchmark/curve_lsoie.txt",
     )
 
