@@ -340,10 +340,10 @@ class TranslateDataset:
             for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
                 arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(sample[1])
                 data_dict[str(counter)] = {"ID": counter,
-                                           "sent": transform_portuguese_contractions(sample[0]),
-                                           "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
-                                                    "rel": transform_portuguese_contractions(rel_trad),
-                                                    "arg2": transform_portuguese_contractions(arg1_trad)}]}
+                                           "sent": sample[0],
+                                           "ext": [{"arg1": arg0_trad,
+                                                    "rel": rel_trad,
+                                                    "arg2": arg1_trad}]}
                 counter += 1
 
         #salva dicionario

@@ -10,7 +10,7 @@ import torch
 import re
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-engine = Predictor("LSOIE2/fine_tune")
+engine = Predictor("LSOIE/fine_tune")
 
 
 def extract_anwsers(anwsers) -> List[TripleExtraction]:
@@ -77,12 +77,12 @@ def generate_results():
         sentence.predicted_extractions = result
         # print(result)
     # Save test as pickle
-    with open("evaluations/benchmark/lsoie_results2.pkl", "wb") as f:
+    with open("evaluations/benchmark/lsoie_results.pkl", "wb") as f:
         pickle.dump(test, f)
 
 
 def evaluate():
-    with open("evaluations/benchmark/lsoie_results2.pkl", "rb") as f:
+    with open("evaluations/benchmark/lsoie_results.pkl", "rb") as f:
         test = pickle.load(f)
 
     b = Benchmark()
@@ -104,7 +104,7 @@ def evaluate():
         gold=gold_dict,
         predicted=predict_dict,
         matchingFunc=Matcher.lexicalMatch,
-        output_fn="evaluations/benchmark/curve_lsoie2.txt",
+        output_fn="evaluations/benchmark/curve_lsoie.txt",
     )
 
 generate_results()

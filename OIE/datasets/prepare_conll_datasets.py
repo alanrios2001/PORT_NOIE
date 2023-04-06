@@ -13,6 +13,7 @@ path.mkdir(parents=True, exist_ok=True)
 #seleciona apenas extrações corretas(com arg0, v e arg1)
 total = 0
 for dataset in datasets:
+    print("dataset: ", dataset)
     with open("other_corpus/" + dataset, "r", encoding="utf-8") as file:
         with open("other_corpus/outputs/mod/" + dataset, "a", encoding="utf-8") as file2:
             lines = file.read()
@@ -55,13 +56,13 @@ for dataset in datasets:
                                       "sent": sent,
                                       "ext": [{"arg1": arg0, "rel": rel, "arg2": arg1}]}
                 counter += 1
-    path = pathlib.Path(f"other_corpus/outputs/saida_match/{dataset.replace('.conll', '')}")
-    path.mkdir(parents=True, exist_ok=True)
-    with open(f"other_corpus/outputs/saida_match/{dataset.replace('.conll', '')}/" + "json_dump.json", "a", encoding="utf-8") as file2:
-        file2.write(json.dumps(data_dict))
+        path = pathlib.Path(f"other_corpus/outputs/saida_match/{dataset.replace('.conll', '')}")
+        path.mkdir(parents=True, exist_ok=True)
+        with open(f"other_corpus/outputs/saida_match/{dataset.replace('.conll', '')}/" + "json_dump.json", "a", encoding="utf-8") as file2:
+            file2.write(json.dumps(data_dict))
     matcher = OIE_Match(output_name=dataset.replace('.conll', ''), path_dir=f"other_corpus/outputs/saida_match/{dataset.replace('.conll', '')}/")
     matcher.run(sequential=True)
     PosTag(f"other_corpus/outputs/saida_match/{dataset.replace('.conll', '')}/{dataset.replace('.conll', '')}_corpus.txt", path="other_corpus/outputs/").run(f"{dataset.replace('.conll', '')}")
     #.train_dev_test(0.0, 0.0)
-    total += conv.total_len
+    total += counter
 print("total: ", total)
