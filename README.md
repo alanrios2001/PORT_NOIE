@@ -2,7 +2,7 @@
 A pt-br OpenIE corpus and model.
 
 ## Setup Project:
-1. First install python 3.8 and run pip install poetry.
+1. First install python 3.9 and run pip install poetry.
 2. Open the project, set a poetry python interpreter and run poetry update on venv terminal.
 3. After that, you need to wait for poetry to install all the needed packages.
 
