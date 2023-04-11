@@ -47,6 +47,7 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                       mini_batch_size=8,
                       max_epochs=epochs,
                       optimizer=MADGRAD,
+
                       )
 
 

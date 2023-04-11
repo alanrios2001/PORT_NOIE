@@ -11,7 +11,7 @@ import re
 import pathlib
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-name = "s2"
+name = "LSOIE4"
 engine = Predictor(f"{name}/fine_tune")
 
 

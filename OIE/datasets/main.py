@@ -56,13 +56,13 @@ def criar_conll(out_name: str,
 
 @app.command()
 def merge():
-    fine_tune = ["other_corpus/outputs/saida_pos_tag/gamalho.txt",
-             #"other_corpus/outputs/saida_pos_tag/pragmatic_ceten.txt",
-             #"other_corpus/outputs/saida_pos_tag/pragmatic_wiki.txt",
-             "other_corpus/outputs/saida_pos_tag/pud_200.txt"]
+    fine_tune = ["other_corpus/outputs/saida_match/gamalho/gamalho_corpus.txt",
+             "other_corpus/outputs/saida_match/pragmatic_ceten/pragmatic_ceten_corpus.txt",
+             "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt",
+             "other_corpus/outputs/saida_match/pud_200/pud_200_corpus.txt"]
 
-    ls_train = ["splits_sets/lsoie/ls_train_corpus.txt",
-          "outputs/splits/ls_dev_train.txt"]
+    ls_train = ["validated_splits/normal/lsoie2/ls_train.txt",
+          "validated_splits/normal/lsoie2/ls_dev.txt"]
 
     ls_test = ["splits_sets/lsoie/ls_test.txt",
           "outputs/splits/ls_dev_test.txt"]
@@ -74,16 +74,20 @@ def merge():
                     "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
                     "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
     OUTPUT_NAME = "fine_tune"
-    Merge(other_corpus, OUTPUT_NAME)
+    Merge(fine_tune, OUTPUT_NAME)
 
 @app.command()
 def split():
-    TEST_SIZE = 0.2
-    DEV_SIZE = 0.0
-    OUTPUT_NAME = "ls_dev"
-    IN_PATH = "outputs/ls_dev/saida_pos_tag"
+    TEST_SIZE = 0.1
+    DEV_SIZE = 0.1
+    OUTPUT_NAME = "PTOIE"
+    IN_PATH = "outputs/PTOIE/saida_match"
     OUT_PATH = "outputs/splits"
     train_dev_test(TEST_SIZE, DEV_SIZE, OUTPUT_NAME, IN_PATH, OUT_PATH)
+
+@app.command()
+def load_ptoie():
+    criar_conll("PTOIE", "PTOIE/PTOIE.txt", 0.1, 0.1)
 
 def load_s2(dataset_path: str):
     data_path = dataset_path

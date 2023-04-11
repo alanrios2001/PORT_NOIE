@@ -114,13 +114,22 @@ class OIE_Match:
                 sent = self.nlp(data[key]["sent"])
                 tk = [token.text for token in sent]
 
-                self.invalid[data[key]["sent"]] = {
-                    "ID": data[key]["ID"],
-                    "expected": ext,
-                    "arg1": (arg1_tuple[0], arg1_tuple[1], tk[arg1_tuple[0]:arg1_tuple[1]]),
-                    "rel": (rel_tuple[0], rel_tuple[1], tk[rel_tuple[0]:rel_tuple[1]]),
-                    "arg2": (arg2_tuple[0], arg2_tuple[1], tk[arg2_tuple[0]:arg2_tuple[1]]),
-                }
+                try:
+                    self.invalid[data[key]["sent"]] = {
+                        "ID": data[key]["ID"],
+                        "expected": ext,
+                        "arg1": (arg1_tuple[0], arg1_tuple[1], tk[arg1_tuple[0]:arg1_tuple[1]]),
+                        "rel": (rel_tuple[0], rel_tuple[1], tk[rel_tuple[0]:rel_tuple[1]]),
+                        "arg2": (arg2_tuple[0], arg2_tuple[1], tk[arg2_tuple[0]:arg2_tuple[1]]),
+                    }
+                except:
+                    self.invalid[data[key]["sent"]] = {
+                        "ID": key,
+                        "expected": ext,
+                        "arg1": (arg1_tuple[0], arg1_tuple[1], tk[arg1_tuple[0]:arg1_tuple[1]]),
+                        "rel": (rel_tuple[0], rel_tuple[1], tk[rel_tuple[0]:rel_tuple[1]]),
+                        "arg2": (arg2_tuple[0], arg2_tuple[1], tk[arg2_tuple[0]:arg2_tuple[1]]),
+                    }
 
         with open(self.path_dir+"/invalid.json", "a", encoding="utf-8") as f:
             json.dump(self.invalid, f, ensure_ascii=False, indent=4)

@@ -1,5 +1,6 @@
 import json
 import pathlib
+from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions, clean_extraction
 
 
 class Convert:
@@ -38,13 +39,15 @@ class Convert:
                     sent = sentença
 
                 dic["Id"] = i
-                dic["sent"] = sent
+                dic["sent"] = transform_portuguese_contractions(sent)
                 lista.append(sent)
 
                 # tratando extrações
                 splited = obj[3].split("|||")
                 try:
-                    dic["ext"] = [{"arg1": splited[0], "rel": splited[1], "arg2": splited[2]}]
+                    dic["ext"] = [{"arg1": transform_portuguese_contractions(splited[0]),
+                                   "rel": transform_portuguese_contractions(splited[1]),
+                                   "arg2": transform_portuguese_contractions(splited[2])}]
                 except:
                     dic["ext"] = [{"arg1": "", "rel": "", "arg2": ""}]
                 self.dictio[i] = dic
