@@ -8,9 +8,11 @@ import tqdm
 from predict import Predictor
 import torch
 import re
+import pathlib
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-engine = Predictor("LSOIE2/fine_tune")
+name = "s2"
+engine = Predictor(f"{name}/fine_tune")
 
 
 def extract_anwsers(anwsers) -> List[TripleExtraction]:
@@ -77,12 +79,14 @@ def generate_results():
         sentence.predicted_extractions = result
         # print(result)
     # Save test as pickle
-    with open("evaluations/benchmark/s_results.pkl", "wb") as f:
+    path = pathlib.Path("evaluations/benchmark/pickle")
+    path.mkdir(parents=True, exist_ok=True)
+    with open("evaluations/benchmark/pickle/lsoie2_results.pkl", "wb") as f:
         pickle.dump(test, f)
 
 
 def evaluate():
-    with open("evaluations/benchmark/s_results.pkl", "rb") as f:
+    with open("evaluations/benchmark/pickle/lsoie2_results.pkl", "rb") as f:
         test = pickle.load(f)
 
     b = Benchmark()
@@ -104,7 +108,7 @@ def evaluate():
         gold=gold_dict,
         predicted=predict_dict,
         matchingFunc=Matcher.identicalMatch,
-        output_fn="evaluations/benchmark/curve_s.txt",
+        output_fn=f"evaluations/benchmark/curve_{name}.txt",
     )
 
 generate_results()

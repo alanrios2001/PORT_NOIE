@@ -5,7 +5,6 @@ from flair.models import SequenceTagger
 #from trainers.trainer import ModelTrainer
 from flair.trainers import ModelTrainer
 from madgrad import MADGRAD
-from torch.optim.adam import Adam
 import typer
 
 app = typer.Typer()
@@ -27,7 +26,7 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
 
     # inicializando sequence tagger
-    if "fine_tune_part" in name:
+    if "fine_tune" in name:
         part = int(name[-1])+1
         oie = SequenceTagger.load("train_output/" + name + "/final-model.pt")
     elif "transformer" in name:
@@ -37,13 +36,13 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
         part = 1
         oie = SequenceTagger.load("train_output/" + name + "/best-model.pt")
 
-    pathlib.Path(f"train_output/{name}/fine_tune_part{str(part)}").mkdir(parents=True, exist_ok=True)
+    pathlib.Path(f"train_output/{name}/fine_tune").mkdir(parents=True, exist_ok=True)
 
     # inicializando trainer
     trainer = ModelTrainer(oie, corpus)
 
     # fine tune
-    trainer.fine_tune(f"train_output/{name}/fine_tune_part{str(part)}",
+    trainer.fine_tune(f"train_output/{name}/fine_tune",
                       learning_rate=5e-6,
                       mini_batch_size=8,
                       max_epochs=epochs,

@@ -1,10 +1,11 @@
 import pathlib
 from flair.datasets import ColumnCorpus
-from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, OneHotEmbeddings, WordEmbeddings
+from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, OneHotEmbeddings, OpenAIGPT2Embeddings
 from flair.models import SequenceTagger
 #from flair.trainers import ModelTrainer
 from trainers.trainer import ModelTrainer
 from madgrad import MADGRAD
+from torch.optim.adagrad import Adagrad
 import typer
 
 app = typer.Typer()
@@ -25,13 +26,13 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     print(label_dictionary)
 
     emb = TransformerWordEmbeddings(
-        "neuralmind/bert-base-portuguese-cased"
+        "neuralmind/bert-base-portuguese-cased",
     )
 
     embedding_types = [
         emb,
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=15, embedding_length=20),
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=15, embedding_length=20),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=5, embedding_length=30),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=5, embedding_length=30),
         FlairEmbeddings('pt-forward'),
         FlairEmbeddings('pt-backward')
     ]
@@ -44,6 +45,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
                          rnn_layers=2,
+                         dropout=0.5
                          )
 
     pathlib.Path(f"train_output").mkdir(parents=True, exist_ok=True)
@@ -53,8 +55,8 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     # iniciando treino
     trainer.train(f"train_output/{name}",
-                  learning_rate=0.002,
-                  min_learning_rate=0.0005,
+                  learning_rate=0.004,
+                  min_learning_rate=0.0002,
                   mini_batch_size=8,
                   max_epochs=epochs,
                   patience=3,

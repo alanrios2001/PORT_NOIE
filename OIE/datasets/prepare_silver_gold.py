@@ -35,15 +35,13 @@ def main(dir: str , dataset: str):
                         exts.append(ext[0:3])
                         exts.append(id)
 
-            sent = clean_extraction(transform_portuguese_contractions(sent))
-            ext[0] = clean_extraction(transform_portuguese_contractions(ext[0]))
-            ext[1] = clean_extraction(transform_portuguese_contractions(ext[1]))
-            ext[2] = clean_extraction(transform_portuguese_contractions(ext[2]))
-
             for key in data_dict:
                 for ext in data_dict[key]:
                     if type(ext) == list:
-                        final_dict[total] = {"ID": data_dict[key][-1], "sent": key, "ext": [{"arg1": ext[0], "rel": ext[1], "arg2": ext[2]}]}
+                        final_dict[total] = {"ID": data_dict[key][-1], "sent": transform_portuguese_contractions(key),
+                                             "ext": [{"arg1": transform_portuguese_contractions(ext[0]),
+                                                      "rel": transform_portuguese_contractions(ext[1]),
+                                                      "arg2": transform_portuguese_contractions(ext[2])}]}
                         total += 1
             file2.write(json.dumps(final_dict))
 

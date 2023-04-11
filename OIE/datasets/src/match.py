@@ -115,6 +115,7 @@ class OIE_Match:
                 tk = [token.text for token in sent]
 
                 self.invalid[data[key]["sent"]] = {
+                    "ID": data[key]["ID"],
                     "expected": ext,
                     "arg1": (arg1_tuple[0], arg1_tuple[1], tk[arg1_tuple[0]:arg1_tuple[1]]),
                     "rel": (rel_tuple[0], rel_tuple[1], tk[rel_tuple[0]:rel_tuple[1]]),

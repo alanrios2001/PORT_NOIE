@@ -5,6 +5,7 @@ import pathlib
 from src.pos_tag import PosTag
 from src.train_test_dev import train_dev_test
 from src.merge_datasets import Merge
+from validated_splits.contractions import transform_portuguese_contractions, clean_extraction
 import json
 
 app = typer.Typer()
@@ -69,7 +70,7 @@ def merge():
     ptoie = ["outputs/PTOIE/saida_pos_tag/PTOIE_dev_test.txt", "outputs/PTOIE/saida_pos_tag/PTOIE_test.txt"]
 
     other_corpus = ["other_corpus/outputs/saida_pos_tag/gamalho",
-                    "other_corpus/outputs/saida_pos_tag/pud_200",
+                    "other_corpus/outputs/saida_pos_tag/200-silver.txt",
                     "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
                     "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
     OUTPUT_NAME = "fine_tune"
@@ -83,7 +84,6 @@ def split():
     IN_PATH = "outputs/ls_dev/saida_pos_tag"
     OUT_PATH = "outputs/splits"
     train_dev_test(TEST_SIZE, DEV_SIZE, OUTPUT_NAME, IN_PATH, OUT_PATH)
-
 
 def load_s2(dataset_path: str):
     data_path = dataset_path
@@ -127,10 +127,10 @@ def load_s2(dataset_path: str):
             if arg0 and rel and arg1 != "":
                 data_dict[str(counter)] = {
                     "ID": counter,
-                    "sent": sent,
-                    "ext": [{"arg1": arg0,
-                             "rel": rel,
-                             "arg2": arg1}]
+                    "sent": transform_portuguese_contractions(sent),
+                    "ext": [{"arg1": transform_portuguese_contractions(arg0),
+                             "rel": transform_portuguese_contractions(rel),
+                             "arg2": transform_portuguese_contractions(arg1)}]
                 }
                 counter += 1
         save_dict(data_dict, out_path)
@@ -152,14 +152,54 @@ def load_s2(dataset_path: str):
 
 
 @app.command()
-def build(dataset: str):
+def build(dataset: str = "s2"):
     if dataset == "s2":
-        datasets = [#"other_corpus/s2/train.tsv",
+        datasets = ["other_corpus/s2/train.tsv",
                     "other_corpus/s2/valid.tsv"]
         for dataset in datasets:
             load_s2(dataset)
 
+@app.command()
+def load_bia():
+    dataset_name = "other_corpus/edit_alan.csv"
+    valid = []
+    invalid = []
+    data_dict = {}
+    with open(dataset_name, "r", encoding="utf-8") as f:
+        dataset = f.read().splitlines()
+        counter = 0
+        for i in dataset:
+            if i == ";;;;;;;;;;;;;;;;":
+                dataset = dataset[:counter]
+                break
+            counter += 1
+        dataset = [i.split("\t") for i in dataset]
+        dataset = [i[0].split(";") for i in dataset]
+        for _,i in enumerate(dataset):
+            i = i.insert(0, f"ID:{_+1}")
+        valid = [i for i in dataset if i[8] != "EXTRAÇÃO INVÁLIDA"]
+        invalid = [i for i in dataset if i[8] == "EXTRAÇÃO INVÁLIDA"]
+        print(f"Valid: {len(valid)}")
+        print(f"Invalid: {len(invalid)}")
 
+    for _,i in enumerate(valid):
+        sent = transform_portuguese_contractions(i[1].replace('"": {"', ""))
+        arg0 = transform_portuguese_contractions(clean_extraction(i[2]))
+        rel = transform_portuguese_contractions(clean_extraction(i[3]))
+        arg1 = transform_portuguese_contractions(clean_extraction(i[4]))
+        data_dict[_] = {"ID": i[0],"sent": sent, "ext":[{"arg1": arg0, "rel": rel, "arg2": arg1}]}
+        print("\n", i[0])
+        print("sent: ", sent)
+        print("arg0: ", arg0)
+        print("rel: ", rel)
+        print("arg1: ", arg1)
+
+    path = pathlib.Path(f"outputs/bia/saida_match/")
+    path.mkdir(parents=True, exist_ok=True)
+    with open(f"outputs/bia/saida_match/json_dump.json", "a", encoding="utf-8") as f:
+        f.write(json.dumps(data_dict))
+
+    criar_conll("bia", "", 0, 0, converted=True, sequential=True)
 
 
 if __name__ == "__main__":
