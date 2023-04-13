@@ -58,28 +58,29 @@ def criar_conll(out_name: str,
 def merge():
     fine_tune = ["other_corpus/outputs/saida_match/gamalho/gamalho_corpus.txt",
              "other_corpus/outputs/saida_match/pragmatic_ceten/pragmatic_ceten_corpus.txt",
-             "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt",
-             "other_corpus/outputs/saida_match/pud_200/pud_200_corpus.txt"]
+             "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt"]
 
     ls_train = ["validated_splits/normal/lsoie2/ls_train.txt",
-          "validated_splits/normal/lsoie2/ls_dev.txt"]
+                "validated_splits/normal/lsoie2/ls_dev.txt",
+                "validated_splits/normal/lsoie2/dev.txt"]
 
     ls_test = ["splits_sets/lsoie/ls_test.txt",
           "outputs/splits/ls_dev_test.txt"]
 
     ptoie = ["outputs/PTOIE/saida_pos_tag/PTOIE_dev_test.txt", "outputs/PTOIE/saida_pos_tag/PTOIE_test.txt"]
 
-    other_corpus = ["other_corpus/outputs/saida_pos_tag/gamalho",
-                    "other_corpus/outputs/saida_pos_tag/200-silver.txt",
-                    "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
-                    "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
-    OUTPUT_NAME = "fine_tune"
-    Merge(fine_tune, OUTPUT_NAME)
+    lab = ["validated_splits/normal/ptoie/train.txt",
+           "validated_splits/normal/ptoie/test.txt",
+           "validated_splits/normal/lsoie/train.txt",
+            "validated_splits/normal/lsoie/test.txt",
+           ]
+    OUTPUT_NAME = "lp_train"
+    Merge(lab, OUTPUT_NAME)
 
 @app.command()
 def split():
     TEST_SIZE = 0.1
-    DEV_SIZE = 0.1
+    DEV_SIZE = 0.0
     OUTPUT_NAME = "PTOIE"
     IN_PATH = "outputs/PTOIE/saida_match"
     OUT_PATH = "outputs/splits"

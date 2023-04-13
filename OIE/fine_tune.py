@@ -26,14 +26,9 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
 
     # inicializando sequence tagger
-    if "fine_tune" in name:
-        part = int(name[-1])+1
+    try:
         oie = SequenceTagger.load("train_output/" + name + "/final-model.pt")
-    elif "transformer" in name:
-        part = 1
-        oie = SequenceTagger.load("train_output/" + name + "/final-model.pt")
-    else:
-        part = 1
+    except:
         oie = SequenceTagger.load("train_output/" + name + "/best-model.pt")
 
     pathlib.Path(f"train_output/{name}/fine_tune").mkdir(parents=True, exist_ok=True)
@@ -47,7 +42,6 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                       mini_batch_size=8,
                       max_epochs=epochs,
                       optimizer=MADGRAD,
-
                       )
 
 

@@ -207,6 +207,8 @@ class TranslateDataset:
         print(f"arg1: {arg1_trad}\n")
 
     def save_dict(self, data_dict):
+        path = self.out_path+"/saida_match"
+        pathlib.Path(path).mkdir(parents=True, exist_ok=True)
         with open(self.out_path+"/saida_match/json_dump.json", "a", encoding="utf-8") as f:
             f.write(json.dumps(data_dict))
 
@@ -253,9 +255,10 @@ class TranslateDataset:
         dataset.append(exts)
         return dataset
 
-    def translate_google(self, cache_dir: str):
+    def translate_google(self, cache_dir: str, dataset: list = None):
         cache = Cache(cache_dir)
-        dataset = self.load_dataset()
+        if dataset is None:
+            dataset = self.load_carb()
 
         #traduz dataset
         all_sent = []
@@ -350,7 +353,7 @@ class TranslateDataset:
         self.save_dict(data_dict)
 
 
-@app.command()
+
 def run(batch_size: int,
         dataset_dir: str,
         dataset_name: str,
@@ -389,5 +392,25 @@ def run(batch_size: int,
     criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted=converted, sequential=sequential)
 
 
-if __name__ == "__main__":
-    app()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

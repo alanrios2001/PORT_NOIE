@@ -116,7 +116,7 @@ def load_pragmatic_ceten_dataset():
 def load_pud200():
     # Portuguese dataset
     dataset_pt = dict()
-    pt = Path(__file__).parent / "eval" / "200-sentences-pt-PUD.txt"
+    pt = Path(__file__).parent / "normal/eval" / "200-sentences-pt-PUD.txt"
     with open(pt, "r", encoding="utf-8") as f_pt:
         actual_pos = None
         for line in f_pt:
@@ -154,7 +154,7 @@ def load_pud200():
 def load_pud100():
     # Portuguese dataset
     dataset_pt = dict()
-    pt = Path(__file__).parent / "eval" / "coling2020.txt"
+    pt = Path(__file__).parent / "normal/eval" / "coling2020.txt"
     with open(pt, "r", encoding="utf-8") as f_pt:
         actual_pos = None
         for line in f_pt:

@@ -11,8 +11,8 @@ import re
 import pathlib
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-name = "LSOIE4"
-engine = Predictor(f"{name}/fine_tune")
+name = "lpoie"
+engine = Predictor(f"{name}/fine_tune/fine_tune")
 
 
 def extract_anwsers(anwsers) -> List[TripleExtraction]:
@@ -81,12 +81,12 @@ def generate_results():
     # Save test as pickle
     path = pathlib.Path("evaluations/benchmark/pickle")
     path.mkdir(parents=True, exist_ok=True)
-    with open("evaluations/benchmark/pickle/lsoie2_results.pkl", "wb") as f:
+    with open("evaluations/benchmark/pickle/_results.pkl", "wb") as f:
         pickle.dump(test, f)
 
 
 def evaluate():
-    with open("evaluations/benchmark/pickle/lsoie2_results.pkl", "rb") as f:
+    with open("evaluations/benchmark/pickle/_results.pkl", "rb") as f:
         test = pickle.load(f)
 
     b = Benchmark()

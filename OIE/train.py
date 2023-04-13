@@ -2,8 +2,8 @@ import pathlib
 from flair.datasets import ColumnCorpus
 from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, OneHotEmbeddings, OpenAIGPT2Embeddings
 from flair.models import SequenceTagger
-from flair.trainers import ModelTrainer
-#from trainers.trainer import ModelTrainer
+#from flair.trainers import ModelTrainer
+from trainers.trainer import ModelTrainer
 from madgrad import MADGRAD
 from torch.optim.adagrad import Adagrad
 import typer
@@ -17,7 +17,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     corpus = ColumnCorpus(data_folder=folder,
                           column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
-                          test_file=test,
+                          #test_file=test,
                           dev_file=dev
                           )
 
@@ -30,7 +30,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     )
     roberta = TransformerWordEmbeddings("xlm-roberta-base")
 
-    emb = roberta
+    emb = bert
     embedding_types = [
         emb,
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=5, embedding_length=30),
@@ -59,17 +59,16 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     trainer.train(f"train_output/{name}",
                   learning_rate=1e-3,
                   min_learning_rate=0.0001,
-                  mini_batch_size=4,
+                  mini_batch_size=8,
                   max_epochs=epochs,
                   patience=3,
                   embeddings_storage_mode='cpu',
                   optimizer=MADGRAD,
                   save_final_model=False,
-                  reduce_transformer_vocab=True,
                   anneal_factor=0.5,
                   anneal_with_restarts=True,
-                  # mini_batch_chunk_size=1,
-                  # use_amp=True,
+                  # reduce_transformer_vocab=True,
+                  use_amp=True,
                   )
 
 if __name__ == "__main__":
