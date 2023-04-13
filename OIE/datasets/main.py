@@ -69,13 +69,16 @@ def merge():
 
     ptoie = ["outputs/PTOIE/saida_pos_tag/PTOIE_dev_test.txt", "outputs/PTOIE/saida_pos_tag/PTOIE_test.txt"]
 
-    lab = ["validated_splits/normal/ptoie/train.txt",
-           "validated_splits/normal/ptoie/test.txt",
+    lab = ["validated_splits/normal/carb/carb.txt",
            "validated_splits/normal/lsoie/train.txt",
-            "validated_splits/normal/lsoie/test.txt",
            ]
-    OUTPUT_NAME = "lp_train"
-    Merge(lab, OUTPUT_NAME)
+    trad = [
+        "validated_splits/normal/traduzido/carb.txt",
+        "validated_splits/normal/traduzido/ls_train.txt",
+        "validated_splits/normal/traduzido/ls_dev.txt",
+    ]
+    OUTPUT_NAME = "trad_train"
+    Merge(trad, OUTPUT_NAME)
 
 @app.command()
 def split():

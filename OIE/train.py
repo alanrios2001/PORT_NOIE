@@ -17,7 +17,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     corpus = ColumnCorpus(data_folder=folder,
                           column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
-                          #test_file=test,
+                          test_file=test,
                           dev_file=dev
                           )
 
@@ -55,10 +55,12 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     # inicializando trainer
     trainer = ModelTrainer(oie, corpus)
 
+    madgrad = MADGRAD(params=oie.parameters(), lr=1e-3, momentum=0.7, weight_decay=1e-5)
+
     # iniciando treino
     trainer.train(f"train_output/{name}",
                   learning_rate=1e-3,
-                  min_learning_rate=0.0001,
+                  min_learning_rate=0.00005,
                   mini_batch_size=8,
                   max_epochs=epochs,
                   patience=3,

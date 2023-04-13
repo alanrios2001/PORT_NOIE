@@ -390,27 +390,3 @@ def run(batch_size: int,
             trans_eng.translate_mt()
     trans_eng.create_dict()
     criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted=converted, sequential=sequential)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
