@@ -29,7 +29,7 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
     bert = TransformerWordEmbeddings('bert-base-multilingual-cased',
                                      layers="-1",
-                                     subtoken_pooling="first",
+                                     subtoken_pooling="first_last",
                                      use_context=True,
                                      fine_tune=True,
                                      )
@@ -49,9 +49,10 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                             tag_type='label',
                             use_crf=True,
                             use_rnn=True,
-                            rnn_layers=2,
-                            locked_dropout=0.0,
-                            dropout=0.5,
+                            rnn_layers=3,
+                            #locked_dropout=0.0,
+                            #dropout=0.3,
+                            #word_dropout=0.0,
                             reproject_embeddings=False,
                             )
 
@@ -60,11 +61,11 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
     # fine tune
     trainer.fine_tune(f"train_output/{name}",
-                      learning_rate=5e-6,
-                      mini_batch_size=16,
+                      learning_rate=1e-6,
+                      mini_batch_size=8,
                       max_epochs=epochs,
                       optimizer=MADGRAD,
-                      decoder_lr_factor=2000,
+                      decoder_lr_factor=1000,
                       scheduler=AnnealOnPlateau,
                       )
 

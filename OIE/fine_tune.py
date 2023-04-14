@@ -45,9 +45,9 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
     possível de 0.60.
     """
     trainer.fine_tune(f"train_output/{name}/fine_tune",
-                      #learning_rate=5e-6,
+                      learning_rate=5e-6,
                       mini_batch_size=8,
-                      #max_epochs=epochs,
+                      max_epochs=epochs,
                       optimizer=madgrad,
                       )
 

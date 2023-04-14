@@ -1,8 +1,11 @@
 [tool.poetry]
 name = "Flair-oie"
-version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+version = "0.0.0"
+description = "A neural OpenIE system based on Flair"
+license = "Comercial - Private"
+authors = [
+    "Alan Rios <alanrios2001@gmail.com>"
+]
 readme = "README.md"
 
 [tool.poetry.dependencies]

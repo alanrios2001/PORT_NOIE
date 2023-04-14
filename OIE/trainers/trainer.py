@@ -878,7 +878,7 @@ class ModelTrainer:
             warmup_fraction: float = 0.1,
             mini_batch_size: int = 4,
             embeddings_storage_mode: str = "none",
-            use_final_model_for_eval: bool = True,
+            use_final_model_for_eval: bool = False,
             decoder_lr_factor: float = 1.0,
             **trainer_args,
     ):
@@ -913,6 +913,7 @@ class ModelTrainer:
             use_final_model_for_eval=use_final_model_for_eval,
             patience=3,
             anneal_factor=0.5,
+            anneal_with_restarts=True,
             use_amp=True,
             **trainer_args,
         )

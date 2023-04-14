@@ -11,8 +11,8 @@ import re
 import pathlib
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-name = "test_bert"
-engine = Predictor(f"{name}")
+name = "tradoie/fine_tune"
+engine = Predictor(f"{name}/fine_tune")
 
 
 def extract_anwsers(anwsers) -> List[TripleExtraction]:
