@@ -78,8 +78,8 @@ def merge():
         #"validated_splits/normal/trad/ls_dev.txt",
         "validated_splits/normal/trad/dev.txt",
     ]
-    OUTPUT_NAME = "trad_train"
-    Merge(trad, OUTPUT_NAME)
+    OUTPUT_NAME = "fine_tune"
+    Merge(fine_tune, OUTPUT_NAME)
 
 @app.command()
 def split():

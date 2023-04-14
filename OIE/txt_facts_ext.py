@@ -1,7 +1,7 @@
 from predict import Predictor
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions
 
-model = "tradoie"
+model = "test_bert"
 oie = Predictor(model)
 show_triple = True
 

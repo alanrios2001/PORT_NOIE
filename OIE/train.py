@@ -47,15 +47,14 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
                          rnn_layers=2,
-                         dropout=0.3
+                         dropout=0.3,
+                         locked_dropout=0.0,
                          )
 
     pathlib.Path(f"train_output").mkdir(parents=True, exist_ok=True)
 
     # inicializando trainer
     trainer = ModelTrainer(oie, corpus)
-
-    madgrad = MADGRAD(params=oie.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-5)
 
     # iniciando treino
     trainer.train(f"train_output/{name}",
@@ -65,10 +64,10 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   max_epochs=epochs,
                   patience=3,
                   embeddings_storage_mode='cpu',
-                  optimizer=madgrad,
+                  optimizer=MADGRAD,
                   save_final_model=False,
                   anneal_factor=0.5,
-                  anneal_with_restarts=True,
+                  # anneal_with_restarts=True,
                   # reduce_transformer_vocab=True,
                   use_amp=True,
                   )

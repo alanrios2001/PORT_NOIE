@@ -869,18 +869,37 @@ class ModelTrainer:
         self.train(**args_used_to_train_model, **kwargs)
 
     def fine_tune(
-        self,
-        base_path: Union[Path, str],
-        learning_rate: float = 5e-5,
-        max_epochs: int = 10,
-        optimizer=torch.optim.AdamW,
-        scheduler=LinearSchedulerWithWarmup,
-        warmup_fraction: float = 0.1,
-        mini_batch_size: int = 4,
-        embeddings_storage_mode: str = "none",
-        use_final_model_for_eval: bool = True,
-        **trainer_args,
+            self,
+            base_path: Union[Path, str],
+            learning_rate: float = 5e-5,
+            max_epochs: int = 10,
+            optimizer=torch.optim.AdamW,
+            scheduler=LinearSchedulerWithWarmup,
+            warmup_fraction: float = 0.1,
+            mini_batch_size: int = 4,
+            embeddings_storage_mode: str = "none",
+            use_final_model_for_eval: bool = True,
+            decoder_lr_factor: float = 1.0,
+            **trainer_args,
     ):
+        # If set, add a factor to the learning rate of all parameters with 'embeddings' not in name
+        if decoder_lr_factor != 1.0:
+            optimizer = optimizer(
+                [
+                    {
+                        "params": [param for name, param in self.model.named_parameters() if "embeddings" not in name],
+                        "lr": learning_rate * decoder_lr_factor,
+                    },
+                    {
+                        "params": [param for name, param in self.model.named_parameters() if "embeddings" in name],
+                        "lr": learning_rate,
+                    },
+                ]
+            )
+            log.info(
+                f"Modifying learning rate to {learning_rate * decoder_lr_factor} for the following "
+                f"parameters: {[name for name, param in self.model.named_parameters() if 'embeddings' not in name]}"
+            )
 
         return self.train(
             base_path=base_path,
@@ -892,6 +911,9 @@ class ModelTrainer:
             mini_batch_size=mini_batch_size,
             embeddings_storage_mode=embeddings_storage_mode,
             use_final_model_for_eval=use_final_model_for_eval,
+            patience=3,
+            anneal_factor=0.5,
+            use_amp=True,
             **trainer_args,
         )
 
