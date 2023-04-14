@@ -61,6 +61,7 @@ class ArgsRel:
 
     #Separa arg1, rel e arg2 da extração a partir da analise sintatica de dependencia da extração
     def get_args_rel(self, ext):
+        ext = transform_portuguese_contractions(ext)
         doc = self.nlp(ext)
         doc_dict = {}
         i = 0
