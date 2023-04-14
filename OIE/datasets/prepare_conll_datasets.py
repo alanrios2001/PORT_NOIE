@@ -5,7 +5,7 @@ from OIE.datasets.validated_splits.contractions import transform_portuguese_cont
 import json
 from src.match import OIE_Match
 
-datasets = ["pud_100.conll","pud_200.conll","gamalho.conll", "pragmatic_ceten.conll", "pragmatic_wiki.conll"]
+datasets = ["pud_200.conll","gamalho.conll", "pragmatic_ceten.conll", "pragmatic_wiki.conll"]
 
 path = pathlib.Path("other_corpus/outputs/mod")
 path.mkdir(parents=True, exist_ok=True)
@@ -48,10 +48,10 @@ for dataset in datasets:
                         arg1 += i.split("\t")[0] + " "
                     elif "V" in i:
                         rel += i.split("\t")[0] + " "
-                sent = clean_extraction(transform_portuguese_contractions(sent))
-                arg0 = clean_extraction(transform_portuguese_contractions(arg0))
-                arg1 = clean_extraction(transform_portuguese_contractions(arg1))
-                rel = clean_extraction(transform_portuguese_contractions(rel))
+                sent = transform_portuguese_contractions(sent+".")
+                arg0 = transform_portuguese_contractions(arg0)
+                arg1 = transform_portuguese_contractions(arg1)
+                rel = transform_portuguese_contractions(rel)
                 data_dict[counter] = {"ID": counter,
                                       "sent": sent,
                                       "ext": [{"arg1": arg0, "rel": rel, "arg2": arg1}]}

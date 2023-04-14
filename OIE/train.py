@@ -55,7 +55,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     # inicializando trainer
     trainer = ModelTrainer(oie, corpus)
 
-    madgrad = MADGRAD(params=oie.parameters(), lr=1e-3, momentum=0.7, weight_decay=1e-5)
+    madgrad = MADGRAD(params=oie.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-5)
 
     # iniciando treino
     trainer.train(f"train_output/{name}",
@@ -65,7 +65,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   max_epochs=epochs,
                   patience=3,
                   embeddings_storage_mode='cpu',
-                  optimizer=MADGRAD,
+                  optimizer=madgrad,
                   save_final_model=False,
                   anneal_factor=0.5,
                   anneal_with_restarts=True,

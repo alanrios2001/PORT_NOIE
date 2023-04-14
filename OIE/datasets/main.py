@@ -73,9 +73,10 @@ def merge():
            "validated_splits/normal/lsoie/train.txt",
            ]
     trad = [
-        "validated_splits/normal/traduzido/carb.txt",
-        "validated_splits/normal/traduzido/ls_train.txt",
-        "validated_splits/normal/traduzido/ls_dev.txt",
+        #"validated_splits/normal/trad/carb.txt",
+        "validated_splits/normal/trad/trad_train.txt",
+        #"validated_splits/normal/trad/ls_dev.txt",
+        "validated_splits/normal/trad/dev.txt",
     ]
     OUTPUT_NAME = "trad_train"
     Merge(trad, OUTPUT_NAME)
