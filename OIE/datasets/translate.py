@@ -80,6 +80,10 @@ class ArgsRel:
                 rel += token + " "
                 root_idx = (idx, idx)
                 break
+            if (pos == "AUX" and dep == "ROOT"):
+                rel += token + " "
+                root_idx = (idx, idx)
+                break
 
         #aqui encontramos tudo que está relacionado ao root caso ele seja um verbo
         #(auxiliares, advmod, etc)
@@ -110,6 +114,15 @@ class ArgsRel:
                     root_idx = (root_idx[0], i)
                     i = root_idx[1]
             if (dep == "advmod" or pos == "ADV"):
+                if i == root_idx[0] - 1:
+                    rel = token + " " + rel
+                    root_idx = (i, root_idx[1])
+                    i = 0
+                if root_idx[1] + 1 == i:
+                    rel += token + " "
+                    root_idx = (root_idx[0], i)
+                    i = root_idx[1]
+            if (dep == "case" or pos == "ADP"):
                 if i == root_idx[0] - 1:
                     rel = token + " " + rel
                     root_idx = (i, root_idx[1])

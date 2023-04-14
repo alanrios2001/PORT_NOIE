@@ -64,11 +64,11 @@ def load_largeie():
 def run():
     datasets_to_translate = [
         {"dir":"","name": "carb", "load": load_carb(), "out_path": "outputs/carb/", "batch_size": 1, "google": True},
-        {"dir": "", "name": "largeIE", "load": load_largeie(), "out_path": "outputs/largeie/", "batch_size": 1, "google": True},
+        #{"dir": "", "name": "largeIE", "load": load_largeie(), "out_path": "outputs/largeie/", "batch_size": 1, "google": True},
     ]
     for dataset in datasets_to_translate:
         eng = translate.TranslateDataset(dataset["dir"], dataset["name"], dataset["out_path"], dataset["batch_size"], dataset["google"])
-        eng.translate_google(cache_dir="translated/cache",dataset=dataset["load"])
+        #eng.translate_google(cache_dir="translated/cache",dataset=dataset["load"])
         eng.create_dict()
         criar_conll(dataset["name"], "", 0.0, 0.0, converted=True, sequential=True)
 

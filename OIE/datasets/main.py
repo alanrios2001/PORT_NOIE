@@ -60,9 +60,9 @@ def merge():
              "other_corpus/outputs/saida_match/pragmatic_ceten/pragmatic_ceten_corpus.txt",
              "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt"]
 
-    ls_train = ["validated_splits/normal/lsoie2/ls_train.txt",
-                "validated_splits/normal/lsoie2/ls_dev.txt",
-                "validated_splits/normal/lsoie2/dev.txt"]
+    ls_train = ["validated_splits/normal/trad/ls_train.txt",
+                "validated_splits/normal/trad/ls_dev.txt",
+                "validated_splits/normal/trad/dev.txt"]
 
     ls_test = ["splits_sets/lsoie/ls_test.txt",
           "outputs/splits/ls_dev_test.txt"]
@@ -73,13 +73,13 @@ def merge():
            "validated_splits/normal/lsoie/train.txt",
            ]
     trad = [
-        #"validated_splits/normal/trad/carb.txt",
-        "validated_splits/normal/trad/trad_train.txt",
-        #"validated_splits/normal/trad/ls_dev.txt",
+        "validated_splits/normal/trad/carb.txt",
+        "validated_splits/normal/trad/ls_train.txt",
+        "validated_splits/normal/trad/ls_dev.txt",
         "validated_splits/normal/trad/dev.txt",
     ]
-    OUTPUT_NAME = "fine_tune"
-    Merge(fine_tune, OUTPUT_NAME)
+    OUTPUT_NAME = "ls_train"
+    Merge(ls_train, OUTPUT_NAME)
 
 @app.command()
 def split():
