@@ -17,8 +17,9 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                           column_format={0: 'text', 8: 'label', 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
                           test_file=test,
-                          #dev_file=dev
+                          dev_file=dev
                           )
+    print(train, test, dev)
 
     label_type = "label"  # criando dicionario de tags
     label_dictionary = corpus.make_label_dictionary(label_type=label_type)

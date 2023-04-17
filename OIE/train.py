@@ -15,7 +15,7 @@ app = typer.Typer()
 def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     # define the structure of the .datasets file
     corpus = ColumnCorpus(data_folder=folder,
-                          column_format={0: 'text', 8: 'label', 9: "pos", 10: "dep", 11: "ner"},
+                          column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
                           test_file=test,
                           #dev_file=dev
@@ -33,8 +33,8 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     emb = bert
     embedding_types = [
         emb,
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=6, embedding_length=16),
-        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=6, embedding_length=35),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=6, embedding_length=16),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=6, embedding_length=35),
         FlairEmbeddings('pt-forward'),
         FlairEmbeddings('pt-backward')
     ]

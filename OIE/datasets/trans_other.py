@@ -1,5 +1,6 @@
 import translate
 from main import criar_conll
+from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions, clean_extraction
 
 def load_carb():
     sents = []
