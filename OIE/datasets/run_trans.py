@@ -1,7 +1,7 @@
 import translate
 
-paths = ["translated/lsoie/dev"]
-files = ["dev.conll"]
+paths = ["translated/lsoie/train", "translated/lsoie/test", "translated/lsoie/dev", "translated/lsoie/dev"]
+files = ["ls_train.conll", "ls_test.conll", "ls_dev.conll", "dev.conll"]
 
 cache = "translated/cache"
 BATCH_SIZE = 64

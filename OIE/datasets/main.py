@@ -78,10 +78,10 @@ def merge():
            "validated_splits/normal/lsoie/train.txt",
            ]
     trad = [
-        "validated_splits/normal/trad/carb.txt",
-        "validated_splits/normal/trad/ls_train.txt",
-        "validated_splits/normal/trad/ls_dev.txt",
-        "validated_splits/normal/trad/dev.txt",
+        "validated_splits/normal/trad2/carb_corpus.txt",
+        "validated_splits/normal/trad2/ls_train_corpus.txt",
+        "validated_splits/normal/trad2/ls_dev_corpus.txt",
+        "validated_splits/normal/trad2/dev_corpus.txt",
     ]
     trad2 = [
         "validated_splits/normal/trad/carb.txt",
@@ -98,8 +98,9 @@ def merge():
     fine_tune_1hot = ["other_corpus/outputs/saida_pos_tag/gamalho",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
-    OUTPUT_NAME = "fine_tune"
-    Merge(fine_tune_1hot, OUTPUT_NAME)
+
+    OUTPUT_NAME = "trad_train"
+    Merge(trad, OUTPUT_NAME)
 
 @app.command()
 def split():
