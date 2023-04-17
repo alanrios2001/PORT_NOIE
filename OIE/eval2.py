@@ -11,7 +11,7 @@ import re
 import pathlib
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-name = "tradoie/fine_tune"
+name = "tradoie"
 engine = Predictor(f"{name}/fine_tune")
 
 
@@ -108,7 +108,7 @@ def evaluate():
         gold=gold_dict,
         predicted=predict_dict,
         matchingFunc=Matcher.identicalMatch,
-        output_fn=f"evaluations/benchmark/curve_{name}.txt",
+        output_fn=f"evaluations/benchmark/curve_{name.split('/fine_tune')[0]}.txt",
     )
 
 generate_results()

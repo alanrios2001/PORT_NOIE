@@ -57,8 +57,13 @@ def criar_conll(out_name: str,
 @app.command()
 def merge():
     fine_tune = ["other_corpus/outputs/saida_match/gamalho/gamalho_corpus.txt",
+                  "other_corpus/outputs/saida_match/pragmatic_ceten/pragmatic_ceten_corpus.txt",
+                  "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt"]
+
+    fine_tune2 = ["other_corpus/outputs/saida_match/gamalho/gamalho_corpus.txt",
              "other_corpus/outputs/saida_match/pragmatic_ceten/pragmatic_ceten_corpus.txt",
-             "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt"]
+             "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt",
+             "validated_splits/normal/eval/200-silver.txt"]
 
     ls_train = ["validated_splits/normal/trad/ls_train.txt",
                 "validated_splits/normal/trad/ls_dev.txt",
@@ -78,8 +83,23 @@ def merge():
         "validated_splits/normal/trad/ls_dev.txt",
         "validated_splits/normal/trad/dev.txt",
     ]
-    OUTPUT_NAME = "trad_train"
-    Merge(trad, OUTPUT_NAME)
+    trad2 = [
+        "validated_splits/normal/trad/carb.txt",
+        "validated_splits/normal/lsoie/ls_train.txt",
+        "validated_splits/normal/lsoie/dev.txt",
+    ]
+
+    trad_1hot = [
+        "validated_splits/one_hot/trad/carb.txt",
+        "validated_splits/one_hot/trad/ls_train.txt",
+        "validated_splits/one_hot/trad/ls_dev.txt",
+        "validated_splits/one_hot/trad/dev.txt",
+    ]
+    fine_tune_1hot = ["other_corpus/outputs/saida_pos_tag/gamalho",
+                     "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
+                     "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
+    OUTPUT_NAME = "fine_tune"
+    Merge(fine_tune_1hot, OUTPUT_NAME)
 
 @app.command()
 def split():

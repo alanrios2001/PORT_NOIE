@@ -15,10 +15,10 @@ app = typer.Typer()
 def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     # define the structure of the .datasets file
     corpus = ColumnCorpus(data_folder=folder,
-                          column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
+                          column_format={0: 'text', 8: 'label', 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
                           test_file=test,
-                          dev_file=dev
+                          #dev_file=dev
                           )
 
     label_type = "label"    # criando dicionario de tags
@@ -33,8 +33,8 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     emb = bert
     embedding_types = [
         emb,
-        #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=5, embedding_length=30),
-        #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=5, embedding_length=30),
+        OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=6, embedding_length=16),
+        OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=6, embedding_length=35),
         FlairEmbeddings('pt-forward'),
         FlairEmbeddings('pt-backward')
     ]
@@ -47,8 +47,9 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
                          rnn_layers=2,
-                         dropout=0.3,
+                         dropout=0.5,
                          locked_dropout=0.0,
+                         word_dropout=0.0,
                          )
 
     pathlib.Path(f"train_output").mkdir(parents=True, exist_ok=True)
@@ -67,8 +68,8 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   optimizer=MADGRAD,
                   save_final_model=False,
                   anneal_factor=0.5,
-                  # anneal_with_restarts=True,
-                  # reduce_transformer_vocab=True,
+                  anneal_with_restarts=True,
+                  #reduce_transformer_vocab=True,
                   use_amp=True,
                   )
 

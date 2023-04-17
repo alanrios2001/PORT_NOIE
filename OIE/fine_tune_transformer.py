@@ -43,15 +43,15 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
     trm = bert
 
-    tagger = SequenceTagger(hidden_size=1024,
+    tagger = SequenceTagger(hidden_size=2048,
                             embeddings=trm,
                             tag_dictionary=label_dictionary,
                             tag_type='label',
                             use_crf=True,
                             use_rnn=True,
-                            rnn_layers=3,
+                            rnn_layers=1,
                             #locked_dropout=0.0,
-                            #dropout=0.3,
+                            dropout=0.5,
                             #word_dropout=0.0,
                             reproject_embeddings=False,
                             )
