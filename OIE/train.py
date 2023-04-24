@@ -18,7 +18,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                           column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
                           test_file=test,
-                          #dev_file=dev
+                          dev_file=dev
                           )
 
     label_type = "label"    # criando dicionario de tags
@@ -47,9 +47,9 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
                          rnn_layers=2,
-                         dropout=0.5,
+                         dropout=0.4,
                          locked_dropout=0.0,
-                         word_dropout=0.0,
+                         #word_dropout=0.0,
                          )
 
     pathlib.Path(f"train_output").mkdir(parents=True, exist_ok=True)
@@ -60,7 +60,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     # iniciando treino
     trainer.train(f"train_output/{name}",
                   learning_rate=1e-3,
-                  min_learning_rate=0.00005,
+                  min_learning_rate=0.0005,
                   mini_batch_size=8,
                   max_epochs=epochs,
                   patience=3,

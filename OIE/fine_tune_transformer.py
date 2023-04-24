@@ -27,7 +27,7 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
     label_dictionary = corpus.make_label_dictionary(label_type=label_type)
     print(label_dictionary)
 
-    bert = TransformerWordEmbeddings('bert-base-multilingual-cased',
+    bert = TransformerWordEmbeddings('neuralmind/bert-large-portuguese-cased',
                                      layers="-1",
                                      subtoken_pooling="first_last",
                                      use_context=True,
@@ -43,14 +43,14 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
     trm = bert
 
-    tagger = SequenceTagger(hidden_size=2048,
+    tagger = SequenceTagger(hidden_size=512,
                             embeddings=trm,
                             tag_dictionary=label_dictionary,
                             tag_type='label',
                             use_crf=True,
                             use_rnn=True,
                             rnn_layers=1,
-                            #locked_dropout=0.0,
+                            locked_dropout=0.0,
                             dropout=0.5,
                             #word_dropout=0.0,
                             reproject_embeddings=False,
@@ -62,7 +62,8 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
     # fine tune
     trainer.fine_tune(f"train_output/{name}",
                       learning_rate=1e-6,
-                      mini_batch_size=8,
+                      mini_batch_size=2,
+                      chunk_batch_size=1,
                       max_epochs=epochs,
                       optimizer=MADGRAD,
                       decoder_lr_factor=1000,

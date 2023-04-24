@@ -78,17 +78,15 @@ def merge():
            "validated_splits/normal/lsoie/train.txt",
            ]
     trad = [
-        "validated_splits/normal/trad2/carb_corpus.txt",
-        "validated_splits/normal/trad2/ls_train_corpus.txt",
-        "validated_splits/normal/trad2/ls_dev_corpus.txt",
-        "validated_splits/normal/trad2/dev_corpus.txt",
+        "validated_splits/normal/lsoie2/carb.txt",
+        "validated_splits/normal/lsoie2/ls_train.txt",
+        "validated_splits/normal/lsoie2/ls_dev.txt",
+        "validated_splits/normal/lsoie2/dev.txt",
     ]
     trad2 = [
-        "validated_splits/normal/trad/carb.txt",
-        "validated_splits/normal/lsoie/ls_train.txt",
-        "validated_splits/normal/lsoie/dev.txt",
+        "validated_splits/normal/trad_v2/ls_test.txt",
+        "validated_splits/normal/trad_v2/trad_train.txt",
     ]
-
     trad_1hot = [
         "validated_splits/one_hot/trad/carb.txt",
         "validated_splits/one_hot/trad/ls_train.txt",
@@ -99,8 +97,10 @@ def merge():
                      "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
 
-    OUTPUT_NAME = "trad_train"
-    Merge(trad, OUTPUT_NAME)
+    teste = ["validated_splits/normal/lsoie/dev.txt"]
+
+    OUTPUT_NAME = "trad2"
+    Merge(trad2, OUTPUT_NAME)
 
 @app.command()
 def split():
