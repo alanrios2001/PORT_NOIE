@@ -59,169 +59,51 @@ class ArgsRel:
             os.system("python -m spacy download pt_core_news_lg")
             self.nlp = spacy.load("pt_core_news_lg")
 
-    def get_args_rel2(self, ext):
-        doc = self.nlp(ext)
-        doc_dict = {}
-        i = 0
-        for token in doc:
-            doc_dict[i] = {"text": token.text, "pos": token.pos_, "dep": token.dep_}
-            i += 1
-        arg1 = ""
-        rel = ""
-        arg2 = ""
-        root_idx = (0, 0)
-        #encontra o root da extração
+    def root_parse(self, doc_dict, root_idx):
+        #encontra centro da extração pelo root
         for idx in doc_dict:
-            token = doc_dict[idx]["text"]
             pos = doc_dict[idx]["pos"]
             dep = doc_dict[idx]["dep"]
-            if (pos == "VERB" and dep == "ROOT"):
-                rel += token + " "
+            if (pos == "VERB" and dep == "ROOT" and (idx != 0 and idx != len(doc_dict) - 1)):
                 root_idx = (idx, idx)
                 break
-            if (pos == "AUX" and dep == "ROOT"):
-                rel += token + " "
-                root_idx = (idx, idx)
-                break
+        if root_idx == (None, None):
+            root_idx = self.aux_parse(doc_dict, root_idx)
+        return root_idx
 
-        #aqui encontramos tudo que está relacionado ao root caso ele seja um verbo
-        #(auxiliares, advmod, etc)
-        #estes, por serem modificadores ou auxiliares do verbo, são adicionados a rel
-        i = 0
-        while i < len(doc):
-            token = doc_dict[i]["text"]
-            pos = doc_dict[i]["pos"]
-            dep = doc_dict[i]["dep"]
-
-            if (dep == "xcomp" or pos == "VERB"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-
-            if (dep == "aux" or pos == "AUX"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-            if (dep == "advmod" or pos == "ADV"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-            if (dep == "case" or pos == "ADP"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-            if (dep == "aux:pass"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-            if (dep == "expl"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-
-            i += 1
-
-        #aqui separamos arg1 e arg2 a partir do root
+    def aux_parse(self, doc_dict, root_idx):
+        #encontra centro da extração pelo root
         for idx in doc_dict:
-            token = doc_dict[idx]["text"]
-            if idx < root_idx[0]:
-                arg1 += token + " "
-            if idx > root_idx[1]:
-                arg2 += token + " "
-        return arg1, rel, arg2
-
-    def get_args_rel3(self, ext):
-        doc = self.nlp(ext)
-        doc_dict = {}
-        i = 0
-        for token in doc:
-            doc_dict[i] = {"text": token.text, "pos": token.pos_, "dep": token.dep_}
-            i += 1
-        arg1 = ""
-        rel = ""
-        arg2 = ""
-        root_idx = (0, 0)
-        #encontra o root da extração
-        for idx in doc_dict:
-            token = doc_dict[idx]["text"]
             pos = doc_dict[idx]["pos"]
             dep = doc_dict[idx]["dep"]
-            if (pos == "AUX" and dep == "cop"):
-                rel += token + " "
+            if (pos == "AUX" and dep == "cop") or (pos == "AUX" and dep == "ROOT") or (pos == "AUX" and dep == "aux:pass") and (idx != 0 and idx != len(doc_dict) - 1):
                 root_idx = (idx, idx)
                 break
-
-        #aqui encontramos tudo que está relacionado ao root caso ele seja um verbo
-        #(auxiliares, advmod, etc)
-        #estes, por serem modificadores ou auxiliares do verbo, são adicionados a rel
-        i = 0
-        while i < len(doc):
-            token = doc_dict[i]["text"]
-            pos = doc_dict[i]["pos"]
-            dep = doc_dict[i]["dep"]
-
-            if (dep == "xcomp" or pos == "VERB"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-
-            if (dep == "aux" or pos == "AUX"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-                if root_idx[1] + 1 == i:
-                    rel += token + " "
-                    root_idx = (root_idx[0], i)
-                    i = root_idx[1]
-            if (dep == "advmod" or pos == "ADV"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-            if (dep == "case" or pos == "ADP"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-                if root_idx[1] + 1 == i:
-                    rel += token + " "
-                    root_idx = (root_idx[0], i)
-                    i = root_idx[1]
-            if (dep == "aux:pass"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-            if (dep == "expl"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-                if root_idx[1] + 1 == i:
-                    rel += token + " "
-                    root_idx = (root_idx[0], i)
-                    i = root_idx[1]
-
-            i += 1
-
-        #aqui separamos arg1 e arg2 a partir do root
+        if root_idx == (None, None):
+            root_idx = self.x_comp_parse(doc_dict, root_idx)
+        return root_idx
+    def x_comp_parse(self, doc_dict, root_idx):
+        #encontra centro da extração pelo root
         for idx in doc_dict:
-            token = doc_dict[idx]["text"]
-            if idx < root_idx[0]:
-                arg1 += token + " "
-            if idx > root_idx[1]:
-                arg2 += token + " "
-        return arg1, rel, arg2
+            pos = doc_dict[idx]["pos"]
+            dep = doc_dict[idx]["dep"]
+            if (pos == "VERB" and dep == "xcomp" and (idx != 0 and idx != len(doc_dict) - 1)):
+                root_idx = (idx, idx)
+                break
+        if root_idx == (None, None):
+            root_idx = self.noun_root_parse(doc_dict, root_idx)
+        return root_idx
 
-    #Separa arg1, rel e arg2 da extração a partir da analise sintatica de dependencia da extração
+    def noun_root_parse(self, doc_dict, root_idx):
+        #encontra centro da extração pelo root
+        for idx in doc_dict:
+            pos = doc_dict[idx]["pos"]
+            dep = doc_dict[idx]["dep"]
+            if (pos == "NOUN" and dep == "ROOT" and (idx != 0 and idx != len(doc_dict) - 1)):
+                root_idx = (idx, idx)
+                break
+        return root_idx
+
     def get_args_rel(self, ext):
         doc = self.nlp(ext)
         doc_dict = {}
@@ -232,97 +114,160 @@ class ArgsRel:
         arg1 = ""
         rel = ""
         arg2 = ""
-        root_idx = (0, 0)
-        #encontra o root da extração
-        for idx in doc_dict:
-            token = doc_dict[idx]["text"]
-            pos = doc_dict[idx]["pos"]
-            dep = doc_dict[idx]["dep"]
-            if (pos == "VERB" and dep == "ROOT"):
-                rel += token + " "
-                root_idx = (idx, idx)
-                break
-            if (pos == "AUX" and dep == "ROOT"):
-                rel += token + " "
-                root_idx = (idx, idx)
-                break
+        root_idx = (None, None)
+        root_idx = self.root_parse(doc_dict, root_idx)
 
-        #aqui encontramos tudo que está relacionado ao root caso ele seja um verbo
-        #(auxiliares, advmod, etc)
-        #estes, por serem modificadores ou auxiliares do verbo, são adicionados a rel
-        i = 0
-        while i < len(doc):
-            token = doc_dict[i]["text"]
-            pos = doc_dict[i]["pos"]
-            dep = doc_dict[i]["dep"]
+        #verificando elementos que compoem a rel antes do centro
+        if root_idx != (None, None):
+            i = root_idx[0] - 1
+            while i > 0:
+                pos = doc_dict[i]["pos"]
+                dep = doc_dict[i]["dep"]
+                if (pos == "SCONJ" and dep == "mark"):
+                    root_idx = (i, root_idx[1])
+                    break
+                if (dep == "case"):
+                    if i-1 != 0:
+                        dep2 = doc_dict[i-1]["dep"]
+                        if dep2 == "obj":
+                            if i-2 != 0:
+                                dep3 = doc_dict[i-2]["dep"]
+                                if dep3 == "det":
+                                    root_idx = (i-2, root_idx[1])
+                                    break
+                if (pos == "PRON" and dep == "expl"):
+                    if i-1 != 0:
+                        pos2 = doc_dict[i-1]["pos"]
+                        dep2 = doc_dict[i-1]["dep"]
+                        if pos2 == "ADV" and dep2 == "advmod":
+                            root_idx = (i-1, root_idx[1])
+                            break
 
-            if (dep == "xcomp" or pos == "VERB"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
+                if (pos == "ADV" and dep == "advmod"):
                     root_idx = (i, root_idx[1])
-                    i = 0
-                if root_idx[1] + 1 == i:
-                    rel += token + " "
-                    root_idx = (root_idx[0], i)
-                    i = root_idx[1]
+                if ("aux" in dep):
+                    root_idx = (i, root_idx[1])
+                    break
+                if (pos == "ADP" and dep == "case"):
+                    root_idx = (i, root_idx[1])
+                    break
+                i-=1
+                if i == root_idx[0]-1:
+                    continue
+                else:
+                    break
+            #verificando elementos que compoem a rel depois do centro
+        if root_idx != (None, None):
+            inicio = root_idx[1] + 1
+            i = inicio
+            while i < len(doc_dict)-1:
+                pos = doc_dict[i]["pos"]
+                dep = doc_dict[i]["dep"]
+                add_idx = root_idx[1] + 1
+                if add_idx < len(doc_dict)-1:
+                    if pos == "VERB":
+                        if i == add_idx:
+                            root_idx = (root_idx[0], i)
+                            i = inicio
+                    if pos == "SCONJ":
+                        if i == add_idx:
+                            root_idx = (root_idx[0], i)
+                            i = inicio
 
-            if (dep == "aux" or pos == "AUX"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-                if root_idx[1] + 1 == i:
-                    rel += token + " "
-                    root_idx = (root_idx[0], i)
-                    i = root_idx[1]
-            if (dep == "advmod" or pos == "ADV"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-            if (dep == "case" or pos == "ADP"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-                if root_idx[1] + 1 == i:
-                    rel += token + " "
-                    root_idx = (root_idx[0], i)
-                    i = root_idx[1]
-            if (dep == "aux:pass"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-                if root_idx[1] + 1 == i:
-                    rel += token + " "
-                    root_idx = (root_idx[0], i)
-                    i = root_idx[1]
-            if (dep == "expl"):
-                if i == root_idx[0] - 1:
-                    rel = token + " " + rel
-                    root_idx = (i, root_idx[1])
-                    i = 0
-                if root_idx[1] + 1 == i:
-                    rel += token + " "
-                    root_idx = (root_idx[0], i)
-                    i = root_idx[1]
+                    if(pos == "ADP" and dep == "case"):
+                        if i == add_idx:
+                            root_idx = (root_idx[0], i)
+                            i = inicio
+                    if(pos == "ADV" and dep == "advmod"):
+                        if i == add_idx:
+                            root_idx = (root_idx[0], i)
+                            i = inicio
 
-            i += 1
+                    if(pos == "ADV" and dep == "advmod"):
+                        if i == add_idx:
+                            if i+1 < len(doc_dict)-1:
+                                dep2 = doc_dict[i+1]["dep"]
+                                if dep2 == "case":
+                                    root_idx = (root_idx[0], i+1)
+                                    i = inicio
 
-        #aqui separamos arg1 e arg2 a partir do root
-        for idx in doc_dict:
-            token = doc_dict[idx]["text"]
-            if idx < root_idx[0]:
-                arg1 += token + " "
-            if idx > root_idx[1]:
-                arg2 += token + " "
+                    if (dep == "det"):
+                        if i == add_idx:
+                            if i+1 < len(doc_dict)-1:
+                                dep2 = doc_dict[i+1]["dep"]
+                                if dep2 == "obj":
+                                    if i+2 < len(doc_dict)-1:
+                                        dep2 = doc_dict[i+2]["dep"]
+                                        if dep2 == "case":
+                                            root_idx = (root_idx[0], i+2)
+                                            break
 
-        if arg2 == "":
-            arg1, rel, arg2 = self.get_args_rel2(ext)
-        if arg1 == "" or rel == "" or arg2 == "":
-            arg1, rel, arg2 = self.get_args_rel3(ext)
+                    if dep == "xcomp":
+                        if i == add_idx:
+                            if i+1 < len(doc_dict)-1:
+                                dep2 = doc_dict[i+1]["dep"]
+                                if dep2 == "case":
+                                    root_idx = (root_idx[0], i+1)
+                                    break
+
+                    if dep == "nummod":
+                        if i == add_idx:
+                            if i+1 < len(doc_dict)-1:
+                                dep2 = doc_dict[i+1]["dep"]
+                                if dep2 == "obj":
+                                    root_idx = (root_idx[0], i+1)
+                                    break
+
+                    if "mod" in dep:
+                        if i == add_idx:
+                            if i+1 < len(doc_dict)-1:
+                                dep2 = doc_dict[i+1]["dep"]
+                                if dep2 == "obj":
+                                    if i+2 < len(doc_dict)-1:
+                                        dep2 = doc_dict[i+2]["dep"]
+                                        if dep2 == "case":
+                                            root_idx = (root_idx[0], i+2)
+                                            break
+
+
+                else:
+                    break
+                i += 1
+
+
+        j = root_idx[0]
+        if root_idx != (None, None):
+            while j <= root_idx[1]:
+                rel += doc_dict[j]["text"] + " "
+                j += 1
+
+            for idx in doc_dict:
+                token = doc_dict[idx]["text"]
+                if idx < root_idx[0]:
+                    arg1 += token + " "
+                if idx > root_idx[1]:
+                    arg2 += token + " "
+
+
         return arg1, rel, arg2
+
+
+    def check_det_noun_adp(self, root_idx, doc_dict):
+        i = root_idx[1] + 1
+        if i >= len(doc_dict):
+            return root_idx
+        if doc_dict[i]["dep"] == "det" or doc_dict[i]["pos"] == "DET":
+            i+=1
+            if i >= len(doc_dict):
+                return root_idx
+            elif doc_dict[i]["dep"] == "obj" or doc_dict[i]["pos"] == "NOUN":
+                i+=1
+                if i >= len(doc_dict):
+                    return root_idx
+                elif doc_dict[i]["dep"] == "case" or doc_dict[i]["pos"] == "ADP":
+                    root_idx = (root_idx[0], i)
+                    return root_idx
+        return root_idx
 
 
 class Translators:

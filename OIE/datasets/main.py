@@ -82,6 +82,7 @@ def merge():
         "validated_splits/normal/lsoie2/ls_train.txt",
         "validated_splits/normal/lsoie2/ls_dev.txt",
         "validated_splits/normal/lsoie2/dev.txt",
+        "validated_splits/normal/lsoie2/ls_test.txt",
     ]
     trad2 = [
         "validated_splits/normal/trad_v2/ls_test.txt",
@@ -100,7 +101,7 @@ def merge():
     teste = ["validated_splits/normal/lsoie/dev.txt"]
 
     OUTPUT_NAME = "trad2"
-    Merge(trad2, OUTPUT_NAME)
+    Merge(trad, OUTPUT_NAME)
 
 @app.command()
 def split():

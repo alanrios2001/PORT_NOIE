@@ -1,8 +1,10 @@
 import os
 import json
 import spacy
-from spacy.matcher import Matcher
+from spacy.matcher import Matcher, PhraseMatcher
+from spacy.symbols import ORTH
 from tqdm import tqdm
+import re
 
 
 class OIE_Match:
@@ -19,6 +21,10 @@ class OIE_Match:
             os.system("python -m spacy download pt_core_news_lg")
             self.nlp = spacy.load("pt_core_news_lg")
 
+    def remove_special_case(self, tokenizer, special_case):
+        # Remova a entrada do dicionário special_cases se ela existir
+        if special_case in tokenizer.special_cases:
+            del tokenizer.special_cases[special_case]
     def validate_ext(self, sequential):
 
         json_dir = self.path_dir + "/json_dump.json"
@@ -26,72 +32,91 @@ class OIE_Match:
             data = json.load(f)
 
         for key in tqdm(range(len(data)), desc="Carregando dados"):
-
+            cases = []
             key = str(key)
-            sentence = self.nlp(data[key]["sent"].lower())
+            raw_sent = data[key]["sent"].split(" ")
+            raw_sent = [item for item in raw_sent if ((item != "''" and item != "`")or(item != "'" and item != "``"))]
+            raw_sent = " ".join(raw_sent)
+            raw_sent = re.sub(r'\u200b', '', raw_sent)
+
+            sent1 = self.nlp(raw_sent)
+            raw_sent2 = [token.text for token in sent1]
+            if raw_sent2[-1] != ".":
+                raw_sent2.append(".")
+            raw_sent2 = " ".join(raw_sent2)
+            raw_sent2 = raw_sent2.replace(" ,", ",")
+            raw_sent2 = raw_sent2.replace(" .", ".")
+            sent2 = self.nlp(raw_sent2)
+            for token in sent2:
+                if token.pos_ == "PROPN" and "." in token.text:
+                    abreviation = [{"ORTH": str(token.text).lower()}]
+                    self.nlp.tokenizer.add_special_case(str(token.text).lower(), abreviation)
+                    cases.append(str(token.text).lower())
+
+            sent = raw_sent2.lower()
+            sentence = self.nlp(sent)
+
             ext = data[key]["ext"][0]
 
             arg1 = ext["arg1"].lower().split(" ")
             rel = ext["rel"].lower().split(" ")
             arg2 = ext["arg2"].lower().split(" ")
 
-            arg1_str = list(filter(None, arg1))
-            rel_str = list(filter(None, rel))
-            arg2_str = list(filter(None, arg2))
+            arg1 = " ".join([item for item in arg1 if ((item != "''" and item != "`")or(item != "'" and item != "``"))])
+            arg2 = " ".join([item for item in arg2 if ((item != "''" and item != "`")or(item != "'" and item != "``"))])
+            rel = " ".join([item for item in rel if ((item != "''" and item != "`")or(item != "'" and item != "``"))])
+            arg1 = re.sub(r'\u200b', '', arg1)
+            arg2 = re.sub(r'\u200b', '', arg2)
+            rel = re.sub(r'\u200b', '', rel)
+            if len(arg2) > 0 and arg2[-1] == ".":
+                arg2 = arg2[:-1]
 
-            arg1 = [self.nlp.make_doc(text) for text in arg1_str]
-            rel = [self.nlp.make_doc(text) for text in rel_str]
-            arg2 = [self.nlp.make_doc(text) for text in arg2_str]
+            arg1 = self.nlp(arg1.lower())
+            rel = self.nlp(rel.lower())
+            arg2 = self.nlp(arg2.lower())
 
             # encontrar arg1
-            arg1_matcher = Matcher(self.nlp.vocab)
-
-            pattern = []
-            for token in arg1:
-                pattern.append({"LOWER": token.text})
-            if len(pattern) > 0:
-                arg1_matcher.add("arg1", [pattern])
+            arg1_matcher = PhraseMatcher(self.nlp.vocab)
+            arg1_matcher.add("arg1", [arg1])
             arg1_match = arg1_matcher(sentence)
+            #print("arg1_match")
+            #print(arg1)
+            #print(arg1_match)
 
             # encontrar arg2
-            arg2_matcher = Matcher(self.nlp.vocab)
-
-            pattern = []
-            for token in arg2:
-                pattern.append({"LOWER": token.text})
-            if len(pattern) > 0:
-                arg2_matcher.add("arg2", [pattern])
+            arg2_matcher = PhraseMatcher(self.nlp.vocab)
+            arg2_matcher.add("arg2", [arg2])
             arg2_match = arg2_matcher(sentence)
+            #print("arg2_match")
+            #print(arg2)
+            #print(arg2_match)
 
             # encontrar relações
-            rel_matcher = Matcher(self.nlp.vocab)
-
-            pattern = []
-            for token in rel:
-                pattern.append({"LOWER": token.text})
-
-            if len(pattern) > 0:
-                rel_matcher.add("rel", [pattern])
+            rel_matcher = PhraseMatcher(self.nlp.vocab)
+            rel_matcher.add("rel", [rel])
             rel_match = rel_matcher(sentence)
+            #print("rel_match")
+            #print(rel)
+            #print(rel_match)
 
             # select valid extractions
             if len(arg1_match) > 0 and len(rel_match) > 0 and len(arg2_match) > 0:
                 if sequential:
                     if arg1_match[0][2] < rel_match[0][2] < arg2_match[0][2]:
-                        self.valid[data[key]["sent"]] = {
+                        self.valid[raw_sent2] = {
                             "arg1": arg1_match,
                             "arg2": arg2_match,
                             "rel": rel_match,
                         }
-                        sent = self.nlp(data[key]["sent"])
+                        sent = self.nlp(raw_sent2)
                         tk = [token.text for token in sent]
-                        self.valid_data[data[key]["sent"]] = {
+                        self.valid_data[raw_sent2] = {
                             "arg1": (tk[arg1_match[0][1]:arg1_match[0][2]]),
                             "rel": (tk[rel_match[0][1]:rel_match[0][2]]),
                             "arg2": (tk[arg2_match[0][1]:arg2_match[0][2]]),
                         }
                 elif (arg1_match[0][2] < rel_match[0][2] < arg2_match[0][2]) == False:
-                    self.valid[data[key]["sent"]] = {
+                    self.valid[raw_sent2] = {
                         "arg1": arg1_match,
                         "arg2": arg2_match,
                         "rel": rel_match,
@@ -111,11 +136,11 @@ class OIE_Match:
                     rel_tuple = (rel_match[0][1], rel_match[0][2])
                 except:
                     rel_tuple = (0, 0)
-                sent = self.nlp(data[key]["sent"])
+                sent = self.nlp(raw_sent2)
                 tk = [token.text for token in sent]
 
                 try:
-                    self.invalid[data[key]["sent"]] = {
+                    self.invalid[raw_sent2] = {
                         "ID": data[key]["ID"],
                         "expected": ext,
                         "arg1": (arg1_tuple[0], arg1_tuple[1], tk[arg1_tuple[0]:arg1_tuple[1]]),
@@ -123,13 +148,15 @@ class OIE_Match:
                         "arg2": (arg2_tuple[0], arg2_tuple[1], tk[arg2_tuple[0]:arg2_tuple[1]]),
                     }
                 except:
-                    self.invalid[data[key]["sent"]] = {
+                    self.invalid[raw_sent2] = {
                         "ID": key,
                         "expected": ext,
                         "arg1": (arg1_tuple[0], arg1_tuple[1], tk[arg1_tuple[0]:arg1_tuple[1]]),
                         "rel": (rel_tuple[0], rel_tuple[1], tk[rel_tuple[0]:rel_tuple[1]]),
                         "arg2": (arg2_tuple[0], arg2_tuple[1], tk[arg2_tuple[0]:arg2_tuple[1]]),
                     }
+        for case in cases:
+            self.nlp.tokenizer.remove_special_case(self.nlp, case)
 
         with open(self.path_dir+"/invalid.json", "a", encoding="utf-8") as f:
             json.dump(self.invalid, f, ensure_ascii=False, indent=4)
