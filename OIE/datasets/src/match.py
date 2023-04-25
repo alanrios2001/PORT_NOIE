@@ -35,7 +35,7 @@ class OIE_Match:
             cases = []
             key = str(key)
             raw_sent = data[key]["sent"].split(" ")
-            raw_sent = [item for item in raw_sent if ((item != "''" and item != "`")or(item != "'" and item != "``"))]
+            raw_sent = [item for item in raw_sent if ((item != "''" and item != "``")and(item != "'" and item != "`"))]
             raw_sent = " ".join(raw_sent)
             raw_sent = re.sub(r'\u200b', '', raw_sent)
 
@@ -62,9 +62,9 @@ class OIE_Match:
             rel = ext["rel"].lower().split(" ")
             arg2 = ext["arg2"].lower().split(" ")
 
-            arg1 = " ".join([item for item in arg1 if ((item != "''" and item != "`")or(item != "'" and item != "``"))])
-            arg2 = " ".join([item for item in arg2 if ((item != "''" and item != "`")or(item != "'" and item != "``"))])
-            rel = " ".join([item for item in rel if ((item != "''" and item != "`")or(item != "'" and item != "``"))])
+            arg1 = " ".join([item for item in arg1 if ((item != "''" and item != "`")and(item != "'" and item != "``"))])
+            arg2 = " ".join([item for item in arg2 if ((item != "''" and item != "`")and(item != "'" and item != "``"))])
+            rel = " ".join([item for item in rel if ((item != "''" and item != "`")and(item != "'" and item != "``"))])
             arg1 = re.sub(r'\u200b', '', arg1)
             arg2 = re.sub(r'\u200b', '', arg2)
             rel = re.sub(r'\u200b', '', rel)

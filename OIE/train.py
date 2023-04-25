@@ -35,21 +35,19 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
         emb,
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=6, embedding_length=16),
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=6, embedding_length=35),
-        FlairEmbeddings('pt-forward'),
-        FlairEmbeddings('pt-backward')
+        #FlairEmbeddings('pt-forward'),
+        #FlairEmbeddings('pt-backward')
     ]
 
     embeddings = StackedEmbeddings(embeddings=embedding_types)
 
     # inicializando sequence tagger
     oie = SequenceTagger(hidden_size=2048,
-                         embeddings=embeddings,
+                         embeddings=emb,
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
                          rnn_layers=2,
-                         dropout=0.4,
-                         locked_dropout=0.0,
-                         #word_dropout=0.0,
+                         dropout=0.0,
                          )
 
     pathlib.Path(f"train_output").mkdir(parents=True, exist_ok=True)
@@ -59,8 +57,8 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     # iniciando treino
     trainer.train(f"train_output/{name}",
-                  learning_rate=1e-3,
-                  min_learning_rate=0.0005,
+                  learning_rate=5e-4,
+                  min_learning_rate=0.0002,
                   mini_batch_size=8,
                   max_epochs=epochs,
                   patience=3,
