@@ -34,15 +34,15 @@ class OIE_Match:
         for key in tqdm(range(len(data)), desc="Carregando dados"):
             cases = []
             key = str(key)
-            raw_sent = data[key]["sent"].split(" ")
-            raw_sent = [item for item in raw_sent if ((item != "''" and item != "``")and(item != "'" and item != "`"))]
-            raw_sent = " ".join(raw_sent)
+            raw_sent = data[key]["sent"]
+            raw_sent = raw_sent.replace("`", "").replace("'", "")
             raw_sent = re.sub(r'\u200b', '', raw_sent)
 
             sent1 = self.nlp(raw_sent)
             raw_sent2 = [token.text for token in sent1]
             if raw_sent2[-1] != ".":
                 raw_sent2.append(".")
+            raw_sent2_splited = raw_sent2
             raw_sent2 = " ".join(raw_sent2)
             raw_sent2 = raw_sent2.replace(" ,", ",")
             raw_sent2 = raw_sent2.replace(" .", ".")
@@ -58,13 +58,13 @@ class OIE_Match:
 
             ext = data[key]["ext"][0]
 
-            arg1 = ext["arg1"].lower().split(" ")
-            rel = ext["rel"].lower().split(" ")
-            arg2 = ext["arg2"].lower().split(" ")
+            arg1 = ext["arg1"]
+            rel = ext["rel"]
+            arg2 = ext["arg2"]
+            arg1 = arg1.replace("`", "").replace("'", "")
+            rel = rel.replace("`", "").replace("'", "")
+            arg2 = arg2.replace("`", "").replace("'", "")
 
-            arg1 = " ".join([item for item in arg1 if ((item != "''" and item != "`")and(item != "'" and item != "``"))])
-            arg2 = " ".join([item for item in arg2 if ((item != "''" and item != "`")and(item != "'" and item != "``"))])
-            rel = " ".join([item for item in rel if ((item != "''" and item != "`")and(item != "'" and item != "``"))])
             arg1 = re.sub(r'\u200b', '', arg1)
             arg2 = re.sub(r'\u200b', '', arg2)
             rel = re.sub(r'\u200b', '', rel)
@@ -104,6 +104,7 @@ class OIE_Match:
                 if sequential:
                     if arg1_match[0][2] < rel_match[0][2] < arg2_match[0][2]:
                         self.valid[raw_sent2] = {
+                            "sent": raw_sent2_splited,
                             "arg1": arg1_match,
                             "arg2": arg2_match,
                             "rel": rel_match,
@@ -111,12 +112,14 @@ class OIE_Match:
                         sent = self.nlp(raw_sent2)
                         tk = [token.text for token in sent]
                         self.valid_data[raw_sent2] = {
+                            "sent": raw_sent2_splited,
                             "arg1": (tk[arg1_match[0][1]:arg1_match[0][2]]),
                             "rel": (tk[rel_match[0][1]:rel_match[0][2]]),
                             "arg2": (tk[arg2_match[0][1]:arg2_match[0][2]]),
                         }
                 elif (arg1_match[0][2] < rel_match[0][2] < arg2_match[0][2]) == False:
                     self.valid[raw_sent2] = {
+                        "sent": raw_sent2_splited,
                         "arg1": arg1_match,
                         "arg2": arg2_match,
                         "rel": rel_match,
@@ -142,7 +145,12 @@ class OIE_Match:
                 try:
                     self.invalid[raw_sent2] = {
                         "ID": data[key]["ID"],
-                        "expected": ext,
+                        "expected": {
+                            "arg1": arg1.text,
+                            "rel": rel.text,
+                            "arg2": arg2.text,
+                        },
+                        "sent": raw_sent2,
                         "arg1": (arg1_tuple[0], arg1_tuple[1], tk[arg1_tuple[0]:arg1_tuple[1]]),
                         "rel": (rel_tuple[0], rel_tuple[1], tk[rel_tuple[0]:rel_tuple[1]]),
                         "arg2": (arg2_tuple[0], arg2_tuple[1], tk[arg2_tuple[0]:arg2_tuple[1]]),
@@ -150,7 +158,11 @@ class OIE_Match:
                 except:
                     self.invalid[raw_sent2] = {
                         "ID": key,
-                        "expected": ext,
+                        "expected": {
+                            "arg1": arg1.text,
+                            "rel": rel.text,
+                            "arg2": arg2.text,
+                        },
                         "arg1": (arg1_tuple[0], arg1_tuple[1], tk[arg1_tuple[0]:arg1_tuple[1]]),
                         "rel": (rel_tuple[0], rel_tuple[1], tk[rel_tuple[0]:rel_tuple[1]]),
                         "arg2": (arg2_tuple[0], arg2_tuple[1], tk[arg2_tuple[0]:arg2_tuple[1]]),
@@ -168,8 +180,7 @@ class OIE_Match:
     def create_corpus(self):
         with open(f"{self.path_dir}/{self.output_name}_corpus.txt", "a", encoding="utf-8") as file:
             for sent in tqdm(self.valid, desc="Criando conll"):
-                sentence = self.nlp(sent)
-                sent_tokens = [token.text for token in sentence]
+                sent_tokens = self.valid[sent]["sent"]
                 arg1_spans = []
                 arg2_spans = []
                 rel_spans = []
