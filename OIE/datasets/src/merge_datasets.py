@@ -11,8 +11,8 @@ class Merge:
             with open(datasets[i], "r", encoding="utf-8") as file:
                 data = file.read()
                 data = data.split("\n\n")
-                random.shuffle(data)
-                random.shuffle(data)
+                if data[-1] == "":
+                    data = data[:-1]
                 random.shuffle(data)
                 data = "\n\n".join(data)
                 self.merged += data
