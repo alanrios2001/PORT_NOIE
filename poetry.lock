@@ -3406,6 +3406,18 @@ files = [
 ]
 
 [[package]]
+name = "pytorch-crf"
+version = "0.7.2"
+description = "Conditional random field in PyTorch"
+category = "main"
+optional = false
+python-versions = ">=3.6, <4"
+files = [
+    {file = "pytorch-crf-0.7.2.tar.gz", hash = "sha256:e6456e22ccfc99a3d4fe1e03e996103b1b39e9830bf3c7e12e7a9077d3be866d"},
+    {file = "pytorch_crf-0.7.2-py3-none-any.whl", hash = "sha256:1b2d7d5eea3255f6e0cac09ab8b645472e76ff70d9333bc88762cf7317a4992d"},
+]
+
+[[package]]
 name = "pytorch-ranger"
 version = "0.1.1"
 description = "Ranger - a synergistic optimizer using RAdam (Rectified Adam) and LookAhead in one codebase"
@@ -4482,6 +4494,7 @@ opt-einsum = ["opt-einsum (>=3.3)"]
 [package.source]
 type = "url"
 url = "https://download.pytorch.org/whl/cu117/torch-1.13.0%2Bcu117-cp39-cp39-win_amd64.whl"
+
 [[package]]
 name = "torch-optimizer"
 version = "0.3.0"
@@ -4497,6 +4510,17 @@ files = [
 [package.dependencies]
 pytorch-ranger = ">=0.1.1"
 torch = ">=1.5.0"
+
+[[package]]
+name = "torchcontrib"
+version = "0.0.2"
+description = "implementations of ideas from recent papers"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "torchcontrib-0.0.2.tar.gz", hash = "sha256:e1ffd095fc4b12fd940fc607495fa04ae026f6a13f4c074e1bb771773e923f1a"},
+]
 
 [[package]]
 name = "torchtext"
@@ -5140,4 +5164,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8,<3.10"
-content-hash = "ee952c434cb882ebdeb3ee37ce4f4f0a30d1fc7a514eca38eaf202d424abef7f"
+content-hash = "fd45497cb352e9e79002a9b0c5cd358555b92d6061126e37c1e91f2fc3fab7c9"

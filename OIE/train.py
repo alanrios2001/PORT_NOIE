@@ -1,15 +1,17 @@
 import pathlib
+from flair.hyperparameter.param_selection import SearchSpace, Parameter
+from flair.hyperparameter.param_selection import SequenceTaggerParamSelector
+from hyperopt import hp
 from flair.datasets import ColumnCorpus
-from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, OneHotEmbeddings, OpenAIGPT2Embeddings
+from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, PooledFlairEmbeddings, OneHotEmbeddings
 from flair.models import SequenceTagger
-#from flair.trainers import ModelTrainer
-from trainers.trainer import ModelTrainer
 from madgrad import MADGRAD
-from torch.optim.adagrad import Adagrad
 import typer
+import torch
+from flair.trainers import ModelTrainer
+#from trainers.trainer import ModelTrainer
 
 app = typer.Typer()
-
 
 @app.command()
 def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
@@ -25,29 +27,32 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     label_dictionary = corpus.make_label_dictionary(label_type=label_type)
     print(label_dictionary)
 
+    roberta = TransformerWordEmbeddings("xlm-roberta-base")
+
     bert = TransformerWordEmbeddings(
         "neuralmind/bert-base-portuguese-cased",
     )
-    roberta = TransformerWordEmbeddings("xlm-roberta-base")
 
     emb = bert
     embedding_types = [
         emb,
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=6, embedding_length=16),
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=6, embedding_length=35),
-        #FlairEmbeddings('pt-forward'),
-        #FlairEmbeddings('pt-backward')
+        FlairEmbeddings('pt-forward'),
+        FlairEmbeddings('pt-backward')
     ]
 
     embeddings = StackedEmbeddings(embeddings=embedding_types)
 
     # inicializando sequence tagger
     oie = SequenceTagger(hidden_size=2048,
-                         embeddings=emb,
+                         embeddings=embeddings,
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
                          rnn_layers=2,
-                         dropout=0.0,
+                         dropout=0.5,
+                         locked_dropout=0.0,
+                         word_dropout=0.0,
                          )
 
     pathlib.Path(f"train_output").mkdir(parents=True, exist_ok=True)
@@ -57,9 +62,9 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     # iniciando treino
     trainer.train(f"train_output/{name}",
-                  learning_rate=5e-4,
+                  learning_rate=1e-3,
                   min_learning_rate=0.0002,
-                  mini_batch_size=8,
+                  mini_batch_size=4,
                   max_epochs=epochs,
                   patience=3,
                   embeddings_storage_mode='cpu',
@@ -67,8 +72,9 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   save_final_model=False,
                   anneal_factor=0.5,
                   anneal_with_restarts=True,
-                  #reduce_transformer_vocab=True,
-                  use_amp=True,
+                  reduce_transformer_vocab=True,
+                  #use_swa=True
+                  #use_amp=True,
                   )
 
 if __name__ == "__main__":

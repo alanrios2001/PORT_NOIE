@@ -24,6 +24,8 @@ deep-translator = "^1.10.1"
 diskcache = "^5.4.0"
 pandas = "^1.5.3"
 nltk = "^3.8.1"
+pytorch-crf = "^0.7.2"
+torchcontrib = "^0.0.2"
 
 
 [build-system]
