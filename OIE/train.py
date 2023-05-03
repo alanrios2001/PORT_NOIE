@@ -31,7 +31,6 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     bert = TransformerWordEmbeddings(
         "neuralmind/bert-base-portuguese-cased",
-        use_context=True
     )
 
     emb = bert
