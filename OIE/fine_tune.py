@@ -36,18 +36,14 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
     # inicializando trainer
     trainer = ModelTrainer(oie, corpus)
+
+
+    '8 epochs first round, second, 16'
     # fine tune
-    """
-    para o melhor fine tune, usar o seguinte estrategia:
-    inicialmente rodar o fine_tune usando o split 'fine_tune' como treino e '200-silver' como dev,
-    após isso fazer outro fine_tune usando o split '200-silver' como treino e dev ao mesmo tempo,
-    monitorar o desempenho do modelo e parar o treino quando o desempenho f1-score no dev estiver o mais proximo
-    possível de 0.63.
-    """
     trainer.fine_tune(f"train_output/{name}/fine_tune",
-                      learning_rate=2e-5,
+                      learning_rate=1e-4,
                       mini_batch_size=8,
-                      max_epochs=epochs,
+                      max_epochs=16,
                       optimizer=MADGRAD,
                       )
 

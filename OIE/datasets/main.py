@@ -78,20 +78,21 @@ def merge():
            "validated_splits/normal/lsoie/train.txt",
            ]
     trad = [
-        "validated_splits/normal/lsoie2/carb.txt",
-        "validated_splits/normal/lsoie2/ls_train.txt",
-        "validated_splits/normal/lsoie2/ls_dev.txt",
-        "validated_splits/normal/lsoie2/ls_test.txt",
+        "validated_splits/normal/lsoie3/carb.txt",
+        "validated_splits/normal/lsoie3/ls_train.txt",
+        "validated_splits/normal/lsoie3/ls_dev.txt",
+        "validated_splits/normal/lsoie3/ls_test.txt",
+        "validated_splits/normal/lsoie3/dev.txt",
     ]
     trad2 = [
         "validated_splits/normal/trad_v2/ls_test.txt",
         "validated_splits/normal/trad_v2/trad_train.txt",
     ]
     trad_1hot = [
-        "validated_splits/one_hot/trad/carb.txt",
-        "validated_splits/one_hot/trad/ls_train.txt",
-        "validated_splits/one_hot/trad/ls_dev.txt",
-        "validated_splits/one_hot/trad/dev.txt",
+        "validated_splits/one_hot/lsoie2/carb.txt",
+        "validated_splits/one_hot/lsoie2/ls_train.txt",
+        "validated_splits/one_hot/lsoie2/ls_dev.txt",
+        "validated_splits/one_hot/lsoie2/dev.txt",
     ]
     fine_tune_1hot = ["other_corpus/outputs/saida_pos_tag/gamalho",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
@@ -189,34 +190,35 @@ def build(dataset: str = "s2"):
 
 @app.command()
 def load_bia():
-    dataset_name = "other_corpus/edit_alan.csv"
+    dataset_name = "other_corpus/bia2.csv"
     valid = []
     invalid = []
     data_dict = {}
     with open(dataset_name, "r", encoding="utf-8") as f:
-        dataset = f.read().splitlines()
-        counter = 0
-        for i in dataset:
-            if i == ";;;;;;;;;;;;;;;;":
-                dataset = dataset[:counter]
-                break
-            counter += 1
-        dataset = [i.split("\t") for i in dataset]
-        dataset = [i[0].split(";") for i in dataset]
-        for _,i in enumerate(dataset):
-            i = i.insert(0, f"ID:{_+1}")
-        valid = [i for i in dataset if i[8] != "EXTRAÇÃO INVÁLIDA"]
-        invalid = [i for i in dataset if i[8] == "EXTRAÇÃO INVÁLIDA"]
-        print(f"Valid: {len(valid)}")
-        print(f"Invalid: {len(invalid)}")
+        dataset = f.read().splitlines()[1:]
+        dataset = [i.split(";") for i in dataset]
+        print(dataset)
 
-    for _,i in enumerate(valid):
-        sent = transform_portuguese_contractions(i[1].replace('"": {"', ""))
-        arg0 = transform_portuguese_contractions(clean_extraction(i[2]))
-        rel = transform_portuguese_contractions(clean_extraction(i[3]))
-        arg1 = transform_portuguese_contractions(clean_extraction(i[4]))
-        data_dict[_] = {"ID": i[0],"sent": sent, "ext":[{"arg1": arg0, "rel": rel, "arg2": arg1}]}
-        print("\n", i[0])
+    for _,i in enumerate(dataset):
+        i[0] = i[0].replace('"": {"', "")
+        i[0] = i[0].replace('"', "")
+        i[0] = i[0].replace("'", "")
+        i[0] = i[0].replace("\\", "")
+        i[1] = i[1].replace('"', "")
+        i[1] = i[1].replace("'", "")
+        i[1] = i[1].replace("\\", "")
+        i[2] = i[2].replace('"', "")
+        i[2] = i[2].replace("'", "")
+        i[2] = i[2].replace("\\", "")
+        i[3] = i[3].replace('"', "")
+        i[3] = i[3].replace("'", "")
+        i[3] = i[3].replace("\\", "")
+        sent = transform_portuguese_contractions(i[0])
+        arg0 = transform_portuguese_contractions(i[1])
+        rel = transform_portuguese_contractions(i[2])
+        arg1 = transform_portuguese_contractions(i[3])
+        data_dict[_] = {"ID": _,"sent": sent, "ext":[{"arg1": arg0, "rel": rel, "arg2": arg1}]}
+        print("\n", _)
         print("sent: ", sent)
         print("arg0: ", arg0)
         print("rel: ", rel)

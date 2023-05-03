@@ -2,8 +2,8 @@ import pathlib
 from flair.datasets import ColumnCorpus
 from flair.embeddings import TransformerWordEmbeddings
 from flair.models import SequenceTagger
-#from flair.trainers import ModelTrainer
-from trainers.trainer import ModelTrainer
+from flair.trainers import ModelTrainer
+#from trainers.trainer import ModelTrainer
 from madgrad import MADGRAD
 import typer
 from flair.training_utils import (
@@ -43,15 +43,15 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
     trm = bert
 
-    tagger = SequenceTagger(hidden_size=512,
+    tagger = SequenceTagger(hidden_size=256,
                             embeddings=trm,
                             tag_dictionary=label_dictionary,
                             tag_type='label',
                             use_crf=True,
                             use_rnn=True,
-                            rnn_layers=1,
+                            rnn_layers=2,
                             locked_dropout=0.0,
-                            dropout=0.0,
+                            dropout=0.3,
                             #word_dropout=0.0,
                             reproject_embeddings=False,
                             )

@@ -31,6 +31,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     bert = TransformerWordEmbeddings(
         "neuralmind/bert-base-portuguese-cased",
+        use_context=True
     )
 
     emb = bert
@@ -63,8 +64,8 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     # iniciando treino
     trainer.train(f"train_output/{name}",
                   learning_rate=1e-3,
-                  min_learning_rate=0.0002,
-                  mini_batch_size=4,
+                  min_learning_rate=0.0001,
+                  mini_batch_size=8,
                   max_epochs=epochs,
                   patience=3,
                   embeddings_storage_mode='cpu',

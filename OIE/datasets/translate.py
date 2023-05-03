@@ -53,6 +53,7 @@ class LoadDataset:
 
 class ArgsRel:
     def __init__(self):
+        self.current_root_sint = None
         try:
             self.nlp = spacy.load("pt_core_news_lg")
         except:
@@ -66,6 +67,7 @@ class ArgsRel:
             dep = doc_dict[idx]["dep"]
             if (pos == "VERB" and dep == "ROOT") and (idx != 0 and idx != len(doc_dict) - 1):
                 root_idx = (idx, idx)
+                self.current_root_sint = "VERB-ROOT"
                 break
         if root_idx == (None, None):
             root_idx = self.aux_parse(doc_dict, root_idx)
@@ -78,9 +80,11 @@ class ArgsRel:
             dep = doc_dict[idx]["dep"]
             if (pos == "AUX" and dep == "cop") and (idx != 0 and idx != len(doc_dict) - 1):
                 root_idx = (idx, idx)
+                self.current_root_sint = "AUX-cop"
                 break
             elif (pos == "AUX" and dep == "ROOT") and (idx != 0 and idx != len(doc_dict) - 1):
                 root_idx = (idx, idx)
+                self.current_root_sint = "AUX-ROOT"
                 break
         if root_idx == (None, None):
             root_idx = self.x_comp_parse(doc_dict, root_idx)
@@ -92,6 +96,15 @@ class ArgsRel:
             dep = doc_dict[idx]["dep"]
             if (pos == "VERB" and dep == "xcomp" and (idx != 0 and idx != len(doc_dict) - 1)):
                 root_idx = (idx, idx)
+                self.current_root_sint = "VERB-xcomp"
+                break
+            elif (pos == "VERB" and dep == "acl" and (idx != 0 and idx != len(doc_dict) - 1)):
+                root_idx = (idx, idx)
+                self.current_root_sint = "VERB-acl"
+                break
+            elif (pos == "VERB" and dep == "acl:relcl" and (idx != 0 and idx != len(doc_dict) - 1)):
+                root_idx = (idx, idx)
+                self.current_root_sint = "VERB-acl:relacl"
                 break
         if root_idx == (None, None):
             root_idx = self.noun_root_parse(doc_dict, root_idx)
@@ -104,6 +117,7 @@ class ArgsRel:
             dep = doc_dict[idx]["dep"]
             if (pos == "NOUN" and dep == "ROOT" and (idx != 0 and idx != len(doc_dict) - 1)):
                 root_idx = (idx, idx)
+                self.current_root_sint = "NOUN-ROOT"
                 break
         return root_idx
 
@@ -118,48 +132,74 @@ class ArgsRel:
         rel = ""
         arg2 = ""
         root_idx = (None, None)
+        self.current_root_sint = None
         root_idx = self.root_parse(doc_dict, root_idx)
+
 
         #verificando elementos que compoem a rel antes do centro
         if root_idx != (None, None):
-            i = root_idx[0] - 1
-            while i > 0:
+            before_root_pos_dep = ""
+            for i in range(0, root_idx[0]):
                 pos = doc_dict[i]["pos"]
                 dep = doc_dict[i]["dep"]
-                if (pos == "SCONJ" and dep == "mark"):
-                    root_idx = (i, root_idx[1])
-                    break
-                if (dep == "case"):
-                    if i-1 != 0:
-                        dep2 = doc_dict[i-1]["dep"]
-                        if dep2 == "obj":
-                            if i-2 != 0:
-                                dep3 = doc_dict[i-2]["dep"]
-                                if dep3 == "det":
-                                    root_idx = (i-2, root_idx[1])
-                                    break
-                if (pos == "PRON" and dep == "expl"):
-                    if i-1 != 0:
-                        pos2 = doc_dict[i-1]["pos"]
-                        dep2 = doc_dict[i-1]["dep"]
-                        if pos2 == "ADV" and dep2 == "advmod":
-                            root_idx = (i-1, root_idx[1])
-                            break
+                before_root_pos_dep += pos + "-" + dep + ", "
+            before_root_pos_dep = before_root_pos_dep[:-2]
+            splited = before_root_pos_dep.split(", ")
 
-                if (pos == "ADV" and dep == "advmod"):
-                    root_idx = (i, root_idx[1])
-                if ("aux" in dep):
-                    root_idx = (i, root_idx[1])
-                    break
-                if (pos == "ADP" and dep == "case"):
-                    root_idx = (i, root_idx[1])
-                    break
-                i-=1
-                if i == root_idx[0]-1:
-                    continue
+            if self.current_root_sint == "NOUN-ROOT":
+                if "PRON-expl" in before_root_pos_dep and splited[-1] == "PRON-expl":
+                    if root_idx[0]-1 > 0:
+                        root_idx = (root_idx[0]-1, root_idx[1])
+                    else:
+                        root_idx = (root_idx[0], root_idx[1])
+
+            if "AUX-cop" in before_root_pos_dep and splited[-1] == "AUX-cop":
+                if root_idx[0]-1 > 0:
+                    root_idx = (root_idx[0]-1, root_idx[1])
                 else:
-                    break
-            #verificando elementos que compoem a rel depois do centro
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "AUX-cop, ADV-advmod" in before_root_pos_dep and splited[-1] == "ADV-advmod":
+                if root_idx[0]-2 > 0:
+                    root_idx = (root_idx[0]-2, root_idx[1])
+                else:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+            elif "ADV-advmod" in before_root_pos_dep and splited[-1] == "ADV-advmod":
+                if root_idx[0]-1 > 0:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "AUX-aux" in before_root_pos_dep and splited[-1] == "AUX-aux":
+                if root_idx[0]-1 > 0:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "AUX-aux:pass" in before_root_pos_dep and splited[-1] == "AUX-aux:pass":
+                if root_idx[0]-1 > 0:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "AUX-aux:pass" in before_root_pos_dep and splited[-1] == "AUX-aux:pass":
+                if root_idx[0]-1 > 0:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "ADV-advmod, PRON-obj" in before_root_pos_dep and splited[-1] == "PRON-obj":
+                if root_idx[0]-2 > 0:
+                    root_idx = (root_idx[0]-2, root_idx[1])
+                else:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+            elif "AUX-cop, ADP-case" in before_root_pos_dep and splited[-1] == "ADP-case":
+                if root_idx[0]-2 > 0:
+                    root_idx = (root_idx[0]-2, root_idx[1])
+                else:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+            elif "AUX-cop, DET-det" in before_root_pos_dep and splited[-1] == "DET-det":
+                if root_idx[0]-2 > 0:
+                    root_idx = (root_idx[0]-2, root_idx[1])
+                else:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+
+        #verificando elementos que compoem a rel depois do centro
         if root_idx != (None, None):
             after_root_pos_dep = ""
             for i in range(root_idx[1]+1, len(doc_dict)):
@@ -168,11 +208,23 @@ class ArgsRel:
                 after_root_pos_dep += pos + "-" + dep + ", "
             after_root_pos_dep = after_root_pos_dep[:-2]
             splited = after_root_pos_dep.split(", ")
+
+            if self.current_root_sint == "AUX-cop":
+                if "DET-det, NOUN-ROOT, ADJ-amod, ADP-case" in after_root_pos_dep and splited[0] == "DET-det":
+                    if root_idx[1]+4 < len(doc_dict) - 1:
+                        root_idx = (root_idx[0], root_idx[1]+4)
+                    else:
+                        root_idx = (root_idx[0], root_idx[1])
             if "ADP-case, DET-det, ADV-obl, VERB-xcomp" in after_root_pos_dep and splited[0] == "ADP-case":
                 if root_idx[1]+4 < len(doc_dict) - 1:
                     root_idx = (root_idx[0], root_idx[1]+4)
                 else:
                     root_idx = (root_idx[0], root_idx[1]+3)
+            elif "ADJ-amod, ADP-case" in after_root_pos_dep and splited[0] == "ADJ-amod":
+                if root_idx[1]+2 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+1)
             elif "VERB-xcomp, DET-det, NOUN-obj, ADP-case" in after_root_pos_dep and splited[0] == "VERB-xcomp":
                 if root_idx[1]+4 < len(doc_dict) - 1:
                     root_idx = (root_idx[0], root_idx[1]+4)
@@ -203,17 +255,23 @@ class ArgsRel:
                     root_idx = (root_idx[0], root_idx[1]+5)
                 else:
                     root_idx = (root_idx[0], root_idx[1]+4)
-            elif "VERB-xcomp, DET-det" in after_root_pos_dep and splited[0] == "VERB-xcomp":
-                if root_idx[1]+2 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+2)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+1)
+
             elif "ADJ-amod, ADP-case" in after_root_pos_dep and splited[0] == "ADJ-amod":
                 if root_idx[1]+2 < len(doc_dict) - 1:
                     root_idx = (root_idx[0], root_idx[1]+2)
                 else:
                     root_idx = (root_idx[0], root_idx[1]+1)
+            elif "ADV-advmod, ADP-case" in after_root_pos_dep and splited[0] == "ADV-advmod":
+                if root_idx[1]+2 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+1)
             elif "ADP-case, NOUN-obj, ADP-case" in after_root_pos_dep and splited[0] == "ADP-case":
+                if root_idx[1]+3 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+3)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+            elif "ADV-advmod, ADV-advmod, SCONJ-dep" in after_root_pos_dep and splited[0] == "ADV-advmod":
                 if root_idx[1]+3 < len(doc_dict) - 1:
                     root_idx = (root_idx[0], root_idx[1]+3)
                 else:
@@ -233,7 +291,11 @@ class ArgsRel:
                     root_idx = (root_idx[0], root_idx[1]+1)
                 else:
                     root_idx = (root_idx[0], root_idx[1])
-
+            elif "DET-case" in after_root_pos_dep and splited[0] == "DET-case":
+                if root_idx[1]+1 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+1)
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
 
         j = root_idx[0]
         if root_idx != (None, None):
@@ -250,6 +312,7 @@ class ArgsRel:
 
 
         return arg1, rel, arg2
+
 
 
 class Translators:
