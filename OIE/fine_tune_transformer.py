@@ -51,8 +51,8 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                             use_rnn=True,
                             rnn_layers=2,
                             locked_dropout=0.0,
-                            dropout=0.3,
-                            #word_dropout=0.0,
+                            dropout=0.5,
+                            word_dropout=0.0,
                             reproject_embeddings=False,
                             )
 
@@ -66,7 +66,7 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                       chunk_batch_size=1,
                       max_epochs=epochs,
                       optimizer=MADGRAD,
-                      decoder_lr_factor=100,
+                      decoder_lr_factor=200,
                       scheduler=AnnealOnPlateau,
                       )
 

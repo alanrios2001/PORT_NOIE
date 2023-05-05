@@ -1,15 +1,10 @@
 import pathlib
-from flair.hyperparameter.param_selection import SearchSpace, Parameter
-from flair.hyperparameter.param_selection import SequenceTaggerParamSelector
-from hyperopt import hp
 from flair.datasets import ColumnCorpus
 from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, PooledFlairEmbeddings, OneHotEmbeddings
 from flair.models import SequenceTagger
 from madgrad import MADGRAD
 import typer
-import torch
 from flair.trainers import ModelTrainer
-#from trainers.trainer import ModelTrainer
 
 app = typer.Typer()
 
@@ -45,12 +40,12 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     embeddings = StackedEmbeddings(embeddings=embedding_types)
 
     # inicializando sequence tagger
-    oie = SequenceTagger(hidden_size=2048,
+    oie = SequenceTagger(hidden_size=1024,
                          embeddings=embeddings,
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
                          rnn_layers=2,
-                         dropout=0.5,
+                         dropout=0.25,
                          locked_dropout=0.0,
                          word_dropout=0.0,
                          )
@@ -64,7 +59,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     trainer.train(f"train_output/{name}",
                   learning_rate=1e-3,
                   min_learning_rate=0.0001,
-                  mini_batch_size=8,
+                  mini_batch_size=16,
                   max_epochs=epochs,
                   patience=3,
                   embeddings_storage_mode='cpu',

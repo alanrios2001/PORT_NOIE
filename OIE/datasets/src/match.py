@@ -115,9 +115,9 @@ class OIE_Match:
                         sent = self.nlp(data[key]["sent"])
                         tk = [token.text for token in sent]
                         self.valid_data[data[key]["sent"]] = {
-                            "arg1": (tk[arg1_match[0]:arg1_match[1]]),
-                            "rel": (tk[rel_match[0]:rel_match[1]]),
-                            "arg2": (tk[arg2_match[0]:arg2_match[1]]),
+                            "arg1": (tk[arg1_match[0]:arg1_match[1]+1]),
+                            "rel": (tk[rel_match[0]:rel_match[1]+1]),
+                            "arg2": (tk[arg2_match[0]:arg2_match[1]+1]),
                         }
                 elif (arg1_match[0][2] < rel_match[0][2] < arg2_match[0][2]) == False:
                     self.valid[data[key]["sent"]] = {
