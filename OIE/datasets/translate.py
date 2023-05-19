@@ -53,7 +53,8 @@ class LoadDataset:
 
 class ArgsRel:
     def __init__(self):
-        self.current_root_sint = None
+        self.provavel_rel = []
+        self.alinhamentos = []
         try:
             self.nlp = spacy.load("pt_core_news_lg")
         except:
@@ -65,253 +66,104 @@ class ArgsRel:
         for idx in doc_dict:
             pos = doc_dict[idx]["pos"]
             dep = doc_dict[idx]["dep"]
-            if (pos == "VERB" and dep == "ROOT") and (idx != 0 and idx != len(doc_dict) - 1):
-                root_idx = (idx, idx)
-                self.current_root_sint = "VERB-ROOT"
-                break
-        if root_idx == (None, None):
-            root_idx = self.aux_parse(doc_dict, root_idx)
+            if (pos == "VERB" and dep == "ROOT") and (idx != 0 and idx != len(doc_dict) - 1):#restringe primeiro e último caracter da frase inteira
+                self.provavel_rel.append("VERB")
+                return (idx, idx)
+        root_idx = self.verb_parse(doc_dict, root_idx)
         return root_idx
+
+    def verb_parse(self, doc_dict, root_idx):
+        #encontra centro da extração pelo root
+        for idx in doc_dict:
+            pos = doc_dict[idx]["pos"]
+            dep = doc_dict[idx]["dep"]
+            if (pos == "VERB" and (dep == "xcomp" or dep == "acl" or dep == "acl:relacl")) and (idx != 0 and idx != len(doc_dict) - 1):#restringe primeiro e último caracter da frase inteira
+                self.provavel_rel.append("VERB")
+                return (idx, idx)
+
+        root_idx = self.aux_parse(doc_dict, root_idx)
+        return root_idx
+
+
 
     def aux_parse(self, doc_dict, root_idx):
         #encontra centro da extração pelo root
         for idx in doc_dict:
             pos = doc_dict[idx]["pos"]
             dep = doc_dict[idx]["dep"]
-            if (pos == "AUX" and dep == "cop") and (idx != 0 and idx != len(doc_dict) - 1):
-                root_idx = (idx, idx)
-                self.current_root_sint = "AUX-cop"
-                break
-            elif (pos == "AUX" and dep == "ROOT") and (idx != 0 and idx != len(doc_dict) - 1):
-                root_idx = (idx, idx)
-                self.current_root_sint = "AUX-ROOT"
-                break
-        if root_idx == (None, None):
-            root_idx = self.x_comp_parse(doc_dict, root_idx)
-        return root_idx
-    def x_comp_parse(self, doc_dict, root_idx):
-        #encontra centro da extração pelo root
-        for idx in doc_dict:
-            pos = doc_dict[idx]["pos"]
-            dep = doc_dict[idx]["dep"]
-            if (pos == "VERB" and dep == "xcomp" and (idx != 0 and idx != len(doc_dict) - 1)):
-                root_idx = (idx, idx)
-                self.current_root_sint = "VERB-xcomp"
-                break
-            elif (pos == "VERB" and dep == "acl" and (idx != 0 and idx != len(doc_dict) - 1)):
-                root_idx = (idx, idx)
-                self.current_root_sint = "VERB-acl"
-                break
-            elif (pos == "VERB" and dep == "acl:relcl" and (idx != 0 and idx != len(doc_dict) - 1)):
-                root_idx = (idx, idx)
-                self.current_root_sint = "VERB-acl:relacl"
-                break
-        if root_idx == (None, None):
-            root_idx = self.noun_root_parse(doc_dict, root_idx)
+            if (pos == "AUX" and dep == "ROOT") and (idx != 0 and idx != len(doc_dict) - 1):#restringe primeiro e último caracter da frase inteira
+                self.provavel_rel.append("AUX")
+                return (idx, idx)
+
+        root_idx = self.aux_parse2(doc_dict, root_idx)
         return root_idx
 
-    def noun_root_parse(self, doc_dict, root_idx):
+
+    def aux_parse2(self, doc_dict, root_idx):
         #encontra centro da extração pelo root
         for idx in doc_dict:
             pos = doc_dict[idx]["pos"]
             dep = doc_dict[idx]["dep"]
-            if (pos == "NOUN" and dep == "ROOT" and (idx != 0 and idx != len(doc_dict) - 1)):
-                root_idx = (idx, idx)
-                self.current_root_sint = "NOUN-ROOT"
-                break
+            if (pos == "AUX" and dep == "cop") and (idx != 0 and idx != len(doc_dict) - 1):#restringe primeiro e último caracter da frase inteira
+                self.provavel_rel.append("AUX")
+                return (idx, idx)
+        root_idx = self.noun_parse(doc_dict, root_idx)
         return root_idx
+
+    def noun_parse(self, doc_dict, root_idx):
+        #encontra centro da extração pelo root
+        for idx in doc_dict:
+            pos = doc_dict[idx]["pos"]
+            dep = doc_dict[idx]["dep"]
+            if (pos == "NOUN" and dep == "ROOT") and (idx != 0 and idx != len(doc_dict) - 1):#restringe primeiro e último caracter da frase inteira
+                self.provavel_rel.append("NOUN")
+                return (idx, idx)
+        return root_idx
+
 
     def get_args_rel(self, ext):
+        self.alinhamentos = []
         doc = self.nlp(ext)
         doc_dict = {}
         i = 0
         for token in doc:
             doc_dict[i] = {"text": token.text, "pos": token.pos_, "dep": token.dep_}
             i += 1
-        arg1 = ""
-        rel = ""
-        arg2 = ""
         root_idx = (None, None)
-        self.current_root_sint = None
+        self.provavel_rel = []
         root_idx = self.root_parse(doc_dict, root_idx)
-
-
-        #verificando elementos que compoem a rel antes do centro
-        if root_idx != (None, None):
-            before_root_pos_dep = ""
-            for i in range(0, root_idx[0]):
-                pos = doc_dict[i]["pos"]
-                dep = doc_dict[i]["dep"]
-                before_root_pos_dep += pos + "-" + dep + ", "
-            before_root_pos_dep = before_root_pos_dep[:-2]
-            splited = before_root_pos_dep.split(", ")
-
-            if self.current_root_sint == "NOUN-ROOT":
-                if "PRON-expl" in before_root_pos_dep and splited[-1] == "PRON-expl":
-                    if root_idx[0]-1 > 0:
-                        root_idx = (root_idx[0]-1, root_idx[1])
-                    else:
-                        root_idx = (root_idx[0], root_idx[1])
-
-            if "AUX-cop" in before_root_pos_dep and splited[-1] == "AUX-cop":
-                if root_idx[0]-1 > 0:
-                    root_idx = (root_idx[0]-1, root_idx[1])
-                else:
-                    root_idx = (root_idx[0], root_idx[1])
-            elif "AUX-cop, ADV-advmod" in before_root_pos_dep and splited[-1] == "ADV-advmod":
-                if root_idx[0]-2 > 0:
-                    root_idx = (root_idx[0]-2, root_idx[1])
-                else:
-                    root_idx = (root_idx[0]-1, root_idx[1])
-            elif "ADV-advmod" in before_root_pos_dep and splited[-1] == "ADV-advmod":
-                if root_idx[0]-1 > 0:
-                    root_idx = (root_idx[0]-1, root_idx[1])
-                else:
-                    root_idx = (root_idx[0], root_idx[1])
-            elif "AUX-aux" in before_root_pos_dep and splited[-1] == "AUX-aux":
-                if root_idx[0]-1 > 0:
-                    root_idx = (root_idx[0]-1, root_idx[1])
-                else:
-                    root_idx = (root_idx[0], root_idx[1])
-            elif "AUX-aux:pass" in before_root_pos_dep and splited[-1] == "AUX-aux:pass":
-                if root_idx[0]-1 > 0:
-                    root_idx = (root_idx[0]-1, root_idx[1])
-                else:
-                    root_idx = (root_idx[0], root_idx[1])
-            elif "AUX-aux:pass" in before_root_pos_dep and splited[-1] == "AUX-aux:pass":
-                if root_idx[0]-1 > 0:
-                    root_idx = (root_idx[0]-1, root_idx[1])
-                else:
-                    root_idx = (root_idx[0], root_idx[1])
-            elif "ADV-advmod, PRON-obj" in before_root_pos_dep and splited[-1] == "PRON-obj":
-                if root_idx[0]-2 > 0:
-                    root_idx = (root_idx[0]-2, root_idx[1])
-                else:
-                    root_idx = (root_idx[0]-1, root_idx[1])
-            elif "AUX-cop, ADP-case" in before_root_pos_dep and splited[-1] == "ADP-case":
-                if root_idx[0]-2 > 0:
-                    root_idx = (root_idx[0]-2, root_idx[1])
-                else:
-                    root_idx = (root_idx[0]-1, root_idx[1])
-            elif "AUX-cop, DET-det" in before_root_pos_dep and splited[-1] == "DET-det":
-                if root_idx[0]-2 > 0:
-                    root_idx = (root_idx[0]-2, root_idx[1])
-                else:
-                    root_idx = (root_idx[0]-1, root_idx[1])
-
         #verificando elementos que compoem a rel depois do centro
         if root_idx != (None, None):
-            after_root_pos_dep = ""
-            for i in range(root_idx[1]+1, len(doc_dict)):
-                pos = doc_dict[i]["pos"]
-                dep = doc_dict[i]["dep"]
-                after_root_pos_dep += pos + "-" + dep + ", "
-            after_root_pos_dep = after_root_pos_dep[:-2]
-            splited = after_root_pos_dep.split(", ")
+            for j in range(root_idx[1]+1, len(doc_dict)):
+                pos = doc_dict[j]["pos"]
+                self.provavel_rel.append(pos)
 
-            if self.current_root_sint == "AUX-cop":
-                if "DET-det, NOUN-ROOT, ADJ-amod, ADP-case" in after_root_pos_dep and splited[0] == "DET-det":
-                    if root_idx[1]+4 < len(doc_dict) - 1:
-                        root_idx = (root_idx[0], root_idx[1]+4)
-                    else:
-                        root_idx = (root_idx[0], root_idx[1])
-            if "ADP-case, DET-det, ADV-obl, VERB-xcomp" in after_root_pos_dep and splited[0] == "ADP-case":
-                if root_idx[1]+4 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+4)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+3)
-            elif "ADJ-amod, ADP-case" in after_root_pos_dep and splited[0] == "ADJ-amod":
-                if root_idx[1]+2 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+2)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+1)
-            elif "VERB-xcomp, DET-det, NOUN-obj, ADP-case" in after_root_pos_dep and splited[0] == "VERB-xcomp":
-                if root_idx[1]+4 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+4)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+3)
-            elif "VERB-xcomp, SCONJ-mark, VERB-xcomp, ADP-case" in after_root_pos_dep and splited[0] == "VERB-xcomp":
-                if root_idx[1]+4 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+4)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+3)
-            elif "VERB-xcomp, ADP-case" in after_root_pos_dep and splited[0] == "VERB-xcomp":
-                if root_idx[1]+2 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+2)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+1)
-            elif "VERB-xcomp, VERB-xcomp" in after_root_pos_dep and splited[0] == "VERB-xcomp":
-                if root_idx[1]+2 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+2)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+1)
-            elif "VERB-xcomp, SCONJ-mark, VERB-xcomp" in after_root_pos_dep and splited[0] == "VERB-xcomp":
-                if root_idx[1]+3 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+3)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+2)
-            elif "VERB-xcomp, VERB-xcomp, DET-det, NOUN-obj, ADP-case" in after_root_pos_dep and splited[0] == "VERB-xcomp":
-                if root_idx[1]+5 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+5)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+4)
+        adp_idxs = [i for i in range(len(self.provavel_rel[0:-1])) if self.provavel_rel[i] == "ADP"]
+        if len(adp_idxs) == 0:
+            adp_idxs.append(0)
 
-            elif "ADJ-amod, ADP-case" in after_root_pos_dep and splited[0] == "ADJ-amod":
-                if root_idx[1]+2 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+2)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+1)
-            elif "ADV-advmod, ADP-case" in after_root_pos_dep and splited[0] == "ADV-advmod":
-                if root_idx[1]+2 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+2)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+1)
-            elif "ADP-case, NOUN-obj, ADP-case" in after_root_pos_dep and splited[0] == "ADP-case":
-                if root_idx[1]+3 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+3)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+2)
-            elif "ADV-advmod, ADV-advmod, SCONJ-dep" in after_root_pos_dep and splited[0] == "ADV-advmod":
-                if root_idx[1]+3 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+3)
-                else:
-                    root_idx = (root_idx[0], root_idx[1]+2)
-            elif "VERB-xcomp" in after_root_pos_dep and splited[0] == "VERB-xcomp":
-                if root_idx[1]+1 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+1)
-                else:
-                    root_idx = (root_idx[0], root_idx[1])
-            elif "ADP-case" in after_root_pos_dep and splited[0] == "ADP-case":
-                if root_idx[1]+1 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+1)
-                else:
-                    root_idx = (root_idx[0], root_idx[1])
-            elif "AUX-cop" in after_root_pos_dep and splited[0] == "AUX-cop":
-                if root_idx[1]+1 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+1)
-                else:
-                    root_idx = (root_idx[0], root_idx[1])
-            elif "DET-case" in after_root_pos_dep and splited[0] == "DET-case":
-                if root_idx[1]+1 < len(doc_dict) - 1:
-                    root_idx = (root_idx[0], root_idx[1]+1)
-                else:
-                    root_idx = (root_idx[0], root_idx[1])
+        for idx in adp_idxs:
+            arg1 = ""
+            rel = ""
+            arg2 = ""
+            if root_idx != (None, None):
+                new_root_idx = (root_idx[0],root_idx[1]+idx)
+                j = new_root_idx[0]
+                while j <= new_root_idx[1]:
+                    rel += doc_dict[j]["text"] + " "
+                    j += 1
 
-        j = root_idx[0]
-        if root_idx != (None, None):
-            while j <= root_idx[1]:
-                rel += doc_dict[j]["text"] + " "
-                j += 1
+                for idx in doc_dict:
+                    token = doc_dict[idx]["text"]
+                    if idx < new_root_idx[0]:
+                        arg1 += token + " "
+                    if idx > new_root_idx[1]:
+                        arg2 += token + " "
 
-            for idx in doc_dict:
-                token = doc_dict[idx]["text"]
-                if idx < root_idx[0]:
-                    arg1 += token + " "
-                if idx > root_idx[1]:
-                    arg2 += token + " "
+            self.alinhamentos.append((arg1,rel,arg2))
 
 
-        return arg1, rel, arg2
+        return self.alinhamentos
 
 
 
@@ -505,15 +357,18 @@ class TranslateDataset:
                                                         "rel": rel_trad,
                                                         "arg2": arg1_trad}]}
                     counter += 1
+
         if self.google:
             for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
-                arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(transform_portuguese_contractions(sample[1]))
-                data_dict[str(counter)] = {"ID": counter,
-                                           "sent": transform_portuguese_contractions(sample[0]),
-                                           "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
-                                                    "rel": transform_portuguese_contractions(rel_trad),
-                                                    "arg2": transform_portuguese_contractions(arg1_trad)}]}
-                counter += 1
+                alignments = argsRel_eng.get_args_rel(transform_portuguese_contractions(sample[1]))
+                for ali in alignments:
+                    arg0_trad, rel_trad, arg1_trad = ali
+                    data_dict[str(counter)] = {"ID": counter,
+                                               "sent": transform_portuguese_contractions(sample[0]),
+                                               "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
+                                                        "rel": transform_portuguese_contractions(rel_trad),
+                                                        "arg2": transform_portuguese_contractions(arg1_trad)}]}
+                    counter += 1
 
         #salva dicionario
         self.save_dict(data_dict)

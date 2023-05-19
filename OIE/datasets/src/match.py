@@ -107,20 +107,23 @@ class OIE_Match:
             if len(arg1_match) > 0 and len(rel_match) > 0 and len(arg2_match) > 0:
                 if sequential:
                     if arg1_match[1] < rel_match[0] and rel_match[1] < arg2_match[0]:
-                        self.valid[data[key]["sent"]] = {
+                        self.valid[key] = {
+                            "sent": data[key]["sent"],
                             "arg1": arg1_match,
                             "arg2": arg2_match,
                             "rel": rel_match,
                         }
                         sent = self.nlp(data[key]["sent"])
                         tk = [token.text for token in sent]
-                        self.valid_data[data[key]["sent"]] = {
+                        self.valid_data[key] = {
+                            "sent": data[key]["sent"],
                             "arg1": (tk[arg1_match[0]:arg1_match[1]+1]),
                             "rel": (tk[rel_match[0]:rel_match[1]+1]),
                             "arg2": (tk[arg2_match[0]:arg2_match[1]+1]),
                         }
-                elif (arg1_match[0][2] < rel_match[0][2] < arg2_match[0][2]) == False:
-                    self.valid[data[key]["sent"]] = {
+                else:
+                    self.valid[key] = {
+                        "sent": data[key]["sent"],
                         "arg1": arg1_match,
                         "arg2": arg2_match,
                         "rel": rel_match,
@@ -144,17 +147,19 @@ class OIE_Match:
                 tk = [token.text for token in sent]
 
                 try:
-                    self.invalid[data[key]["sent"]] = {
+                    self.invalid[key] = {
                         "ID": data[key]["ID"],
                         "expected": ext,
+                        "sent": data[key]["sent"],
                         "arg1": (arg1_tuple[0], arg1_tuple[1], tk[arg1_tuple[0]:arg1_tuple[1]]),
                         "rel": (rel_tuple[0], rel_tuple[1], tk[rel_tuple[0]:rel_tuple[1]]),
                         "arg2": (arg2_tuple[0], arg2_tuple[1], tk[arg2_tuple[0]:arg2_tuple[1]]),
                     }
                 except:
-                    self.invalid[data[key]["sent"]] = {
+                    self.invalid[key] = {
                         "ID": key,
                         "expected": ext,
+                        "sent": data[key]["sent"],
                         "arg1": (arg1_tuple[0], arg1_tuple[1], tk[arg1_tuple[0]:arg1_tuple[1]]),
                         "rel": (rel_tuple[0], rel_tuple[1], tk[rel_tuple[0]:rel_tuple[1]]),
                         "arg2": (arg2_tuple[0], arg2_tuple[1], tk[arg2_tuple[0]:arg2_tuple[1]]),
@@ -169,12 +174,12 @@ class OIE_Match:
 
     def create_corpus(self):
         with open(f"{self.path_dir}/{self.output_name}_corpus.txt", "a", encoding="utf-8") as file:
-            for sent in tqdm(self.valid, desc="Criando conll"):
-                sentence = self.nlp(sent)
+            for key in tqdm(self.valid, desc="Criando conll"):
+                sentence = self.nlp(self.valid[key]["sent"])
                 sent_tokens = [token.text for token in sentence]
-                arg1_spans = [self.valid[sent]["arg1"]]
-                arg2_spans = [self.valid[sent]["arg2"]]
-                rel_spans = [self.valid[sent]["rel"]]
+                arg1_spans = [self.valid[key]["arg1"]]
+                arg2_spans = [self.valid[key]["arg2"]]
+                rel_spans = [self.valid[key]["rel"]]
 
                 label_lines = ""
                 for i in range(len(sent_tokens)):
