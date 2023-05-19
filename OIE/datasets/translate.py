@@ -10,6 +10,7 @@ import json
 import pathlib
 from diskcache import Cache
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions, clean_extraction
+from OIE.final.matcher import OIE_Match
 
 app = typer.Typer()
 
@@ -212,6 +213,7 @@ class TranslateDataset:
         self.dataset_name = dataset_name
         self.out_path = out_path
         self.translators = Translators(google)
+        self.matcher = OIE_Match(sequential=True)
 
     def debugging(self, sentence,  ext, raw_sent, raw_ext):
         arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(ext)
@@ -361,14 +363,33 @@ class TranslateDataset:
         if self.google:
             for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
                 alignments = argsRel_eng.get_args_rel(transform_portuguese_contractions(sample[1]))
-                for ali in alignments:
+                for ali in reversed(alignments):
                     arg0_trad, rel_trad, arg1_trad = ali
-                    data_dict[str(counter)] = {"ID": counter,
-                                               "sent": transform_portuguese_contractions(sample[0]),
-                                               "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
-                                                        "rel": transform_portuguese_contractions(rel_trad),
-                                                        "arg2": transform_portuguese_contractions(arg1_trad)}]}
-                    counter += 1
+
+                    if len(alignments) > 1:
+                        match = self.matcher.match(transform_portuguese_contractions(sample[0]),
+                                             transform_portuguese_contractions(arg0_trad),
+                                             transform_portuguese_contractions(rel_trad),
+                                             transform_portuguese_contractions(arg1_trad)
+                                             )
+                        if match[-1] == True:
+                            data_dict[str(counter)] = {"ID": counter,
+                                                       "sent": transform_portuguese_contractions(sample[0]),
+                                                       "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
+                                                                "rel": transform_portuguese_contractions(rel_trad),
+                                                                "arg2": transform_portuguese_contractions(arg1_trad)}]}
+                            counter += 1
+                            break
+
+
+
+                    else:
+                        data_dict[str(counter)] = {"ID": counter,
+                                                   "sent": transform_portuguese_contractions(sample[0]),
+                                                   "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
+                                                            "rel": transform_portuguese_contractions(rel_trad),
+                                                            "arg2": transform_portuguese_contractions(arg1_trad)}]}
+                        counter += 1
 
         #salva dicionario
         self.save_dict(data_dict)

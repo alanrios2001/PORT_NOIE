@@ -78,11 +78,11 @@ def merge():
            "validated_splits/normal/lsoie/train.txt",
            ]
     trad = [
-        "validated_splits/normal/lsoie3/carb.txt",
-        "validated_splits/normal/lsoie3/ls_train.txt",
-        "validated_splits/normal/lsoie3/ls_dev.txt",
-        "validated_splits/normal/lsoie3/ls_test.txt",
-        "validated_splits/normal/lsoie3/dev.txt",
+        "validated_splits/normal/lsoie5/carb.txt",
+        "validated_splits/normal/lsoie5/ls_train.txt",
+        "validated_splits/normal/lsoie5/ls_dev.txt",
+        "validated_splits/normal/lsoie5/ls_test.txt",
+        "validated_splits/normal/lsoie5/dev.txt",
     ]
     trad2 = [
         "validated_splits/normal/trad_v2/ls_test.txt",
@@ -98,15 +98,15 @@ def merge():
                      "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
 
-    OUTPUT_NAME = "trad"
+    OUTPUT_NAME = "trad_v5"
     Merge(trad, OUTPUT_NAME)
 
 @app.command()
 def split():
-    TEST_SIZE = 0.1
-    DEV_SIZE = 0.0
-    OUTPUT_NAME = "PTOIE"
-    IN_PATH = "outputs/PTOIE/saida_match"
+    TEST_SIZE = 0.0
+    DEV_SIZE = 0.2
+    OUTPUT_NAME = "trad"
+    IN_PATH = "validated_splits/normal/trad_v3"
     OUT_PATH = "outputs/splits"
     train_dev_test(TEST_SIZE, DEV_SIZE, OUTPUT_NAME, IN_PATH, OUT_PATH)
 

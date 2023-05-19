@@ -75,3 +75,7 @@ class PosTag:
     def run(self, name):
         self.pos_tag()
         self.save(name)
+
+if __name__ == "__main__":
+    eng = PosTag("E:\Dev/3-facul\PIBIC\PLN\Flair-oie\OIE\datasets/validated_splits/normal/trad_v3/trad.txt", "E:\Dev/3-facul\PIBIC\PLN\Flair-oie\OIE\datasets\outputs")
+    eng.run("trad_v3")
