@@ -25,7 +25,6 @@ nltk = "*"
 spacy = "^3.5.2"
 flair = {git = "https://github.com/flairNLP/flair"}
 openai = "^0.27.7"
-gpt4all = "^0.2.3"
 
 
 

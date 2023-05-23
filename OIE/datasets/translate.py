@@ -133,6 +133,11 @@ class ArgsRel:
         root_idx = (None, None)
         self.provavel_rel = []
         root_idx = self.root_parse(doc_dict, root_idx)
+
+        if len(self.provavel_rel)>0 and self.provavel_rel[0] == "VERB":
+            if root_idx[0]-1 != 0:
+                if doc_dict[root_idx[0]-1]["pos"] == "AUX":
+                    root_idx = (root_idx[0]-1, root_idx[1])
         #verificando elementos que compoem a rel depois do centro
         if root_idx != (None, None):
             for j in range(root_idx[1]+1, len(doc_dict)):
@@ -140,8 +145,7 @@ class ArgsRel:
                 self.provavel_rel.append(pos)
 
         adp_idxs = [i for i in range(len(self.provavel_rel[0:-1])) if self.provavel_rel[i] == "ADP"]
-        if len(adp_idxs) == 0:
-            adp_idxs.append(0)
+        adp_idxs.append(0)
 
         for idx in adp_idxs:
             arg1 = ""
@@ -251,6 +255,7 @@ class TranslateDataset:
         path = self.out_path+"/translate"
         pathlib.Path(path).mkdir(parents=True, exist_ok=True)
         with open(self.out_path+"/translate/translate.json", "a", encoding="utf-8") as f:
+            open(self.out_path + "/translate/translate.json", "w", encoding="utf-8").close()
             f.write(json.dumps(data))
 
     def load_dataset(self):
@@ -341,6 +346,8 @@ class TranslateDataset:
                 raw_ext.append(dataset[1][i])
                 os.system("cls")
                 print(f"{i/len(dataset[0])*100:.2f}% concluído ||| {i}/{len(dataset[0])}")
+                trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
+                self.save_translate(trans_dict)
                 i+=1
             except:
                 print("provavelmente o modelo está sobrecarregado, tentando novamente")
