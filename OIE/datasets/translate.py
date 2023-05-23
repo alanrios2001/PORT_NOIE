@@ -330,14 +330,21 @@ class TranslateDataset:
         all_ext = []
         raw_sent = []
         raw_ext = []
+        i=0
+        while i < len(dataset[0]):
+            try:
+                sent, ext = self.translators.gpt(dataset[0][i], dataset[1][i])
 
-        for i in tqdm(range(len(dataset[0])), desc=f"Traduzindo dataset"):
-            sent, ext = self.translators.gpt(dataset[0][i], dataset[1][i])
+                all_sent.append(sent)
+                all_ext.append(ext)
+                raw_sent.append(dataset[0][i])
+                raw_ext.append(dataset[1][i])
+                os.system("cls")
+                print(f"{i/len(dataset[0])*100:.2f}% concluído ||| {i}/{len(dataset[0])}")
+                i+=1
+            except:
+                print("provavelmente o modelo está sobrecarregado, tentando novamente")
 
-            all_sent.append(sent)
-            all_ext.append(ext)
-            raw_sent.append(dataset[0][i])
-            raw_ext.append(dataset[1][i])
 
         trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
         self.save_translate(trans_dict)
