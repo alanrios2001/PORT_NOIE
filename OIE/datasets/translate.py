@@ -5,12 +5,12 @@ from tqdm.auto import tqdm
 from main import criar_conll
 import typer
 from deep_translator import GoogleTranslator
-from transformers import pipeline
 import json
 import pathlib
 from diskcache import Cache
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions, clean_extraction
 from OIE.final.matcher import OIE_Match
+import openai
 
 app = typer.Typer()
 
@@ -170,9 +170,20 @@ class ArgsRel:
 
 class Translators:
     def __init__(self, google: bool):
-        model_name = "Helsinki-NLP/opus-mt-tc-big-en-pt"
         if not google:
-            self.pipe = pipeline("translation", model=model_name, device=0)
+            openai.api_key = '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'
+            self.prompt_tradução = "Você é um tradutor muito preciso que faz traduções de textos da lingua inglêsa para a lingua pt-br. " \
+                  "Você irá receber dois textos, uma setença e um fato relacionado a essa sentença, siga as regras:" \
+                                   "1.Em hipótese alguma retorne qualquer mensagem de erro ou aviso, retorne somente o formato de saída que foi pedido" \
+                                   "2.Você deve traduzir ambas de forma que todas os tokens que fazem parte do fato, estejam presentes na sentença, e em ordem de ocorrencia na sentença." \
+                                   "3.Caso a sentença e o fato sejam iguais, traduza da mesma maneira ambos, sendo que a tradução de tanto a sentença quanto o fato são iguais" \
+                                   "4.Caso ocorra qualquer erro, crie um fato seguindo as regras 1" \
+                                   "5.A entrada ocorrerá da seguinte maneira:" \
+                  "SENTENÇA: The dog is walking through the park, he is very happy." \
+                  "FATO: The dog is very happy." \
+                  "6.A saída deve ser só e somente só, a seguinte:" \
+                  "SENTENÇA: O cachorro está andando pelo parque, ele está muito feliz." \
+                  "FATO: O cachorro está muito feliz."
         else:
             self.google_translator = GoogleTranslator(source="en", target="pt")
 
@@ -180,22 +191,21 @@ class Translators:
         txt = self.google_translator.translate(txt)
         return txt
 
-    def mt(self, text):
-        trad_text = self.pipe(text, max_length=1000)[0]["translation_text"]
-        return trad_text
-
-    def batch_mt(self, dataset):
-        if len(dataset[0]) == 1 and len(dataset[1]) == 1:
-            trad = self.mt(dataset[0][0])
-            ext = self.mt(dataset[1][0])
-            trad = trad
-            ext = ext
-        else:
-            trad = self.pipe(dataset[0])
-            ext = self.pipe(dataset[1])
-            trad = [t["translation_text"] for t in trad]
-            ext = [t["translation_text"] for t in ext]
-        return trad, ext
+    def gpt(self, sent, ext):
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            temperature=0,
+            messages=[
+                {"role": "system", "content": self.prompt_tradução},
+                {"role": "user", "content": f"SENTENÇA: {sent}"},
+                {"role": "user", "content": f"FATO: {ext}"}
+            ]
+        )
+        sentence = response['choices'][0]['message']['content'].split("\n")[0].split(": ")[-1]
+        extraction = response['choices'][0]['message']['content'].split("\n")[-1].split(": ")[-1]
+        #print("sentence: ", sentence)
+        #print("extraction: ", extraction)
+        return sentence, extraction
 
 
 class TranslateDataset:
@@ -214,17 +224,22 @@ class TranslateDataset:
         self.out_path = out_path
         self.translators = Translators(google)
         self.matcher = OIE_Match(sequential=True)
+        self.argreleng = ArgsRel()
 
     def debugging(self, sentence,  ext, raw_sent, raw_ext):
-        arg0_trad, rel_trad, arg1_trad = ArgsRel().get_args_rel(ext)
-        print("\nDebugging")
-        print(f"sent: {sentence}")
-        print(f"raw_sent: {raw_sent}")
-        print(f"ext: {ext}")
-        print(f"raw_ext: {raw_ext}")
-        print(f"arg0: {arg0_trad}")
-        print(f"rel: {rel_trad}")
-        print(f"arg1: {arg1_trad}\n")
+        alignments = self.argreleng.get_args_rel(ext)
+        for alignment in alignments:
+            arg0_trad = alignment[0]
+            rel_trad = alignment[1]
+            arg1_trad = alignment[2]
+            print("\nDebugging")
+            print(f"sent: {sentence}")
+            print(f"raw_sent: {raw_sent}")
+            print(f"ext: {ext}")
+            print(f"raw_ext: {raw_ext}")
+            print(f"arg0: {arg0_trad}")
+            print(f"rel: {rel_trad}")
+            print(f"arg1: {arg1_trad}\n")
 
     def save_dict(self, data_dict):
         path = self.out_path+"/saida_match"
@@ -275,10 +290,10 @@ class TranslateDataset:
         dataset.append(exts)
         return dataset
 
-    def translate_google(self, cache_dir: str, dataset: list = None):
+    def translate_google(self, cache_dir: str):
         cache = Cache(cache_dir)
-        if dataset is None:
-            dataset = self.load_carb()
+        dataset = self.load_dataset()
+
 
         #traduz dataset
         all_sent = []
@@ -307,14 +322,8 @@ class TranslateDataset:
         trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
         self.save_translate(trans_dict)
 
-    def translate_mt(self):
-        batch_size = self.batch_size
+    def translate_gpt(self):
         dataset = self.load_dataset()
-        # batching
-        dataloader = []
-        for i in tqdm(range(0, len(dataset[0]), batch_size), desc="dataloader"):
-            batch = [dataset[0][i:i + batch_size], dataset[1][i:i + batch_size]]
-            dataloader.append(batch)
 
         # traduz dataset
         all_sent = []
@@ -322,12 +331,13 @@ class TranslateDataset:
         raw_sent = []
         raw_ext = []
 
-        for batch in tqdm(dataloader, desc=f"Traduzindo dataset com batching de {batch_size}"):
-            sent, ext = self.translators.batch_mt(batch)
-            all_sent += [sent]
-            all_ext += [ext]
-            raw_sent += batch[0]
-            raw_ext += batch[1]
+        for i in tqdm(range(len(dataset[0])), desc=f"Traduzindo dataset"):
+            sent, ext = self.translators.gpt(dataset[0][i], dataset[1][i])
+
+            all_sent.append(sent)
+            all_ext.append(ext)
+            raw_sent.append(dataset[0][i])
+            raw_ext.append(dataset[1][i])
 
         trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
         self.save_translate(trans_dict)
@@ -349,47 +359,36 @@ class TranslateDataset:
         data_dict = {}
         #identifica elementos da tripla traduzida e armazena em um dicionario
         counter = 0
-        if not self.google:
-            for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
-                for sent, ext in zip(sample[0], sample[1]):
-                    arg0_trad, rel_trad, arg1_trad = argsRel_eng.get_args_rel(ext)
-                    data_dict[str(counter)] = {"ID": counter,
-                                               "sent": sent,
-                                               "ext": [{"arg1": arg0_trad,
-                                                        "rel": rel_trad,
-                                                        "arg2": arg1_trad}]}
-                    counter += 1
+        for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
+            alignments = argsRel_eng.get_args_rel(transform_portuguese_contractions(sample[1]))
+            for ali in reversed(alignments):
+                arg0_trad, rel_trad, arg1_trad = ali
 
-        if self.google:
-            for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
-                alignments = argsRel_eng.get_args_rel(transform_portuguese_contractions(sample[1]))
-                for ali in reversed(alignments):
-                    arg0_trad, rel_trad, arg1_trad = ali
+                if len(alignments) > 1:
+                    match = self.matcher.match(transform_portuguese_contractions(sample[0]),
+                                               transform_portuguese_contractions(arg0_trad),
+                                               transform_portuguese_contractions(rel_trad),
+                                               transform_portuguese_contractions(arg1_trad)
+                                               )
 
-                    if len(alignments) > 1:
-                        match = self.matcher.match(transform_portuguese_contractions(sample[0]),
-                                             transform_portuguese_contractions(arg0_trad),
-                                             transform_portuguese_contractions(rel_trad),
-                                             transform_portuguese_contractions(arg1_trad)
-                                             )
-                        if match[-1] == True:
-                            data_dict[str(counter)] = {"ID": counter,
-                                                       "sent": transform_portuguese_contractions(sample[0]),
-                                                       "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
-                                                                "rel": transform_portuguese_contractions(rel_trad),
-                                                                "arg2": transform_portuguese_contractions(arg1_trad)}]}
-                            counter += 1
-                            break
-
-
-
-                    else:
+                    if match[3] == True:
                         data_dict[str(counter)] = {"ID": counter,
                                                    "sent": transform_portuguese_contractions(sample[0]),
                                                    "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
                                                             "rel": transform_portuguese_contractions(rel_trad),
                                                             "arg2": transform_portuguese_contractions(arg1_trad)}]}
                         counter += 1
+                        break
+
+
+
+                else:
+                    data_dict[str(counter)] = {"ID": counter,
+                                               "sent": transform_portuguese_contractions(sample[0]),
+                                               "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
+                                                        "rel": transform_portuguese_contractions(rel_trad),
+                                                        "arg2": transform_portuguese_contractions(arg1_trad)}]}
+                    counter += 1
 
         #salva dicionario
         self.save_dict(data_dict)
@@ -428,7 +427,7 @@ def run(batch_size: int,
             trans_eng.translate_google(cache_dir=cache_dir)
         else:
             LoadDataset(dataset_dir, dataset_name, path)
-            print("Traduzindo com MarianMTModel")
-            trans_eng.translate_mt()
+            print("Traduzindo com ChatGPT")
+            trans_eng.translate_gpt()
     trans_eng.create_dict()
     criar_conll(OUT_NAME, INPUT_PATH, test_size, dev_size, converted=converted, sequential=sequential)

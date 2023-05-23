@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Flair-oie"
-version = "0.0.0"
+version = "0.1.0"
 description = "A neural OpenIE system based on Flair"
 license = "Comercial - Private"
 authors = [
@@ -11,21 +11,23 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.8,<3.10"
 torch = { url = "https://download.pytorch.org/whl/cu117/torch-1.13.0%2Bcu117-cp39-cp39-win_amd64.whl" }
-spacy = {extras = ["cuda117"], version = "^3.5.0"}
-flair = "^0.12.2"
 typer = "*"
-torch-optimizer = "^0.3.0"
-madgrad = "^1.2"
-torchtext = "^0.14.1"
-jupyter = "^1.0.0"
+torch-optimizer = "*"
+madgrad = "*"
+torchtext = "*"
+jupyter = "*"
 protobuf = "^3.20"
 sacremoses = "^0.0.53"
-deep-translator = "^1.10.1"
-diskcache = "^5.4.0"
-pandas = "^1.5.3"
-nltk = "^3.8.1"
-pytorch-crf = "^0.7.2"
-torchcontrib = "^0.0.2"
+deep-translator = "*"
+diskcache = "*"
+pandas = "*"
+nltk = "*"
+spacy = "^3.5.2"
+flair = {git = "https://github.com/flairNLP/flair"}
+openai = "^0.27.7"
+gpt4all = "^0.2.3"
+
+
 
 
 [build-system]

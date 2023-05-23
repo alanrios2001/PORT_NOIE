@@ -40,12 +40,12 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     embeddings = StackedEmbeddings(embeddings=embedding_types)
 
     # inicializando sequence tagger
-    oie = SequenceTagger(hidden_size=1024,
+    oie = SequenceTagger(hidden_size=2048,
                          embeddings=embeddings,
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
                          rnn_layers=2,
-                         dropout=0.25,
+                         dropout=0.5,
                          locked_dropout=0.0,
                          word_dropout=0.0,
                          )
@@ -59,7 +59,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     trainer.train(f"train_output/{name}",
                   learning_rate=1e-3,
                   min_learning_rate=0.0001,
-                  mini_batch_size=16,
+                  mini_batch_size=4,
                   max_epochs=epochs,
                   patience=3,
                   embeddings_storage_mode='cpu',

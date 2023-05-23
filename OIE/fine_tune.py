@@ -43,7 +43,7 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
     trainer.fine_tune(f"train_output/{name}/fine_tune",
                       learning_rate=1e-4,
                       mini_batch_size=8,
-                      max_epochs=16,
+                      max_epochs=10,
                       optimizer=MADGRAD,
                       )
 
