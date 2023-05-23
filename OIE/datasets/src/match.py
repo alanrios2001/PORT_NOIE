@@ -31,23 +31,24 @@ class OIE_Match:
             sentence = self.nlp(data[key]["sent"].lower())
             ext = data[key]["ext"][0]
 
-            arg1 = ext["arg1"].lower().split(" ")
-            rel = ext["rel"].lower().split(" ")
-            arg2 = ext["arg2"].lower().split(" ")
+            arg1 = ext["arg1"].lower()
+            rel = ext["rel"].lower()
+            arg2 = ext["arg2"].lower()
 
-            arg1_str = list(filter(None, arg1))
-            rel_str = list(filter(None, rel))
-            arg2_str = list(filter(None, arg2))
-
-            arg1 = [self.nlp.make_doc(text) for text in arg1_str]
-            rel = [self.nlp.make_doc(text) for text in rel_str]
-            arg2 = [self.nlp.make_doc(text) for text in arg2_str]
+            arg1 = self.nlp(arg1)
+            rel = self.nlp(rel)
+            arg2 = self.nlp(arg2)
 
             # encontrar arg1
             arg1_matcher = Matcher(self.nlp.vocab)
             # cria o padrão de busca para o arg1
             pattern = []
-            for token in arg1:
+            for pos, token in enumerate(arg1):
+                # If is not the first or the last
+                if pos != 0 and pos != len(arg1) - 1:
+                    pattern.append(
+                        {"IS_PUNCT": True, "OP": "?"}
+                    )  # This is to handle the case where the arg1 is between two punctuations
                 pattern.append({"LOWER": token.text})
             if len(pattern) > 0:
                 arg1_matcher.add("arg1", [pattern])
@@ -63,7 +64,11 @@ class OIE_Match:
             rel_matcher = Matcher(self.nlp.vocab)
             # cria o padrão de busca para o rel
             pattern = []
-            for token in rel:
+            for pos, token in enumerate(rel):
+                if pos != 0 and pos != len(arg1) - 1:
+                    pattern.append(
+                        {"IS_PUNCT": True, "OP": "?"}
+                    )  # This is to handle the case where the rel is between two punctuations
                 pattern.append({"LOWER": token.text})
             if len(pattern) > 0:
                 rel_matcher.add("rel", [pattern])
@@ -85,7 +90,9 @@ class OIE_Match:
             arg2_matcher = Matcher(self.nlp.vocab)
             # cria o padrão de busca para o arg2
             pattern = []
-            for token in arg2:
+            for pos, token in enumerate(arg2):
+                if pos != 0 and pos != len(arg1) - 1:
+                    pattern.append({"IS_PUNCT": True, "OP": "?"})
                 pattern.append({"LOWER": token.text})
             if len(pattern) > 0:
                 arg2_matcher.add("arg2", [pattern])
