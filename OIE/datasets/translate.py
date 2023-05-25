@@ -175,7 +175,7 @@ class ArgsRel:
 class Translators:
     def __init__(self, google: bool):
         if not google:
-            openai.api_key = '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'
+            openai.api_key = 'YOUR API KEY HERE'
             self.prompt_tradução = "Você é um tradutor muito preciso que faz traduções de textos da lingua inglêsa para a lingua pt-br. " \
                   "Você irá receber dois textos, uma setença e um fato relacionado a essa sentença, siga as regras:" \
                   "1.Em hipótese alguma retorne qualquer mensagem de erro ou aviso, retorne somente o formato de saída que foi pedido" \
