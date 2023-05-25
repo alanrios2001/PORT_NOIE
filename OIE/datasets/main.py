@@ -78,11 +78,11 @@ def merge():
            "validated_splits/normal/lsoie/train.txt",
            ]
     trad = [
-        "validated_splits/normal/lsoie3/carb.txt",
-        "validated_splits/normal/lsoie3/ls_train.txt",
-        "validated_splits/normal/lsoie3/ls_dev.txt",
-        "validated_splits/normal/lsoie3/ls_test.txt",
-        "validated_splits/normal/lsoie3/dev.txt",
+        "validated_splits/normal/lsoiegpt/carb.txt",
+        "validated_splits/normal/lsoiegpt/ls_train.txt",
+        "validated_splits/normal/lsoiegpt/ls_dev.txt",
+        "validated_splits/normal/lsoiegpt/ls_test.txt",
+        "validated_splits/normal/lsoiegpt/dev.txt",
     ]
     trad2 = [
         "validated_splits/normal/trad_v2/ls_test.txt",
