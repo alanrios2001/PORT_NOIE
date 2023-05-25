@@ -178,16 +178,18 @@ class Translators:
             openai.api_key = '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'
             self.prompt_tradução = "Você é um tradutor muito preciso que faz traduções de textos da lingua inglêsa para a lingua pt-br. " \
                   "Você irá receber dois textos, uma setença e um fato relacionado a essa sentença, siga as regras:" \
-                                   "1.Em hipótese alguma retorne qualquer mensagem de erro ou aviso, retorne somente o formato de saída que foi pedido" \
-                                   "2.Você deve traduzir ambas de forma que todas os tokens que fazem parte do fato, estejam presentes na sentença, e em ordem de ocorrencia na sentença." \
-                                   "3.Caso a sentença e o fato sejam iguais, traduza da mesma maneira ambos, sendo que a tradução de tanto a sentença quanto o fato são iguais" \
-                                   "4.Caso ocorra qualquer erro, crie um fato seguindo as regras 1" \
-                                   "5.A entrada ocorrerá da seguinte maneira:" \
+                  "1.Em hipótese alguma retorne qualquer mensagem de erro ou aviso, retorne somente o formato de saída que foi pedido" \
+                  "2.Você deve traduzir ambas de forma que todas os tokens que fazem parte do fato, estejam presentes na sentença, e em ordem de ocorrencia na sentença." \
+                  "3.Caso a sentença e o fato sejam iguais, traduza da mesma maneira ambos, sendo que a tradução de tanto a sentença quanto o fato são iguais" \
+                  "4.Caso ocorra qualquer erro, crie um fato seguindo as regras 1" \
+                  "5.A entrada ocorrerá da seguinte maneira:" \
                   "SENTENÇA: The dog is walking through the park, he is very happy." \
                   "FATO: The dog is very happy." \
                   "6.A saída deve ser só e somente só, a seguinte:" \
                   "SENTENÇA: O cachorro está andando pelo parque, ele está muito feliz." \
-                  "FATO: O cachorro está muito feliz."
+                  "FATO: O cachorro está muito feliz." \
+
+
         else:
             self.google_translator = GoogleTranslator(source="en", target="pt")
 
@@ -295,6 +297,13 @@ class TranslateDataset:
         dataset.append(exts)
         return dataset
 
+    def half_translated(self):
+        try:
+            open(f"{self.out_path}/translate/translate.json", "r", encoding="utf-8")
+            return True
+        except:
+            return False
+
     def translate_google(self, cache_dir: str):
         cache = Cache(cache_dir)
         dataset = self.load_dataset()
@@ -335,7 +344,18 @@ class TranslateDataset:
         all_ext = []
         raw_sent = []
         raw_ext = []
-        i=0
+
+        if self.half_translated():
+            with open(f"{self.out_path}/translate/translate.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+            all_sent = data["sent"]
+            all_ext = data["ext"]
+            raw_sent = data["raw_sent"]
+            raw_ext = data["raw_ext"]
+            i = len(all_sent)
+        else:
+            i = 0
+
         while i < len(dataset[0]):
             try:
                 sent, ext = self.translators.gpt(dataset[0][i], dataset[1][i])
@@ -375,7 +395,7 @@ class TranslateDataset:
         counter = 0
         for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
             alignments = argsRel_eng.get_args_rel(transform_portuguese_contractions(sample[1]))
-            for ali in reversed(alignments):
+            for ali in alignments:
                 arg0_trad, rel_trad, arg1_trad = ali
 
                 if len(alignments) > 1:
