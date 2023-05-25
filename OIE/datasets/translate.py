@@ -394,10 +394,12 @@ class TranslateDataset:
         #identifica elementos da tripla traduzida e armazena em um dicionario
         counter = 0
         for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
-            alignments = argsRel_eng.get_args_rel(transform_portuguese_contractions(sample[1]))
+            curr_ext = sample[1]
+            if curr_ext[-1] == ".":
+                curr_ext = curr_ext[:-1]
+            alignments = argsRel_eng.get_args_rel(transform_portuguese_contractions(curr_ext))
             for ali in alignments:
                 arg0_trad, rel_trad, arg1_trad = ali
-
                 if len(alignments) > 1:
                     match = self.matcher.match(transform_portuguese_contractions(sample[0]),
                                                transform_portuguese_contractions(arg0_trad),
