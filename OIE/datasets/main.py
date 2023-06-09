@@ -78,11 +78,11 @@ def merge():
            "validated_splits/normal/lsoie/train.txt",
            ]
     trad = [
-        "validated_splits/normal/lsoiegpt/carb.txt",
-        "validated_splits/normal/lsoiegpt/ls_train.txt",
-        "validated_splits/normal/lsoiegpt/ls_dev.txt",
-        "validated_splits/normal/lsoiegpt/ls_test.txt",
-        "validated_splits/normal/lsoiegpt/dev.txt",
+        "validated_splits/normal/lsoiegpt_alan/carb.txt",
+        "validated_splits/normal/lsoiegpt_alan/ls_train.txt",
+        "validated_splits/normal/lsoiegpt_alan/ls_dev.txt",
+        "validated_splits/normal/lsoiegpt_alan/ls_test.txt",
+        "validated_splits/normal/lsoiegpt_alan/dev.txt",
     ]
     trad_1hot = [
         "validated_splits/one_hot/lsoie2/carb.txt",
@@ -94,8 +94,8 @@ def merge():
                      "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
 
-    OUTPUT_NAME = "fine_tune"
-    Merge(fine_tune, OUTPUT_NAME)
+    OUTPUT_NAME = "gpt_alan"
+    Merge(trad, OUTPUT_NAME)
 
 @app.command()
 def split():

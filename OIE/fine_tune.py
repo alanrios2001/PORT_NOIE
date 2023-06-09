@@ -38,11 +38,12 @@ def fine_tune(name: str):
 
     trainer.fine_tune(f"train_output/{name}/fine_tune",
                       learning_rate=1e-4,
-                      mini_batch_size=8,
+                      mini_batch_size=16,
                       max_epochs=20,
                       optimizer=MADGRAD,
                       use_final_model_for_eval=False
                       )
+
 
     corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
                           column_format={0: 'text', 8: 'label'},  # 9: "pos", 10: "dep", 11: "ner"},
@@ -57,7 +58,7 @@ def fine_tune(name: str):
 
     trainer.fine_tune(f"train_output/{name}/fine_tune2",
                       learning_rate=1e-4,
-                      mini_batch_size=8,
+                      mini_batch_size=16,
                       max_epochs=20,
                       optimizer=MADGRAD,
                       use_final_model_for_eval=False
