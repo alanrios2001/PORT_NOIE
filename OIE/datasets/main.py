@@ -84,10 +84,6 @@ def merge():
         "validated_splits/normal/lsoiegpt/ls_test.txt",
         "validated_splits/normal/lsoiegpt/dev.txt",
     ]
-    trad2 = [
-        "validated_splits/normal/trad_v2/ls_test.txt",
-        "validated_splits/normal/trad_v2/trad_train.txt",
-    ]
     trad_1hot = [
         "validated_splits/one_hot/lsoie2/carb.txt",
         "validated_splits/one_hot/lsoie2/ls_train.txt",
@@ -98,8 +94,8 @@ def merge():
                      "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
 
-    OUTPUT_NAME = "trad"
-    Merge(trad, OUTPUT_NAME)
+    OUTPUT_NAME = "fine_tune"
+    Merge(fine_tune, OUTPUT_NAME)
 
 @app.command()
 def split():
@@ -199,30 +195,40 @@ def load_bia():
         dataset = [i.split(";") for i in dataset]
         print(dataset)
 
+    counter = 0
     for _,i in enumerate(dataset):
-        i[0] = i[0].replace('"": {"', "")
-        i[0] = i[0].replace('"', "")
-        i[0] = i[0].replace("'", "")
-        i[0] = i[0].replace("\\", "")
-        i[1] = i[1].replace('"', "")
-        i[1] = i[1].replace("'", "")
-        i[1] = i[1].replace("\\", "")
-        i[2] = i[2].replace('"', "")
-        i[2] = i[2].replace("'", "")
-        i[2] = i[2].replace("\\", "")
-        i[3] = i[3].replace('"', "")
-        i[3] = i[3].replace("'", "")
-        i[3] = i[3].replace("\\", "")
-        sent = transform_portuguese_contractions(i[0])
-        arg0 = transform_portuguese_contractions(i[1])
-        rel = transform_portuguese_contractions(i[2])
-        arg1 = transform_portuguese_contractions(i[3])
-        data_dict[_] = {"ID": _,"sent": sent, "ext":[{"arg1": arg0, "rel": rel, "arg2": arg1}]}
-        print("\n", _)
-        print("sent: ", sent)
-        print("arg0: ", arg0)
-        print("rel: ", rel)
-        print("arg1: ", arg1)
+        try:
+            i[0] = i[0].replace('"": {"', "")
+            i[0] = i[0].replace('"', "")
+            i[0] = i[0].replace("'", "")
+            i[0] = i[0].replace("\\", "")
+            i[1] = i[1].replace('"": {"', "")
+            i[1] = i[1].replace('"', "")
+            i[1] = i[1].replace("'", "")
+            i[1] = i[1].replace("\\", "")
+            i[2] = i[2].replace('"": {"', "")
+            i[2] = i[2].replace('"', "")
+            i[2] = i[2].replace("'", "")
+            i[2] = i[2].replace("\\", "")
+            i[3] = i[3].replace('"": {"', "")
+            i[3] = i[3].replace('"', "")
+            i[3] = i[3].replace("'", "")
+            i[3] = i[3].replace("\\", "")
+            sent = transform_portuguese_contractions(i[0])
+            arg0 = transform_portuguese_contractions(i[1])
+            rel = transform_portuguese_contractions(i[2])
+            arg1 = transform_portuguese_contractions(i[3])
+            data_dict[counter] = {"ID": _,"sent": sent, "ext":[{"arg1": arg0, "rel": rel, "arg2": arg1}]}
+            print("\n", _)
+            print("sent: ", sent)
+            print("arg0: ", arg0)
+            print("rel: ", rel)
+            print("arg1: ", arg1)
+            counter += 1
+        except:
+            print("invalid")
+            invalid.append(i)
+            pass
 
     path = pathlib.Path(f"outputs/bia/saida_match/")
     path.mkdir(parents=True, exist_ok=True)

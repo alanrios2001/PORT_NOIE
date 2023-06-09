@@ -11,19 +11,14 @@ app = typer.Typer()
 
 
 @app.command()
-def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
+def fine_tune(name: str):
     # define the structure of the .datasets file
-    corpus = ColumnCorpus(data_folder=folder,
-                          column_format={0: 'text', 8: 'label', 9: "pos", 10: "dep", 11: "ner"},
-                          train_file=train,
-                          test_file=test,
-                          dev_file=dev
+    corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
+                          column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
+                          train_file="fine_tune/fine_tune2.txt",
+                          test_file="eval/100-gold.txt",
+                          dev_file="eval/100-gold.txt"
                           )
-    print(train, test, dev)
-
-    label_type = "label"  # criando dicionario de tags
-    label_dictionary = corpus.make_label_dictionary(label_type=label_type)
-    print(label_dictionary)
 
 
     # inicializando sequence tagger
@@ -40,11 +35,32 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
     '8 epochs first round, second, 16'
     # fine tune
+
     trainer.fine_tune(f"train_output/{name}/fine_tune",
                       learning_rate=1e-4,
                       mini_batch_size=8,
-                      max_epochs=10,
+                      max_epochs=20,
                       optimizer=MADGRAD,
+                      use_final_model_for_eval=False
+                      )
+
+    corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
+                          column_format={0: 'text', 8: 'label'},  # 9: "pos", 10: "dep", 11: "ner"},
+                          train_file="eval/pud_200.txt",
+                          test_file="eval/100-gold.txt",
+                          dev_file="eval/100-gold.txt"
+                          )
+
+    oie = SequenceTagger.load("train_output/" + name + "/fine_tune/best-model.pt")
+    trainer = ModelTrainer(oie, corpus)
+
+
+    trainer.fine_tune(f"train_output/{name}/fine_tune2",
+                      learning_rate=1e-4,
+                      mini_batch_size=8,
+                      max_epochs=20,
+                      optimizer=MADGRAD,
+                      use_final_model_for_eval=False
                       )
 
 

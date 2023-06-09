@@ -30,10 +30,19 @@ def main(dir: str , dataset: str):
                             sent = line.split("\t")[1]
                             exts = []
                 elif line.count("\t") == 5:
+                    counter = 0
                     ext = line.split("\t")
+                    if ext[3] == "1":
+                        counter += 1
                     if ext[4] == "1":
+                        counter += 1
+                    if ext[5] == "1":
+                        counter += 1
+                    if counter > 1:
                         exts.append(ext[0:3])
                         exts.append(id)
+                        print(ext)
+                        print(counter)
 
             for key in data_dict:
                 for ext in data_dict[key]:
@@ -50,6 +59,6 @@ def main(dir: str , dataset: str):
 
 if __name__ == "__main__":
     dir = "other_corpus"
-    datasets = ["200-silver.txt", "100-gold.txt"]
+    datasets = ["200-silver.txt", "coling2020.txt"]
     for dataset in datasets:
         main(dir ,dataset)

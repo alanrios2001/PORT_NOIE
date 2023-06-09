@@ -11,6 +11,8 @@ from diskcache import Cache
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions, clean_extraction
 from OIE.final.matcher import OIE_Match
 import openai
+import httpx
+
 
 app = typer.Typer()
 
@@ -52,7 +54,7 @@ class LoadDataset:
         Conversor(path+"/", dataset_name, out_path)
 
 
-class ArgsRel:
+class ArgsRel2:
     def __init__(self):
         self.provavel_rel = []
         self.alinhamentos = []
@@ -136,15 +138,24 @@ class ArgsRel:
 
         if len(self.provavel_rel)>0 and self.provavel_rel[0] == "VERB":
             if root_idx[0]-1 != 0:
-                if doc_dict[root_idx[0]-1]["pos"] == "AUX":
+                if doc_dict[root_idx[0]-1]["pos"] in ["AUX",'ADV']:
                     root_idx = (root_idx[0]-1, root_idx[1])
+
         #verificando elementos que compoem a rel depois do centro
         if root_idx != (None, None):
             for j in range(root_idx[1]+1, len(doc_dict)):
                 pos = doc_dict[j]["pos"]
                 self.provavel_rel.append(pos)
 
-        adp_idxs = [i for i in range(len(self.provavel_rel[0:-1])) if self.provavel_rel[i] == "ADP"]
+        adp_idxs = []
+        for idx, pos_ in enumerate(self.provavel_rel[1:-1]):
+            if pos_ in ['ADJ','ADV','NOUN', 'VERB','ADV']:
+                continue
+            elif pos_ == 'ADP':
+                adp_idxs.append(idx+1)
+                continue
+            else:
+                break
         adp_idxs.append(0)
 
         for idx in adp_idxs:
@@ -170,25 +181,305 @@ class ArgsRel:
 
         return self.alinhamentos
 
+class ArgsRel:
+    def __init__(self):
+        self.current_root_sint = None
+        self.alinhamentos = []
+        try:
+            self.nlp = spacy.load("pt_core_news_lg")
+        except:
+            os.system("python -m spacy download pt_core_news_lg")
+            self.nlp = spacy.load("pt_core_news_lg")
 
+    def root_parse(self, doc_dict, root_idx):
+        #encontra centro da extração pelo root
+        for idx in doc_dict:
+            pos = doc_dict[idx]["pos"]
+            dep = doc_dict[idx]["dep"]
+            if (pos == "VERB" and dep == "ROOT") and (idx != 0 and idx != len(doc_dict) - 1):
+                root_idx = (idx, idx)
+                self.current_root_sint = "VERB-ROOT"
+                break
+        if root_idx == (None, None):
+            root_idx = self.aux_parse(doc_dict, root_idx)
+        return root_idx
+
+    def aux_parse(self, doc_dict, root_idx):
+        #encontra centro da extração pelo root
+        for idx in doc_dict:
+            pos = doc_dict[idx]["pos"]
+            dep = doc_dict[idx]["dep"]
+            if (pos == "AUX" and dep == "cop") and (idx != 0 and idx != len(doc_dict) - 1):
+                root_idx = (idx, idx)
+                self.current_root_sint = "AUX-cop"
+                break
+            elif (pos == "AUX" and dep == "ROOT") and (idx != 0 and idx != len(doc_dict) - 1):
+                root_idx = (idx, idx)
+                self.current_root_sint = "AUX-ROOT"
+                break
+        if root_idx == (None, None):
+            root_idx = self.x_comp_parse(doc_dict, root_idx)
+        return root_idx
+    def x_comp_parse(self, doc_dict, root_idx):
+        #encontra centro da extração pelo root
+        for idx in doc_dict:
+            pos = doc_dict[idx]["pos"]
+            dep = doc_dict[idx]["dep"]
+            if (pos == "VERB" and dep == "xcomp" and (idx != 0 and idx != len(doc_dict) - 1)):
+                root_idx = (idx, idx)
+                self.current_root_sint = "VERB-xcomp"
+                break
+            elif (pos == "VERB" and dep == "acl" and (idx != 0 and idx != len(doc_dict) - 1)):
+                root_idx = (idx, idx)
+                self.current_root_sint = "VERB-acl"
+                break
+            elif (pos == "VERB" and dep == "acl:relcl" and (idx != 0 and idx != len(doc_dict) - 1)):
+                root_idx = (idx, idx)
+                self.current_root_sint = "VERB-acl:relacl"
+                break
+        if root_idx == (None, None):
+            root_idx = self.noun_root_parse(doc_dict, root_idx)
+        return root_idx
+
+    def noun_root_parse(self, doc_dict, root_idx):
+        #encontra centro da extração pelo root
+        for idx in doc_dict:
+            pos = doc_dict[idx]["pos"]
+            dep = doc_dict[idx]["dep"]
+            if (pos == "NOUN" and dep == "ROOT" and (idx != 0 and idx != len(doc_dict) - 1)):
+                root_idx = (idx, idx)
+                self.current_root_sint = "NOUN-ROOT"
+                break
+        return root_idx
+
+    def get_args_rel(self, ext):
+        self.alinhamentos = []
+        doc = self.nlp(ext)
+        doc_dict = {}
+        i = 0
+        for token in doc:
+            doc_dict[i] = {"text": token.text, "pos": token.pos_, "dep": token.dep_}
+            i += 1
+        arg1 = ""
+        rel = ""
+        arg2 = ""
+        root_idx = (None, None)
+        self.current_root_sint = None
+        root_idx = self.root_parse(doc_dict, root_idx)
+
+
+        #verificando elementos que compoem a rel antes do centro
+        if root_idx != (None, None):
+            before_root_pos_dep = ""
+            for i in range(0, root_idx[0]):
+                pos = doc_dict[i]["pos"]
+                dep = doc_dict[i]["dep"]
+                before_root_pos_dep += pos + "-" + dep + ", "
+            before_root_pos_dep = before_root_pos_dep[:-2]
+            splited = before_root_pos_dep.split(", ")
+
+            if self.current_root_sint == "NOUN-ROOT":
+                if "PRON-expl" in before_root_pos_dep and splited[-1] == "PRON-expl":
+                    if root_idx[0]-1 > 0:
+                        root_idx = (root_idx[0]-1, root_idx[1])
+                    else:
+                        root_idx = (root_idx[0], root_idx[1])
+
+            if "AUX-cop" in before_root_pos_dep and splited[-1] == "AUX-cop":
+                if root_idx[0]-1 > 0:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "AUX-cop, ADV-advmod" in before_root_pos_dep and splited[-1] == "ADV-advmod":
+                if root_idx[0]-2 > 0:
+                    root_idx = (root_idx[0]-2, root_idx[1])
+                else:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+            elif "ADV-advmod" in before_root_pos_dep and splited[-1] == "ADV-advmod":
+                if root_idx[0]-1 > 0:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "AUX-aux" in before_root_pos_dep and splited[-1] == "AUX-aux":
+                if root_idx[0]-1 > 0:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "AUX-aux:pass" in before_root_pos_dep and splited[-1] == "AUX-aux:pass":
+                if root_idx[0]-1 > 0:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "AUX-aux:pass" in before_root_pos_dep and splited[-1] == "AUX-aux:pass":
+                if root_idx[0]-1 > 0:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "ADV-advmod, PRON-obj" in before_root_pos_dep and splited[-1] == "PRON-obj":
+                if root_idx[0]-2 > 0:
+                    root_idx = (root_idx[0]-2, root_idx[1])
+                else:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+            elif "AUX-cop, ADP-case" in before_root_pos_dep and splited[-1] == "ADP-case":
+                if root_idx[0]-2 > 0:
+                    root_idx = (root_idx[0]-2, root_idx[1])
+                else:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+            elif "AUX-cop, DET-det" in before_root_pos_dep and splited[-1] == "DET-det":
+                if root_idx[0]-2 > 0:
+                    root_idx = (root_idx[0]-2, root_idx[1])
+                else:
+                    root_idx = (root_idx[0]-1, root_idx[1])
+
+        #verificando elementos que compoem a rel depois do centro
+        if root_idx != (None, None):
+            after_root_pos_dep = ""
+            for i in range(root_idx[1]+1, len(doc_dict)):
+                pos = doc_dict[i]["pos"]
+                dep = doc_dict[i]["dep"]
+                after_root_pos_dep += pos + "-" + dep + ", "
+            after_root_pos_dep = after_root_pos_dep[:-2]
+            splited = after_root_pos_dep.split(", ")
+
+            if self.current_root_sint == "AUX-cop":
+                if "DET-det, NOUN-ROOT, ADJ-amod, ADP-case" in after_root_pos_dep and splited[0] == "DET-det":
+                    if root_idx[1]+4 < len(doc_dict) - 1:
+                        root_idx = (root_idx[0], root_idx[1]+4)
+                    else:
+                        root_idx = (root_idx[0], root_idx[1])
+            if "ADP-case, DET-det, ADV-obl, VERB-xcomp" in after_root_pos_dep and splited[0] == "ADP-case":
+                if root_idx[1]+4 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+4)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+3)
+            elif "ADJ-amod, ADP-case" in after_root_pos_dep and splited[0] == "ADJ-amod":
+                if root_idx[1]+2 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+1)
+            elif "VERB-xcomp, DET-det, NOUN-obj, ADP-case" in after_root_pos_dep and splited[0] == "VERB-xcomp":
+                if root_idx[1]+4 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+4)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+3)
+            elif "VERB-xcomp, SCONJ-mark, VERB-xcomp, ADP-case" in after_root_pos_dep and splited[0] == "VERB-xcomp":
+                if root_idx[1]+4 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+4)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+3)
+            elif "VERB-xcomp, ADP-case" in after_root_pos_dep and splited[0] == "VERB-xcomp":
+                if root_idx[1]+2 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+1)
+            elif "VERB-xcomp, VERB-xcomp" in after_root_pos_dep and splited[0] == "VERB-xcomp":
+                if root_idx[1]+2 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+1)
+            elif "VERB-xcomp, SCONJ-mark, VERB-xcomp" in after_root_pos_dep and splited[0] == "VERB-xcomp":
+                if root_idx[1]+3 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+3)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+            elif "VERB-xcomp, VERB-xcomp, DET-det, NOUN-obj, ADP-case" in after_root_pos_dep and splited[0] == "VERB-xcomp":
+                if root_idx[1]+5 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+5)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+4)
+
+            elif "ADJ-amod, ADP-case" in after_root_pos_dep and splited[0] == "ADJ-amod":
+                if root_idx[1]+2 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+1)
+            elif "ADV-advmod, ADP-case" in after_root_pos_dep and splited[0] == "ADV-advmod":
+                if root_idx[1]+2 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+1)
+            elif "ADP-case, NOUN-obj, ADP-case" in after_root_pos_dep and splited[0] == "ADP-case":
+                if root_idx[1]+3 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+3)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+            elif "ADV-advmod, ADV-advmod, SCONJ-dep" in after_root_pos_dep and splited[0] == "ADV-advmod":
+                if root_idx[1]+3 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+3)
+                else:
+                    root_idx = (root_idx[0], root_idx[1]+2)
+            elif "VERB-xcomp" in after_root_pos_dep and splited[0] == "VERB-xcomp":
+                if root_idx[1]+1 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+1)
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "ADP-case" in after_root_pos_dep and splited[0] == "ADP-case":
+                if root_idx[1]+1 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+1)
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "AUX-cop" in after_root_pos_dep and splited[0] == "AUX-cop":
+                if root_idx[1]+1 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+1)
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+            elif "DET-case" in after_root_pos_dep and splited[0] == "DET-case":
+                if root_idx[1]+1 < len(doc_dict) - 1:
+                    root_idx = (root_idx[0], root_idx[1]+1)
+                else:
+                    root_idx = (root_idx[0], root_idx[1])
+
+        j = root_idx[0]
+        if root_idx != (None, None):
+            while j <= root_idx[1]:
+                rel += doc_dict[j]["text"] + " "
+                j += 1
+
+            for idx in doc_dict:
+                token = doc_dict[idx]["text"]
+                if idx < root_idx[0]:
+                    arg1 += token + " "
+                if idx > root_idx[1]:
+                    arg2 += token + " "
+        self.alinhamentos.append((arg1, rel, arg2))
+
+
+        return self.alinhamentos
 
 class Translators:
     def __init__(self, google: bool):
         if not google:
-            openai.api_key = 'YOUR API KEY HERE'
+            openai.api_key = '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'
             self.prompt_tradução = "Você é um tradutor muito preciso que faz traduções de textos da lingua inglêsa para a lingua pt-br. " \
-                  "Você irá receber dois textos, uma setença e um fato relacionado a essa sentença, siga as regras:" \
-                  "1.Em hipótese alguma retorne qualquer mensagem de erro ou aviso, retorne somente o formato de saída que foi pedido" \
-                  "2.Você deve traduzir ambas de forma que todas os tokens que fazem parte do fato, estejam presentes na sentença, e em ordem de ocorrencia na sentença." \
-                  "3.Caso a sentença e o fato sejam iguais, traduza da mesma maneira ambos, sendo que a tradução de tanto a sentença quanto o fato são iguais" \
-                  "4.Caso ocorra qualquer erro, crie um fato seguindo as regras 1" \
-                  "5.A entrada ocorrerá da seguinte maneira:" \
-                  "SENTENÇA: The dog is walking through the park, he is very happy." \
-                  "FATO: The dog is very happy." \
-                  "6.A saída deve ser só e somente só, a seguinte:" \
-                  "SENTENÇA: O cachorro está andando pelo parque, ele está muito feliz." \
-                  "FATO: O cachorro está muito feliz." \
-
+                "Você irá receber dois textos, uma setença e um fato relacionado a essa sentença, você deve traduzi-las da melhor maneira possível." \
+                "A entrada ocorrerá da seguinte maneira:" \
+                "SENTENÇA: The dog is walking through the park, he is very happy." \
+                "FATO: The dog is very happy." \
+                "A saída deve ser só e somente só, a seguinte:" \
+                "SENTENÇA: O cachorro está andando pelo parque, ele está muito feliz." \
+                "FATO: O cachorro está muito feliz." \
+                "" \
+                "MAIS EXEMPLOS:" \
+                "exemplo 1(entrada):"\
+                "SENTENÇA: Geologists study how rocks and minerals form ." \
+                "FATO: how rocks and minerals form study Geologists " \
+                "exemplo 1(saida):" \
+                "SENTENÇA: Os geólogos estudam como as rochas e minerais se formam." \
+                "FATO: Os geólogos estudam como as rochas e minerais se formam." \
+                "" \
+                "exemplo 2(entrada):" \
+                "SENTENÇA: Some geologists study the Moon . " \
+                "FATO: the Moon study Some geologists " \
+                "exemplo 2(saida):" \
+                "SENTENÇA: Alguns geólogos estudam a Lua." \
+                "FATO: Alguns geólogos estudam a Lua." \
+                "" \
+                "exemplo 3(entrada):" \
+                "SENTENÇA: Some geologists can tell how old rocks are and determine how different rock layers formed . " \
+                "FATO: how old rocks are can tell Some geologists " \
+                "exemplo 3(saida):" \
+                "SENTENÇA: Alguns geólogos conseguem determinar a idade das rochas e como diferentes camadas de rochas se formaram." \
+                "FATO: Alguns geólogos conseguem determinar a idade das rochas." \
 
         else:
             self.google_translator = GoogleTranslator(source="en", target="pt")
@@ -211,6 +502,35 @@ class Translators:
         extraction = response['choices'][0]['message']['content'].split("\n")[-1].split(": ")[-1]
         #print("sentence: ", sentence)
         #print("extraction: ", extraction)
+        return sentence, extraction
+
+    def gptv2(self, sent, ext):
+        url = "http://43.153.203.236:3001/api/chat"
+        headers = {
+            "content-type": "application/json"
+        }
+        data = {
+            "model": {
+                "id": "gpt-3.5-turbo",
+                "name": "GPT-3.5",
+                "maxLength": 12000,
+                "tokenLimit": 3000
+            },
+            "temperature": 0,
+            "messages": [
+                {"role": "system",
+                 "content": "Você é um tradutor de textos em ingles para portugues brasileiro super preciso."},
+                {"role": "user", "content": self.prompt_tradução},
+                {"role": "user", "content": f"SENTENÇA: {sent}"},
+                {"role": "user", "content": f"FATO: {ext}"}
+            ]
+        }
+        response = httpx.post(url, headers=headers, data=json.dumps(data))
+        sentence = response.text.split("\n")[0].split(": ")[-1]
+        extraction = response.text.split("\n")[-1].split(": ")[-1]
+        if len(sentence) == 0 or len(extraction) == 0:
+            print("erro na tradução, tentando novamente")
+            return self.gptv2(sent, ext)
         return sentence, extraction
 
 
@@ -336,8 +656,9 @@ class TranslateDataset:
         trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
         self.save_translate(trans_dict)
 
-    def translate_gpt(self):
-        dataset = self.load_dataset()
+    def translate_gpt(self, dataset=None):
+        if dataset is None:
+            dataset = self.load_dataset()
 
         # traduz dataset
         all_sent = []
@@ -358,7 +679,7 @@ class TranslateDataset:
 
         while i < len(dataset[0]):
             try:
-                sent, ext = self.translators.gpt(dataset[0][i], dataset[1][i])
+                sent, ext = self.translators.gptv2(dataset[0][i], dataset[1][i])
 
                 all_sent.append(sent)
                 all_ext.append(ext)

@@ -36,14 +36,14 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
     roberta = TransformerWordEmbeddings('bert-base-multilingual-cased',
                                         layers="-1",
-                                        subtoken_pooling="first",
+                                        subtoken_pooling="first_last",
                                         use_context=True,
                                         fine_tune=True,
                                         )
 
     trm = bert
 
-    tagger = SequenceTagger(hidden_size=256,
+    tagger = SequenceTagger(hidden_size=1024,
                             embeddings=trm,
                             tag_dictionary=label_dictionary,
                             tag_type='label',
@@ -53,7 +53,7 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                             locked_dropout=0.0,
                             dropout=0.5,
                             word_dropout=0.0,
-                            reproject_embeddings=False,
+                            reproject_embeddings=True,
                             )
 
     # inicializando trainer
@@ -61,13 +61,14 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
 
     # fine tune
     trainer.fine_tune(f"train_output/{name}",
-                      learning_rate=5e-6,
+                      learning_rate=1e-6,
                       mini_batch_size=2,
                       chunk_batch_size=1,
                       max_epochs=epochs,
                       optimizer=MADGRAD,
-                      decoder_lr_factor=200,
+                      decoder_lr_factor=20,
                       scheduler=AnnealOnPlateau,
+                      use_final_model_for_eval=False
                       )
 
 

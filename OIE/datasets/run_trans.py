@@ -4,12 +4,12 @@ paths = ["translated/lsoie/train", "translated/lsoie/test", "translated/lsoie/de
 files = ["ls_train.conll", "ls_test.conll", "ls_dev.conll", "dev.conll"]
 
 #paths = ["translated/lsoie/dev"]
-#files = ["dev.conll"]
+#files = ["ls_dev.conll"]
 
 cache = "translated/cache"
 BATCH_SIZE = 64
 TRANSLATED = True
-use_google = True
+use_google = False
 test_size = 0.0
 dev_size = 0.0
 
