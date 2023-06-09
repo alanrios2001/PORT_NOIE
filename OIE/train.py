@@ -48,12 +48,12 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     embeddings = StackedEmbeddings(embeddings=embedding_types)
 
     # inicializando sequence tagger
-    oie = SequenceTagger(hidden_size=1024,
+    oie = SequenceTagger(hidden_size=1536,
                          embeddings=embeddings,
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
-                         rnn_layers=5,
-                         dropout=0.3,
+                         rnn_layers=4,
+                         dropout=0.5,
                          locked_dropout=0.0,
                          word_dropout=0.1,
                          )
