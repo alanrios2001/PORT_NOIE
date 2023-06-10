@@ -35,7 +35,7 @@ def fine_tune(name: str):
 
     '8 epochs first round, second, 16'
     # fine tune
-
+    '''
     trainer.fine_tune(f"train_output/{name}/fine_tune",
                       learning_rate=1e-4,
                       mini_batch_size=16,
@@ -43,7 +43,7 @@ def fine_tune(name: str):
                       optimizer=MADGRAD,
                       use_final_model_for_eval=False
                       )
-
+    '''
 
     corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
                           column_format={0: 'text', 8: 'label'},  # 9: "pos", 10: "dep", 11: "ner"},
@@ -52,7 +52,7 @@ def fine_tune(name: str):
                           dev_file="eval/100-gold.txt"
                           )
 
-    oie = SequenceTagger.load("train_output/" + name + "/fine_tune/best-model.pt")
+    oie = SequenceTagger.load("train_output/" + name + "/best-model.pt")
     trainer = ModelTrainer(oie, corpus)
 
 

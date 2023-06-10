@@ -15,7 +15,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                           column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
                           test_file=test,
-                          dev_file=dev
+                          #dev_file=dev
                           )
 
     label_type = "label"    # criando dicionario de tags
@@ -48,14 +48,15 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     embeddings = StackedEmbeddings(embeddings=embedding_types)
 
     # inicializando sequence tagger
-    oie = SequenceTagger(hidden_size=1536,
+    oie = SequenceTagger(#hidden_size=1536,
+                         hidden_size=2560,
                          embeddings=embeddings,
                          tag_dictionary=label_dictionary,
                          tag_type=label_type,
-                         rnn_layers=4,
+                         rnn_layers=2,
                          dropout=0.5,
                          locked_dropout=0.0,
-                         word_dropout=0.1,
+                         word_dropout=0.0,
                          )
 
     pathlib.Path(f"train_output").mkdir(parents=True, exist_ok=True)
@@ -67,7 +68,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     trainer.train(f"train_output/{name}",
                   learning_rate=1e-3,
                   min_learning_rate=1e-5,
-                  mini_batch_size=16,
+                  mini_batch_size=8,
                   #mini_batch_chunk_size=1,
                   max_epochs=epochs,
                   patience=4,
