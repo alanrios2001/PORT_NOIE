@@ -11,7 +11,7 @@ import re
 import pathlib
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-name = "gpt_alan2"
+name = "merge_oie"
 engine = Predictor(f"{name}")
 
 

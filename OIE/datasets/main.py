@@ -78,11 +78,11 @@ def merge():
            "validated_splits/normal/lsoie/train.txt",
            ]
     trad = [
-        "validated_splits/normal/lsoiegpt_alan/carb.txt",
+        #"validated_splits/normal/lsoiegpt_alan/carb.txt",
         "validated_splits/normal/lsoiegpt_alan/ls_train.txt",
-        "validated_splits/normal/lsoiegpt_alan/ls_dev.txt",
+        #"validated_splits/normal/lsoiegpt_alan/ls_dev.txt",
         "validated_splits/normal/lsoiegpt_alan/ls_test.txt",
-        "validated_splits/normal/lsoiegpt_alan/dev.txt",
+        #"validated_splits/normal/lsoiegpt_alan/dev.txt",
     ]
     trad_1hot = [
         "validated_splits/one_hot/lsoie2/carb.txt",
@@ -94,15 +94,15 @@ def merge():
                      "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
 
-    OUTPUT_NAME = "gpt_alan"
-    Merge(trad, OUTPUT_NAME)
+    OUTPUT_NAME = "merge_oie"
+    Merge(fine_tune, OUTPUT_NAME)
 
 @app.command()
 def split():
-    TEST_SIZE = 0.1
+    TEST_SIZE = 0.83
     DEV_SIZE = 0.0
-    OUTPUT_NAME = "PTOIE"
-    IN_PATH = "outputs/PTOIE/saida_match"
+    OUTPUT_NAME = "s2_train"
+    IN_PATH = "validated_splits/normal/s2/"
     OUT_PATH = "outputs/splits"
     train_dev_test(TEST_SIZE, DEV_SIZE, OUTPUT_NAME, IN_PATH, OUT_PATH)
 
@@ -110,7 +110,8 @@ def split():
 def load_ptoie():
     criar_conll("PTOIE", "PTOIE/PTOIE.txt", 0.1, 0.1)
 
-def load_s2(dataset_path: str):
+@app.command()
+def load_s2(dataset_path = "other_corpus/s2/valid.tsv"):
     data_path = dataset_path
 
     out_path = f"other_corpus/outputs/s2_DS{data_path.split('/')[2].replace('.tsv', '')}"

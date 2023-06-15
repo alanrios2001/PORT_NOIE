@@ -33,43 +33,99 @@ def load_carb():
     dataset.append(exts)
     return dataset
 
-def load_largeie():
-    sents_list = []
-    exts_list = []
+def load_s2_valid():
+    sents = []
+    exts = []
     dataset = []
-    with open("sents.txt", "r", encoding="utf-8") as f:
-        with open("exts.txt", "r", encoding="utf-8") as f2:
-            sents = f.read().split("\n")
-            exts = f2.read().split("\n")
-            for i in range(len(sents)):
-                arg0 = ""
-                rel = ""
-                arg1 = ""
-                sent = sents[i]
-                ext = exts[i]
-                ext = ext.split("<arg1>")
-                ext = ext[1].split("</arg1>")
-                arg0 = ext[0]
-                ext = ext[1].split("<rel>")
-                ext = ext[1].split("</rel>")
-                rel = ext[0]
-                ext = ext[1].split("<arg2>")
-                ext = ext[1].split("</arg2>")
-                arg1 = ext[0]
-                sents_list.append(sent)
-                exts_list.append(arg0 + " " + rel + " " + arg1)
-            dataset.append(sents_list)
-            dataset.append(exts_list)
+    with open("translated/s2/valid.tsv", "r", encoding="utf-8") as f:
+        file = f.read().split("<e>")
+        for line in file:
+            sent = ""
+            l = ""
+            arg0 = ""
+            rel = ""
+            arg1 = ""
+            line = line.replace("\n", "").split(".\t")
+            if line != ['']:
+                try:
+                    sent = line[0].split("<r>")[1] + "."
+                except:
+                    pass
+                try:
+                    arg0 = line[1].split("<a1>")[1].split("</a1>")[0]
+                except:
+                    pass
+                try:
+                    rel = line[1].split("<r>")[1].split("</r>")[0]
+                except:
+                    pass
+                try:
+                    arg1 = line[1].split("<a2>")[1].split("</a2>")[0]
+                except:
+                    pass
+                try:
+                    l = line[1].split("<l>")[1].split("</l>")[0]
+                except:
+                    pass
+            if arg0 and rel and arg1 != "":
+                sents.append(sent)
+                exts.append(arg0 + " " + rel + " " + arg1)
+    dataset.append(sents)
+    dataset.append(exts)
     return dataset
+
+
+def load_s2_train():
+    sents = []
+    exts = []
+    dataset = []
+    with open("translated/s2/train.tsv", "r", encoding="utf-8") as f:
+        file = f.read().split("<e>")
+        for line in file:
+            sent = ""
+            l = ""
+            arg0 = ""
+            rel = ""
+            arg1 = ""
+            line = line.replace("\n", "").split(".\t")
+            if line != ['']:
+                try:
+                    sent = line[0].split("<r>")[1] + "."
+                except:
+                    pass
+                try:
+                    arg0 = line[1].split("<a1>")[1].split("</a1>")[0]
+                except:
+                    pass
+                try:
+                    rel = line[1].split("<r>")[1].split("</r>")[0]
+                except:
+                    pass
+                try:
+                    arg1 = line[1].split("<a2>")[1].split("</a2>")[0]
+                except:
+                    pass
+                try:
+                    l = line[1].split("<l>")[1].split("</l>")[0]
+                except:
+                    pass
+            if arg0 and rel and arg1 != "":
+                sents.append(sent)
+                exts.append(arg0 + " " + rel + " " + arg1)
+    dataset.append(sents)
+    dataset.append(exts)
+    return dataset
+
 
 def run():
     datasets_to_translate = [
-        {"dir":"","name": "carb", "load": load_carb(), "out_path": "outputs/carb/", "batch_size": 1, "google": False},
-        #{"dir": "", "name": "largeIE", "load": load_largeie(), "out_path": "outputs/largeie/", "batch_size": 1, "google": True},
+        #{"dir":"","name": "carb", "load": load_carb(), "out_path": "outputs/carb/", "batch_size": 1, "google": False},
+        {"dir": "", "name": "s2_alan_train", "load": load_s2_train(), "out_path": "outputs/s2_alan_train/", "batch_size":1, "google": False},
+        #{"dir": "", "name": "s2_alan_valid", "load": load_s2_valid(), "out_path": "outputs/s2_alan_valid/", "batch_size":1, "google": False},
     ]
     for dataset in datasets_to_translate:
         eng = translate.TranslateDataset(dataset["dir"], dataset["name"], dataset["out_path"], dataset["batch_size"], dataset["google"])
-        #eng.translate_gpt(dataset=dataset["load"])
+        eng.translate_gpt(dataset=dataset["load"])
         eng.create_dict()
         criar_conll(dataset["name"], "", 0.0, 0.0, converted=True, sequential=True)
 

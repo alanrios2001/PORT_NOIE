@@ -1,7 +1,7 @@
 from predict import Predictor
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions
 
-model = "gpt_alan/fine_tune2"
+model = "merge_oie"
 oie = Predictor(model)
 show_triple = True
 

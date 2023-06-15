@@ -446,6 +446,132 @@ class ArgsRel:
 
         return self.alinhamentos
 
+class ArgsRel3:
+    def __init__(self):
+        self.provavel_rel = []
+        self.alinhamentos = []
+        self.matcher = OIE_Match()
+        try:
+            self.nlp = spacy.load("pt_core_news_lg")
+        except:
+            os.system("python -m spacy download pt_core_news_lg")
+            self.nlp = spacy.load("pt_core_news_lg")
+
+    def get_args_rel(self, ext, sent):
+        self.alinhamentos = []
+        pos = []
+        rels = []
+        ext_list = ext.split(" ")
+        sent_doc = self.nlp(sent)
+
+
+        #permutando relações
+        for i in range(1,len(ext_list)):
+            for j in range(i+1,len(ext_list)):
+                if i == len(ext_list)-1:
+                    rel = ext_list[i]
+                else:
+                    rel = ext_list[i:j]
+                if (rel,(i,j)) not in rels:
+                    rels.append((rel,(i,j)))
+
+        rels.sort(key = lambda x: len(x[0]), reverse=True)
+
+        for rel in rels:
+            idx = rel[1]
+            sent_list = sent.split(" ")
+            ext_list = ext.split(" ")
+            arg0 = " ".join(ext_list[:idx[0]])
+            arg1 = " ".join(ext_list[idx[1]:len(sent_list)])
+            rel = " ".join(rel[0])
+
+            valid = self.matcher.match(sent, arg0, rel, arg1)
+            if valid[3]:
+                #colhe pos da relação do alinhamento, o pos usado é o da sent nos tokens da ext
+                aux = []
+                aux_dep = []
+                cur_ext = []
+                cur_dep = []
+                for span in valid[:-1]:
+                    span_tk = sent_doc[span[0]:span[1]+1]
+                    for token in span_tk:
+                        aux.append(token.pos_)
+                        aux_dep.append(token.dep_)
+                    cur_ext.append(aux)
+                    cur_dep.append(aux_dep)
+                    aux = []
+                    aux_dep = []
+                pos.append(((arg0,rel,arg1),cur_ext, cur_dep))
+        #utiliza regras no pos da relação para filtrar alinhamentos
+                ali_gerado = ((arg0,rel,arg1),cur_ext, cur_dep)
+                #print(ali_gerado)
+                rel_pos = ali_gerado[1][1]
+                rel_dep = ali_gerado[2][1]
+                #print(rel_pos)
+                #print(rel_dep)
+                inicio = [[rel_pos[0], rel_dep[0]]]
+                meio = []
+                #print(rel_pos, rel_dep)
+                for x,y in zip(rel_pos[1:-1], rel_dep[1:-1]):
+                    meio.append([x,y])
+                fim = [[rel_pos[-1], rel_dep[-1]]]
+                #print(inicio)
+                #print(meio)
+                #print(fim)
+
+                first = False
+                middle = False
+                middle_counter = 0
+                #inicio
+                for i,tags in enumerate(inicio):
+                    p_tag = tags[0]
+                    p_dep = tags[1]
+                    if p_tag == "AUX" and i == 0:
+                        first = True
+                        if len(rel_pos) == 1:
+                            self.alinhamentos.append(ali_gerado[0])
+                            return self.alinhamentos
+                    elif (p_tag == "VERB" and p_dep == "ROOT") and i == 0:
+                        first = True
+                        if len(rel_pos) == 1:
+                            self.alinhamentos.append(ali_gerado[0])
+                            return self.alinhamentos
+                    elif p_tag == "VERB" and i == 0:
+                        first = True
+                        if len(rel_pos) == 1:
+                            self.alinhamentos.append(ali_gerado[0])
+                            return self.alinhamentos
+                #meio
+                for i,tags in enumerate(meio):
+                        #print(tags)
+                        p_tag = tags[0]
+                        #print(p_tag)
+                        if p_tag in ['ADJ','NOUN', 'VERB', "AUX","DET"] and first:
+                            middle_counter += 1
+                if middle_counter == len(meio):
+                    middle = True
+
+                #fim
+                for i,tags in enumerate(fim):
+                    p_tag = tags[0]
+                    if len(rel_pos) == 2 and p_tag == "VERB" and first:
+                        self.alinhamentos.append(ali_gerado[0])
+                        return self.alinhamentos
+                    elif len(rel_pos) == 2 and p_tag == "AUX" and first:
+                        self.alinhamentos.append(ali_gerado[0])
+                        return self.alinhamentos
+                    elif len(rel_pos) == 2 and p_tag == "ADP" and first:
+                        self.alinhamentos.append(ali_gerado[0])
+                        return self.alinhamentos
+                    elif len(rel_pos) > 2 and p_tag == "ADP" and first and middle:
+                        self.alinhamentos.append(ali_gerado[0])
+                        return self.alinhamentos
+
+        if len(self.alinhamentos) == 0:
+            self.alinhamentos.append((" "," "," "))
+
+        return self.alinhamentos
+
 class Translators:
     def __init__(self, google: bool):
         if not google:
@@ -698,7 +824,7 @@ class TranslateDataset:
         self.save_translate(trans_dict)
 
     def create_dict(self):
-        argsRel_eng = ArgsRel()
+        argsRel_eng = ArgsRel3()
         with open(self.out_path + "/translate/translate.json", "r", encoding="utf-8") as f:
             data = json.load(f)
         all_sent = data["sent"]
@@ -718,7 +844,7 @@ class TranslateDataset:
             curr_ext = sample[1]
             if curr_ext[-1] == ".":
                 curr_ext = curr_ext[:-1]
-            alignments = argsRel_eng.get_args_rel(transform_portuguese_contractions(curr_ext))
+            alignments = argsRel_eng.get_args_rel(transform_portuguese_contractions(curr_ext), transform_portuguese_contractions(sample[0]))
             for ali in alignments:
                 arg0_trad, rel_trad, arg1_trad = ali
                 if len(alignments) > 1:
