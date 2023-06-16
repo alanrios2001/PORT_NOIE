@@ -31,8 +31,13 @@ def load_carb():
                 exts.append(arg0 + " " + rel + " " + arg1)
         f.close()
 
-    dataset.append(sents)
-    dataset.append(exts)
+    n_splits = 6
+    # make splits
+    for i in range(1, n_splits + 1):
+        split = int(len(sents) / n_splits * i)
+        sents_i = sents[split - int(len(sents) / n_splits):split]
+        exts_i = exts[split - int(len(sents) / n_splits):split]
+        dataset.append([sents_i, exts_i])
     return dataset
 
 def load_s2_valid():
@@ -73,11 +78,12 @@ def load_s2_valid():
                 sents.append(sent)
                 exts.append(arg0 + " " + rel + " " + arg1)
 
-    # make 20 splits
-    for i in range(1, 101):
-        split = int(len(sents) / 100 * i)
-        sents_i = sents[split - int(len(sents) / 100):split]
-        exts_i = exts[split - int(len(sents) / 100):split]
+    n_splits = 6
+    # make splits
+    for i in range(1, n_splits+1):
+        split = int(len(sents) / n_splits * i)
+        sents_i = sents[split - int(len(sents) / n_splits):split]
+        exts_i = exts[split - int(len(sents) / n_splits):split]
         dataset.append([sents_i, exts_i])
     return dataset
 
@@ -120,11 +126,12 @@ def load_s2_train():
                 sents.append(sent)
                 exts.append(arg0 + " " + rel + " " + arg1)
 
-    # make 20 splits
-    for i in range(1, 21):
-        split = int(len(sents) / 20 * i)
-        sents_i = sents[split - int(len(sents) / 20):split]
-        exts_i = exts[split - int(len(sents) / 20):split]
+    n_splits = 6
+    # make splits
+    for i in range(1, n_splits + 1):
+        split = int(len(sents) / n_splits * i)
+        sents_i = sents[split - int(len(sents) / n_splits):split]
+        exts_i = exts[split - int(len(sents) / n_splits):split]
         dataset.append([sents_i, exts_i])
     return dataset
 
@@ -132,8 +139,8 @@ def load_s2_train():
 def run():
     datasets_to_translate = [
         #{"dir":"","name": "carb", "load": load_carb(), "out_path": "outputs/carb/", "batch_size": 1, "google": False},
-        #{"dir": "", "name": "s2_alan_train", "load": load_s2_train(), "out_path": "outputs/s2_alan_train/", "batch_size":1, "google": False},
-        {"dir": "", "name": "s2_alan_valid", "load": load_s2_valid(), "out_path": "outputs/s2_alan_valid/", "batch_size":1, "google": False},
+        {"dir": "", "name": "s2_alan_train", "load": load_s2_train(), "out_path": "outputs/s2_alan_train/", "batch_size":1, "google": False},
+        #{"dir": "", "name": "s2_alan_valid", "load": load_s2_valid(), "out_path": "outputs/s2_alan_valid/", "batch_size":1, "google": False},
     ]
 
     for dataset in datasets_to_translate:

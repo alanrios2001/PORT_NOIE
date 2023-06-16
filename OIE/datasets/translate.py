@@ -12,6 +12,7 @@ from OIE.datasets.validated_splits.contractions import transform_portuguese_cont
 from OIE.final.matcher import OIE_Match
 import openai
 import httpx
+import time
 
 
 app = typer.Typer()
@@ -861,6 +862,11 @@ class TranslateDataset:
         while i < len(dataset[0]):
             try:
                 sent, ext = self.translators.gptv2(dataset[0][i], dataset[1][i])
+                if sent == "Error" or ext == "Error":
+                    print(f"thread {part} freezou, esperando 30 segundos")
+                    time.sleep(30)
+                    print(f"thread {part} liberada")
+                    raise Exception("Error")
 
                 all_sent.append(sent)
                 all_ext.append(ext)
