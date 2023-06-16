@@ -20,7 +20,7 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                           column_format={0: 'text', 8: 'label'},  # , 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
                           test_file=test,
-                          dev_file=dev
+                          #dev_file=dev
                           )
 
     label_type = "label"  # criando dicionario de tags
@@ -34,31 +34,43 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                                      fine_tune=True,
                                      )
 
-    roberta = TransformerWordEmbeddings('bert-base-multilingual-cased',
+    roberta = TransformerWordEmbeddings('xlm-roberta-large',
                                         layers="-1",
-                                        subtoken_pooling="first_last",
+                                        subtoken_pooling="first",
                                         use_context=True,
                                         fine_tune=True,
                                         )
 
-    trm = bert
+    trm = roberta
 
-    tagger = SequenceTagger(hidden_size=1024,
+    tagger = SequenceTagger(hidden_size=256,
                             embeddings=trm,
                             tag_dictionary=label_dictionary,
                             tag_type='label',
-                            use_crf=True,
-                            use_rnn=True,
+                            use_crf=False,
+                            use_rnn=False,
                             rnn_layers=2,
-                            locked_dropout=0.0,
-                            dropout=0.5,
-                            word_dropout=0.0,
-                            reproject_embeddings=True,
+                            #locked_dropout=0.0,
+                            #dropout=0.5,
+                            #word_dropout=0.0,
+                            reproject_embeddings=False,
                             )
 
     # inicializando trainer
     trainer = ModelTrainer(tagger, corpus)
 
+    trainer.fine_tune(f"train_output/{name}",
+                      learning_rate=5e-6,
+                      mini_batch_size=4,
+                      #chunk_batch_size=1,
+                      max_epochs=epochs,
+                      optimizer=MADGRAD(tagger.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-4),
+                      #decoder_lr_factor=20,
+                      #scheduler=AnnealOnPlateau,
+                      use_final_model_for_eval=False
+                      )
+
+    """
     # fine tune
     trainer.fine_tune(f"train_output/{name}",
                       learning_rate=1e-6,
@@ -70,7 +82,7 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                       scheduler=AnnealOnPlateau,
                       use_final_model_for_eval=False
                       )
-
+    """
 
 if __name__ == "__main__":
     app()

@@ -3,6 +3,7 @@ from main import criar_conll
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions, clean_extraction
 import threading
 import concurrent.futures
+import json
 
 def load_carb():
     sents = []
@@ -147,18 +148,26 @@ def run():
         eng = translate.TranslateDataset(dataset["dir"], dataset["name"], dataset["out_path"], dataset["batch_size"], dataset["google"])
 
         full_dataset = dataset["load"]
-        pool = concurrent.futures.ThreadPoolExecutor(max_workers=len(full_dataset))
+
 
         # Submit tasks to thread pool
+        pool = concurrent.futures.ThreadPoolExecutor(max_workers=len(full_dataset))
         print(f"traduzindo utilizando {len(full_dataset)} threads")
         for i in range(len(full_dataset)):
             ds_part = full_dataset[i]
             pool.submit(eng.thread_gpt, i, ds_part)
         pool.shutdown(wait=True)
-        eng.merge_translate_parts(len(full_dataset))
 
-        #eng.translate_gpt(dataset=dataset["load"])
-        eng.create_dict()
+        # Submit tasks to thread pool2
+        pool2 = concurrent.futures.ThreadPoolExecutor(max_workers=len(full_dataset))
+        for i in range(len(full_dataset)):
+            with open(dataset["out_path"]+f"/translate/translate{i}.json", "r", encoding="utf-8") as f:
+                trans_part = json.load(f)
+                pool2.submit(eng.create_dict, trans_part, i)
+        pool2.shutdown(wait=True)
+        eng.save_dict_threads(len(full_dataset))
+        #eng.merge_translate_parts(len(full_dataset))
+        #eng.create_dict()
         criar_conll(dataset["name"], "", 0.0, 0.0, converted=True, sequential=True)
 
 run()

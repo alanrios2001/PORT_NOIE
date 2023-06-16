@@ -679,6 +679,7 @@ class TranslateDataset:
         self.matcher = OIE_Match(sequential=True)
         self.argreleng = ArgsRel()
         self.freezed = []
+        self.counter = 0
 
     def debugging(self, sentence,  ext, raw_sent, raw_ext):
         alignments = self.argreleng.get_args_rel(ext)
@@ -903,10 +904,21 @@ class TranslateDataset:
             f.write(json.dumps(trans_dict))
 
 
-    def create_dict(self):
+    def save_dict_threads(self, n_parts:int):
+        data_dict = {}
+        for i in range(n_parts):
+            with open(f"{self.out_path}/align/data_dict{i}.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+                data_dict.update(data)
+        self.save_dict(data_dict)
+
+    def create_dict(self, translate = None, part = None):
         argsRel_eng = ArgsRel3()
-        with open(self.out_path + "/translate/translate.json", "r", encoding="utf-8") as f:
-            data = json.load(f)
+        if translate is None:
+            with open(self.out_path + "/translate/translate.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+        else:
+            data = translate
         all_sent = data["sent"]
         all_ext = data["ext"]
         raw_sent = data["raw_sent"]
@@ -920,7 +932,8 @@ class TranslateDataset:
         data_dict = {}
         #identifica elementos da tripla traduzida e armazena em um dicionario
         counter = 0
-        for sample in tqdm(zip(all_sent, all_ext), desc="Alinhando extrações", total=len(all_sent)):
+
+        for sample in zip(all_sent, all_ext):
             curr_ext = sample[1]
             if curr_ext[-1] == ".":
                 curr_ext = curr_ext[:-1]
@@ -935,26 +948,33 @@ class TranslateDataset:
                                                )
 
                     if match[3] == True:
-                        data_dict[str(counter)] = {"ID": counter,
+                        data_dict[str(self.counter)] = {"ID": self.counter,
                                                    "sent": transform_portuguese_contractions(sample[0]),
                                                    "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
                                                             "rel": transform_portuguese_contractions(rel_trad),
                                                             "arg2": transform_portuguese_contractions(arg1_trad)}]}
-                        counter += 1
+                        self.counter += 1
                         break
 
 
 
                 else:
-                    data_dict[str(counter)] = {"ID": counter,
+                    data_dict[str(self.counter)] = {"ID": self.counter,
                                                "sent": transform_portuguese_contractions(sample[0]),
                                                "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
                                                         "rel": transform_portuguese_contractions(rel_trad),
                                                         "arg2": transform_portuguese_contractions(arg1_trad)}]}
-                    counter += 1
+                    self.counter += 1
+            print(f"{self.counter / len(all_sent) * 6:.2f}% concluído ||| {self.counter}/{len(all_sent)*6} ||| thread: {part}")
 
-        #salva dicionario
-        self.save_dict(data_dict)
+        if part is not None:
+            path = self.out_path + f"/align/"
+            pathlib.Path(path).mkdir(parents=True, exist_ok=True)
+            with open(self.out_path + f"/align/data_dict{part}.json", "a", encoding="utf-8") as f:
+                f.write(json.dumps(data_dict))
+        else:
+            #salva dicionario
+            self.save_dict(data_dict)
 
 
 
