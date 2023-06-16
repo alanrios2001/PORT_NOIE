@@ -1,6 +1,8 @@
 import translate
 from main import criar_conll
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions, clean_extraction
+import threading
+import concurrent.futures
 
 def load_carb():
     sents = []
@@ -70,8 +72,13 @@ def load_s2_valid():
             if arg0 and rel and arg1 != "":
                 sents.append(sent)
                 exts.append(arg0 + " " + rel + " " + arg1)
-    dataset.append(sents)
-    dataset.append(exts)
+
+    # make 20 splits
+    for i in range(1, 101):
+        split = int(len(sents) / 100 * i)
+        sents_i = sents[split - int(len(sents) / 100):split]
+        exts_i = exts[split - int(len(sents) / 100):split]
+        dataset.append([sents_i, exts_i])
     return dataset
 
 
@@ -112,20 +119,38 @@ def load_s2_train():
             if arg0 and rel and arg1 != "":
                 sents.append(sent)
                 exts.append(arg0 + " " + rel + " " + arg1)
-    dataset.append(sents)
-    dataset.append(exts)
+
+    # make 20 splits
+    for i in range(1, 21):
+        split = int(len(sents) / 20 * i)
+        sents_i = sents[split - int(len(sents) / 20):split]
+        exts_i = exts[split - int(len(sents) / 20):split]
+        dataset.append([sents_i, exts_i])
     return dataset
 
 
 def run():
     datasets_to_translate = [
         #{"dir":"","name": "carb", "load": load_carb(), "out_path": "outputs/carb/", "batch_size": 1, "google": False},
-        {"dir": "", "name": "s2_alan_train", "load": load_s2_train(), "out_path": "outputs/s2_alan_train/", "batch_size":1, "google": False},
-        #{"dir": "", "name": "s2_alan_valid", "load": load_s2_valid(), "out_path": "outputs/s2_alan_valid/", "batch_size":1, "google": False},
+        #{"dir": "", "name": "s2_alan_train", "load": load_s2_train(), "out_path": "outputs/s2_alan_train/", "batch_size":1, "google": False},
+        {"dir": "", "name": "s2_alan_valid", "load": load_s2_valid(), "out_path": "outputs/s2_alan_valid/", "batch_size":1, "google": False},
     ]
+
     for dataset in datasets_to_translate:
         eng = translate.TranslateDataset(dataset["dir"], dataset["name"], dataset["out_path"], dataset["batch_size"], dataset["google"])
-        eng.translate_gpt(dataset=dataset["load"])
+
+        full_dataset = dataset["load"]
+        pool = concurrent.futures.ThreadPoolExecutor(max_workers=len(full_dataset))
+
+        # Submit tasks to thread pool
+        print(f"traduzindo utilizando {len(full_dataset)} threads")
+        for i in range(len(full_dataset)):
+            ds_part = full_dataset[i]
+            pool.submit(eng.thread_gpt, i, ds_part)
+        pool.shutdown(wait=True)
+        eng.merge_translate_parts(len(full_dataset))
+
+        #eng.translate_gpt(dataset=dataset["load"])
         eng.create_dict()
         criar_conll(dataset["name"], "", 0.0, 0.0, converted=True, sequential=True)
 

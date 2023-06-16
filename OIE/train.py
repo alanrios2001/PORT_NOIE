@@ -16,7 +16,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                           column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
                           test_file=test,
-                          #dev_file=dev
+                          dev_file=dev
                           )
 
     label_type = "label"    # criando dicionario de tags
@@ -77,8 +77,8 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   max_epochs=epochs,
                   patience=4,
                   embeddings_storage_mode='cpu',
-                  #optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-5),
-                  optimizer=optimizer,
+                  optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.75, weight_decay=1e-4),
+                  #optimizer=optimizer,
                   save_final_model=False,
                   anneal_factor=0.5,
                   anneal_with_restarts=True,
@@ -97,10 +97,10 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     trainer = ModelTrainer(oie, corpus)
 
     trainer.fine_tune(f"train_output/{name}/fine_tune2",
-                      learning_rate=1e-4,
+                      learning_rate=1e-3,
                       mini_batch_size=32,
                       max_epochs=20,
-                      optimizer=MADGRAD(oie.parameters(), lr=1e-4, momentum=0.9, weight_decay=1e-4),
+                      optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-4),
                       use_final_model_for_eval=False
                       )
 

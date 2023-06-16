@@ -823,6 +823,77 @@ class TranslateDataset:
         trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
         self.save_translate(trans_dict)
 
+    def save_translate_thread(self, data, part: int):
+        path = self.out_path + f"/translate"
+        pathlib.Path(path).mkdir(parents=True, exist_ok=True)
+        with open(self.out_path + f"/translate/translate{part}.json", "a", encoding="utf-8") as f:
+            open(self.out_path + f"/translate/translate{part}.json", "w", encoding="utf-8").close()
+            f.write(json.dumps(data))
+
+    def half_translated_thread(self, part: int):
+        try:
+            open(f"{self.out_path}/translate/translate{part}.json", "r", encoding="utf-8")
+            return True
+        except:
+            return False
+
+    def thread_gpt(self, part: int, dataset=None):
+        if dataset is None:
+            dataset = self.load_dataset()
+
+        # traduz dataset
+        all_sent = []
+        all_ext = []
+        raw_sent = []
+        raw_ext = []
+
+        if self.half_translated_thread(part):
+            with open(f"{self.out_path}/translate/translate{part}.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+            all_sent = data["sent"]
+            all_ext = data["ext"]
+            raw_sent = data["raw_sent"]
+            raw_ext = data["raw_ext"]
+            i = len(all_sent)
+        else:
+            i = 0
+
+        while i < len(dataset[0]):
+            try:
+                sent, ext = self.translators.gptv2(dataset[0][i], dataset[1][i])
+
+                all_sent.append(sent)
+                all_ext.append(ext)
+                raw_sent.append(dataset[0][i])
+                raw_ext.append(dataset[1][i])
+                os.system("cls")
+                print(f"{i / len(dataset[0]) * 100:.2f}% concluído ||| {i}/{len(dataset[0])} ||| Thread: {part}")
+                trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
+                self.save_translate_thread(trans_dict, part)
+                i += 1
+            except:
+                print("provavelmente o modelo está sobrecarregado, tentando novamente")
+
+        trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
+        self.save_translate_thread(trans_dict, part)
+
+    def merge_translate_parts(self, total_parts:int):
+        all_sent = []
+        all_ext = []
+        raw_sent = []
+        raw_ext = []
+        with open(self.out_path + f"/translate/translate.json", "a", encoding="utf-8") as f:
+            for part in range(total_parts):
+                with open(self.out_path + f"/translate/translate{part}.json", "r", encoding="utf-8") as f2:
+                    data = json.load(f2)
+                    all_sent.extend(data["sent"])
+                    all_ext.extend(data["ext"])
+                    raw_sent.extend(data["raw_sent"])
+                    raw_ext.extend(data["raw_ext"])
+            trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
+            f.write(json.dumps(trans_dict))
+
+
     def create_dict(self):
         argsRel_eng = ArgsRel3()
         with open(self.out_path + "/translate/translate.json", "r", encoding="utf-8") as f:
