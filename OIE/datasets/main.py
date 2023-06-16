@@ -78,24 +78,25 @@ def merge():
            "validated_splits/normal/lsoie/train.txt",
            ]
     trad = [
-        #"validated_splits/normal/lsoiegpt_alan/carb.txt",
-        "validated_splits/normal/lsoiegpt_alan/ls_train.txt",
-        #"validated_splits/normal/lsoiegpt_alan/ls_dev.txt",
-        "validated_splits/normal/lsoiegpt_alan/ls_test.txt",
-        #"validated_splits/normal/lsoiegpt_alan/dev.txt",
+        "validated_splits/normal/TransAlign/carb.txt",
+        "validated_splits/normal/TransAlign/ls_train.txt",
+        "validated_splits/normal/TransAlign/ls_dev.txt",
+        "validated_splits/normal/TransAlign/ls_test.txt",
+        "validated_splits/normal/TransAlign/dev.txt",
+        "validated_splits/normal/TransAlign/s2_TA_valid.txt",
     ]
     trad_1hot = [
-        "validated_splits/one_hot/lsoie2/carb.txt",
-        "validated_splits/one_hot/lsoie2/ls_train.txt",
-        "validated_splits/one_hot/lsoie2/ls_dev.txt",
-        "validated_splits/one_hot/lsoie2/dev.txt",
+        "validated_splits/one_hot/TransAlign/carb.txt",
+        "validated_splits/one_hot/TransAlign/ls_train.txt",
+        "validated_splits/one_hot/TransAlign/ls_dev.txt",
+        "validated_splits/one_hot/TransAlign/dev.txt",
     ]
     fine_tune_1hot = ["other_corpus/outputs/saida_pos_tag/gamalho",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
 
-    OUTPUT_NAME = "merge_oie"
-    Merge(fine_tune, OUTPUT_NAME)
+    OUTPUT_NAME = "gpt_alan2"
+    Merge(trad, OUTPUT_NAME)
 
 @app.command()
 def split():

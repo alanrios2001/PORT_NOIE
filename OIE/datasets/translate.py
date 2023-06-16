@@ -678,6 +678,7 @@ class TranslateDataset:
         self.translators = Translators(google)
         self.matcher = OIE_Match(sequential=True)
         self.argreleng = ArgsRel()
+        self.freezed = []
 
     def debugging(self, sentence,  ext, raw_sent, raw_ext):
         alignments = self.argreleng.get_args_rel(ext)
@@ -864,8 +865,10 @@ class TranslateDataset:
                 sent, ext = self.translators.gptv2(dataset[0][i], dataset[1][i])
                 if sent == "Error" or ext == "Error":
                     print(f"thread {part} freezou, esperando 30 segundos")
+                    self.freezed.append(part)
                     time.sleep(30)
                     print(f"thread {part} liberada")
+                    self.freezed.remove(part)
                     raise Exception("Error")
 
                 all_sent.append(sent)
@@ -873,7 +876,7 @@ class TranslateDataset:
                 raw_sent.append(dataset[0][i])
                 raw_ext.append(dataset[1][i])
                 os.system("cls")
-                print(f"{i / len(dataset[0]) * 100:.2f}% concluído ||| {i}/{len(dataset[0])} ||| Thread: {part}")
+                print(f"{i / len(dataset[0]) * 100:.2f}% concluído ||| {i}/{len(dataset[0])} ||| Thread: {part} ||| Freezed: {self.freezed}")
                 trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
                 self.save_translate_thread(trans_dict, part)
                 i += 1
