@@ -5,78 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14e074a8-21a2-4371-919b-d6a5e57781c8" name="Changes" comment="created multithreading translate">
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/TA_valid.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/bia/saida_match/bia_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/bia/saida_match/gold_valid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/bia/saida_match/invalid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/bia/saida_match/json_dump.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/bia/saida_pos_tag/bia_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/bia2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/carb/saida_match/carb_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/carb/saida_match/gold_valid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/carb/saida_match/invalid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/carb/saida_match/json_dump.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/carb/saida_pos_tag/carb_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/carb/translate/google/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/carb/translate/gpt/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/carb/translate/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/dev/saida_match/dev_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/dev/saida_match/gold_valid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/dev/saida_match/invalid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/dev/saida_match/json_dump.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/dev/saida_pos_tag/dev_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/dev/translate/google/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/dev/translate/gpt/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/dev/translate/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_dev/saida_match/gold_valid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_dev/saida_match/invalid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_dev/saida_match/json_dump.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_dev/saida_match/ls_dev_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_dev/saida_pos_tag/ls_dev_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_dev/translate/google/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_dev/translate/gpt/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_dev/translate/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_test/saida_match/gold_valid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_test/saida_match/invalid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_test/saida_match/json_dump.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_test/saida_match/ls_test_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_test/saida_pos_tag/ls_test_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_test/translate/google/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_test/translate/gpt/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_test/translate/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_train/saida_match/gold_valid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_train/saida_match/invalid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_train/saida_match/json_dump.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_train/saida_match/ls_train_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_train/saida_pos_tag/ls_train_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_train/translate/google/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_train/translate/gpt/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/ls_train/translate/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/merge_oie.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/saida_match/gold_valid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/saida_match/invalid.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/saida_match/json_dump.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/saida_match/s2_alan_valid_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/saida_pos_tag/s2_alan_valid_corpus.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/translate/translate.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/translate/translate0.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/translate/translate1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/translate/translate2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/translate/translate3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/translate/translate4.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_alan_valid/translate/translate5.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_train.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/normal/datasets/s2_valid.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/trans_other.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/trans_other.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/translate.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/translate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/datasets/validated_splits/generative_dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/datasets/validated_splits/generative_dataset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/eval2.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/eval2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/fine_tune.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/fine_tune.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/fine_tune_transformer.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/fine_tune_transformer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OIE/txt_facts_ext.py" beforeDir="false" afterPath="$PROJECT_DIR$/OIE/txt_facts_ext.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -566,14 +495,7 @@
       <workItem from="1686768808795" duration="74805000" />
       <workItem from="1687038639907" duration="7847000" />
       <workItem from="1687055860499" duration="607000" />
-      <workItem from="1687056493956" duration="399000" />
-    </task>
-    <task id="LOCAL-00069" summary="changes">
-      <created>1680734950780</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1680734950780</updated>
+      <workItem from="1687056493956" duration="1391000" />
     </task>
     <task id="LOCAL-00070" summary="changes">
       <created>1680749996603</created>
@@ -911,7 +833,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687056595207</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="created multithreading translate">
+      <created>1687056910370</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1687056910370</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1009,7 +938,7 @@
     <SUITE FILE_PATH="coverage/Flair_oie$prepare_conll_datasets.coverage" NAME="prepare_conll_datasets Coverage Results" MODIFIED="1686201918244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$my_model.coverage" NAME="my_model Coverage Results" MODIFIED="1682533658940" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/models" />
     <SUITE FILE_PATH="coverage/Flair_oie$predict.coverage" NAME="predict Coverage Results" MODIFIED="1686366679907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
-    <SUITE FILE_PATH="coverage/Flair_oie$train.coverage" NAME="train Coverage Results" MODIFIED="1687055638240" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
+    <SUITE FILE_PATH="coverage/Flair_oie$train.coverage" NAME="train Coverage Results" MODIFIED="1687056997308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$translate_other.coverage" NAME="translate_other Coverage Results" MODIFIED="1681447241437" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$main.coverage" NAME="main Coverage Results" MODIFIED="1686544381369" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$matcher.coverage" NAME="matcher Coverage Results" MODIFIED="1682572537828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/final" />
@@ -1031,7 +960,7 @@
     <SUITE FILE_PATH="coverage/Flair_oie$merge_datasets.coverage" NAME="merge_datasets Coverage Results" MODIFIED="1678409393996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets/src" />
     <SUITE FILE_PATH="coverage/Flair_oie$fine_tune_transformer.coverage" NAME="fine_tune_transformer Coverage Results" MODIFIED="1686986599654" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$criar_corpus.coverage" NAME="criar_corpus Coverage Results" MODIFIED="1675642973787" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
-    <SUITE FILE_PATH="coverage/Flair_oie$trans_other.coverage" NAME="trans_other Coverage Results" MODIFIED="1687040932645" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
+    <SUITE FILE_PATH="coverage/Flair_oie$trans_other.coverage" NAME="trans_other Coverage Results" MODIFIED="1687056947367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
     <SUITE FILE_PATH="coverage/Flair_oie$txt_facts_ext.coverage" NAME="txt_facts_ext Coverage Results" MODIFIED="1687055166442" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE" />
     <SUITE FILE_PATH="coverage/Flair_oie$t5_transformer.coverage" NAME="t5_transformer Coverage Results" MODIFIED="1676054971942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/tools" />
     <SUITE FILE_PATH="coverage/Flair_oie$prepare_silver_gold.coverage" NAME="prepare_silver_gold Coverage Results" MODIFIED="1686169197274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/OIE/datasets" />
