@@ -50,7 +50,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     # inicializando sequence tagger
     oie = SequenceTagger(#hidden_size=2560,
-                         hidden_size=896,
+                         hidden_size=1024,
                          embeddings=embeddings,
                          tag_dictionary=label_dictionary,
                          reproject_embeddings=True,
@@ -76,9 +76,9 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   #mini_batch_chunk_size=1,
                   max_epochs=epochs,
                   patience=4,
-                  embeddings_storage_mode='cpu',
-                  optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.75, weight_decay=1e-4),
-                  #optimizer=optimizer,
+                  embeddings_storage_mode='none',
+                  #optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-4),
+                  optimizer=optimizer,
                   save_final_model=False,
                   anneal_factor=0.5,
                   anneal_with_restarts=True,
@@ -92,7 +92,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                           column_format={0: 'text', 8: 'label'},  # 9: "pos", 10: "dep", 11: "ner"},
                           train_file="eval/pud_200.txt",
                           test_file="eval/100-gold.txt",
-                          dev_file="eval/100-gold.txt"
+                          dev_file="fine_tune/fine_tune2.txt"
                           )
     trainer = ModelTrainer(oie, corpus)
 

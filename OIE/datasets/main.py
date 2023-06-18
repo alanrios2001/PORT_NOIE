@@ -83,7 +83,7 @@ def merge():
         "validated_splits/normal/TransAlign/ls_dev.txt",
         "validated_splits/normal/TransAlign/ls_test.txt",
         "validated_splits/normal/TransAlign/dev.txt",
-        "validated_splits/normal/TransAlign/s2_TA_valid.txt",
+        "validated_splits/normal/TransAlign/s2_TA_train.txt",
     ]
     trad_1hot = [
         "validated_splits/one_hot/TransAlign/carb.txt",
@@ -95,7 +95,7 @@ def merge():
                      "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
                      "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
 
-    OUTPUT_NAME = "gpt_alan2"
+    OUTPUT_NAME = "TA_medium"
     Merge(trad, OUTPUT_NAME)
 
 @app.command()
@@ -195,7 +195,7 @@ def load_bia():
     with open(dataset_name, "r", encoding="utf-8") as f:
         dataset = f.read().splitlines()[1:]
         dataset = [i.split(";") for i in dataset]
-        print(dataset)
+        #print(dataset)
 
     counter = 0
     for _,i in enumerate(dataset):

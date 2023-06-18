@@ -1,0 +1,3410 @@
+{
+    "0": {
+        "ID": 0,
+        "expected": {
+            "arg1": "A universidade",
+            "rel": "é",
+            "arg2": "a sede de a congregação de a Santa cruz"
+        },
+        "sent": "A universidade é a sede principal de a Congregação de a Santa Cruz (embora não seja sua sede oficial, que fica em Roma)",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "3": {
+        "ID": 3,
+        "expected": {
+            "arg1": "John F. Shea",
+            "rel": "se formou",
+            "arg2": "em 1908"
+        },
+        "sent": "Michael J. Shea, formado em 1904, escreveu a música, e seu irmão, John F. Shea, que se formou em 1906 e 1908, escreveu a letra original.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "6": {
+        "ID": 6,
+        "expected": {
+            "arg1": "Beyoncé",
+            "rel": "apresentou",
+            "arg2": "At Last em o primeiro baile inaugural de o primeiro casal."
+        },
+        "sent": "Em 20 de janeiro de 2009, Beyoncé apresentou At Last, de James, em o primeiro baile inaugural de o primeiro casal.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "7": {
+        "ID": 7,
+        "expected": {
+            "arg1": "Llewyn Smith",
+            "rel": "escreveu",
+            "arg2": "Por que Beyoncé"
+        },
+        "sent": "Quando O guardião nomeou seu Artista de a Década, Llewyn-Smith escreveu “Por que Beyoncé?”",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "9": {
+        "ID": 9,
+        "expected": {
+            "arg1": "Beyoncé",
+            "rel": "faz",
+            "arg2": "um album"
+        },
+        "sent": "Em 2013, Beyoncé fez a Lista de o tempo 100, Baz Luhrmann escrevendo ninguém tem essa voz, ninguém se move de o jeito que ela se move, ninguém pode manter uma audiência de o jeito que ela faz ... Quando Beyoncé faz um álbum, quando Beyoncé canta uma música, quando Beyoncé faz qualquer coisa, é um evento e é amplamente influente.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "11": {
+        "ID": 11,
+        "expected": {
+            "arg1": "niguém",
+            "rel": "pode manter",
+            "arg2": "uma audiência de o jeito que ela faz"
+        },
+        "sent": "Em 2013, Beyoncé fez a Lista de o tempo 100, Baz Luhrmann escrevendo ninguém tem essa voz, ninguém se move de o jeito que ela se move, ninguém pode manter uma audiência de o jeito que ela faz ... Quando Beyoncé faz um álbum, quando Beyoncé canta uma música, quando Beyoncé faz qualquer coisa, é um evento e é amplamente influente.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "12": {
+        "ID": 12,
+        "expected": {
+            "arg1": "Beyoncé",
+            "rel": "trabalharia",
+            "arg2": "com Salma Hayek e Frida Gianni [Rerisson: pergunta para Alan: o COM é para ficar em o arg 2 ou em a relação?]"
+        },
+        "sent": "Em 2013, foi anunciado que Beyoncé trabalharia com Salma Hayek e Frida Giannini em uma campanha de a Gucci Chime for Change, que visa espalhar o empoderamento feminino.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "13": {
+        "ID": 13,
+        "expected": {
+            "arg1": "Beyoncé",
+            "rel": "trabalharia em",
+            "arg2": "uma campanha de a Gucci"
+        },
+        "sent": "Em 2013, foi anunciado que Beyoncé trabalharia com Salma Hayek e Frida Giannini em uma campanha de a Gucci Chime for Change, que visa espalhar o empoderamento feminino.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "14": {
+        "ID": 14,
+        "expected": {
+            "arg1": "A população de Montana",
+            "rel": "era",
+            "arg2": "1032949"
+        },
+        "sent": "O Bureau de o Censo de os Estados Unidos estima que a população de Montana era 1.032.949 em 1º de julho de 2015, um aumento de 4,40% desde o Censo de os Estados Unidos de 2010.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "18": {
+        "ID": 18,
+        "expected": {
+            "arg1": "Clésinger",
+            "rel": "fez",
+            "arg2": "a máscara de a mortuária de Chopin"
+        },
+        "sent": "Mais tarde naquela manhã, o marido de Solange, Clésinger, fez a máscara mortuária de Chopin e um giro de a mão esquerda.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "20": {
+        "ID": 20,
+        "expected": {
+            "arg1": "As mazurkas e valsas de chopin",
+            "rel": "estão",
+            "arg2": "todas em a forma ternária ou episódica direta"
+        },
+        "sent": "Os mazurkas e valsas de Chopin estão todos em a forma ternária ou episódica direta, às vezes com uma coda.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "23": {
+        "ID": 23,
+        "expected": {
+            "arg1": "ele freqüentemente tocava a música de Chopin durante seus estudos em o Conservatório de Paris e empreendeu a edição de a música de piano de Chopin para o editor Jacques Durand.",
+            "rel": "Debussy",
+            "arg2": "dedicou"
+        },
+        "sent": "Debussy dedicou seu próprio piano de 1915, Études, a a memória de Chopin",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "28": {
+        "ID": 28,
+        "expected": {
+            "arg1": "O phagmodrupa",
+            "rel": "perdeu",
+            "arg2": "seu poder sobre o Tibete"
+        },
+        "sent": "Dreyfus escreve que depois que o Phagmodrupa perdeu seu poder centralizador sobre o Tibete em 1434, várias tentativas de outras famílias para estabelecer hegemonias falharam em os próximos dois séculos até 1642 com a efetiva hegemonia de o 5º Dalai Lama sobre o Tibete.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "29": {
+        "ID": 29,
+        "expected": {
+            "arg1": "O phagmodrupa",
+            "rel": "perdeu",
+            "arg2": "seu poder sobre o Tibete em 1434"
+        },
+        "sent": "Dreyfus escreve que depois que o Phagmodrupa perdeu seu poder centralizador sobre o Tibete em 1434, várias tentativas de outras famílias para estabelecer hegemonias falharam em os próximos dois séculos até 1642 com a efetiva hegemonia de o 5º Dalai Lama sobre o Tibete.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "30": {
+        "ID": 30,
+        "expected": {
+            "arg1": "O imperador ming yongle",
+            "rel": "convidou",
+            "arg2": "Je Tsongkhapa para ir a a corte Ming"
+        },
+        "sent": "Quando o imperador Ming Yongle convidou Je Tsongkhapa (1357-1419), fundador de a escola Gelug, para ir a a corte Ming e prestar homenagem, este último recusou.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "36": {
+        "ID": 36,
+        "expected": {
+            "arg1": "O imperador de Hongwo",
+            "rel": "usou",
+            "arg2": "a força militar"
+        },
+        "sent": "No entanto, houve casos em o século 14 em que o imperador de Hongwu usou a força militar para reprimir a agitação em o Tibete.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "41": {
+        "ID": 41,
+        "expected": {
+            "arg1": "Wanli",
+            "rel": "convidou",
+            "arg2": "Sonam Gyatso para Pequim"
+        },
+        "sent": "Embora não tenha sido registrada em nenhum registro oficial chinês, a biografia de Sonam Gyatso afirma que Wanli novamente conferiu títulos a Sonam Gyatso em 1588 e o convidou para Pequim por a segunda vez, mas Sonam Gyatso não pôde visitar a China, pois morreu em o mesmo ano em a Mongólia.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "42": {
+        "ID": 42,
+        "expected": {
+            "arg1": "Wanli",
+            "rel": "novamente conferiu",
+            "arg2": "títulos a Sonam Gyato"
+        },
+        "sent": "Embora não tenha sido registrada em nenhum registro oficial chinês, a biografia de Sonam Gyatso afirma que Wanli novamente conferiu títulos a Sonam Gyatso em 1588 e o convidou para Pequim por a segunda vez, mas Sonam Gyatso não pôde visitar a China, pois morreu em o mesmo ano em a Mongólia.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "57": {
+        "ID": 57,
+        "expected": {
+            "arg1": "Os Ming",
+            "rel": "mantiveram",
+            "arg2": "a política de dividir e governar"
+        },
+        "sent": "Os historiadores Luciano Petech e Sato Hisashi argumentam que os Ming mantiveram uma política de dividir e governar em direção a um Tibete fraco e politicamente fragmentado depois que o regime de Sakya caiu.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "62": {
+        "ID": 62,
+        "expected": {
+            "arg1": "As filmagens",
+            "rel": "demoraram",
+            "arg2": "128 dias."
+        },
+        "sent": "As filmagens demoraram 128 dias",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "63": {
+        "ID": 63,
+        "expected": {
+            "arg1": "O terremoto de Sichuan em 2008",
+            "rel": "ocorreu",
+            "arg2": "às 14h28"
+        },
+        "sent": "O terremoto de Sichuan em 2008 ou o grande terremoto de Sichuan, medido em 8,0 ms e 7,9 Mw, ocorreu às 14h2801 de a China em o horário local de o epicentro (062801 UTC) de 12 de maio em a província de Sichuan, matando 69.197 pessoas e deixou 18.222 desaparecidos.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "64": {
+        "ID": 64,
+        "expected": {
+            "arg1": "O grande terremoto de Sichuan",
+            "rel": "ocorreu",
+            "arg2": "às 14h28"
+        },
+        "sent": "O terremoto de Sichuan em 2008 ou o grande terremoto de Sichuan, medido em 8,0 ms e 7,9 Mw, ocorreu às 14h2801 de a China em o horário local de o epicentro (062801 UTC) de 12 de maio em a província de Sichuan, matando 69.197 pessoas e deixou 18.222 desaparecidos.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "65": {
+        "ID": 65,
+        "expected": {
+            "arg1": "O escorregamento médio em a falha de Beichuan",
+            "rel": "foi",
+            "arg2": "cerca de 3,5 metros (11 pés) em a vertical"
+        },
+        "sent": "Na área epicentral, o escorregamento médio em a falha de Beichuan foi cerca de 3,5 metros (11 pés) em a vertical, 3,5 metros (11 pés) em a horizontal paralelo a a falha e 4,8 metros (16 pés) em a horizontal perpendicular a a falha.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "68": {
+        "ID": 68,
+        "expected": {
+            "arg1": "em o mesmo local, 10.000 pessoas ficaram feridas e 80% de os edifícios foram destruídos.",
+            "rel": "3.000 a 5.000 pessoas",
+            "arg2": "foram mortas em"
+        },
+        "sent": "3.000 a 5.000 pessoas foram mortas em o condado de Beichuan, somente em Sichuan",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "69": {
+        "ID": 69,
+        "expected": {
+            "arg1": "em o mesmo local, 10.000 pessoas ficaram feridas e 80% de os edifícios foram destruídos.",
+            "rel": "10.000 pessoas",
+            "arg2": "ficaram"
+        },
+        "sent": "3.000 a 5.000 pessoas foram mortas em o condado de Beichuan, somente em Sichuan",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "70": {
+        "ID": 70,
+        "expected": {
+            "arg1": "em o mesmo local, 10.000 pessoas ficaram feridas e 80% de os edifícios foram destruídos.",
+            "rel": "80% de os edifícios",
+            "arg2": "foram"
+        },
+        "sent": "3.000 a 5.000 pessoas foram mortas em o condado de Beichuan, somente em Sichuan",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "71": {
+        "ID": 71,
+        "expected": {
+            "arg1": "O governo",
+            "rel": "desconsiderou",
+            "arg2": "os avisos sobre tantos projetos de barragem"
+        },
+        "sent": "O governo desconsiderou os avisos sobre tantos projetos de barragens em grande escala em uma área sismicamente ativa.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "74": {
+        "ID": 74,
+        "expected": {
+            "arg1": "a música foi composta por Andy Lau.",
+            "rel": "Jackie Chan",
+            "arg2": "doou"
+        },
+        "sent": "Em junho, o ator de Hong Kong Jackie Chan, que doou US $ 1,57 milhão para as vítimas, fez um videoclipe a o lado de outros artistas, intitulado Promise",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "75": {
+        "ID": 75,
+        "expected": {
+            "arg1": "a música foi composta por Andy Lau.",
+            "rel": "Jackie Chan",
+            "arg2": "doou US $ 1,57 milhão para"
+        },
+        "sent": "Em junho, o ator de Hong Kong Jackie Chan, que doou US $ 1,57 milhão para as vítimas, fez um videoclipe a o lado de outros artistas, intitulado Promise",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "76": {
+        "ID": 76,
+        "expected": {
+            "arg1": "a música foi composta por Andy Lau.",
+            "rel": "Jackie Chan",
+            "arg2": "fez"
+        },
+        "sent": "Em junho, o ator de Hong Kong Jackie Chan, que doou US $ 1,57 milhão para as vítimas, fez um videoclipe a o lado de outros artistas, intitulado Promise",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "77": {
+        "ID": 77,
+        "expected": {
+            "arg1": "a música foi composta por Andy Lau.",
+            "rel": "A música",
+            "arg2": "foi composta por"
+        },
+        "sent": "Em junho, o ator de Hong Kong Jackie Chan, que doou US $ 1,57 milhão para as vítimas, fez um videoclipe a o lado de outros artistas, intitulado Promise",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "78": {
+        "ID": 78,
+        "expected": {
+            "arg1": "as bandeiras nacionais e regionais de a RPC de as regiões administrativas especiais de Hong Kong e Macau voam a meio mastro.",
+            "rel": "O conselho de o Estado",
+            "arg2": "declarou"
+        },
+        "sent": "O Conselho de Estado declarou um período de três dias de luto nacional pelas vítimas de o terremoto a partir de 19 de maio de 2008",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "79": {
+        "ID": 79,
+        "expected": {
+            "arg1": "as bandeiras nacionais e regionais de a RPC de as regiões administrativas especiais de Hong Kong e Macau voam a meio mastro.",
+            "rel": "as bandeiras nacionais e regionais de a RPC de as regiões administrativas especiais de Hong Kong e Macau",
+            "arg2": "voam a"
+        },
+        "sent": "O Conselho de Estado declarou um período de três dias de luto nacional pelas vítimas de o terremoto a partir de 19 de maio de 2008",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "80": {
+        "ID": 80,
+        "expected": {
+            "arg1": "A próxima etapa",
+            "rel": "começou em",
+            "arg2": "a cidade de Ruijin, Jiangxi"
+        },
+        "sent": "A rota de a tocha por o país foi reduzida e houve um minuto de silêncio quando a próxima etapa começou em a cidade de Ruijin, Jiangxi, em a quarta-feira após o terremoto.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "82": {
+        "ID": 82,
+        "expected": {
+            "arg1": "O terremoto",
+            "rel": "ocorreu a",
+            "arg2": "o longo de a Falha de Longmenshan"
+        },
+        "sent": "De acordo com um estudo de a Administração de Terremotos de a China (CEA), o terremoto ocorreu a o longo de o Falha Longmenshan, uma estrutura de empuxo a o longo de a fronteira de a Placa Indo-Australiana e Placa de a Eurásia.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "83": {
+        "ID": 83,
+        "expected": {
+            "arg1": "A falha de Longmenshan",
+            "rel": "partiu",
+            "arg2": "em duas sessões"
+        },
+        "sent": "O sismólogo japonês Yuji Yagi, de a Universidade de Tsukuba, disse que o terremoto ocorreu em duas etapas A falha de Longmenshan, a 247 quilômetros de profundidade, partiu em duas seções, a primeira rasgando cerca de sete metros, seguida por a segunda, que cortou quatro metros.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "88": {
+        "ID": 88,
+        "expected": {
+            "arg1": "em o entanto, recomendou doando dinheiro em vez de outros itens, pois não havia sido possível alcançar estradas completamente danificadas ou locais bloqueados por deslizamentos de terra.",
+            "rel": "A sociedade de a Cruz Vermelha de a China",
+            "arg2": "afirmou"
+        },
+        "sent": "A Sociedade de a Cruz Vermelha de a China também afirmou que as áreas de desastre precisam de tendas, suprimentos médicos, água potável e comida",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "92": {
+        "ID": 92,
+        "expected": {
+            "arg1": "a parte oeste de Long Island, incluindo a área que se tornaria Brooklyn e Queens",
+            "rel": "Manhattan",
+            "arg2": "o Bronx"
+        },
+        "sent": "Na era pré-colonial, a área de a atual cidade de Nova York era habitada por várias bandas de tribos algonquianas de nativos americanos, incluindo os Lenape, cuja terra natal, conhecida como Lenapehoking, incluía Staten Island",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "95": {
+        "ID": 95,
+        "expected": {
+            "arg1": "A batalha de Long Island",
+            "rel": "foi",
+            "arg2": "travada inteiramente em o bairro moderno de o Brooklyn"
+        },
+        "sent": "A Batalha de Long Island, a maior batalha de a Guerra Revolucionária Americana, foi travada em agosto de 1776, inteiramente em o bairro moderno de o Brooklyn.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "98": {
+        "ID": 98,
+        "expected": {
+            "arg1": "O rio harlem",
+            "rel": "separa",
+            "arg2": "a maior parte de Manhanttan de o Bronx"
+        },
+        "sent": "O rio Harlem, outro estreito de maré entre os rios East e Hudson, separa a maior parte de Manhattan de o Bronx.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "102": {
+        "ID": 102,
+        "expected": {
+            "arg1": "A população branca não-hispânica de Nova York",
+            "rel": "é",
+            "arg2": "maior que as populações não brancas hispânicas de Los Angeles"
+        },
+        "sent": "Com 2,7 milhões em 2012, a população branca não hispânica de Nova York é maior de o que as populações brancas não hispânicas de Los Angeles (1,1 milhão), Chicago (865.000) e Houston (550.000) juntas.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "104": {
+        "ID": 104,
+        "expected": {
+            "arg1": "O Anbang aInsurance Group",
+            "rel": "comprou",
+            "arg2": "o hotel Waldorf Astoria New York"
+        },
+        "sent": "Em outubro de 2014, o Anbang Insurance Group, com sede em a China, comprou o Waldorf Astoria New York por US $ 1,95 bilhão, tornando-o o hotel mais caro de o mundo já vendido.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "108": {
+        "ID": 108,
+        "expected": {
+            "arg1": "Ponte George Washington",
+            "rel": "é",
+            "arg2": "a ponte de véiculos a motor mais movimentada de o mundo"
+        },
+        "sent": "Ponte George Washington é a ponte de veículos a motor mais movimentada de o mundo, conectando Manhattan a o Condado de Bergen, Nova Jersey.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "110": {
+        "ID": 110,
+        "expected": {
+            "arg1": "Desde 1990, uma peça",
+            "rel": "é",
+            "arg2": "realizada anualmente em a cidade natal de Harper Lee"
+        },
+        "sent": "Desde 1990, uma peça baseada em o romance é realizada anualmente em a cidade natal de Harper Lee, em Monroeville, Alabama.:",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "115": {
+        "ID": 115,
+        "expected": {
+            "arg1": "A quantidade de energia solar absorvida por a terra",
+            "rel": "é",
+            "arg2": "aproximadamente 3.850.000 exajoules (EJ) por ano"
+        },
+        "sent": "A energia solar total absorvida por a atmosfera de a Terra, oceanos e massas terrestres é de aproximadamente 3.850.000 exajoules (EJ) por ano.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "116": {
+        "ID": 116,
+        "expected": {
+            "arg1": "5.800 US gal) de água por minuto, de o Rio Nilo a os campos de algodão adjacentes.",
+            "rel": "A fábrica de a Shuman",
+            "arg2": "usou"
+        },
+        "sent": "A fábrica de a Shuman usou calhas parabólicas para alimentar um motor de 45 a 52 quilowatts (60 a 70 hp) que bombeava mais de 22.000 litros (4.800 imp gal",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "117": {
+        "ID": 117,
+        "expected": {
+            "arg1": "5.800 US gal) de água por minuto, de o Rio Nilo a os campos de algodão adjacentes.",
+            "rel": "um motor",
+            "arg2": "bombeava"
+        },
+        "sent": "A fábrica de a Shuman usou calhas parabólicas para alimentar um motor de 45 a 52 quilowatts (60 a 70 hp) que bombeava mais de 22.000 litros (4.800 imp gal",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "118": {
+        "ID": 118,
+        "expected": {
+            "arg1": "O tajiquistão",
+            "rel": "se tornou",
+            "arg2": "uma nação independente 1991"
+        },
+        "sent": "Como resultado de o colapso de a União Soviética, o Tajiquistão se tornou uma nação independente em 1991.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "124": {
+        "ID": 124,
+        "expected": {
+            "arg1": "Os jadidistas se",
+            "rel": "estabeleceram em",
+            "arg2": "o final de o século XIX um movimento social islâmico em toda a região"
+        },
+        "sent": "Durante o final de o século XIX, os jadidistas se estabeleceram como um movimento social islâmico em toda a região.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "125": {
+        "ID": 125,
+        "expected": {
+            "arg1": "persa تاجيكستان Тоҷикистон [tɔd͡ʒikɪstɔn]), oficialmente a República de o Tajiquistão (persa جمهورى تاجيكستان tadjique Ҷумҳурии Тоҷикистон, Çumhuriji Toçikiston / Jumhuriyi Tojikiston",
+            "rel": "Russo Респу́блика Таджикистан, Respublika Tadzhikistan), é um país montanhoso e sem litoral em a Ásia Central, com cerca de 8 milhões de habitantes em 2013 e uma área de 143.100 km2.",
+            "arg2": "Tadjiquistão"
+        },
+        "sent": "Tadjiquistão (i / tɑːdʒiːkᵻstɑːn /, / tədʒiːkᵻstæn / ou / tædʒiːkiːstæn /",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "126": {
+        "ID": 127,
+        "expected": {
+            "arg1": "V",
+            "rel": "Det N adj",
+            "arg2": "EXTRAÇÃO SUGERIDA"
+        },
+        "sent": "",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "127": {
+        "ID": 128,
+        "expected": {
+            "arg1": "persa تاجيكستان Тоҷикистон [tɔd͡ʒikɪstɔn]), oficialmente a República de o Tajiquistão (persa جمهورى تاجيكستان tadjique Ҷумҳурии Тоҷикистон, Çumhuriji Toçikiston / Jumhuriyi Tojikiston",
+            "rel": "Russo Респу́блика Таджикистан, Respublika Tadzhikistan), é um país montanhoso e sem litoral em a Ásia Central, com cerca de 8 milhões de habitantes em 2013 e uma área de 143.100 km2.",
+            "arg2": "Tadjiquistão"
+        },
+        "sent": "Tadjiquistão (i / tɑːdʒiːkᵻstɑːn /, / tədʒiːkᵻstæn / ou / tædʒiːkiːstæn /",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "128": {
+        "ID": 129,
+        "expected": {
+            "arg1": "persa تاجيكستان Тоҷикистон [tɔd͡ʒikɪstɔn]), oficialmente a República de o Tajiquistão (persa جمهورى تاجيكستان tadjique Ҷумҳурии Тоҷикистон, Çumhuriji Toçikiston / Jumhuriyi Tojikiston",
+            "rel": "Russo Респу́блика Таджикистан, Respublika Tadzhikistan), é um país montanhoso e sem litoral em a Ásia Central, com cerca de 8 milhões de habitantes em 2013 e uma área de 143.100 km2.",
+            "arg2": "Tadjiquistão"
+        },
+        "sent": "Tadjiquistão (i / tɑːdʒiːkᵻstɑːn /, / tədʒiːkᵻstæn / ou / tædʒiːkiːstæn /",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "129": {
+        "ID": 130,
+        "expected": {
+            "arg1": "A população de o Tajiquistão",
+            "rel": "é",
+            "arg2": "98% muçulmana"
+        },
+        "sent": "De acordo com um comunicado de o Departamento de Estado de os EUA e um grupo de pesquisa Pew, a população de o Tajiquistão é 98% muçulmana.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "131": {
+        "ID": 132,
+        "expected": {
+            "arg1": "Darwin",
+            "rel": "chegou a",
+            "arg2": "as suas conclusões através de a comparação de espécies"
+        },
+        "sent": "O próprio Darwin chegou às suas conclusões através de a comparação de espécies que vira em a agronomia e em a natureza.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "133": {
+        "ID": 134,
+        "expected": {
+            "arg1": "A antropologia inicial",
+            "rel": "se originou em",
+            "arg2": "o Clássico Grécia e Persia"
+        },
+        "sent": "A antropologia inicial se originou em o Clássico Grécia e Pérsia e estudou e tentou entender a diversidade cultural observável.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "140": {
+        "ID": 141,
+        "expected": {
+            "arg1": "Portugal",
+            "rel": "explorou",
+            "arg2": "o Oceano Atlãntico"
+        },
+        "sent": "Durante este período, Portugal explorou o Oceano Atlântico, descobrindo vários arquipélagos atlânticos como os Açores, a Madeira e Cabo Verde, explorou a costa africana, colonizou áreas selecionadas de a África, descobriu uma rota oriental para a Índia através de o Cabo de a Boa Esperança, descobriu o Brasil , explorou o Oceano Índico, estabeleceu rotas comerciais em a maior parte de o sul de a Ásia e enviou as primeiras missões diplomáticas e comerciais marítimas europeias diretas a a China e a o Japão.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "147": {
+        "ID": 148,
+        "expected": {
+            "arg1": "a Revolução de os Cravos",
+            "rel": "culminou",
+            "arg2": "em o final de uma de as fases mais notáveis dda expansão economica de Portugal"
+        },
+        "sent": "Desde a Revolução de os Cravos de 1974, que culminou em o final de uma de as fases mais notáveis de a expansão econômica de Portugal (iniciada em a década de 1960), ocorreu uma mudança significativa em o crescimento econômico anual de a nação.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "148": {
+        "ID": 149,
+        "expected": {
+            "arg1": "Os pontos turísticos mais procurados em Portugal",
+            "rel": "são",
+            "arg2": "Lisboa, ALgarve, Madeira, Porto e a cidad de Coimbra"
+        },
+        "sent": "Os pontos turísticos mais procurados em Portugal são Lisboa, Algarve, Madeira, Porto e a cidade de Coimbra, também entre 4-5 milhões de peregrinos religiosos visitam Fátima a cada ano, onde supostamente ocorreram aparições de a Virgem Maria a três pastores em 1917.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "153": {
+        "ID": 154,
+        "expected": {
+            "arg1": "A arquitetura tradicional",
+            "rel": "é",
+            "arg2": "distinta e inclui o manuelito"
+        },
+        "sent": "A arquitetura tradicional é distinta e inclui o manuelino, também conhecido como gótico tardio português, um estilo português sumptuoso e composto de ornamentação arquitetônica de as primeiras décadas de o século XVI.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "157": {
+        "ID": 158,
+        "expected": {
+            "arg1": "Passos Coelho",
+            "rel": "anunciou",
+            "arg2": "a que a idade de a aponsetadoria será aumentada"
+        },
+        "sent": "Passos Coelho também anunciou que a idade de a aposentadoria será aumentada de 65 para 66, anunciou cortes em as pensões, subsídios de desemprego, despesas com saúde, educação e ciências, aboliu as aulas obrigatórias de inglês em o ensino básico, mas manteve as pensões de os juízes , diplomatas intocados e não aumentaram a idade de aposentadoria de as forças militares e policiais.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "158": {
+        "ID": 159,
+        "expected": {
+            "arg1": "O português",
+            "rel": "é",
+            "arg2": "uma língua romântica"
+        },
+        "sent": "O português é uma língua românica que se originou em o que hoje é a Galiza e o norte de Portugal, originária de o galego-português, que era a língua comum de o povo galego e português até a independência de Portugal.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "159": {
+        "ID": 160,
+        "expected": {
+            "arg1": "O português se",
+            "rel": "originou",
+            "arg2": "em o que hoje é a Galiza"
+        },
+        "sent": "O português é uma língua românica que se originou em o que hoje é a Galiza e o norte de Portugal, originária de o galego-português, que era a língua comum de o povo galego e português até a independência de Portugal.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "161": {
+        "ID": 162,
+        "expected": {
+            "arg1": "A mortalidade por doenças cardiovasculares (DCV)",
+            "rel": "é",
+            "arg2": "mais elevada de o que em a zona euro"
+        },
+        "sent": "A mortalidade por doenças cardiovasculares (DCV) é mais elevada de o que em a zona euro, mas os seus dois componentes principais, doença cardíaca isquémica e doença cerebrovascular, apresentam tendências inversas em comparação com o Eur-A, com o Doença cerebrovascular como o maior assassino em Portugal (17% ) Os portugueses morrem 12% menos frequentemente de câncer de o que em o Eur-A, mas a mortalidade não está diminuindo tão rapidamente quanto em o Eur-A.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "162": {
+        "ID": 163,
+        "expected": {
+            "arg1": "Os portugueses",
+            "rel": "morrem",
+            "arg2": "12% menos frequentemente de câncer de o que em o Eur-A"
+        },
+        "sent": "A mortalidade por doenças cardiovasculares (DCV) é mais elevada de o que em a zona euro, mas os seus dois componentes principais, doença cardíaca isquémica e doença cerebrovascular, apresentam tendências inversas em comparação com o Eur-A, com o Doença cerebrovascular como o maior assassino em Portugal (17% ) Os portugueses morrem 12% menos frequentemente de câncer de o que em o Eur-A, mas a mortalidade não está diminuindo tão rapidamente quanto em o Eur-A.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "165": {
+        "ID": 166,
+        "expected": {
+            "arg1": "Kanye Omari West",
+            "rel": "nasceu em",
+            "arg2": "8 de Junho de 1997"
+        },
+        "sent": "Kanye Omari West nasceu em 8 de junho de 1977 em Atlanta, Geórgia.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "166": {
+        "ID": 167,
+        "expected": {
+            "arg1": "Jay-z",
+            "rel": "adquiriu",
+            "arg2": "a controladora de a Tidal"
+        },
+        "sent": "Jay Z adquiriu a controladora de a Tidal, Aspiro, em o primeiro trimestre de 2015.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "167": {
+        "ID": 168,
+        "expected": {
+            "arg1": "No budismo Theravada, o objetivo final",
+            "rel": "é",
+            "arg2": "alcançar o sublime estado de o Nirvana"
+        },
+        "sent": "No budismo Theravada, o objetivo final é alcançar o sublime estado de o Nirvana, alcançado por a prática de o Nobre Caminho Óctuplo (também conhecido como Caminho de o Meio), escapando assim a o que é visto como um ciclo de sofrimento e renascimento.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "168": {
+        "ID": 169,
+        "expected": {
+            "arg1": "O budismo mahayana, a o contrário,",
+            "rel": "aspira",
+            "arg2": "a o estado de Buda"
+        },
+        "sent": "O budismo mahayana, a o contrário, aspira a o estado de Buda através de o caminho de o bodhisattva, um estado em que alguém permanece neste ciclo para ajudar outros seres a alcançar o despertar.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "169": {
+        "ID": 170,
+        "expected": {
+            "arg1": "As três jóias de a tradição budista",
+            "rel": "são",
+            "arg2": "as Três Jóias o Buda"
+        },
+        "sent": "Os fundamentos de a tradição e prática budistas são as Três Jóias o Buda, o Dharma (os ensinamentos) e a Sangha (a comunidade).",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "170": {
+        "ID": 171,
+        "expected": {
+            "arg1": "Dentro de o budismo, samsara",
+            "rel": "é",
+            "arg2": "definido como o ciclo repetitivo contínuo de nascimento e morte"
+        },
+        "sent": "Dentro de o budismo, samsara é definido como o ciclo repetitivo contínuo de nascimento e morte que surge de a apreensão e fixação de seres comuns em um eu e experiências.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "171": {
+        "ID": 172,
+        "expected": {
+            "arg1": "o karma (de o sânscrito ação, trabalho)",
+            "rel": "é",
+            "arg2": "a força que impulsiona o saṃsāra"
+        },
+        "sent": "No budismo, o karma (de o sânscrito ação, trabalho) é a força que impulsiona o saṃsāra - o ciclo de sofrimento e renascimento de cada ser.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "175": {
+        "ID": 176,
+        "expected": {
+            "arg1": "Soka Gakkai International (SGI)",
+            "rel": "é",
+            "arg2": "um movimento budista leigo"
+        },
+        "sent": "Soka Gakkai International (SGI) é um movimento budista leigo que liga mais de 12 milhões de pessoas em todo o mundo e atualmente é descrito como o mais diverso e o maior movimento budista leigo de o mundo",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "176": {
+        "ID": 177,
+        "expected": {
+            "arg1": "Theravada",
+            "rel": "é",
+            "arg2": "a mais antiga escola budista sobrevivente."
+        },
+        "sent": "Theravada (Doutrina de os Anciões, ou Doutrina Antiga) é a mais antiga escola budista sobrevivente.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "177": {
+        "ID": 178,
+        "expected": {
+            "arg1": "a escola Theravada",
+            "rel": "não inclui",
+            "arg2": "as escrituras Mahayava em seu cânon"
+        },
+        "sent": "Somente a escola Theravada não inclui as escrituras Mahayana em seu cânon.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "178": {
+        "ID": 179,
+        "expected": {
+            "arg1": "No budismo Theravada, o objetivo final",
+            "rel": "é",
+            "arg2": "alcançar o sublime estado de o Nirvana"
+        },
+        "sent": "No budismo Theravada, o objetivo final é alcançar o sublime estado de o Nirvana, alcançado praticando o Nobre Caminho Óctuplo (também conhecido como Caminho de o Meio), escapando assim a o que é visto como um ciclo de sofrimento e renascimento.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "180": {
+        "ID": 181,
+        "expected": {
+            "arg1": "A segunda verdade",
+            "rel": "é",
+            "arg2": "que a origem de dukkha pode ser conhecido."
+        },
+        "sent": "A segunda verdade é que a origem de dukkha pode ser conhecido.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "182": {
+        "ID": 183,
+        "expected": {
+            "arg1": "um movimento moderno em o Budismo Nichiren Soka Gakkai (Sociedade de Criação de Valor)",
+            "rel": "surgiu",
+            "arg2": "em o Japão"
+        },
+        "sent": "Na segunda metade de o século XX, um movimento moderno em o Budismo Nichiren Soka Gakkai (Sociedade de Criação de Valor) surgiu em o Japão e se espalhou para outros países.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "183": {
+        "ID": 184,
+        "expected": {
+            "arg1": "Budismo de o leste asiático",
+            "rel": "reconhece",
+            "arg2": "alguns sutras de origem chinesa"
+        },
+        "sent": "Além disso, o Budismo de o Leste Asiático reconhece alguns sutras considerados pelos estudiosos de origem chinesa e não indiana.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "186": {
+        "ID": 187,
+        "expected": {
+            "arg1": "em a semana seguinte, dois",
+            "rel": "foram",
+            "arg2": "enviados para casa."
+        },
+        "sent": "No entanto, em a sexta temporada, durante o primeiro episódio de a série Idol Gives Back, nenhum participante foi eliminado, mas em a semana seguinte, dois foram enviados para casa.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "191": {
+        "ID": 192,
+        "expected": {
+            "arg1": "o vencendor de a quinta temporada",
+            "rel": "é",
+            "arg2": "de o estado de o Alabama"
+        },
+        "sent": "De acordo com o vencedor de a quinta temporada, Taylor Hicks, que é de o estado de o Alabama, as pessoas de o sul têm muito orgulho ... Então, elas são inflexíveis em apoiar os competidores que se saem bem de seu estado ou região.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "196": {
+        "ID": 197,
+        "expected": {
+            "arg1": "Um semi-finalista que venceu uma cantada",
+            "rel": "foi adicionado",
+            "arg2": "a a turnê em a 12ª temporada"
+        },
+        "sent": "Na turnê de a 12ª temporada, um semi-finalista que venceu uma cantada também foi adicionado a a turnê.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "198": {
+        "ID": 199,
+        "expected": {
+            "arg1": "não ter tantas oportunidades de entrar em o negócio de a música pop",
+            "rel": "votação por texto devido a o Sul ter a maior porcentagem de domicílios somente por telefone celular",
+            "arg2": "e a forte herança de a música e de o canto, que é notável em o Cinturão de a Bíblia, onde é em a Igreja que muitas pessoas começam a cantar em público."
+        },
+        "sent": "As teorias dadas para o sucesso de os sulistas em o ídolo foram mais versatilidade com gêneros musicais, já que o sul de os EUA é o lar de várias cenas de gênero musical",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "199": {
+        "ID": 200,
+        "expected": {
+            "arg1": "A palavra cão de caça",
+            "rel": "é derivada de",
+            "arg2": "a palavra proto-indo-européia * kwon-"
+        },
+        "sent": "A palavra cão de caça é derivada, em última análise, de a palavra proto-indo-européia * kwon- cachorro.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "204": {
+        "ID": 205,
+        "expected": {
+            "arg1": "O primeiro portador de tocha em Almaty",
+            "rel": "foi",
+            "arg2": "o presidente de Nursultan Nazarbaev de o Cazaquistão."
+        },
+        "sent": " Cazaquistão O primeiro portador de tocha em Almaty, onde a tocha olímpica chegou por a primeira vez em 2 de abril, foi o presidente de o Nursultan Nazarbaev de o Cazaquistão.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "208": {
+        "ID": 209,
+        "expected": {
+            "arg1": "Conselho de supervisores de são francisco",
+            "rel": "aprovou",
+            "arg2": "a resolução que tratava de as questões de direitos humanos"
+        },
+        "sent": "Em 1º de abril de 2008, o Conselho de Supervisores de São Francisco aprovou uma resolução que tratava de as questões de direitos humanos quando a tocha olímpica de Pequim chegasse a São Francisco em 9 de abril.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "212": {
+        "ID": 213,
+        "expected": {
+            "arg1": "A mídia indiana",
+            "rel": "informou",
+            "arg2": "que o ministro de o Comércio de a índia cancelou uma viagem oficial a Pequim"
+        },
+        "sent": "A mídia indiana informou que o ministro de o Comércio de a Índia, Kamal Nath, cancelou uma viagem oficial a Pequim em protesto, apesar de fontes de a Nath e de a China terem negado.:",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "216": {
+        "ID": 217,
+        "expected": {
+            "arg1": "Whitehead",
+            "rel": "argumentou",
+            "arg2": "que a realidade em consiste processos"
+        },
+        "sent": "Whitehead argumentou que a realidade consiste em processos e não em objetos materiais, e que os processos são melhor definidos por suas relações com outros processos, rejeitando assim a teoria de que a realidade é fundamentalmente construída por pedaços de matéria que existem independentemente um de o outro.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "217": {
+        "ID": 218,
+        "expected": {
+            "arg1": "Alfred North Whitehead",
+            "rel": "nasceu em",
+            "arg2": "Ramsgate, Kent, Inglaterra,"
+        },
+        "sent": "Alfred North Whitehead nasceu em Ramsgate, Kent, Inglaterra, em 1861.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "219": {
+        "ID": 220,
+        "expected": {
+            "arg1": "Alfred North Whitehead",
+            "rel": "nasceu",
+            "arg2": "em Ramsgate, Kent, Inglaterra,"
+        },
+        "sent": "Alfred North Whitehead nasceu em Ramsgate, Kent, Inglaterra, em 1861.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "223": {
+        "ID": 224,
+        "expected": {
+            "arg1": "A crise financeira",
+            "rel": "parece",
+            "arg2": "ter terminado junho de 2009"
+        },
+        "sent": "A recessão em os EUA, iniciada em dezembro de 2007, terminou em junho de 2009, de acordo com o Bureau Nacional de Pesquisa Econômica de os EUA (NBER) e a crise financeira parece ter terminado em a mesma época.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "225": {
+        "ID": 226,
+        "expected": {
+            "arg1": "Timothy Geithner",
+            "rel": "se tornou",
+            "arg2": "secretário de oTesouro de os Estados Unidos"
+        },
+        "sent": "Em um discurso de junho de 2008, o presidente e CEO de o Banco de a Reserva Federal de Nova York, Timothy Geithner - que em 2009 se tornou secretário de o Tesouro de os Estados Unidos - atribuiu uma culpa significativa a o congelamento de os mercados de crédito em uma corrida às entidades de o sistema bancário paralelo , também chamado de sistema bancário paralelo.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "230": {
+        "ID": 231,
+        "expected": {
+            "arg1": "as tartarugas-de-pente, que têm bicos semelhantes a falcões e encontradas perto de recifes, geralmente com cerca de 90 cm de diâmetro e peso de 60 kg e sua dieta consiste em caranguejos e caracóis",
+            "rel": "e as tartarugas verdes, herbívoros com cabeças arredondadas, geralmente com cerca de 90 cm de diâmetro e vivem em meio a ervas marinhas altas.",
+            "arg2": "As tartarugas marinhas de couro"
+        },
+        "sent": "São elas As tartarugas marinhas de couro que têm pele de couro em vez de concha e são as maiores de o tipo encontrado aqui, algumas vezes medindo até 3 m (a média é de 1,5 m) e pesando cerca de 450 kg (a água-viva é a sua favorita) dieta)",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "231": {
+        "ID": 232,
+        "expected": {
+            "arg1": "as tartarugas-de-pente, que têm bicos semelhantes a falcões e encontradas perto de recifes, geralmente com cerca de 90 cm de diâmetro e peso de 60 kg e sua dieta consiste em caranguejos e caracóis",
+            "rel": "e as tartarugas verdes, herbívoros com cabeças arredondadas, geralmente com cerca de 90 cm de diâmetro e vivem em meio a ervas marinhas altas.",
+            "arg2": "as tartarugas-de-pente"
+        },
+        "sent": "São elas As tartarugas marinhas de couro que têm pele de couro em vez de concha e são as maiores de o tipo encontrado aqui, algumas vezes medindo até 3 m (a média é de 1,5 m) e pesando cerca de 450 kg (a água-viva é a sua favorita) dieta)",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "232": {
+        "ID": 233,
+        "expected": {
+            "arg1": "O Museu Territorial de São Bartolomeu",
+            "rel": "é",
+            "arg2": "um museu histórico como Museu Municipal de St. Barts"
+        },
+        "sent": "O Museu Territorial de São Bartolomeu é um museu histórico conhecido como Museu Municipal de St. Barts, também chamado de Wall House (museu - bibliothèque) em Gustavia, localizado em a extremidade de La Pointe.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "237": {
+        "ID": 238,
+        "expected": {
+            "arg1": "O Conselho de as Forças Armadas",
+            "rel": "opera",
+            "arg2": "a partir de a Sede de a Defesa Nacional (NDHQ)"
+        },
+        "sent": "O Conselho de as Forças Armadas geralmente opera a partir de a Sede de a Defesa Nacional (NDHQ) em Ottawa, Ontário.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "238": {
+        "ID": 239,
+        "expected": {
+            "arg1": "O Conselho de as Forças Armadas",
+            "rel": "opera a partir de",
+            "arg2": "a Sede de a Defesa Nacional (NDHQ)"
+        },
+        "sent": "O Conselho de as Forças Armadas geralmente opera a partir de a Sede de a Defesa Nacional (NDHQ) em Ottawa, Ontário.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "242": {
+        "ID": 243,
+        "expected": {
+            "arg1": "os cardeais",
+            "rel": "tinham",
+            "arg2": "papéis importantes em os assunto seculares"
+        },
+        "sent": "Nos tempos modernos, os cardeais freqüentemente tinham papéis importantes em os assuntos seculares.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "243": {
+        "ID": 244,
+        "expected": {
+            "arg1": "os cardeais",
+            "rel": "frequentemente tinham",
+            "arg2": "papéis importantes em os assuntos seculares"
+        },
+        "sent": "Nos tempos modernos, os cardeais freqüentemente tinham papéis importantes em os assuntos seculares.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "244": {
+        "ID": 245,
+        "expected": {
+            "arg1": "os cardeais frequentemente",
+            "rel": "tinham",
+            "arg2": "papéis importantes em os assuntos seculares"
+        },
+        "sent": "Nos tempos modernos, os cardeais freqüentemente tinham papéis importantes em os assuntos seculares.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "246": {
+        "ID": 247,
+        "expected": {
+            "arg1": "O Reitor de o Colégio de Cardeais também",
+            "rel": "recebe",
+            "arg2": "o bispado titular de Ostia"
+        },
+        "sent": "O Reitor de o Colégio de Cardeais, além de uma igreja titular, também recebe o bispado titular de Ostia, a principal sede de o subúrbio.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "250": {
+        "ID": 251,
+        "expected": {
+            "arg1": "a produção real",
+            "rel": "varia",
+            "arg2": "conforme o projeto específico."
+        },
+        "sent": "Uma vela de cera produz cerca de 13 lúmens, uma lâmpada incandescente de 60 watts produz cerca de 700 lúmens e uma lâmpada fluorescente compacta de 15 watts produz cerca de 800 lúmens, mas a produção real varia conforme o projeto específico.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "251": {
+        "ID": 252,
+        "expected": {
+            "arg1": "A unidade básica de medida de o SI",
+            "rel": "é",
+            "arg2": "a candela (cd)"
+        },
+        "sent": "A unidade básica de medida de o SI é a candela (cd), que descreve a intensidade luminosa, todas as outras unidades fotométricas são derivadas de a candela.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "252": {
+        "ID": 253,
+        "expected": {
+            "arg1": "a candela (cd)",
+            "rel": "descreve",
+            "arg2": "a intensidade luminosa"
+        },
+        "sent": "A unidade básica de medida de o SI é a candela (cd), que descreve a intensidade luminosa, todas as outras unidades fotométricas são derivadas de a candela.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "253": {
+        "ID": 254,
+        "expected": {
+            "arg1": "todas as outras unidade fotométricas",
+            "rel": "são derivadas de",
+            "arg2": "a candela"
+        },
+        "sent": "A unidade básica de medida de o SI é a candela (cd), que descreve a intensidade luminosa, todas as outras unidades fotométricas são derivadas de a candela.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "255": {
+        "ID": 256,
+        "expected": {
+            "arg1": "O chefe de justiça",
+            "rel": "preside",
+            "arg2": "o senado durante o julgamente de impeachment de um presidente"
+        },
+        "sent": "O Chefe de Justiça preside o Senado durante o julgamento de impeachment de um presidente.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "259": {
+        "ID": 260,
+        "expected": {
+            "arg1": "Um edifício",
+            "rel": "deve",
+            "arg2": "ser construído de maneira ambientalmente amigável"
+        },
+        "sent": "Para satisfazer o ethos contemporâneo, um edifício deve ser construído de uma maneira ambientalmente amigável em termos de produção de seus materiais, seu impacto em o ambiente natural e construído de a área circundante e as demandas que ele faz sobre fontes de energia não sustentáveis para aquecimento, refrigeração, gerenciamento de água e resíduos e iluminação.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "264": {
+        "ID": 265,
+        "expected": {
+            "arg1": "Schwarzenegger",
+            "rel": "conheceu em",
+            "arg2": "o torneio de tênis Robert F. Kennedy"
+        },
+        "sent": "Schwarzenegger conheceu Maria Shriver em o torneio de tênis Robert F. Kennedy, em agosto de 1977, e teve um relacionamento com as duas mulheres até agosto de 1978, quando Moray (que conhecia seu relacionamento com Shriver) emitiu um ultimato.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "267": {
+        "ID": 268,
+        "expected": {
+            "arg1": "os dois rios correm para o porto natural de Plymouth Sound.",
+            "rel": "Plymouth",
+            "arg2": "fica"
+        },
+        "sent": "Plymouth fica entre o rio Plym, a leste, e o rio Tamar, a oeste",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "268": {
+        "ID": 269,
+        "expected": {
+            "arg1": "os dois rios correm para o porto natural de Plymouth Sound.",
+            "rel": "os dois rios",
+            "arg2": "correm para"
+        },
+        "sent": "Plymouth fica entre o rio Plym, a leste, e o rio Tamar, a oeste",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "270": {
+        "ID": 271,
+        "expected": {
+            "arg1": "Constantino, o Grande",
+            "rel": "foi",
+            "arg2": "o primeiro imperador romano a ser batizado"
+        },
+        "sent": "Constantino, o Grande, que junto com Licínio decretou a tolerância a o cristianismo em o Império Romano por o que é comumente chamado de Édito de Milão, e foi o primeiro imperador romano a ser batizado, estabeleceu precedentes para políticas posteriores.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "271": {
+        "ID": 272,
+        "expected": {
+            "arg1": "os americanos",
+            "rel": "tinham",
+            "arg2": "uma força áerea muito maior que a União Soviética"
+        },
+        "sent": "Como os americanos tinham uma força aérea muito maior que a União Soviética e os Estados Unidos mantinham bases aéreas avançadas perto de o território soviético, em 1947 Stalin ordenou o desenvolvimento de mísseis balísticos intercontinentais (ICBMs) para combater a ameaça americana percebida.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "275": {
+        "ID": 276,
+        "expected": {
+            "arg1": "A lei de licenciamento de 2003",
+            "rel": "consolidou",
+            "arg2": "a muitas leis em uma uma única lei"
+        },
+        "sent": "A Lei de Licenciamento de 2003, que entrou em vigor em 24 de novembro de 2005, consolidou as muitas leis em uma única lei.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "280": {
+        "ID": 281,
+        "expected": {
+            "arg1": "O executivo de a RCA victor records",
+            "rel": "convenceu",
+            "arg2": "o chefe de a CSB William S. Paley a comprar a ARC"
+        },
+        "sent": "O executivo de a RCA Victor Records, Ted Wallerstein, convenceu o chefe de a CBS William S. Paley a comprar a ARC e Paley fez de Wallerstein o chefe de a recém-adquirida gravadora.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "281": {
+        "ID": 282,
+        "expected": {
+            "arg1": "L.A Reid",
+            "rel": "se tornou",
+            "arg2": "presidente e CEO de a Epic Records"
+        },
+        "sent": "Ele se juntou a L.A. Reid, que se tornou presidente e CEO de a Epic Records.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "282": {
+        "ID": 283,
+        "expected": {
+            "arg1": "Peter Edge",
+            "rel": "tornou-se",
+            "arg2": "o novo CEO de a unidade RCA Recods"
+        },
+        "sent": "Peter Edge tornou-se o novo CEO de a unidade RCA Records.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "286": {
+        "ID": 287,
+        "expected": {
+            "arg1": "O Oklahoman",
+            "rel": "é",
+            "arg2": "o principal jornal diário de a cidade de Oklahome"
+        },
+        "sent": "O Oklahoman é o principal jornal diário de a cidade de Oklahoma e é o mais amplamente divulgado em o estado.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "289": {
+        "ID": 290,
+        "expected": {
+            "arg1": "Will Rogers World Airport",
+            "rel": "é",
+            "arg2": "o aeroporto comercial mais movimentado de o mundo"
+        },
+        "sent": "Oklahoma City é servida por dois aeroportos principais, o Will Rogers World Airport e o muito menor Wiley Post Airport (aliás, os dois homenageados morreram em o mesmo acidente de avião em o Alasca) Will Rogers World Airport é o aeroporto comercial mais movimentado de o estado, com mais de 3,6 milhões passageiros anualmente.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "291": {
+        "ID": 292,
+        "expected": {
+            "arg1": "o Oklahoma City Thunder",
+            "rel": "garantiu",
+            "arg2": "uma vaga (8ª) em os Playoffs de a NBA de 2010"
+        },
+        "sent": "Após uma chegada sem brilho a Oklahoma City para a temporada 2008-09, o Oklahoma City Thunder garantiu uma vaga (8ª) em os Playoffs de a NBA de 2010 em o ano seguinte, depois de se vangloriar de sua primeira temporada de 50 vitórias, vencendo dois jogos em o primeiro turno contra o Los Angeles Lakers.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "294": {
+        "ID": 295,
+        "expected": {
+            "arg1": "O unfpa",
+            "rel": "trabalha",
+            "arg2": "em parceria os governos"
+        },
+        "sent": "O UNFPA trabalha em parceria com os governos, juntamente com outras agências de as Nações Unidas, comunidades, ONGs, fundações e setor privado, para aumentar a conscientização e mobilizar o apoio e os recursos necessários para cumprir sua missão de promover os direitos e a saúde de as mulheres e jovens.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "295": {
+        "ID": 296,
+        "expected": {
+            "arg1": "a terceira reunião de o Congresso soviético de toda a rússia",
+            "rel": "renomeou",
+            "arg2": "o estado não reconhecido de a República Soviética de a Rússia"
+        },
+        "sent": "Em 25 de janeiro de 1918, a terceira reunião de o Congresso Soviético de Toda a Rússia renomeou o estado não reconhecido de República Soviética de a Rússia.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "297": {
+        "ID": 298,
+        "expected": {
+            "arg1": "Universal",
+            "rel": "possuía",
+            "arg2": "Oswald, o Coelho de a Sorte"
+        },
+        "sent": "A Universal possuía os direitos de o personagem Oswald, o Coelho de a Sorte, embora Walt Disney e Ub Iwerks tivessem criado Oswald, e seus filmes tivessem desfrutado de uma exibição teatral de sucesso.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "301": {
+        "ID": 302,
+        "expected": {
+            "arg1": "Tudo tranquilo em a frente ocidental (1930)",
+            "rel": "ganhou",
+            "arg2": "Det Oscar de Melhor Filme de o ano"
+        },
+        "sent": "O mais sério, Tudo tranquilo em a frente ocidental (1930), ganhou o Oscar de Melhor Filme de o ano.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "304": {
+        "ID": 305,
+        "expected": {
+            "arg1": "Melville",
+            "rel": "morreu",
+            "arg2": "de complicações devido a a tuberculosa"
+        },
+        "sent": "No entanto, em maio de 1870, Melville morreu de complicações devido a a tuberculose, causando uma crise familiar.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "311": {
+        "ID": 312,
+        "expected": {
+            "arg1": "o navio foi construído especialmente para a rota Cardiff – Cidade de o Cabo e apresenta um layout misto de carga / passageiro.",
+            "rel": "Príncipe andrew",
+            "arg2": "lançou"
+        },
+        "sent": "Em 1989, o príncipe Andrew lançou o substituto RMS St Helena para servir a ilha",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "312": {
+        "ID": 313,
+        "expected": {
+            "arg1": "as conexões com a Cidade de o Cabo, em a África de o Sul, são usadas para a maioria de as necessidades de remessa, como o barco de correio que serve a ilha, o RMS St Helena.",
+            "rel": "Príncipe andrew",
+            "arg2": "é"
+        },
+        "sent": "O porto mais próximo de o continente é o Namibe, em o sul de Angola, e o aeroporto internacional mais próximo é o Aeroporto Quatro de Fevereiro, capital de Angola, Luanda",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "313": {
+        "ID": 314,
+        "expected": {
+            "arg1": "as conexões com a Cidade de o Cabo, em a África de o Sul, são usadas para a maioria de as necessidades de remessa, como o barco de correio que serve a ilha, o RMS St Helena.",
+            "rel": "o aeroporto internacional mais próximo",
+            "arg2": "é"
+        },
+        "sent": "O porto mais próximo de o continente é o Namibe, em o sul de Angola, e o aeroporto internacional mais próximo é o Aeroporto Quatro de Fevereiro, capital de Angola, Luanda",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "315": {
+        "ID": 316,
+        "expected": {
+            "arg1": "muitos milhares de escravos",
+            "rel": "foram",
+            "arg2": "libertos em a ilha"
+        },
+        "sent": "Em 1840, Santa Helena tornou-se uma estação de abastecimento de o Esquadrão Britânico de a África Ocidental, impedindo a escravidão em o Brasil (principalmente), e muitos milhares de escravos foram libertados em a ilha.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "318": {
+        "ID": 319,
+        "expected": {
+            "arg1": "Santa Helena",
+            "rel": "tem",
+            "arg2": "o código de chamada +290"
+        },
+        "sent": "Santa Helena tem o código de chamada internacional +290 que, desde 2006, compartilha Tristan de a Cunha.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "322": {
+        "ID": 323,
+        "expected": {
+            "arg1": "O termo aspiração a as vezes",
+            "rel": "se refere a",
+            "arg2": "mudança sonora de a desescalização"
+        },
+        "sent": "O termo aspiração às vezes se refere a a mudança sonora de a desescalização, em a qual uma consoante é lenitizada (enfraquecida) para se tornar uma parada glótica ou fricativa [ʔ h ɦ].",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "323": {
+        "ID": 324,
+        "expected": {
+            "arg1": "uma consoante",
+            "rel": "é",
+            "arg2": "lenitizada (enfraquecida) para se tornar uma parada gótica ou fricativa"
+        },
+        "sent": "O termo aspiração às vezes se refere a a mudança sonora de a desescalização, em a qual uma consoante é lenitizada (enfraquecida) para se tornar uma parada glótica ou fricativa [ʔ h ɦ].",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "325": {
+        "ID": 326,
+        "expected": {
+            "arg1": "o gás oxigênio",
+            "rel": "contém",
+            "arg2": "cerca de 25% de a forma"
+        },
+        "sent": "À temperatura e pressão padrão, o gás hidrogênio contém cerca de 25% de a forma para e 75% de a forma orto, também conhecida como forma normal",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "329": {
+        "ID": 330,
+        "expected": {
+            "arg1": "Os símbolos D e T (em vez de 2H e 3H) as vezes",
+            "rel": "são",
+            "arg2": "usados para deutério e trítio"
+        },
+        "sent": "Os símbolos D e T (em vez de 2H e 3H) às vezes são usados para deutério e trítio, mas o símbolo correspondente para o protium, P, já está em uso para o fósforo e, portanto, não está disponível para o protium.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "330": {
+        "ID": 331,
+        "expected": {
+            "arg1": "Robert boyle",
+            "rel": "descobriu",
+            "arg2": "e descreveu a reação entre llimalhas de ferro e ácidos diluídos"
+        },
+        "sent": "Em 1671, Robert Boyle descobriu e descreveu a reação entre limalhas de ferro e ácidos diluídos, o que resulta em a produção de gás hidrogênio.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "333": {
+        "ID": 334,
+        "expected": {
+            "arg1": "O hidrogênio gasoso",
+            "rel": "se forma",
+            "arg2": "em o cátoco"
+        },
+        "sent": "Uma corrente de baixa tensão é percorrida por a água e o oxigênio gasoso se forma em o ânodo, enquanto o hidrogênio gasoso se forma em o cátodo.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "338": {
+        "ID": 339,
+        "expected": {
+            "arg1": "a água",
+            "rel": "é",
+            "arg2": "decomposta em seus componentes prótons, elétrons e oxigênio"
+        },
+        "sent": "A divisão de a água, em a qual a água é decomposta em seus componentes prótons, elétrons e oxigênio, ocorre em as reações de luz em todos os organismos fotossintéticos.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "340": {
+        "ID": 341,
+        "expected": {
+            "arg1": "No ópera",
+            "rel": "é",
+            "arg2": "incluído um leitor de feeds mais tradicional"
+        },
+        "sent": "No Opera, é incluído um leitor de feeds mais tradicional que armazena e exibe o conteúdo de o feed.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "347": {
+        "ID": 348,
+        "expected": {
+            "arg1": "A população",
+            "rel": "era",
+            "arg2": "de apenas 46.226 habitantes"
+        },
+        "sent": "Na época em que Boston foi fretada como cidade, a população era de 46.226 habitantes, enquanto a área de a cidade era de apenas 12 km2.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "350": {
+        "ID": 351,
+        "expected": {
+            "arg1": "O mês mais frio",
+            "rel": "é",
+            "arg2": "janeiro, com uma média de 29,0 ° F"
+        },
+        "sent": "O mês mais frio é janeiro, com uma média de 29,0 ° F (-1,7 ° C).",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "351": {
+        "ID": 352,
+        "expected": {
+            "arg1": "o número de congregações em Boston é estimado em 22",
+            "rel": "A cidade",
+            "arg2": "tem"
+        },
+        "sent": "A cidade tem uma população judaica considerável, com cerca de 25.000 judeus em a cidade e 227.000 em a área metropolitana de Boston",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "352": {
+        "ID": 353,
+        "expected": {
+            "arg1": "O mit",
+            "rel": "conhecido",
+            "arg2": "Boston Tech"
+        },
+        "sent": "O Instituto de Tecnologia de Massachusetts (MIT), que se originou em Boston e era conhecido como Boston Tech, mudou-se de o outro lado de o rio para Cambridge em 1916.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    },
+    "353": {
+        "ID": 354,
+        "expected": {
+            "arg1": "Boston red sox",
+            "rel": "joga",
+            "arg2": "seus jogos em o Fenway Park"
+        },
+        "sent": "O Boston Red Sox, membro fundador de a Liga Americana de Major League Baseball em 1901, joga seus jogos em casa em o Fenway Park, perto de Kenmore Square, em a seção Fenway de a cidade.",
+        "arg1": [
+            0,
+            0,
+            []
+        ],
+        "rel": [
+            0,
+            0,
+            []
+        ],
+        "arg2": [
+            0,
+            0,
+            []
+        ]
+    }
+}

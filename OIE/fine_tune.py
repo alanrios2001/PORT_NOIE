@@ -56,8 +56,8 @@ def fine_tune(name: str):
 
 
     trainer.fine_tune(f"train_output/{name}/fine_tune2",
-                      learning_rate=1e-3,
-                      mini_batch_size=32,
+                      learning_rate=5e-7,
+                      mini_batch_size=4,
                       max_epochs=20,
                       optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-4),
                       use_final_model_for_eval=False

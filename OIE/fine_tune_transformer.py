@@ -27,21 +27,21 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
     label_dictionary = corpus.make_label_dictionary(label_type=label_type)
     print(label_dictionary)
 
-    bert = TransformerWordEmbeddings('neuralmind/bert-large-portuguese-cased',
+    bert = TransformerWordEmbeddings('neuralmind/bert-base-portuguese-cased',
                                      layers="-1",
                                      subtoken_pooling="first_last",
                                      use_context=True,
                                      fine_tune=True,
                                      )
 
-    roberta = TransformerWordEmbeddings('xlm-roberta-large',
+    roberta = TransformerWordEmbeddings('xlm-roberta-base',
                                         layers="-1",
                                         subtoken_pooling="first",
                                         use_context=True,
                                         fine_tune=True,
                                         )
 
-    trm = roberta
+    trm = bert
 
     tagger = SequenceTagger(hidden_size=256,
                             embeddings=trm,
@@ -62,27 +62,15 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
     trainer.fine_tune(f"train_output/{name}",
                       learning_rate=5e-6,
                       mini_batch_size=4,
+                      min_learning_rate=5e-8,
                       #chunk_batch_size=1,
                       max_epochs=epochs,
-                      optimizer=MADGRAD(tagger.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-4),
+                      patience=10,
+                      optimizer=MADGRAD(tagger.parameters(), lr=5e-6, momentum=0.9),
                       #decoder_lr_factor=20,
-                      #scheduler=AnnealOnPlateau,
-                      use_final_model_for_eval=False
-                      )
-
-    """
-    # fine tune
-    trainer.fine_tune(f"train_output/{name}",
-                      learning_rate=1e-6,
-                      mini_batch_size=2,
-                      chunk_batch_size=1,
-                      max_epochs=epochs,
-                      optimizer=MADGRAD,
-                      decoder_lr_factor=20,
                       scheduler=AnnealOnPlateau,
                       use_final_model_for_eval=False
                       )
-    """
 
 if __name__ == "__main__":
     app()

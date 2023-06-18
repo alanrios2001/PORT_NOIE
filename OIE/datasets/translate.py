@@ -125,7 +125,7 @@ class ArgsRel2:
         return root_idx
 
 
-    def get_args_rel(self, ext):
+    def get_args_rel(self, ext, sent):
         self.alinhamentos = []
         doc = self.nlp(ext)
         doc_dict = {}
@@ -253,7 +253,7 @@ class ArgsRel:
                 break
         return root_idx
 
-    def get_args_rel(self, ext):
+    def get_args_rel(self, ext, sent):
         self.alinhamentos = []
         doc = self.nlp(ext)
         doc_dict = {}
@@ -913,7 +913,7 @@ class TranslateDataset:
         self.save_dict(data_dict)
 
     def create_dict(self, translate = None, part = None):
-        argsRel_eng = ArgsRel3()
+        argsRel_eng = ArgsRel()
         if translate is None:
             with open(self.out_path + "/translate/translate.json", "r", encoding="utf-8") as f:
                 data = json.load(f)
@@ -933,7 +933,7 @@ class TranslateDataset:
         #identifica elementos da tripla traduzida e armazena em um dicionario
         counter = 0
 
-        for sample in zip(all_sent, all_ext):
+        for sample in tqdm(zip(all_sent, all_ext), total=len(all_sent)):
             curr_ext = sample[1]
             if curr_ext[-1] == ".":
                 curr_ext = curr_ext[:-1]
@@ -965,7 +965,7 @@ class TranslateDataset:
                                                         "rel": transform_portuguese_contractions(rel_trad),
                                                         "arg2": transform_portuguese_contractions(arg1_trad)}]}
                     self.counter += 1
-            print(f"{self.counter / len(all_sent) * 6:.2f}% concluído ||| {self.counter}/{len(all_sent)*6} ||| thread: {part}")
+            #print(f"{self.counter / len(all_sent) * 6:.2f}% concluído ||| {self.counter}/{len(all_sent)*6} ||| thread: {part}")
 
         if part is not None:
             path = self.out_path + f"/align/"

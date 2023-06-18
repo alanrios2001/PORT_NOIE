@@ -11,7 +11,7 @@ import re
 import pathlib
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-name = "gpt_alan3/fine_tune2"
+name = "TA"
 engine = Predictor(f"{name}")
 
 
@@ -77,7 +77,6 @@ def generate_results():
     for sentence in tqdm.tqdm(test, desc="Generating extractions"):
         result = generate_extractions(sentence.phrase)
         sentence.predicted_extractions = result
-        # print(result)
     # Save test as pickle
     path = pathlib.Path("evaluations/benchmark/pickle")
     path.mkdir(parents=True, exist_ok=True)

@@ -137,7 +137,7 @@ def load_s2_train():
     return dataset
 
 
-def run():
+def run(threading_align=False):
     datasets_to_translate = [
         #{"dir":"","name": "carb", "load": load_carb(), "out_path": "outputs/carb/", "batch_size": 1, "google": False},
         {"dir": "", "name": "s2_alan_train", "load": load_s2_train(), "out_path": "outputs/s2_alan_train/", "batch_size":1, "google": False},
@@ -146,8 +146,8 @@ def run():
 
     for dataset in datasets_to_translate:
         eng = translate.TranslateDataset(dataset["dir"], dataset["name"], dataset["out_path"], dataset["batch_size"], dataset["google"])
-
         full_dataset = dataset["load"]
+
 
 
         # Submit tasks to thread pool
@@ -158,16 +158,19 @@ def run():
             pool.submit(eng.thread_gpt, i, ds_part)
         pool.shutdown(wait=True)
 
-        # Submit tasks to thread pool2
-        pool2 = concurrent.futures.ThreadPoolExecutor(max_workers=len(full_dataset))
-        for i in range(len(full_dataset)):
-            with open(dataset["out_path"]+f"/translate/translate{i}.json", "r", encoding="utf-8") as f:
-                trans_part = json.load(f)
-                pool2.submit(eng.create_dict, trans_part, i)
-        pool2.shutdown(wait=True)
-        eng.save_dict_threads(len(full_dataset))
-        #eng.merge_translate_parts(len(full_dataset))
-        #eng.create_dict()
+
+        if not threading_align:
+            eng.merge_translate_parts(len(full_dataset))
+            eng.create_dict()
+        else:
+            # Submit tasks to thread pool2
+            pool2 = concurrent.futures.ThreadPoolExecutor(max_workers=len(full_dataset))
+            for i in range(len(full_dataset)):
+                with open(dataset["out_path"]+f"/translate/translate{i}.json", "r", encoding="utf-8") as f:
+                    trans_part = json.load(f)
+                    pool2.submit(eng.create_dict, trans_part, i)
+            pool2.shutdown(wait=True)
+            eng.save_dict_threads(len(full_dataset))
         criar_conll(dataset["name"], "", 0.0, 0.0, converted=True, sequential=True)
 
-run()
+run(threading_align=False)

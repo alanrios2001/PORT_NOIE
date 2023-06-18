@@ -329,14 +329,14 @@ def load_gen2oie():
 
 
 def load_alan_train():
-    pt = "validated_splits" / "lsoie" / "train_valid.json"
+    pt = Path(__file__).parent / "normal/datasets/ls_train/saida_match" / "gold_valid.json"
     dataset_pt = dict()
     with open(pt, "r", encoding="utf-8") as f_pt:
         actual_pos = 0
         dataset = json.load(f_pt)
 
         for sentence in dataset:
-            dataset_pt[actual_pos] = {"phrase": sentence, "extractions": []}
+            dataset_pt[actual_pos] = {"phrase": dataset[sentence]["sent"], "extractions": []}
             arg1 = " ".join(dataset[sentence]["arg1"])
             arg2 = " ".join(dataset[sentence]["arg2"])
             rel = " ".join(dataset[sentence]["rel"])
@@ -354,14 +354,14 @@ def load_alan_train():
         return dataset_pt
 
 def load_alan_test():
-    pt = Path(__file__).parent / "alan" / "test_valid.json"
+    pt = Path(__file__).parent / "normal/datasets/ls_test/saida_match" / "gold_valid.json"
     dataset_pt = dict()
     with open(pt, "r", encoding="utf-8") as f_pt:
         actual_pos = 0
         dataset = json.load(f_pt)
 
         for sentence in dataset:
-            dataset_pt[actual_pos] = {"phrase": sentence, "extractions": []}
+            dataset_pt[actual_pos] = {"phrase": dataset[sentence]["sent"], "extractions": []}
             arg1 = " ".join(dataset[sentence]["arg1"])
             arg2 = " ".join(dataset[sentence]["arg2"])
             rel = " ".join(dataset[sentence]["rel"])
@@ -379,14 +379,14 @@ def load_alan_test():
         return dataset_pt
 
 def load_alan_dev():
-    pt = Path(__file__).parent / "alan" / "dev_valid.json"
+    pt = Path(__file__).parent / "normal/datasets/ls_dev/saida_match" / "gold_valid.json"
     dataset_pt = dict()
     with open(pt, "r", encoding="utf-8") as f_pt:
         actual_pos = 0
         dataset = json.load(f_pt)
 
         for sentence in dataset:
-            dataset_pt[actual_pos] = {"phrase": sentence, "extractions": []}
+            dataset_pt[actual_pos] = {"phrase": dataset[sentence]["sent"], "extractions": []}
             arg1 = " ".join(dataset[sentence]["arg1"])
             arg2 = " ".join(dataset[sentence]["arg2"])
             rel = " ".join(dataset[sentence]["rel"])
@@ -404,14 +404,64 @@ def load_alan_dev():
         return dataset_pt
 
 def load_alan_gold():
-    pt = Path(__file__).parent / "alan" / "gold_valid.json"
+    pt = Path(__file__).parent / "normal/datasets/dev/saida_match" / "gold_valid.json"
     dataset_pt = dict()
     with open(pt, "r", encoding="utf-8") as f_pt:
         actual_pos = 0
         dataset = json.load(f_pt)
 
         for sentence in dataset:
-            dataset_pt[actual_pos] = {"phrase": sentence, "extractions": []}
+            dataset_pt[actual_pos] = {"phrase": dataset[sentence]["sent"], "extractions": []}
+            arg1 = " ".join(dataset[sentence]["arg1"])
+            arg2 = " ".join(dataset[sentence]["arg2"])
+            rel = " ".join(dataset[sentence]["rel"])
+
+            dataset_pt[actual_pos]["extractions"].append(
+                {
+                    "arg1": transform_portuguese_contractions(arg1),
+                    "rel": transform_portuguese_contractions(rel),
+                    "arg2": transform_portuguese_contractions(arg2),
+                    "valid": 1,
+                }
+            )
+
+            actual_pos += 1
+        return dataset_pt
+
+def load_TA_s2_valid():
+    pt = Path(__file__).parent / "normal/datasets/s2_alan_valid/saida_match" / "gold_valid.json"
+    dataset_pt = dict()
+    with open(pt, "r", encoding="utf-8") as f_pt:
+        actual_pos = 0
+        dataset = json.load(f_pt)
+
+        for sentence in dataset:
+            dataset_pt[actual_pos] = {"phrase": dataset[sentence]["sent"], "extractions": []}
+            arg1 = " ".join(dataset[sentence]["arg1"])
+            arg2 = " ".join(dataset[sentence]["arg2"])
+            rel = " ".join(dataset[sentence]["rel"])
+
+            dataset_pt[actual_pos]["extractions"].append(
+                {
+                    "arg1": transform_portuguese_contractions(arg1),
+                    "rel": transform_portuguese_contractions(rel),
+                    "arg2": transform_portuguese_contractions(arg2),
+                    "valid": 1,
+                }
+            )
+
+            actual_pos += 1
+        return dataset_pt
+
+def load_bia():
+    pt = Path(__file__).parent / "normal/datasets/bia/saida_match" / "gold_valid.json"
+    dataset_pt = dict()
+    with open(pt, "r", encoding="utf-8") as f_pt:
+        actual_pos = 0
+        dataset = json.load(f_pt)
+
+        for sentence in dataset:
+            dataset_pt[actual_pos] = {"phrase": dataset[sentence]["sent"], "extractions": []}
             arg1 = " ".join(dataset[sentence]["arg1"])
             arg2 = " ".join(dataset[sentence]["arg2"])
             rel = " ".join(dataset[sentence]["rel"])
@@ -429,14 +479,60 @@ def load_alan_gold():
         return dataset_pt
 
 
+def load_bia2():
+    pt = Path(__file__).parent / "normal/datasets" / "bia2.csv"
+    dataset_pt = dict()
+    with open(pt, "r", encoding="utf-8") as f:
+        dataset = f.read().splitlines()[1:]
+        dataset = [i.split(";") for i in dataset]
+
+    actual_pos = 0
+    for _, i in enumerate(dataset):
+        try:
+            i[0] = i[0].replace('"": {"', "")
+            i[0] = i[0].replace('"', "")
+            i[0] = i[0].replace("'", "")
+            i[0] = i[0].replace("\\", "")
+            i[1] = i[1].replace('"": {"', "")
+            i[1] = i[1].replace('"', "")
+            i[1] = i[1].replace("'", "")
+            i[1] = i[1].replace("\\", "")
+            i[2] = i[2].replace('"": {"', "")
+            i[2] = i[2].replace('"', "")
+            i[2] = i[2].replace("'", "")
+            i[2] = i[2].replace("\\", "")
+            i[3] = i[3].replace('"": {"', "")
+            i[3] = i[3].replace('"', "")
+            i[3] = i[3].replace("'", "")
+            i[3] = i[3].replace("\\", "")
+            sent = transform_portuguese_contractions(i[0])
+            arg0 = transform_portuguese_contractions(i[1])
+            rel = transform_portuguese_contractions(i[2])
+            arg1 = transform_portuguese_contractions(i[3])
+            dataset_pt[actual_pos] = {"phrase": sent, "extractions": []}
+            dataset_pt[actual_pos]["extractions"].append(
+                {
+                    "arg1": transform_portuguese_contractions(arg0),
+                    "rel": transform_portuguese_contractions(rel),
+                    "arg2": transform_portuguese_contractions(arg1),
+                    "valid": 1
+                })
+            actual_pos += 1
+        except:
+            pass
+    return dataset_pt
+
+
 def get_dataset():
     datasets = [
         #{"name": "pragmatic_wiki", "dataset": load_pragmatic_wiki_dataset(), "type": "train"},
         #{"name": "pragmatic_ceten", "dataset": load_pragmatic_ceten_dataset(), "type": "train"},
         #{"name": "gamalho", "dataset": load_gamalho(), "type": "train"},
         {"name": "pud_200", "dataset": load_pud200(), "type": "train"},
-        {"name": "pud_100", "dataset": load_pud100(), "type": "test"},
-        #{"name": "alan_gold", "dataset": load_alan_gold(), "type": "train"},
+        #{"name": "pud_100", "dataset": load_pud100(), "type": "test"},
+        #{"name": "bia", "dataset": load_bia(), "type": "test"},
+        #{"name": "alan_gold", "dataset": load_alan_gold(), "type": "test"},
+        {"name": "TA_valid", "dataset": load_TA_s2_valid(), "type": "test"},
         #{"name": "alan_train", "dataset": load_alan_train(), "type": "train"},
         #{"name": "alan_test", "dataset": load_alan_test(), "type": "train"},
         #{"name": "alan_dev", "dataset": load_alan_dev(), "type": "train"},
@@ -479,4 +575,4 @@ def get_dataset():
 
 if __name__ == "__main__":
     dataset = get_dataset()
-    #print(dataset)
+    print(dataset)
