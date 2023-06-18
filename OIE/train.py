@@ -15,8 +15,8 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     corpus = ColumnCorpus(data_folder=folder,
                           column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
-                          test_file=test,
-                          dev_file=dev
+                          test_file=dev,
+                          #dev_file=dev
                           )
 
     label_type = "label"    # criando dicionario de tags
@@ -50,13 +50,13 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     # inicializando sequence tagger
     oie = SequenceTagger(#hidden_size=2560,
-                         hidden_size=1024,
+                         hidden_size=1024+512,
                          embeddings=embeddings,
                          tag_dictionary=label_dictionary,
                          reproject_embeddings=True,
                          tag_type=label_type,
                          rnn_layers=3,
-                         dropout=0.7,
+                         dropout=0.6,
                          locked_dropout=0.0,
                          word_dropout=0.05,
                          )

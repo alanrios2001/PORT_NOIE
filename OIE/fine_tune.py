@@ -13,33 +13,32 @@ app = typer.Typer()
 
 @app.command()
 def fine_tune(name: str):
-    # define the structure of the .datasets file
-    corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
-                          column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
-                          train_file="fine_tune/fine_tune2.txt",
-                          test_file="eval/100-gold.txt",
-                          dev_file="eval/100-gold.txt"
-                          )
-
 
     # inicializando sequence tagger
     try:
         oie = SequenceTagger.load("train_output/" + name + "/final-model.pt")
     except:
         oie = SequenceTagger.load("train_output/" + name + "/best-model.pt")
-
     """
+    # define the structure of the .datasets file
+    corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
+                          column_format={0: 'text', 8: 'label'},  # 9: "pos", 10: "dep", 11: "ner"},
+                          train_file="fine_tune/fine_tune2.txt",
+                          test_file="eval/100-gold.txt",
+                          dev_file="eval/100-gold.txt"
+                          )
+    
     # inicializando trainer
     trainer = ModelTrainer(oie, corpus)
     
     '8 epochs first round, second, 16'
     # fine tune
-
+    
     trainer.fine_tune(f"train_output/{name}/fine_tune",
-                      learning_rate=1e-3,
-                      mini_batch_size=64,
+                      learning_rate=1e-4,
+                      mini_batch_size=32,
                       max_epochs=20,
-                      optimizer=optimizer,
+                      optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9),
                       use_final_model_for_eval=False
                       )
     """
@@ -56,10 +55,10 @@ def fine_tune(name: str):
 
 
     trainer.fine_tune(f"train_output/{name}/fine_tune2",
-                      learning_rate=5e-7,
-                      mini_batch_size=4,
+                      learning_rate=1e-3,
+                      mini_batch_size=32,
                       max_epochs=20,
-                      optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-4),
+                      optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9),
                       use_final_model_for_eval=False
                       )
 

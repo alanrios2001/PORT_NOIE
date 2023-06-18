@@ -139,17 +139,15 @@ def load_s2_train():
 
 def run(threading_align=False):
     datasets_to_translate = [
-        #{"dir":"","name": "carb", "load": load_carb(), "out_path": "outputs/carb/", "batch_size": 1, "google": False},
-        {"dir": "", "name": "s2_alan_train", "load": load_s2_train(), "out_path": "outputs/s2_alan_train/", "batch_size":1, "google": False},
+        {"dir":"","name": "carb", "load": load_carb(), "out_path": "outputs/carb/", "batch_size": 1, "google": False},
+        #{"dir": "", "name": "s2_alan_train", "load": load_s2_train(), "out_path": "outputs/s2_alan_train/", "batch_size":1, "google": False},
         #{"dir": "", "name": "s2_alan_valid", "load": load_s2_valid(), "out_path": "outputs/s2_alan_valid/", "batch_size":1, "google": False},
     ]
 
     for dataset in datasets_to_translate:
         eng = translate.TranslateDataset(dataset["dir"], dataset["name"], dataset["out_path"], dataset["batch_size"], dataset["google"])
         full_dataset = dataset["load"]
-
-
-
+        """
         # Submit tasks to thread pool
         pool = concurrent.futures.ThreadPoolExecutor(max_workers=len(full_dataset))
         print(f"traduzindo utilizando {len(full_dataset)} threads")
@@ -157,10 +155,10 @@ def run(threading_align=False):
             ds_part = full_dataset[i]
             pool.submit(eng.thread_gpt, i, ds_part)
         pool.shutdown(wait=True)
-
+        """
 
         if not threading_align:
-            eng.merge_translate_parts(len(full_dataset))
+            #eng.merge_translate_parts(len(full_dataset))
             eng.create_dict()
         else:
             # Submit tasks to thread pool2

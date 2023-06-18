@@ -913,7 +913,7 @@ class TranslateDataset:
         self.save_dict(data_dict)
 
     def create_dict(self, translate = None, part = None):
-        argsRel_eng = ArgsRel()
+        argsRel_eng = ArgsRel3()
         if translate is None:
             with open(self.out_path + "/translate/translate.json", "r", encoding="utf-8") as f:
                 data = json.load(f)

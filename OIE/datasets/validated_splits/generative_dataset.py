@@ -428,6 +428,31 @@ def load_alan_gold():
             actual_pos += 1
         return dataset_pt
 
+def load_alan_carb():
+    pt = Path(__file__).parent / "normal/datasets/carb/saida_match" / "gold_valid.json"
+    dataset_pt = dict()
+    with open(pt, "r", encoding="utf-8") as f_pt:
+        actual_pos = 0
+        dataset = json.load(f_pt)
+
+        for sentence in dataset:
+            dataset_pt[actual_pos] = {"phrase": dataset[sentence]["sent"], "extractions": []}
+            arg1 = " ".join(dataset[sentence]["arg1"])
+            arg2 = " ".join(dataset[sentence]["arg2"])
+            rel = " ".join(dataset[sentence]["rel"])
+
+            dataset_pt[actual_pos]["extractions"].append(
+                {
+                    "arg1": transform_portuguese_contractions(arg1),
+                    "rel": transform_portuguese_contractions(rel),
+                    "arg2": transform_portuguese_contractions(arg2),
+                    "valid": 1,
+                }
+            )
+
+            actual_pos += 1
+        return dataset_pt
+
 def load_TA_s2_valid():
     pt = Path(__file__).parent / "normal/datasets/s2_alan_valid/saida_match" / "gold_valid.json"
     dataset_pt = dict()
@@ -530,9 +555,10 @@ def get_dataset():
         #{"name": "gamalho", "dataset": load_gamalho(), "type": "train"},
         {"name": "pud_200", "dataset": load_pud200(), "type": "train"},
         #{"name": "pud_100", "dataset": load_pud100(), "type": "test"},
+        #{"name": "alan_carb", "dataset": load_alan_carb(), "type": "test"},
+        {"name": "TA_valid", "dataset": load_TA_s2_valid(), "type": "test"},
         #{"name": "bia", "dataset": load_bia(), "type": "test"},
         #{"name": "alan_gold", "dataset": load_alan_gold(), "type": "test"},
-        {"name": "TA_valid", "dataset": load_TA_s2_valid(), "type": "test"},
         #{"name": "alan_train", "dataset": load_alan_train(), "type": "train"},
         #{"name": "alan_test", "dataset": load_alan_test(), "type": "train"},
         #{"name": "alan_dev", "dataset": load_alan_dev(), "type": "train"},
