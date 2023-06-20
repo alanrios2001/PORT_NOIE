@@ -16,32 +16,10 @@ def fine_tune(name: str):
 
     # inicializando sequence tagger
     try:
-        oie = SequenceTagger.load("train_output/" + name + "/final-model.pt")
-    except:
         oie = SequenceTagger.load("train_output/" + name + "/best-model.pt")
-    """
-    # define the structure of the .datasets file
-    corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
-                          column_format={0: 'text', 8: 'label'},  # 9: "pos", 10: "dep", 11: "ner"},
-                          train_file="fine_tune/fine_tune2.txt",
-                          test_file="eval/100-gold.txt",
-                          dev_file="eval/100-gold.txt"
-                          )
-    
-    # inicializando trainer
-    trainer = ModelTrainer(oie, corpus)
-    
-    '8 epochs first round, second, 16'
-    # fine tune
-    
-    trainer.fine_tune(f"train_output/{name}/fine_tune",
-                      learning_rate=1e-4,
-                      mini_batch_size=32,
-                      max_epochs=20,
-                      optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9),
-                      use_final_model_for_eval=False
-                      )
-    """
+    except:
+        oie = SequenceTagger.load("train_output/" + name + "/final-model.pt")
+
 
     corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
                           column_format={0: 'text', 8: 'label'},  # 9: "pos", 10: "dep", 11: "ner"},
@@ -50,15 +28,13 @@ def fine_tune(name: str):
                           dev_file="eval/100-gold.txt"
                           )
 
-    oie = SequenceTagger.load("train_output/" + name + "/best-model.pt")
     trainer = ModelTrainer(oie, corpus)
 
-
-    trainer.fine_tune(f"train_output/{name}/fine_tune2",
-                      learning_rate=1e-3,
+    trainer.fine_tune(f"train_output/{name}/fine_tune",
+                      learning_rate=1e-4,
                       mini_batch_size=32,
                       max_epochs=20,
-                      optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9),
+                      optimizer=MADGRAD(oie.parameters(), lr=1e-4, momentum=0.9),
                       use_final_model_for_eval=False
                       )
 

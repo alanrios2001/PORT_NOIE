@@ -42,6 +42,9 @@ class Predictor:
     def pred(self, text:str, show_output: bool):
         exts = []
         sentences = [text]
+        if text[-1] == ".":
+            sentences.append(text[:-1])
+
         if len(text)>200 and text.count(".")>1:
             split = [t for t in text.split(".")]
             if len(split) > 1:
@@ -133,19 +136,6 @@ class Predictor:
             if "ARG0" in n and "V" in n and "ARG1" in n:
                 exts.append(ext)
 
-            # filtra extrações iguais
-            if len(exts) > 1:
-                exts2 = []
-                i = 0
-                while i < len(exts):
-                    current = exts[i]
-                    exts2.append(current)
-                    exts.remove(current)
-                    i += 1
-                exts = exts2
-
-
-
             if show_output:
                 if len(sentence.get_spans('label')) >= 3:
                     maior = ""
@@ -156,11 +146,32 @@ class Predictor:
                     if len(maior) < len(text):
                         maior = text
                     self.display(maior, exts, text, str(sentence).split("]: ")[1], sentence)
+
+        # filtra extrações iguais
+        if len(exts) > 1:
+            repeated_idxs = []
+            i = 0
+            while i < len(exts):
+                current = exts[i]
+                ext_str = " ".join([e[0] for e in current])
+                j = i+1
+                while j < len(exts):
+                    next = exts[j]
+                    next_str = " ".join([e[0] for e in next])
+                    if ext_str == next_str:
+                        repeated_idxs.append(j)
+                    j += 1
+                i += 1
+            repeated_idxs = list(set(repeated_idxs))
+            for i in range(len(repeated_idxs)):
+                exts.pop(repeated_idxs[i]-i)
+
+        #print(exts)
         return exts
 
 
 @app.command()
-def run(model:str, text:str, show_output: bool = True):
+def run(model:str, text:str, show_output: bool = False):
     predictor = Predictor(model)
     text = transform_portuguese_contractions(text)
     predictor.pred(text, show_output)

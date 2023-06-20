@@ -50,8 +50,8 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     embeddings = StackedEmbeddings(embeddings=embedding_types)
 
     # inicializando sequence tagger
-    oie = SequenceTagger(#hidden_size=2560,
-                         hidden_size=2048,
+    oie = SequenceTagger(hidden_size=2048,
+                         #hidden_size=2048,
                          embeddings=embeddings,
                          tag_dictionary=label_dictionary,
                          reproject_embeddings=True,
@@ -71,9 +71,9 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     # iniciando treino
     trainer.train(f"train_output/{name}",
-                  learning_rate=1e-3,
-                  min_learning_rate=1e-4,
-                  mini_batch_size=16,
+                  learning_rate=1e-4,
+                  min_learning_rate=1e-5,
+                  mini_batch_size=8,
                   #mini_batch_chunk_size=1,
                   max_epochs=epochs,
                   patience=4,
@@ -89,24 +89,25 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   #use_amp=True,
                   )
 
-    '''
+
     ### FINE TUNING ###
     corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
                           column_format={0: 'text', 8: 'label'},  # 9: "pos", 10: "dep", 11: "ner"},
                           train_file="eval/pud_200.txt",
                           test_file="eval/100-gold.txt",
-                          dev_file="fine_tune/fine_tune2.txt"
+                          dev_file="eval/100-gold.txt"
+                          #dev_file="fine_tune/fine_tune2.txt"
                           )
     trainer = ModelTrainer(oie, corpus)
 
-    trainer.fine_tune(f"train_output/{name}/fine_tune2",
-                      learning_rate=1e-3,
+    trainer.fine_tune(f"train_output/{name}/fine_tune",
+                      learning_rate=1e-4,
                       mini_batch_size=32,
                       max_epochs=20,
-                      optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-4),
+                      optimizer=MADGRAD(oie.parameters(), lr=1e-4, momentum=0.9, weight_decay=1e-4),
                       use_final_model_for_eval=False
                       )
-    '''
+
 
 if __name__ == "__main__":
     app()
