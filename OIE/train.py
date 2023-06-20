@@ -40,8 +40,9 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     embedding_types = [
         #transformer,
         WordEmbeddings("pt"),
-        #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=6, embedding_length=16),
-        #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=6, embedding_length=35),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=1, embedding_length=40),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=1, embedding_length=40),
+        #OneHotEmbeddings.from_corpus(corpus=corpus, field='ner', min_freq=1, embedding_length=20),
         FlairEmbeddings('pt-forward'),
         FlairEmbeddings('pt-backward')
     ]
@@ -50,13 +51,13 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     # inicializando sequence tagger
     oie = SequenceTagger(#hidden_size=2560,
-                         hidden_size=1024+512,
+                         hidden_size=2048,
                          embeddings=embeddings,
                          tag_dictionary=label_dictionary,
                          reproject_embeddings=True,
                          tag_type=label_type,
-                         rnn_layers=3,
-                         dropout=0.6,
+                         rnn_layers=2,
+                         dropout=0.5,
                          locked_dropout=0.0,
                          word_dropout=0.05,
                          )
@@ -72,13 +73,14 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     trainer.train(f"train_output/{name}",
                   learning_rate=1e-3,
                   min_learning_rate=1e-4,
-                  mini_batch_size=32,
+                  mini_batch_size=16,
                   #mini_batch_chunk_size=1,
                   max_epochs=epochs,
                   patience=4,
                   embeddings_storage_mode='none',
-                  #optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-4),
-                  optimizer=optimizer,
+                  #main_evaluation_metric=("micro avg", "precision"),
+                  optimizer=MADGRAD(oie.parameters(), lr=1e-4, momentum=0.9, weight_decay=1e-4),
+                  #optimizer=optimizer,
                   save_final_model=False,
                   anneal_factor=0.5,
                   anneal_with_restarts=True,
@@ -87,6 +89,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   #use_amp=True,
                   )
 
+    '''
     ### FINE TUNING ###
     corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
                           column_format={0: 'text', 8: 'label'},  # 9: "pos", 10: "dep", 11: "ner"},
@@ -103,6 +106,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                       optimizer=MADGRAD(oie.parameters(), lr=1e-3, momentum=0.9, weight_decay=1e-4),
                       use_final_model_for_eval=False
                       )
+    '''
 
 if __name__ == "__main__":
     app()

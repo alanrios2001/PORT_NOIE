@@ -933,7 +933,7 @@ class TranslateDataset:
         #identifica elementos da tripla traduzida e armazena em um dicionario
         counter = 0
 
-        for sample in tqdm(zip(all_sent, all_ext), total=len(all_sent)):
+        for sample in zip(all_sent, all_ext):
             curr_ext = sample[1]
             if curr_ext[-1] == ".":
                 curr_ext = curr_ext[:-1]
@@ -965,7 +965,7 @@ class TranslateDataset:
                                                         "rel": transform_portuguese_contractions(rel_trad),
                                                         "arg2": transform_portuguese_contractions(arg1_trad)}]}
                     self.counter += 1
-            #print(f"{self.counter / len(all_sent) * 6:.2f}% concluído ||| {self.counter}/{len(all_sent)*6} ||| thread: {part}")
+            print(f"{self.counter / (len(all_sent) * 6):.2f}% concluído ||| {self.counter}/{len(all_sent)*6} ||| thread: {part}")
 
         if part is not None:
             path = self.out_path + f"/align/"

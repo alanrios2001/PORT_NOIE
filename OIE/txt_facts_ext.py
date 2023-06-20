@@ -1,7 +1,8 @@
 from predict import Predictor
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions
+from openie_helper.triple import OIESentence
 
-model = "TA/fine_tune2"
+model = "TA2"
 oie = Predictor(model)
 show_triple = True
 
