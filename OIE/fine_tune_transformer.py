@@ -19,12 +19,12 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
     corpus = ColumnCorpus(data_folder=folder,
                           column_format={0: 'text', 8: 'label'},  # , 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
-                          test_file=test,
+                          test_file=dev,
                           #dev_file=dev
                           )
 
     label_type = "label"  # criando dicionario de tags
-    label_dictionary = corpus.make_label_dictionary(label_type=label_type)
+    label_dictionary = corpus.make_label_dictionary(label_type=label_type, add_unk=False)
     print(label_dictionary)
 
     bert = TransformerWordEmbeddings('neuralmind/bert-base-portuguese-cased',
@@ -41,7 +41,26 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
                                         fine_tune=True,
                                         )
 
-    trm = bert
+    albertina0 = TransformerWordEmbeddings('PORTULAN/albertina-ptbr-base',
+                                        layers="-1",
+                                        subtoken_pooling="first_last",
+                                        use_context=True,
+                                        fine_tune=True,
+                                        )
+    albertina1 = TransformerWordEmbeddings('PORTULAN/albertina-ptbr',
+                                           layers="-1",
+                                           subtoken_pooling="first",
+                                           use_context=True,
+                                           fine_tune=True,
+                                           )
+    albertina2 = TransformerWordEmbeddings('PORTULAN/albertina-ptbr-nobrwac',
+                                           layers="-1",
+                                           subtoken_pooling="first",
+                                           use_context=True,
+                                           fine_tune=True,
+                                           )
+
+    trm = albertina0
 
     tagger = SequenceTagger(hidden_size=256,
                             embeddings=trm,
@@ -62,14 +81,14 @@ def train(epochs: int, name: str, folder: str, train: str, test: str, dev: str):
     trainer.fine_tune(f"train_output/{name}",
                       learning_rate=5e-6,
                       mini_batch_size=4,
+                      # chunk_batch_size=1,
                       min_learning_rate=5e-8,
-                      #chunk_batch_size=1,
                       max_epochs=epochs,
                       patience=10,
-                      optimizer=MADGRAD(tagger.parameters(), lr=5e-6, momentum=0.9),
+                      optimizer=MADGRAD,
                       #decoder_lr_factor=20,
                       scheduler=AnnealOnPlateau,
-                      use_final_model_for_eval=False
+                      use_final_model_for_eval=False,
                       )
 
 if __name__ == "__main__":

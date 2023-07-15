@@ -10,11 +10,10 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.10"
-torch = { url = "https://download.pytorch.org/whl/cu117/torch-1.13.0%2Bcu117-cp39-cp39-win_amd64.whl" }
+torch = { url = "https://download.pytorch.org/whl/cu117/torch-1.13.1%2Bcu117-cp39-cp39-win_amd64.whl" }
 typer = "*"
 torch-optimizer = "*"
 madgrad = "*"
-torchtext = "*"
 jupyter = "*"
 protobuf = "^3.20"
 sacremoses = "^0.0.53"
@@ -23,8 +22,8 @@ diskcache = "*"
 pandas = "*"
 nltk = "*"
 spacy = "^3.5.2"
-flair = {git = "https://github.com/flairNLP/flair"}
 openai = "^0.27.7"
+flair = "^0.12.2"
 
 
 

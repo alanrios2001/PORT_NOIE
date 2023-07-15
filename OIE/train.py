@@ -1,11 +1,10 @@
 import pathlib
 from flair.datasets import ColumnCorpus
-from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, WordEmbeddings, OneHotEmbeddings
+from flair.embeddings import StackedEmbeddings, FlairEmbeddings, TransformerWordEmbeddings, WordEmbeddings, OneHotEmbeddings, PooledFlairEmbeddings
 from flair.models import SequenceTagger
 from madgrad import MADGRAD
 import typer
 from flair.trainers import ModelTrainer
-import torch
 
 app = typer.Typer()
 
@@ -20,7 +19,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                           )
 
     label_type = "label"    # criando dicionario de tags
-    label_dictionary = corpus.make_label_dictionary(label_type=label_type)
+    label_dictionary = corpus.make_label_dictionary(label_type=label_type, add_unk=False)
     print(label_dictionary)
 
     roberta = TransformerWordEmbeddings(
@@ -35,7 +34,9 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
         "neuralmind/bert-base-portuguese-cased",
     )
 
-    transformer = bert
+    albertina = TransformerWordEmbeddings("PORTULAN/albertina-ptbr-base")
+
+    transformer = albertina
 
     embedding_types = [
         #transformer,
@@ -43,18 +44,18 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=1, embedding_length=40),
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=1, embedding_length=40),
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='ner', min_freq=1, embedding_length=20),
-        FlairEmbeddings('pt-forward'),
-        FlairEmbeddings('pt-backward')
+        PooledFlairEmbeddings('pt-forward'),
+        PooledFlairEmbeddings('pt-backward')
     ]
 
     embeddings = StackedEmbeddings(embeddings=embedding_types)
 
     # inicializando sequence tagger
-    oie = SequenceTagger(hidden_size=2048,
+    oie = SequenceTagger(hidden_size=1024,
                          #hidden_size=2048,
-                         embeddings=embeddings,
+                         embeddings=transformer,
                          tag_dictionary=label_dictionary,
-                         reproject_embeddings=True,
+                         reproject_embeddings=False,
                          tag_type=label_type,
                          rnn_layers=2,
                          dropout=0.5,
@@ -66,27 +67,20 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
 
     # inicializando trainer
     trainer = ModelTrainer(oie, corpus)
-    optimizer = torch.optim.Adam(oie.parameters(), lr=1e-3, betas=(0.9, 0.999))
-
 
     # iniciando treino
     trainer.train(f"train_output/{name}",
-                  learning_rate=1e-4,
-                  min_learning_rate=1e-5,
-                  mini_batch_size=8,
+                  learning_rate=1e-3,
+                  min_learning_rate=1e-4,
+                  mini_batch_size=32,
                   #mini_batch_chunk_size=1,
                   max_epochs=epochs,
                   patience=4,
                   embeddings_storage_mode='none',
-                  #main_evaluation_metric=("micro avg", "precision"),
-                  optimizer=MADGRAD(oie.parameters(), lr=1e-4, momentum=0.9, weight_decay=1e-4),
-                  #optimizer=optimizer,
+                  optimizer=MADGRAD,
                   save_final_model=False,
                   anneal_factor=0.5,
                   anneal_with_restarts=True,
-                  reduce_transformer_vocab=True,
-                  #use_swa=True
-                  #use_amp=True,
                   )
 
 
@@ -104,7 +98,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                       learning_rate=1e-4,
                       mini_batch_size=32,
                       max_epochs=20,
-                      optimizer=MADGRAD(oie.parameters(), lr=1e-4, momentum=0.9, weight_decay=1e-4),
+                      optimizer=MADGRAD,
                       use_final_model_for_eval=False
                       )
 

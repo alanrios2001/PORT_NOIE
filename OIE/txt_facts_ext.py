@@ -21,10 +21,9 @@ for line in lines:
         exts.append(ex)
 
 for ex in exts:
-    lenght = len(ex)
     extraction = "extração:"
-    if lenght > 2:
-        for i in range(lenght):
+    if len(ex) > 2:
+        for i in range(len(ex)):
             extraction += f" {ex[i][0]}"
         if show_triple:
             print(extraction + " → " + f"(ARG0: {ex[0][0]})" + f"(REL: {ex[1][0]})" + f"(ARG1: {ex[2][0]})")

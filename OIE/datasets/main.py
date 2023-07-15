@@ -60,23 +60,6 @@ def merge():
                   "other_corpus/outputs/saida_match/pragmatic_ceten/pragmatic_ceten_corpus.txt",
                   "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt"]
 
-    fine_tune2 = ["other_corpus/outputs/saida_match/gamalho/gamalho_corpus.txt",
-             "other_corpus/outputs/saida_match/pragmatic_ceten/pragmatic_ceten_corpus.txt",
-             "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt",
-             "validated_splits/normal/eval/200-silver.txt"]
-
-    ls_train = ["validated_splits/normal/trad/ls_train.txt",
-                "validated_splits/normal/trad/ls_dev.txt",
-                "validated_splits/normal/trad/dev.txt"]
-
-    ls_test = ["splits_sets/lsoie/ls_test.txt",
-          "outputs/splits/ls_dev_test.txt"]
-
-    ptoie = ["outputs/PTOIE/saida_pos_tag/PTOIE_dev_test.txt", "outputs/PTOIE/saida_pos_tag/PTOIE_test.txt"]
-
-    lab = ["validated_splits/normal/carb/carb.txt",
-           "validated_splits/normal/lsoie/train.txt",
-           ]
     trad = [
         "validated_splits/normal/TransAlign/carb.txt",
         "validated_splits/normal/TransAlign/ls_train.txt",
@@ -85,17 +68,8 @@ def merge():
         "validated_splits/normal/TransAlign/dev.txt",
         "validated_splits/normal/TransAlign/s2_TA_train.txt",
     ]
-    trad_1hot = [
-        "validated_splits/one_hot/TransAlign/carb.txt",
-        "validated_splits/one_hot/TransAlign/ls_train.txt",
-        "validated_splits/one_hot/TransAlign/ls_dev.txt",
-        "validated_splits/one_hot/TransAlign/dev.txt",
-    ]
-    fine_tune_1hot = ["other_corpus/outputs/saida_pos_tag/gamalho",
-                     "other_corpus/outputs/saida_pos_tag/pragmatic_ceten",
-                     "other_corpus/outputs/saida_pos_tag/pragmatic_wiki"]
 
-    OUTPUT_NAME = "TA_medium"
+    OUTPUT_NAME = "TA"
     Merge(trad, OUTPUT_NAME)
 
 @app.command()
@@ -188,17 +162,22 @@ def build(dataset: str = "s2"):
 
 @app.command()
 def load_bia():
-    dataset_name = "other_corpus/bia2.csv"
+    dataset_name = "other_corpus/bia.csv"
     valid = []
     invalid = []
     data_dict = {}
     with open(dataset_name, "r", encoding="utf-8") as f:
-        dataset = f.read().splitlines()[1:]
-        dataset = [i.split(";") for i in dataset]
-        #print(dataset)
+        dataset = f.read().splitlines()
+        #for i in dataset:
+            #print(i)
+        dataset = [i.split(";")[0:4] for i in dataset]
+        print(dataset)
+
+
 
     counter = 0
     for _,i in enumerate(dataset):
+        #print(i)
         try:
             i[0] = i[0].replace('"": {"', "")
             i[0] = i[0].replace('"', "")

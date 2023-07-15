@@ -31,10 +31,10 @@ def fine_tune(name: str):
     trainer = ModelTrainer(oie, corpus)
 
     trainer.fine_tune(f"train_output/{name}/fine_tune",
-                      learning_rate=1e-4,
+                      learning_rate=1e-3,
                       mini_batch_size=32,
                       max_epochs=20,
-                      optimizer=MADGRAD(oie.parameters(), lr=1e-4, momentum=0.9),
+                      optimizer=MADGRAD,
                       use_final_model_for_eval=False
                       )
 
