@@ -477,7 +477,6 @@ class ArgsRel3:
                     rels.append((rel,(i,j)))
 
         rels.sort(key = lambda x: len(x[0]), reverse=True)
-
         for rel in rels:
             idx = rel[1]
             sent_list = sent.split(" ")
@@ -487,6 +486,8 @@ class ArgsRel3:
             rel = " ".join(rel[0])
 
             valid = self.matcher.match(sent, arg0, rel, arg1)
+            #print(rel)
+            #print(valid)
             if valid[3]:
                 #colhe pos da relação do alinhamento, o pos usado é o da sent nos tokens da ext
                 aux = []
@@ -524,15 +525,21 @@ class ArgsRel3:
                 middle = False
                 middle_counter = 0
                 #inicio
+                #print(inicio)
                 for i,tags in enumerate(inicio):
                     p_tag = tags[0]
                     p_dep = tags[1]
-                    if p_tag == "AUX" and i == 0:
+                    if p_tag == "AUX"  and i == 0:
                         first = True
                         if len(rel_pos) == 1:
                             self.alinhamentos.append(ali_gerado[0])
                             return self.alinhamentos
                     elif (p_tag == "VERB" and p_dep == "ROOT") and i == 0:
+                        first = True
+                        if len(rel_pos) == 1:
+                            self.alinhamentos.append(ali_gerado[0])
+                            return self.alinhamentos
+                    elif (p_tag == "AUX" and p_dep == "ROOT") and i == 0:
                         first = True
                         if len(rel_pos) == 1:
                             self.alinhamentos.append(ali_gerado[0])
@@ -547,7 +554,7 @@ class ArgsRel3:
                         #print(tags)
                         p_tag = tags[0]
                         #print(p_tag)
-                        if p_tag in ['ADJ','NOUN', 'VERB', "AUX","DET"] and first:
+                        if p_tag in ['ADJ','NOUN',"ADV","VERB","AUX"] and first:
                             middle_counter += 1
                 if middle_counter == len(meio):
                     middle = True
@@ -555,16 +562,13 @@ class ArgsRel3:
                 #fim
                 for i,tags in enumerate(fim):
                     p_tag = tags[0]
-                    if len(rel_pos) == 2 and p_tag == "VERB" and first:
-                        self.alinhamentos.append(ali_gerado[0])
-                        return self.alinhamentos
-                    elif len(rel_pos) == 2 and p_tag == "AUX" and first:
-                        self.alinhamentos.append(ali_gerado[0])
-                        return self.alinhamentos
-                    elif len(rel_pos) == 2 and p_tag == "ADP" and first:
+                    if len(rel_pos) == 2 and p_tag in ["ADP", "VERB", "AUX"] and first:
                         self.alinhamentos.append(ali_gerado[0])
                         return self.alinhamentos
                     elif len(rel_pos) > 2 and p_tag == "ADP" and first and middle:
+                        self.alinhamentos.append(ali_gerado[0])
+                        return self.alinhamentos
+                    elif len(rel_pos) == 1 and first:
                         self.alinhamentos.append(ali_gerado[0])
                         return self.alinhamentos
 
