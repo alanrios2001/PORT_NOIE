@@ -9,8 +9,10 @@ class Predictor:
     def __init__(self, model:str):
         try:
             self.oie = SequenceTagger.load("train_output/" + model + "/best-model.pt")
+            print("best model loaded")
         except:
             self.oie = SequenceTagger.load("train_output/" + model + "/final-model.pt")
+            print("final model loaded")
 
     def display(self, maior, exts, sentenca, tripla, sentence: Sentence):
         print("\n" * 1)
@@ -42,21 +44,21 @@ class Predictor:
     def pred(self, text:str, show_output: bool):
         exts = []
         sentences = [text]
-        if text[-1] == ".":
-            sentences.append(text[:-1])
+        #if text[-1] == ".":
+            #sentences.append(text[:-1])
 
-        if len(text)>200 and text.count(".")>1:
-            split = [t for t in text.split(".")]
-            if len(split) > 1:
-                for s in split:
-                    if s != "":
-                        sentences.append(s)
+        #if len(text)>200 and text.count(".")>1:
+            #split = [t for t in text.split(".")]
+            #if len(split) > 1:
+                #for s in split:
+                    #if s != "":
+                        #sentences.append(s)
 
-        split = [t for t in text.split(",")]
-        if len(split) > 1:
-            for s in split:
-                if s != "":
-                    sentences.append(s)
+        #split = [t for t in text.split(",")]
+        #if len(split) > 1:
+            #for s in split:
+                #if s != "":
+                    #sentences.append(s)
 
 
         for sentenca in sentences:

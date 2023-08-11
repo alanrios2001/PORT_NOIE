@@ -147,7 +147,7 @@ def run(threading_align=False):
     for dataset in datasets_to_translate:
         eng = translate.TranslateDataset(dataset["dir"], dataset["name"], dataset["out_path"], dataset["batch_size"], dataset["google"])
         full_dataset = dataset["load"]
-        """
+        '''
         # Submit tasks to thread pool
         pool = concurrent.futures.ThreadPoolExecutor(max_workers=len(full_dataset))
         print(f"traduzindo utilizando {len(full_dataset)} threads")
@@ -155,7 +155,7 @@ def run(threading_align=False):
             ds_part = full_dataset[i]
             pool.submit(eng.thread_gpt, i, ds_part)
         pool.shutdown(wait=True)
-        """
+        '''
 
         if not threading_align:
             eng.merge_translate_parts(len(full_dataset))
@@ -166,7 +166,7 @@ def run(threading_align=False):
             for i in range(len(full_dataset)):
                 with open(dataset["out_path"]+f"/translate/translate{i}.json", "r", encoding="utf-8") as f:
                     trans_part = json.load(f)
-                    pool2.submit(eng.create_dict, trans_part, i)
+                    pool2.submit(eng.create_dict_thread, trans_part, i)
             pool2.shutdown(wait=True)
             eng.save_dict_threads(len(full_dataset))
         criar_conll(dataset["name"], "", 0.0, 0.0, converted=True, sequential=True)

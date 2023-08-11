@@ -61,23 +61,23 @@ def merge():
                   "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt"]
 
     trad = [
-        "validated_splits/normal/TransAlign/carb.txt",
-        "validated_splits/normal/TransAlign/ls_train.txt",
-        "validated_splits/normal/TransAlign/ls_dev.txt",
-        "validated_splits/normal/TransAlign/ls_test.txt",
-        "validated_splits/normal/TransAlign/dev.txt",
-        "validated_splits/normal/TransAlign/s2_TA_train.txt",
+        "validated_splits/normal/TransAlign2/carb_corpus.txt",
+        "validated_splits/normal/TransAlign2/ls_train_corpus.txt",
+        "validated_splits/normal/TransAlign2/ls_dev_corpus.txt",
+        "validated_splits/normal/TransAlign2/ls_test_corpus.txt",
+        "validated_splits/normal/TransAlign2/dev_corpus.txt",
+        "validated_splits/normal/TransAlign2/s2_TA_train_corpus.txt",
     ]
 
-    OUTPUT_NAME = "TA"
+    OUTPUT_NAME = "TA2"
     Merge(trad, OUTPUT_NAME)
 
 @app.command()
 def split():
-    TEST_SIZE = 0.83
+    TEST_SIZE = 0.1
     DEV_SIZE = 0.0
-    OUTPUT_NAME = "s2_train"
-    IN_PATH = "validated_splits/normal/s2/"
+    OUTPUT_NAME = "TA2"
+    IN_PATH = "validated_splits/normal/TransAlign2/"
     OUT_PATH = "outputs/splits"
     train_dev_test(TEST_SIZE, DEV_SIZE, OUTPUT_NAME, IN_PATH, OUT_PATH)
 

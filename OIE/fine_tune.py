@@ -12,13 +12,16 @@ app = typer.Typer()
 
 
 @app.command()
-def fine_tune(name: str):
+def fine_tune():
+    model_name = "TA3"
 
     # inicializando sequence tagger
     try:
-        oie = SequenceTagger.load("train_output/" + name + "/best-model.pt")
+        oie = SequenceTagger.load("train_output/" + model_name + "/best-model.pt")
+        print("best model loaded")
     except:
-        oie = SequenceTagger.load("train_output/" + name + "/final-model.pt")
+        oie = SequenceTagger.load("train_output/" + model_name + "/final-model.pt")
+        print("final model loaded")
 
 
     corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
@@ -30,12 +33,14 @@ def fine_tune(name: str):
 
     trainer = ModelTrainer(oie, corpus)
 
-    trainer.fine_tune(f"train_output/{name}/fine_tune",
+    trainer.fine_tune(f"train_output/{model_name}/fine_tune",
                       learning_rate=1e-3,
                       mini_batch_size=32,
                       max_epochs=20,
                       optimizer=MADGRAD,
-                      use_final_model_for_eval=False
+                      use_final_model_for_eval=False,
+                      embeddings_storage_mode='cpu',
+                      save_final_model=False
                       )
 
 

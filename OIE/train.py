@@ -8,14 +8,20 @@ from flair.trainers import ModelTrainer
 
 app = typer.Typer()
 
-@app.command()
-def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
+def train():
     # define the structure of the .datasets file
+    name = "TAt"
+    epochs = 150
+    folder = "datasets/feedback"
+    train = "fb_dataset.txt"
+    test = "fb_dataset.txt"
+    dev = "fb_dataset.txt"
+
     corpus = ColumnCorpus(data_folder=folder,
-                          column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
+                          column_format={0: 'text', 1: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
-                          test_file=dev,
-                          #dev_file=dev
+                          test_file=test,
+                          dev_file=dev
                           )
 
     label_type = "label"    # criando dicionario de tags
@@ -44,21 +50,21 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='pos', min_freq=1, embedding_length=40),
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='dep', min_freq=1, embedding_length=40),
         #OneHotEmbeddings.from_corpus(corpus=corpus, field='ner', min_freq=1, embedding_length=20),
-        PooledFlairEmbeddings('pt-forward'),
-        PooledFlairEmbeddings('pt-backward')
+        FlairEmbeddings('pt-forward'),
+        FlairEmbeddings('pt-backward')
     ]
 
     embeddings = StackedEmbeddings(embeddings=embedding_types)
 
     # inicializando sequence tagger
-    oie = SequenceTagger(hidden_size=1024,
-                         #hidden_size=2048,
-                         embeddings=transformer,
+    oie = SequenceTagger(#hidden_size=1024,
+                         hidden_size=2048,
+                         embeddings=embeddings,
                          tag_dictionary=label_dictionary,
-                         reproject_embeddings=False,
+                         reproject_embeddings=True,
                          tag_type=label_type,
                          rnn_layers=2,
-                         dropout=0.5,
+                         dropout=0.4,
                          locked_dropout=0.0,
                          word_dropout=0.05,
                          )
@@ -75,7 +81,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                   mini_batch_size=32,
                   #mini_batch_chunk_size=1,
                   max_epochs=epochs,
-                  patience=4,
+                  patience=8,
                   embeddings_storage_mode='none',
                   optimizer=MADGRAD,
                   save_final_model=False,
@@ -95,7 +101,7 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
     trainer = ModelTrainer(oie, corpus)
 
     trainer.fine_tune(f"train_output/{name}/fine_tune",
-                      learning_rate=1e-4,
+                      learning_rate=1e-3,
                       mini_batch_size=32,
                       max_epochs=20,
                       optimizer=MADGRAD,
@@ -103,5 +109,4 @@ def train(epochs: int, name: str, folder: str, train:str, test:str, dev:str):
                       )
 
 
-if __name__ == "__main__":
-    app()
+train()

@@ -477,7 +477,6 @@ class ArgsRel3:
                     rels.append((rel,(i,j)))
 
         rels.sort(key = lambda x: len(x[0]), reverse=True)
-
         for rel in rels:
             idx = rel[1]
             sent_list = sent.split(" ")
@@ -487,6 +486,8 @@ class ArgsRel3:
             rel = " ".join(rel[0])
 
             valid = self.matcher.match(sent, arg0, rel, arg1)
+            #print(rel)
+            #print(valid)
             if valid[3]:
                 #colhe pos da relação do alinhamento, o pos usado é o da sent nos tokens da ext
                 aux = []
@@ -524,15 +525,21 @@ class ArgsRel3:
                 middle = False
                 middle_counter = 0
                 #inicio
+                #print(inicio)
                 for i,tags in enumerate(inicio):
                     p_tag = tags[0]
                     p_dep = tags[1]
-                    if p_tag == "AUX" and i == 0:
+                    if p_tag == "AUX"  and i == 0:
                         first = True
                         if len(rel_pos) == 1:
                             self.alinhamentos.append(ali_gerado[0])
                             return self.alinhamentos
                     elif (p_tag == "VERB" and p_dep == "ROOT") and i == 0:
+                        first = True
+                        if len(rel_pos) == 1:
+                            self.alinhamentos.append(ali_gerado[0])
+                            return self.alinhamentos
+                    elif (p_tag == "AUX" and p_dep == "ROOT") and i == 0:
                         first = True
                         if len(rel_pos) == 1:
                             self.alinhamentos.append(ali_gerado[0])
@@ -547,7 +554,7 @@ class ArgsRel3:
                         #print(tags)
                         p_tag = tags[0]
                         #print(p_tag)
-                        if p_tag in ['ADJ','NOUN', 'VERB', "AUX","DET"] and first:
+                        if p_tag in ['ADJ','NOUN',"ADV","VERB","AUX"] and first:
                             middle_counter += 1
                 if middle_counter == len(meio):
                     middle = True
@@ -555,16 +562,13 @@ class ArgsRel3:
                 #fim
                 for i,tags in enumerate(fim):
                     p_tag = tags[0]
-                    if len(rel_pos) == 2 and p_tag == "VERB" and first:
-                        self.alinhamentos.append(ali_gerado[0])
-                        return self.alinhamentos
-                    elif len(rel_pos) == 2 and p_tag == "AUX" and first:
-                        self.alinhamentos.append(ali_gerado[0])
-                        return self.alinhamentos
-                    elif len(rel_pos) == 2 and p_tag == "ADP" and first:
+                    if len(rel_pos) == 2 and p_tag in ["ADP", "VERB", "AUX"] and first:
                         self.alinhamentos.append(ali_gerado[0])
                         return self.alinhamentos
                     elif len(rel_pos) > 2 and p_tag == "ADP" and first and middle:
+                        self.alinhamentos.append(ali_gerado[0])
+                        return self.alinhamentos
+                    elif len(rel_pos) == 1 and first:
                         self.alinhamentos.append(ali_gerado[0])
                         return self.alinhamentos
 
@@ -576,38 +580,34 @@ class ArgsRel3:
 class Translators:
     def __init__(self, google: bool):
         if not google:
-            openai.api_key = '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'
-            self.prompt_tradução = "Você é um tradutor muito preciso que faz traduções de textos da lingua inglêsa para a lingua pt-br. " \
-                "Você irá receber dois textos, uma setença e um fato relacionado a essa sentença, você deve traduzi-las da melhor maneira possível." \
-                "A entrada ocorrerá da seguinte maneira:" \
-                "SENTENÇA: The dog is walking through the park, he is very happy." \
-                "FATO: The dog is very happy." \
-                "A saída deve ser só e somente só, a seguinte:" \
-                "SENTENÇA: O cachorro está andando pelo parque, ele está muito feliz." \
-                "FATO: O cachorro está muito feliz." \
-                "" \
-                "MAIS EXEMPLOS:" \
-                "exemplo 1(entrada):"\
-                "SENTENÇA: Geologists study how rocks and minerals form ." \
-                "FATO: how rocks and minerals form study Geologists " \
-                "exemplo 1(saida):" \
-                "SENTENÇA: Os geólogos estudam como as rochas e minerais se formam." \
-                "FATO: Os geólogos estudam como as rochas e minerais se formam." \
-                "" \
-                "exemplo 2(entrada):" \
-                "SENTENÇA: Some geologists study the Moon . " \
-                "FATO: the Moon study Some geologists " \
-                "exemplo 2(saida):" \
-                "SENTENÇA: Alguns geólogos estudam a Lua." \
-                "FATO: Alguns geólogos estudam a Lua." \
-                "" \
-                "exemplo 3(entrada):" \
-                "SENTENÇA: Some geologists can tell how old rocks are and determine how different rock layers formed . " \
-                "FATO: how old rocks are can tell Some geologists " \
-                "exemplo 3(saida):" \
-                "SENTENÇA: Alguns geólogos conseguem determinar a idade das rochas e como diferentes camadas de rochas se formaram." \
-                "FATO: Alguns geólogos conseguem determinar a idade das rochas." \
-
+            #openai.api_key = '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'
+            self.prompt_tradução = "Por favor, traduza as seguintes sentenças do inglês para o português. Além disso, identifique e traduza os fatos específicos dentro de cada sentença. Certifique-se de que os fatos traduzidos sejam adaptados para corresponder diretamente à sua representação na sentença traduzida, se baseie nos seguintes exemplos:\n\n" \
+            "EXEMPLOS DE ENTRADA E SAÍDA:\n\n" \
+            "(entrada):\n" \
+            "SENTENÇA: The dog is walking through the park, he is very happy.\n" \
+            "FATO: The dog is very happy.\n" \
+            "(saida):\n" \
+            "SENTENÇA: O cachorro está andando pelo parque, ele está muito feliz.\n" \
+            "FATO: O cachorro está muito feliz.\n\n" \
+            "(entrada):\n" \
+            "SENTENÇA: He made a midnight requisition of all the printers he could lay hands on so that he could monitor all the telephone lines coming into the lab 's computers .\n" \
+            "FATO: telephone lines coming the lab 's computers \n" \
+            "(saida):\n" \
+            "SENTENÇA: Ele fez uma requisição à meia-noite de todas as impressoras que conseguiu encontrar para poder monitorar todas as linhas telefônicas que chegam aos computadores do laboratório.\n" \
+            "FATO: linhas telefônicas chegam aos computadores do laboratório.\n\n" \
+            "(entrada):\n" \
+            "SENTENÇA: The campaign , which started last week and runs through Nov. 23 , with funds earmarked for both the quake and Hugo , `` was Barry 's idea , '' a spokeswoman says .\n" \
+            "FATO: The campaign started last week \n" \
+            "(saida):\n" \
+            "SENTENÇA: A campanha, que começou na semana passada e vai até o dia 23 de novembro, com fundos destinados tanto para o terremoto quanto para o Hugo, 'foi ideia de Barry', disse uma porta-voz.\n" \
+            "FATO: A campanha começou na semana passada.\n\n" \
+            "(entrada):\n" \
+            "SENTENÇA: So far , Nissan 's new - model successes are mostly specialized vehicles with limited sales potential .\n" \
+            "FATO: Nissan 's new - model successes specialized limited sales potential \n" \
+            "(saida):\n" \
+            "SENTENÇA: Até agora, os sucessos dos novos modelos da Nissan são principalmente veículos especializados com potencial de venda limitado.\n" \
+            "FATO: Os sucessos dos novos modelos da Nissan são principalmente com potencial de venda limitado.\n"
+            #print(self.prompt_tradução)
         else:
             self.google_translator = GoogleTranslator(source="en", target="pt")
 
@@ -618,7 +618,7 @@ class Translators:
     def gpt(self, sent, ext):
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
-            temperature=0,
+            temperature=5,
             messages=[
                 {"role": "system", "content": self.prompt_tradução},
                 {"role": "user", "content": f"SENTENÇA: {sent}"},
@@ -643,10 +643,10 @@ class Translators:
                 "maxLength": 12000,
                 "tokenLimit": 3000
             },
-            "temperature": 0,
+            "temperature": 2,
             "messages": [
                 {"role": "system",
-                 "content": "Você é um tradutor de textos em ingles para portugues brasileiro super preciso."},
+                 "content": "Você é um tradutor de textos de ingles para portugues brasileiro."},
                 {"role": "user", "content": self.prompt_tradução},
                 {"role": "user", "content": f"SENTENÇA: {sent}"},
                 {"role": "user", "content": f"FATO: {ext}"}
@@ -659,6 +659,9 @@ class Translators:
             print("erro na tradução, tentando novamente")
             return self.gptv2(sent, ext)
         return sentence, extraction
+
+    def da_vinci(self, sent, ext):
+        pass
 
 
 class TranslateDataset:
@@ -701,6 +704,14 @@ class TranslateDataset:
         pathlib.Path(path).mkdir(parents=True, exist_ok=True)
         with open(self.out_path+"/saida_match/json_dump.json", "a", encoding="utf-8") as f:
             f.write(json.dumps(data_dict))
+
+    def save_dict_threads(self, n_parts: int):
+        data_dict = {}
+        for i in range(n_parts):
+            with open(f"{self.out_path}/align/data_dict{i}.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+                data_dict.update(data)
+        self.save_dict(data_dict)
 
     def save_translate(self, data):
         path = self.out_path+"/translate"
@@ -841,6 +852,7 @@ class TranslateDataset:
             return False
 
     def thread_gpt(self, part: int, dataset=None):
+        #TODO: dividir em micro_funções
         if dataset is None:
             dataset = self.load_dataset()
 
@@ -903,16 +915,71 @@ class TranslateDataset:
             trans_dict = {"sent": all_sent, "ext": all_ext, "raw_sent": raw_sent, "raw_ext": raw_ext}
             f.write(json.dumps(trans_dict))
 
-
-    def save_dict_threads(self, n_parts:int):
-        data_dict = {}
-        for i in range(n_parts):
-            with open(f"{self.out_path}/align/data_dict{i}.json", "r", encoding="utf-8") as f:
-                data = json.load(f)
-                data_dict.update(data)
-        self.save_dict(data_dict)
-
     def create_dict(self, translate = None, part = None):
+        argsRel_eng = ArgsRel3()
+        if translate is None:
+            with open(self.out_path + "/translate/translate.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+        else:
+            data = translate
+        all_sent = data["sent"]
+        all_ext = data["ext"]
+        raw_sent = data["raw_sent"]
+        raw_ext = data["raw_ext"]
+        if self.debug:
+            for sent, ext, rs, re in zip(all_sent, all_ext, raw_sent, raw_ext):
+                if not self.google:
+                    self.debugging(sent, ext, rs, re)
+                else:
+                    self.debugging(sent, ext, rs, re)
+        data_dict = {}
+        #identifica elementos da tripla traduzida e armazena em um dicionario
+        counter = 0
+
+        for sample in tqdm(zip(all_sent, all_ext), total=len(all_sent)):
+            curr_ext = sample[1]
+            if curr_ext[-1] == ".":
+                curr_ext = curr_ext[:-1]
+            alignments = argsRel_eng.get_args_rel(transform_portuguese_contractions(curr_ext), transform_portuguese_contractions(sample[0]))
+            for ali in alignments:
+                arg0_trad, rel_trad, arg1_trad = ali
+                if len(alignments) > 1:
+                    match = self.matcher.match(transform_portuguese_contractions(sample[0]),
+                                               transform_portuguese_contractions(arg0_trad),
+                                               transform_portuguese_contractions(rel_trad),
+                                               transform_portuguese_contractions(arg1_trad)
+                                               )
+
+                    if match[3] == True:
+                        data_dict[str(self.counter)] = {"ID": self.counter,
+                                                   "sent": transform_portuguese_contractions(sample[0]),
+                                                   "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
+                                                            "rel": transform_portuguese_contractions(rel_trad),
+                                                            "arg2": transform_portuguese_contractions(arg1_trad)}]}
+                        self.counter += 1
+                        break
+
+
+
+                else:
+                    data_dict[str(self.counter)] = {"ID": self.counter,
+                                               "sent": transform_portuguese_contractions(sample[0]),
+                                               "ext": [{"arg1": transform_portuguese_contractions(arg0_trad),
+                                                        "rel": transform_portuguese_contractions(rel_trad),
+                                                        "arg2": transform_portuguese_contractions(arg1_trad)}]}
+                    self.counter += 1
+            #print(f"{self.counter / (len(all_sent) * 6):.2f}% concluído ||| {self.counter}/{len(all_sent)*6} ||| thread: {part}")
+
+        if part is not None:
+            path = self.out_path + f"/align/"
+            pathlib.Path(path).mkdir(parents=True, exist_ok=True)
+            with open(self.out_path + f"/align/data_dict{part}.json", "a", encoding="utf-8") as f:
+                f.write(json.dumps(data_dict))
+        else:
+            #salva dicionario
+            self.save_dict(data_dict)
+
+    def create_dict_thread(self, translate = None, part = None):
         argsRel_eng = ArgsRel3()
         if translate is None:
             with open(self.out_path + "/translate/translate.json", "r", encoding="utf-8") as f:
@@ -965,7 +1032,7 @@ class TranslateDataset:
                                                         "rel": transform_portuguese_contractions(rel_trad),
                                                         "arg2": transform_portuguese_contractions(arg1_trad)}]}
                     self.counter += 1
-            print(f"{self.counter / (len(all_sent) * 6):.2f}% concluído ||| {self.counter}/{len(all_sent)*6} ||| thread: {part}")
+            print(f"{(self.counter / (len(all_sent) * 6))*100:.2f}% concluído ||| {self.counter}/{len(all_sent)*6} ||| thread: {part}")
 
         if part is not None:
             path = self.out_path + f"/align/"
