@@ -13,7 +13,7 @@ app = typer.Typer()
 
 @app.command()
 def fine_tune():
-    model_name = "TA3"
+    model_name = "TA_bertina4"
 
     # inicializando sequence tagger
     try:

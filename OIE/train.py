@@ -10,15 +10,15 @@ app = typer.Typer()
 
 def train():
     # define the structure of the .datasets file
-    name = "TAt"
+    name = "TA3"
     epochs = 150
-    folder = "datasets/feedback"
-    train = "fb_dataset.txt"
-    test = "fb_dataset.txt"
-    dev = "fb_dataset.txt"
+    folder = "datasets/validated_splits/normal"
+    train = "TransAlign2/TA2_train.txt"
+    test = "TransAlign2/s2_TA_valid.txt"
+    dev = "TransAlign2/TA2_dev.txt"
 
     corpus = ColumnCorpus(data_folder=folder,
-                          column_format={0: 'text', 1: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
+                          column_format={0: 'text', 8: 'label'},# 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
                           test_file=test,
                           dev_file=dev
