@@ -529,6 +529,9 @@ class ArgsRel3:
                     p_dep = tags[1]
                     if p_tag == "ADV" and i == 0 and len(rel_pos) > 1 and rel_pos[1] == ("VERB" or "AUX"):
                         first = True
+                        if len(rel_pos) == 2:
+                            self.alinhamentos.append(ali_gerado[0])
+                            return self.alinhamentos
                     if p_tag == "AUX" and i == 0:
                         first = True
                         if len(rel_pos) == 1:

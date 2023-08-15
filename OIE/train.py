@@ -10,7 +10,7 @@ app = typer.Typer()
 
 def train():
     # define the structure of the .datasets file
-    name = "TA3"
+    name = "TA2"
     epochs = 150
     folder = "datasets/validated_splits/normal"
     train = "TransAlign2/TA2_train.txt"
@@ -64,7 +64,7 @@ def train():
                          reproject_embeddings=True,
                          tag_type=label_type,
                          rnn_layers=2,
-                         dropout=0.4,
+                         dropout=0.6,
                          locked_dropout=0.0,
                          word_dropout=0.05,
                          )
