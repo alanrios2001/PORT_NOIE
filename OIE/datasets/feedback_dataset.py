@@ -104,7 +104,7 @@ class FeedBackDataset:
             with open(self.dir + "/fb_dataset.txt", "r", encoding="utf-8") as f:
                 return f.read()
         except:
-            with open(self.dir + "/fb_dataset.txt", "w", encoding="utf-8") as f:
+            with open(self.dir + "/fb_dataset.txt", "a", encoding="utf-8") as f:
                 return ''
 
     def extruct_dataset(self, dataset):
