@@ -29,6 +29,7 @@ class FeedBackDataset:
 
     def save_data(self):
         file_text = ""
+        before_tag = '\tXX\t-\t-\t-\t-\t-\t*\t'
         dict = self.data_dict.keys()
         dict = list(dict)[-1]
         for key in [dict]:
@@ -37,35 +38,35 @@ class FeedBackDataset:
                 for i,token in enumerate([token.text for token in self.nlp(key)]):
                     if i in range(match[0][0], match[0][1]+1):
                         if len(range(match[0][0], match[0][1]+1)) == 1:
-                            file_text += token + "\t" + "S-ARG0" + "\n"
+                            file_text += token + before_tag + "S-ARG0" + "\n"
                         elif i == match[0][0]:
-                            file_text += token + "\t" + "B-ARG0" + "\n"
+                            file_text += token + before_tag + "B-ARG0" + "\n"
                         elif i > match[0][0] and i<match[0][1]:
-                            file_text += token + "\t" + "I-ARG0" + "\n"
+                            file_text += token + before_tag + "I-ARG0" + "\n"
                         elif i == match[0][1]:
-                            file_text += token + "\t" + "E-ARG0" + "\n"
+                            file_text += token + before_tag + "E-ARG0" + "\n"
 
                     elif i in range(match[1][0], match[1][1]+1):
                         if len(range(match[1][0], match[1][1] + 1)) == 1:
-                            file_text += token + "\t" + "S-V" + "\n"
+                            file_text += token + before_tag + "S-V" + "\n"
                         elif i == match[1][0]:
-                            file_text += token + "\t" + "B-V" + "\n"
+                            file_text += token + before_tag + "B-V" + "\n"
                         elif i > match[1][0] and i < match[1][1]:
-                            file_text += token + "\t" + "I-V" + "\n"
+                            file_text += token + before_tag + "I-V" + "\n"
                         elif i == match[1][1]:
-                            file_text += token + "\t" + "E-V" + "\n"
+                            file_text += token + before_tag + "E-V" + "\n"
 
                     elif i in range(match[2][0], match[2][1]+1):
                         if len(range(match[2][0], match[2][1] + 1)) == 1:
-                            file_text += token + "\t" + "S-ARG1" + "\n"
+                            file_text += token + before_tag + "S-ARG1" + "\n"
                         elif i == match[2][0]:
-                            file_text += token + "\t" + "B-ARG1" + "\n"
+                            file_text += token + before_tag + "B-ARG1" + "\n"
                         elif i > match[2][0] and i < match[2][1]:
-                            file_text += token + "\t" + "I-ARG1" + "\n"
+                            file_text += token + before_tag + "I-ARG1" + "\n"
                         elif i == match[2][1]:
-                            file_text += token + "\t" + "E-ARG1" + "\n"
+                            file_text += token + before_tag + "E-ARG1" + "\n"
                     else:
-                        file_text += token + "\t" + "O" + "\n"
+                        file_text += token + before_tag + "O" + "\n"
                 file_text += "\n"
         with open(self.dir + "/fb_dataset.txt", "a", encoding="utf-8") as f:
             try:
