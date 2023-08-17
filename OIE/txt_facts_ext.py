@@ -2,12 +2,12 @@ from predict import Predictor
 from OIE.datasets.feedback_dataset import FeedBackDataset
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions
 
-model = "TA2"
+model = "TA_bertina4"
 oie = Predictor(model)
 show_triple = True
 fb = FeedBackDataset()
 
-with open("text.txt", "r", encoding="utf-8") as f:
+with open("texto_ayrton.txt", "r", encoding="utf-8") as f:
     lines = f.read()
     lines = lines.replace("\n", "")
     lines = lines.split(".")[:-1]
