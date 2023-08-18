@@ -11,7 +11,7 @@ import re
 import pathlib
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-name = "TA3"
+name = "TA_bertina3/fine_tune"
 engine = Predictor(f"{name}")
 
 

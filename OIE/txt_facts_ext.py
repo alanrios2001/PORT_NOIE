@@ -2,7 +2,7 @@ from predict import Predictor
 from OIE.datasets.feedback_dataset import FeedBackDataset
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions
 
-model = "TA_bertina4"
+model = "TA_bertina3/fine_tune"
 oie = Predictor(model)
 show_triple = True
 fb = FeedBackDataset()
@@ -28,14 +28,16 @@ for i, ex in enumerate(exts):
     lenght = len(ex)
     extraction = f"{i} - extração:"
     if lenght > 2:
+        print("sentença: ", ex[0])
         displayed_extractions.append([transform_portuguese_contractions(ex[0]),
                                       transform_portuguese_contractions(ex[1][0]),
                                       transform_portuguese_contractions(ex[2][0]),
                                       transform_portuguese_contractions(ex[3][0])])
-        for i in range(1, lenght):
-            extraction += f" {ex[i][0]}"
+        #for i in range(1, lenght):
+            #extraction += f" {ex[i][0]}"
         if show_triple:
             print(extraction + " → " + f"(ARG0: {ex[1][0]})" + f"(REL: {ex[2][0]})" + f"(ARG1: {ex[3][0]})")
+            print("-"*50)
         else:
             print(extraction)
 

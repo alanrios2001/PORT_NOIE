@@ -16,18 +16,18 @@ app = typer.Typer()
 
 def train():
     # define the structure of the .datasets file
-    name = "TA_bertina4_b/"
+    name = "TA_bertina3"
     epochs = 40
-    folder = ""
-    train = "datasets/feedback/fb_dataset.txt"
-    test = "datasets/feedback/fb_dataset.txt"
-    dev = "datasets/feedback/fb_dataset.txt"
+    folder = "datasets/validated_splits/normal/TransAlign3"
+    train = "TA3_train.txt"
+    test = "s2_TA_valid.txt"
+    dev = "TA3_dev.txt"
 
     corpus = ColumnCorpus(data_folder=folder,
-                          column_format={0: 'text', 1: 'label'},  # , 9: "pos", 10: "dep", 11: "ner"},
+                          column_format={0: 'text', 8: 'label'},  # , 9: "pos", 10: "dep", 11: "ner"},
                           train_file=train,
                           test_file=test,
-                          #dev_file=dev
+                          dev_file=dev
                           )
 
     label_type = "label"  # criando dicionario de tags
@@ -78,14 +78,14 @@ def train():
                             reproject_embeddings=False,
                             )
 
-    tagger = SequenceTagger.load(f"train_output/{name}/best-model.pt")
+    #tagger = SequenceTagger.load(f"train_output/{name}/best-model.pt")
 
 
     # inicializando trainer
     trainer = ModelTrainer(tagger, corpus)
 
     trainer.fine_tune(f"train_output/{name}",
-                      learning_rate=1e-6,
+                      learning_rate=1e-7,
                       mini_batch_size=4,
                       #chunk_batch_size=1,
                       #min_learning_rate=1e-6,

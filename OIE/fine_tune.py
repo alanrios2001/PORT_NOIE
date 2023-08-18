@@ -13,7 +13,7 @@ app = typer.Typer()
 
 @app.command()
 def fine_tune():
-    model_name = "TA2"
+    model_name = "TA_bertina3"
 
     # inicializando sequence tagger
     try:
@@ -34,8 +34,8 @@ def fine_tune():
     trainer = ModelTrainer(oie, corpus)
 
     trainer.fine_tune(f"train_output/{model_name}/fine_tune",
-                      learning_rate=1e-5,
-                      mini_batch_size=32,
+                      learning_rate=1e-6,
+                      mini_batch_size=4,
                       max_epochs=20,
                       optimizer=MADGRAD,
                       use_final_model_for_eval=False,
