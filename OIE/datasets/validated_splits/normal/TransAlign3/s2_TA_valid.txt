@@ -26655,4 +26655,3 @@ pouco	XX	-	-	-	-	-	*	O	-
 sucesso	XX	-	-	-	-	-	*	O	-
 comercial	XX	-	-	-	-	-	*	O	-
 .	XX	-	-	-	-	-	*	O	-
-

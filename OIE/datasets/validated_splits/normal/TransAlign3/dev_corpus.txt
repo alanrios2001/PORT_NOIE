@@ -7841,4 +7841,3 @@ sua	XX	-	-	-	-	-	*	I-ARG1	-
 profissão	XX	-	-	-	-	-	*	I-ARG1	-
 ilegal	XX	-	-	-	-	-	*	E-ARG1	-
 .	XX	-	-	-	-	-	*	O	-
-

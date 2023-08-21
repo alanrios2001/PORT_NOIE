@@ -2,7 +2,7 @@ from predict import Predictor
 from OIE.datasets.feedback_dataset import FeedBackDataset
 from OIE.datasets.validated_splits.contractions import transform_portuguese_contractions
 
-model = "TA_bertina3/fine_tune"
+model = "TA3"
 oie = Predictor(model)
 show_triple = True
 fb = FeedBackDataset()
