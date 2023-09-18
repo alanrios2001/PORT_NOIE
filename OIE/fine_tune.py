@@ -13,7 +13,9 @@ app = typer.Typer()
 
 @app.command()
 def fine_tune():
-    model_name = "TA_bertina3"
+    model_name = "TA_bertina4/feedback"
+    pre_fine_tune = ["eval/pud_200.txt", "eval/100-gold.txt", "eval/100-gold.txt"]
+    feed_back = ["feedback/fb_dataset.txt", "eval/100-gold.txt", "eval/100-gold.txt"]
 
     # inicializando sequence tagger
     try:
@@ -23,18 +25,18 @@ def fine_tune():
         oie = SequenceTagger.load("train_output/" + model_name + "/final-model.pt")
         print("final model loaded")
 
-
+    dataset = pre_fine_tune
     corpus = ColumnCorpus(data_folder="datasets/validated_splits/normal",
                           column_format={0: 'text', 8: 'label'},  # 9: "pos", 10: "dep", 11: "ner"},
-                          train_file="eval/pud_200.txt",
-                          test_file="eval/100-gold.txt",
-                          dev_file="eval/100-gold.txt"
+                          train_file=dataset[0],
+                          dev_file=dataset[1],
+                          test_file=dataset[2]
                           )
 
     trainer = ModelTrainer(oie, corpus)
 
-    trainer.fine_tune(f"train_output/{model_name}/fine_tune",
-                      learning_rate=1e-6,
+    trainer.fine_tune(f"train_output/{model_name}/fn",
+                      learning_rate=1e-8,
                       mini_batch_size=4,
                       max_epochs=20,
                       optimizer=MADGRAD,

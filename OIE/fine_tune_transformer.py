@@ -16,7 +16,7 @@ app = typer.Typer()
 
 def train():
     # define the structure of the .datasets file
-    name = "TA_bertina3"
+    name = "TA_bertina4"
     epochs = 40
     folder = "datasets/validated_splits/normal/TransAlign3"
     train = "TA3_train.txt"
@@ -49,8 +49,9 @@ def train():
                                         )
 
     albertina_base = TransformerWordEmbeddings('PORTULAN/albertina-ptbr-base',
-                                          layers="-1",
-                                          subtoken_pooling="first_last",
+                                          layers="-1,-2,-3",
+                                          layer_mean=True,
+                                          subtoken_pooling="mean",
                                           use_context=True,
                                           fine_tune=True,
                                           )

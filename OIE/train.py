@@ -76,12 +76,12 @@ def train():
 
     # iniciando treino
     trainer.train(f"train_output/{name}",
-                  learning_rate=1e-3,
+                  learning_rate=5e-4 ,
                   min_learning_rate=1e-4,
                   mini_batch_size=16,
                   #mini_batch_chunk_size=1,
                   max_epochs=epochs,
-                  patience=8,
+                  patience=4,
                   embeddings_storage_mode='none',
                   optimizer=MADGRAD,
                   save_final_model=False,
