@@ -139,9 +139,9 @@ def load_s2_train():
 
 def run(threading_align=False):
     datasets_to_translate = [
-        {"dir":"","name": "carb", "load": load_carb(), "out_path": "outputs/carb/", "batch_size": 1, "google": False},
-        {"dir": "", "name": "s2_alan_train", "load": load_s2_train(), "out_path": "outputs/s2_alan_train/", "batch_size":1, "google": False},
-        #{"dir": "", "name": "s2_alan_valid", "load": load_s2_valid(), "out_path": "outputs/s2_alan_valid/", "batch_size":1, "google": False},
+        {"dir": "","name": "carb", "load": load_carb(), "out_path": "outputs/carb/", "batch_size": 1, "google": False},
+        #{"dir": "", "name": "s2_alan_train", "load": load_s2_train(), "out_path": "outputs/s2_alan_train/", "batch_size":1, "google": False},
+        {"dir": "", "name": "s2_alan_valid", "load": load_s2_valid(), "out_path": "outputs/s2_alan_valid/", "batch_size":1, "google": False},
     ]
 
     for dataset in datasets_to_translate:
@@ -158,7 +158,10 @@ def run(threading_align=False):
         '''
 
         if not threading_align:
-            eng.merge_translate_parts(len(full_dataset))
+            try:
+                eng.merge_translate_parts(len(full_dataset))
+            except:
+                pass
             eng.create_dict()
         else:
             # Submit tasks to thread pool2

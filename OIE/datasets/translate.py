@@ -448,7 +448,7 @@ class ArgsRel:
         return self.alinhamentos
 
 
-class ArgsRel3_1:
+class ArgsRel3:
     def __init__(self):
         self.provavel_rel = []
         self.alinhamentos = []
@@ -517,6 +517,11 @@ class ArgsRel3_1:
                                 return self.alinhamentos
                         elif p_tag == "ADV" and i == 0 and len(rel_pos) > 1 and rel_pos[1] == 'PRON':
                             first = True
+                        elif p_tag == "PRON" and i == 0 and len(rel_pos) > 1 and rel_pos[1] in ['VERB', 'AUX']:
+                            first = True
+                            if len(rel_pos) == 2:
+                                self.alinhamentos.append(ali_gerado[0])
+                                return self.alinhamentos
                         elif p_tag == "AUX" and i == 0:
                             first = True
                             if len(rel_pos) == 1:
