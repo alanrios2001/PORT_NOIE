@@ -448,7 +448,7 @@ class ArgsRel:
         return self.alinhamentos
 
 
-class ArgsRel3:
+class ArgsRel3_1:
     def __init__(self):
         self.provavel_rel = []
         self.alinhamentos = []
@@ -500,23 +500,24 @@ class ArgsRel3:
                     rel_dep = ali_gerado[2][1]
                     inicio = [[rel_pos[0], rel_dep[0]]]
                     meio = []
-                    # print(rel_pos, rel_dep)
                     for x, y in zip(rel_pos[1:-1], rel_dep[1:-1]):
                         meio.append([x, y])
                     fim = [[rel_pos[-1], rel_dep[-1]]]
-
                     first = False
                     middle = False
                     middle_counter = 0
+                    # inicio
                     for i, tags in enumerate(inicio):
                         p_tag = tags[0]
                         p_dep = tags[1]
-                        if p_tag == "ADV" and i == 0 and len(rel_pos) > 1 and rel_pos[1] == ("VERB" or "AUX"):
+                        if p_tag == "ADV" and i == 0 and len(rel_pos) > 1 and rel_pos[1] in ['VERB', 'AUX']:
                             first = True
                             if len(rel_pos) == 2:
                                 self.alinhamentos.append(ali_gerado[0])
                                 return self.alinhamentos
-                        if p_tag == "AUX" and i == 0:
+                        elif p_tag == "ADV" and i == 0 and len(rel_pos) > 1 and rel_pos[1] == 'PRON':
+                            first = True
+                        elif p_tag == "AUX" and i == 0:
                             first = True
                             if len(rel_pos) == 1:
                                 self.alinhamentos.append(ali_gerado[0])
@@ -531,14 +532,14 @@ class ArgsRel3:
                             if len(rel_pos) == 1:
                                 self.alinhamentos.append(ali_gerado[0])
                                 return self.alinhamentos
+
                     # meio
                     for i, tags in enumerate(meio):
                         p_tag = tags[0]
-                        if p_tag in ['ADJ', 'NOUN', 'VERB', "AUX", "DET"] and first:
+                        if p_tag in ['ADJ', 'NOUN', 'VERB', "AUX", "DET", "PRON", "SCONJ", "PROPN"] and first:
                             middle_counter += 1
                     if middle_counter == len(meio):
                         middle = True
-
                     # fim
                     for i, tags in enumerate(fim):
                         p_tag = tags[0]
@@ -551,7 +552,7 @@ class ArgsRel3:
                         elif len(rel_pos) == 2 and p_tag == "ADP" and first:
                             self.alinhamentos.append(ali_gerado[0])
                             return self.alinhamentos
-                        elif len(rel_pos) > 2 and p_tag == "ADP" and first and middle:
+                        elif len(rel_pos) > 2 and p_tag in ["ADP", "VERB", "AUX"] and first and middle:
                             self.alinhamentos.append(ali_gerado[0])
                             return self.alinhamentos
 
