@@ -56,9 +56,10 @@ def criar_conll(out_name: str,
 
 @app.command()
 def merge():
-    fine_tune = ["other_corpus/outputs/saida_match/gamalho/gamalho_corpus.txt",
-                  "other_corpus/outputs/saida_match/pragmatic_ceten/pragmatic_ceten_corpus.txt",
-                  "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt"]
+    fine_tune = ["other_corpus/outputs/saida_match/pud_200/pud_200_corpus.txt",
+                "other_corpus/outputs/saida_match/gamalho/gamalho_corpus.txt",
+                "other_corpus/outputs/saida_match/pragmatic_ceten/pragmatic_ceten_corpus.txt",
+                "other_corpus/outputs/saida_match/pragmatic_wiki/pragmatic_wiki_corpus.txt"]
 
     trad = [
         "validated_splits/normal/TransAlign3/carb_corpus.txt",
@@ -69,8 +70,8 @@ def merge():
         "validated_splits/normal/TransAlign3/s2_TA_train.txt",
     ]
 
-    OUTPUT_NAME = "TA3"
-    Merge(trad, OUTPUT_NAME)
+    OUTPUT_NAME = "merge_oie"
+    Merge(fine_tune, OUTPUT_NAME)
 
 @app.command()
 def split():

@@ -447,6 +447,7 @@ class ArgsRel:
 
         return self.alinhamentos
 
+
 class ArgsRel3:
     def __init__(self):
         self.provavel_rel = []
@@ -461,120 +462,107 @@ class ArgsRel3:
     def get_args_rel(self, ext, sent):
         self.alinhamentos = []
         pos = []
-        rels = []
         ext_list = ext.split(" ")
+        sent_list = sent.split(" ")
         sent_doc = self.nlp(sent)
 
+        # permutando relações
+        # Começa com o maior tamanho de subsequência e vai diminuindo
+        for length in range(len(ext_list) - 2, 0, -1):
+            for start in range(1, len(ext_list) - length):
+                end = start + length
+                rel = ext_list[start:end]
 
-        #permutando relações
-        for i in range(1,len(ext_list)):
-            for j in range(i+1,len(ext_list)):
-                if i == len(ext_list)-1:
-                    rel = ext_list[i]
-                else:
-                    rel = ext_list[i:j]
-                if (rel,(i,j)) not in rels:
-                    rels.append((rel,(i,j)))
-
-        rels.sort(key = lambda x: len(x[0]), reverse=True)
-
-        for rel in rels:
-            idx = rel[1]
-            sent_list = sent.split(" ")
-            ext_list = ext.split(" ")
-            arg0 = " ".join(ext_list[:idx[0]])
-            arg1 = " ".join(ext_list[idx[1]:len(sent_list)])
-            rel = " ".join(rel[0])
-
-            valid = self.matcher.match(sent, arg0, rel, arg1)
-            if valid[3]:
-                #colhe pos da relação do alinhamento, o pos usado é o da sent nos tokens da ext
-                aux = []
-                aux_dep = []
-                cur_ext = []
-                cur_dep = []
-                for span in valid[:-1]:
-                    span_tk = sent_doc[span[0]:span[1]+1]
-                    for token in span_tk:
-                        aux.append(token.pos_)
-                        aux_dep.append(token.dep_)
-                    cur_ext.append(aux)
-                    cur_dep.append(aux_dep)
+                idx = (start, end)
+                arg0 = " ".join(ext_list[:idx[0]])
+                arg1 = " ".join(ext_list[idx[1]:len(sent_list)])
+                rel = " ".join(rel)
+                valid = self.matcher.match(sent, arg0, rel, arg1)
+                if valid[3]:
+                    # colhe pos da relação do alinhamento, o pos usado é o da sent nos tokens da ext
                     aux = []
                     aux_dep = []
-                pos.append(((arg0,rel,arg1),cur_ext, cur_dep))
-        #utiliza regras no pos da relação para filtrar alinhamentos
-                ali_gerado = ((arg0,rel,arg1),cur_ext, cur_dep)
-                #print(ali_gerado)
-                rel_pos = ali_gerado[1][1]
-                rel_dep = ali_gerado[2][1]
-                #print(rel_pos)
-                #print(rel_dep)
-                inicio = [[rel_pos[0], rel_dep[0]]]
-                meio = []
-                #print(rel_pos, rel_dep)
-                for x,y in zip(rel_pos[1:-1], rel_dep[1:-1]):
-                    meio.append([x,y])
-                fim = [[rel_pos[-1], rel_dep[-1]]]
-                #print(inicio)
-                #print(meio)
-                #print(fim)
-
-                first = False
-                middle = False
-                middle_counter = 0
-                #inicio
-                for i,tags in enumerate(inicio):
-                    p_tag = tags[0]
-                    p_dep = tags[1]
-                    if p_tag == "ADV" and i == 0 and len(rel_pos) > 1 and rel_pos[1] == ("VERB" or "AUX"):
-                        first = True
-                        if len(rel_pos) == 2:
-                            self.alinhamentos.append(ali_gerado[0])
-                            return self.alinhamentos
-                    if p_tag == "AUX" and i == 0:
-                        first = True
-                        if len(rel_pos) == 1:
-                            self.alinhamentos.append(ali_gerado[0])
-                            return self.alinhamentos
-                    elif (p_tag == "VERB" and p_dep == "ROOT") and i == 0:
-                        first = True
-                        if len(rel_pos) == 1:
-                            self.alinhamentos.append(ali_gerado[0])
-                            return self.alinhamentos
-                    elif p_tag == "VERB" and i == 0:
-                        first = True
-                        if len(rel_pos) == 1:
-                            self.alinhamentos.append(ali_gerado[0])
-                            return self.alinhamentos
-                #meio
-                for i,tags in enumerate(meio):
-                        #print(tags)
+                    cur_ext = []
+                    cur_dep = []
+                    for span in valid[:-1]:
+                        span_tk = sent_doc[span[0]:span[1] + 1]
+                        for token in span_tk:
+                            aux.append(token.pos_)
+                            aux_dep.append(token.dep_)
+                        cur_ext.append(aux)
+                        cur_dep.append(aux_dep)
+                        aux = []
+                        aux_dep = []
+                    pos.append(((arg0, rel, arg1), cur_ext, cur_dep))
+                    # utiliza regras no pos da relação para filtrar alinhamentos
+                    ali_gerado = ((arg0, rel, arg1), cur_ext, cur_dep)
+                    rel_pos = ali_gerado[1][1]
+                    rel_dep = ali_gerado[2][1]
+                    inicio = [[rel_pos[0], rel_dep[0]]]
+                    meio = []
+                    for x, y in zip(rel_pos[1:-1], rel_dep[1:-1]):
+                        meio.append([x, y])
+                    fim = [[rel_pos[-1], rel_dep[-1]]]
+                    first = False
+                    middle = False
+                    middle_counter = 0
+                    # inicio
+                    for i, tags in enumerate(inicio):
                         p_tag = tags[0]
-                        #print(p_tag)
-                        if p_tag in ['ADJ','NOUN', 'VERB', "AUX","DET"] and first:
-                            middle_counter += 1
-                if middle_counter == len(meio):
-                    middle = True
+                        p_dep = tags[1]
+                        if p_tag == "ADV" and i == 0 and len(rel_pos) > 1 and rel_pos[1] in ['VERB', 'AUX']:
+                            first = True
+                            if len(rel_pos) == 2:
+                                self.alinhamentos.append(ali_gerado[0])
+                                return self.alinhamentos
+                        elif p_tag == "ADV" and i == 0 and len(rel_pos) > 1 and rel_pos[1] == 'PRON':
+                            first = True
+                        elif p_tag == "PRON" and i == 0 and len(rel_pos) > 1 and rel_pos[1] in ['VERB', 'AUX']:
+                            first = True
+                            if len(rel_pos) == 2:
+                                self.alinhamentos.append(ali_gerado[0])
+                                return self.alinhamentos
+                        elif p_tag == "AUX" and i == 0:
+                            first = True
+                            if len(rel_pos) == 1:
+                                self.alinhamentos.append(ali_gerado[0])
+                                return self.alinhamentos
+                        elif (p_tag == "VERB" and p_dep == "ROOT") and i == 0:
+                            first = True
+                            if len(rel_pos) == 1:
+                                self.alinhamentos.append(ali_gerado[0])
+                                return self.alinhamentos
+                        elif p_tag == "VERB" and i == 0:
+                            first = True
+                            if len(rel_pos) == 1:
+                                self.alinhamentos.append(ali_gerado[0])
+                                return self.alinhamentos
 
-                #fim
-                for i,tags in enumerate(fim):
-                    p_tag = tags[0]
-                    if len(rel_pos) == 2 and p_tag == "VERB" and first:
-                        self.alinhamentos.append(ali_gerado[0])
-                        return self.alinhamentos
-                    elif len(rel_pos) == 2 and p_tag == "AUX" and first:
-                        self.alinhamentos.append(ali_gerado[0])
-                        return self.alinhamentos
-                    elif len(rel_pos) == 2 and p_tag == "ADP" and first:
-                        self.alinhamentos.append(ali_gerado[0])
-                        return self.alinhamentos
-                    elif len(rel_pos) > 2 and p_tag == "ADP" and first and middle:
-                        self.alinhamentos.append(ali_gerado[0])
-                        return self.alinhamentos
+                    # meio
+                    for i, tags in enumerate(meio):
+                        p_tag = tags[0]
+                        if p_tag in ['ADJ', 'NOUN', 'VERB', "AUX", "DET", "PRON", "SCONJ", "PROPN"] and first:
+                            middle_counter += 1
+                    if middle_counter == len(meio):
+                        middle = True
+                    # fim
+                    for i, tags in enumerate(fim):
+                        p_tag = tags[0]
+                        if len(rel_pos) == 2 and p_tag == "VERB" and first:
+                            self.alinhamentos.append(ali_gerado[0])
+                            return self.alinhamentos
+                        elif len(rel_pos) == 2 and p_tag == "AUX" and first:
+                            self.alinhamentos.append(ali_gerado[0])
+                            return self.alinhamentos
+                        elif len(rel_pos) == 2 and p_tag == "ADP" and first:
+                            self.alinhamentos.append(ali_gerado[0])
+                            return self.alinhamentos
+                        elif len(rel_pos) > 2 and p_tag in ["ADP", "VERB", "AUX"] and first and middle:
+                            self.alinhamentos.append(ali_gerado[0])
+                            return self.alinhamentos
 
         if len(self.alinhamentos) == 0:
-            self.alinhamentos.append((" "," "," "))
+            self.alinhamentos.append((" ", " ", " "))
 
         return self.alinhamentos
 
