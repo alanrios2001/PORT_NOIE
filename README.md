@@ -124,3 +124,25 @@ example4:
 ```cmd
 python3 datasets/main.py PTOIE 0.1 0.1 saida_match/json_dump.json ""
 ```
+
+## Authors
+* Alan Rios Melo
+* Bruno Cabral
+* [Daniela Barreiro Claro](http://formas.ufba.br/dclaro/)
+* Marlo Souza
+
+## How to cite
+If you find this repo helpful, please consider citing:
+```
+@inproceedings{RIOS2024-TransAlign,
+title={TransAlign: An Automated Corpus Generation through Cross-Linguistic Data Alignment for Open Information Extraction},
+author={A. Rios and B. Cabral and D. B. Claro and R. C. Araujo and M. Souza},
+booktitle={Proceedings of the International Conference on Computational Processing of Portuguese (PROPOR 2024)},
+year={2024},
+volume={1},
+address={Santiago de Compostela},
+organization={International Conference on Computational Processing of Portuguese (PROPOR 2024)}
+}
+```
+
+* 	A. Rios, B. Cabral, D. B. Claro, R. C. Araujo: TransAlign: An Automated Corpus Generation through Cross-Linguistic Data Alignment for Open Information Extraction. In: Proceedings of the International Conference on Computational Processing of Portuguese (PROPOR 2024), Santiago de Compostela, 2024, vol. 1.
